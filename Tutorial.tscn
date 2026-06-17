@@ -25,12 +25,11 @@ directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="player" parent="." instance=ExtResource("1_jl26d")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -54.681458, 345.51947, -155.27625)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 295.8557, 40.91806, -7.144333)
 max_wall_angle = 89.0
 
 [node name="TestTower" parent="." instance=ExtResource("2_5s8la")]
 transform = Transform3D(4.68, 0, 0, 0, 4.68, 0, 0, 0, 4.68, 0.802742, 1.0640411, 2.825325)
 
 [node name="TestSewer" parent="." instance=ExtResource("3_fr6qw")]
-transform = Transform3D(22.59, 0, 0, 0, 22.59, 0, 0, 0, 22.59, 0, 0, 0)
-visible = false
+transform = Transform3D(100.000015, 0, 0, 0, 100.000015, 0, 0, 0, 100.000015, 478.32373, 40.54149, 0)

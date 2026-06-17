@@ -15,6 +15,7 @@ var invincibility_timer := 0.0
 
 @export var max_speed := 30.0
 @onready var cache_max_speed := max_speed
+var sprint_speed := 1.0
 @export var accel := 700.0
 @export var decel := 0.3
 @export var air_speed := 1.5
@@ -44,6 +45,16 @@ var invincibility_timer := 0.0
 @onready var player_head = $Head
 @onready var camera = $Head/Camera3D
 
+var in_water = false
+var slow = 2
+
+var cache_jump := jump_speed
+var cache_accel := accel
+
+var slow_accel := accel / 2
+var slow_jump_speed := jump_speed / 2
+
+
 var wall_jump_boost_timer := 0.0
 var wall_jump_timer := 0.0
 var wall_jump_velocity_preserve_timer := 0.0
@@ -63,7 +74,6 @@ var wall_normal := Vector3.ZERO
 var jumps := 0
 var is_jumping := false
 var is_sliding := false
-var sprint_speed := 1.0
 var just_wall_jumped := false
 
 var wall_slide_speed := 10.0
