@@ -40,9 +40,53 @@ Data (Curve mode only):
 	Depth: ?
 
 Measurements (Not tracked by blender, ruler tool):
-	Length: 4 Meters
-	Inner Diameter: 0.75 Meters
-	Flare width (inside rim to outside): 0.14 Meters
+    NOTE: Add new entries as needed, add custom fields as needed
+
+    Straight Pipe Ver 1:
+	    Length: 4 Meters
+	    Inner Diameter: 0.75 Meters
+	    Flare width (inside rim to outside): 0.14 Meters
+
+    90 Deg Pipe (right):
+	    Length: ?
+	    Inner Diameter: ?
+	    Flare width (inside rim to outside): ?
+
+    -90 Deg Pipe (left):
+	    Length: ?
+	    Inner Diameter: ?
+	    Flare width (inside rim to outside): ?
+
+    45 Deg (right):
+	    Length: ?
+	    Inner Diameter: ?
+	    Flare width (inside rim to outside): ?
+
+    -45 Deg (left):
+	    Length: ?
+	    Inner Diameter: ?
+	    Flare width (inside rim to outside): ?
+
+    ?:
+	    Length: ?
+	    Inner Diameter: ?
+	    Flare width (inside rim to outside): ?
+
+    ?:
+	    Length: ?
+	    Inner Diameter: ?
+	    Flare width (inside rim to outside): ?
+
+    ?:
+	    Length: ?
+	    Inner Diameter: ?
+	    Flare width (inside rim to outside): ?
+
+    ?:
+	    Length: ?
+	    Inner Diameter: ?
+	    Flare width (inside rim to outside): ?
+
 
 ## NOTES ##
 	Pipes should be long enough to accomodate for player speed
