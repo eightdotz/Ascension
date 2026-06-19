@@ -28,7 +28,7 @@ Measurements (Not tracked by blender, use ruler tool):
             
 
     STANDADRS:
-        Total Length: * 4 Meters
+        Total Length (per node placement): * 4 Meters
         Pipe Resolution: 12
         Inner Diameter: * 0.75 Depth OR 1.5 Inner Diameter (equal when measured)
         Angles: 1 Meter Offset @90° scaled to angle (45° == 0.5m Offset)
