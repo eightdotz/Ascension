@@ -36,11 +36,11 @@ Modifiers:
 		Rim: Fill = True
 
 Data (Curve mode only):
-	Resolution: 18
-	Depth: ?
+	Resolution: 12
+	Depth: 0.75
 
 Measurements (Not tracked by blender, ruler tool):
-	NOTE: Add new entries as needed, add custom fields as needed
+e	NOTE: Add new entries as needed, add custom fields as needed
 
 	Straight Pipe Ver 1:
 		Length: 4 Meters
@@ -48,9 +48,12 @@ Measurements (Not tracked by blender, ruler tool):
 		Flare width (inside rim to outside): 0.14 Meters
 
 	90 Deg Pipe (right):
-		Length: ?
+		Length: 4 Meters
 		Inner Diameter: ?
 		Flare width (inside rim to outside): ?
+        Offset: 0.5 Meters
+        Segments: 4
+        Profile Shape: 0.5
 
 	-90 Deg Pipe (left):
 		Length: ?
