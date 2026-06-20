@@ -19,24 +19,25 @@ Practice first so you understand how it works.
 Measurements (Not tracked by blender, use ruler tool):
 	NOTE: Add new entries as needed, add custom fields as needed
 
-    Symbols: 
-              | No symbol; Cannot change
-            ~ | inconsistent number or relies on things like pipe length or circle cut placement
-            * | Any number a multiple of the supplied
-            > | Scales up to a desired size
-            < | Scales down to a desired size
-            
+	Symbols: 
+			  | No symbol; Cannot change
+			~ | inconsistent number or relies on things like pipe length or circle cut placement
+			* | Any number a multiple of the supplied
+			> | Scales up to a desired size
+			< | Scales down to a desired size
+			
 
-    STANDADRS:
-        Total Length (per node placement): * 4 Meters
-        Pipe Resolution: 12
-        Inner Diameter: * 0.75 Depth OR 1.5 Inner Diameter (equal when measured)
-        Angles: 1 Meter Offset @90° scaled to angle (45° == 0.5m Offset)
-        Circle Cut: See Flare Depth
-        Flare Width: * 0.15 Meters
-        Flare Depth: *~ 0.26 Meters
-        Transitions: Flare Width >< New Flare Width
-        
+	STANDADRS:
+		Total Length (per node placement): * 4 Meters
+		Pipe Resolution: 12
+		Inner Diameter: * 0.75 Depth OR 1.5 Inner Diameter (equal when measured)
+		Angles: 1 Meter Offset @90° scaled to angle (45° == 0.5m Offset)
+		Circle Cut: See Flare Depth
+		Flare Width: * 0.15 Meters
+		Flare Depth: *~ 0.26 Meters
+		Transitions: Flare Width >< New Flare Width
+		Shear Offset: 1 Meter
+		
 
 ## Object and Project Settings ##
 
