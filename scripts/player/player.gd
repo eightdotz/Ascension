@@ -1,8 +1,10 @@
 extends CharacterBody3D
-
+@export_group("Health")
 @export var health := 100.0 ##Player starting health
 @export var health_max := 100.0 ##The maximum health that the player can heal to
 @export var invincibility_duration := 0.5 ##Duration in seconds of invulnerability after being hit
+
+@export_group("Stamina")
 @export var stamina := 100.0 ##Player starting stamina
 @export var stamina_max := 100.0 ##Maximum stamina that can be regenerated
 @export var stamina_build_passive := 40.0 ##Amount of stamina build passively * delta
@@ -12,15 +14,16 @@ extends CharacterBody3D
 
 var is_invincible := false
 var invincibility_timer := 0.0
-
+@export_group("Speed")
 @export var max_speed := 30.0 ##Max speed with no modifiers or sprint
-@onready var cache_max_speed := max_speed
 @export var air_speed := 1.5 ##The amount of control while in air
 @export var fall_speed := 5.0 ##The speed at which the player decends while holding ctrl
 @export var accel := 700.0 ##Acceleration from stop
 @export var decel := 0.3 ##Decceleration from current velocity
 @export var gravity := 50.0 ##You know what this means
 @export var jump_speed := 50.0 ##Speed at which the player departs from surface
+
+@export_group("Jump")
 @export var jump_max := 3 ##Amount of jumps avaliable
 @export var jump_cooldown := 0.2 ##Length in seconds between presses to prevent spamming
 @export var jump_max_held := 0.2
@@ -34,28 +37,30 @@ var invincibility_timer := 0.0
 @export var wall_jump_velocity_preserve_time := 0.1
 @export var wall_jump_velocity_max := 160
 
+@export_group("FOV")
 @export var base_fov := 75.0
 @export var sprint_fov_boost := 5.0
 @export var wall_jump_fov_boost := 25.0
 @export var fov_lerp_speed := 8.0
 
+@export_group("Dash")
+@export var dash_speed := 60.0
+@export var dash_duration := 0.2
+@export var dash_stamina_cost := 20.0
+
+@onready var cache_max_speed := max_speed
 @onready var player_head = $Head
 @onready var camera = $Head/Camera3D
 
-var in_water = false
-var slow = 2
+enum SpeedMod {SPRINT, WALL_JUMP_BOOST, DASH}
+var _speed_modifiers: Dictionary = {}
 
-var sprint_speed := 1.0
-var cache_jump := jump_speed
-var cache_accel := accel
-
-var slow_accel := accel / 2
-var slow_jump_speed := jump_speed / 2
-
+var dashes = 1
+var dash_cooldown_timer := 0.0
 
 var wall_jump_boost_timer := 0.0
 var wall_jump_timer := 0.0
-var wall_jump_velocity_preserve_timer := 0.0
+var movement_override_timer := 0.0 ## While > 0, the normal speed clamp/accel is skipped. Used by wall jump and dash.
 var wall_stick_timer := 0.0
 var jump_time := 0.0
 var last_gnd_time := 0.0
@@ -103,10 +108,58 @@ func _ready():
 	add_to_group("player")
 	if camera:
 		camera.fov = base_fov
+
+func add_speed_modifier(id: SpeedMod, multiplier: float, duration: float = -1.0) -> void:
+	_speed_modifiers[id] = {"mult": multiplier, "timer": duration}
+
+func remove_speed_modifier(id: SpeedMod) -> void:
+	_speed_modifiers.erase(id)
+
+func _update_speed_modifiers(delta: float) -> void:
+	for id in _speed_modifiers.keys():
+		var mod = _speed_modifiers[id]
+		if mod.timer >= 0.0:
+			mod.timer -= delta
+			if mod.timer <= 0.0:
+				_speed_modifiers.erase(id)
+
+func get_effective_max_speed() -> float:
+	var result = cache_max_speed
+	for mod in _speed_modifiers.values():
+		result *= mod.mult
+	return result
+
+func _update_sprint_modifier(delta: float) -> void:
+	if Input.is_action_pressed("move_sprint") and stamina > stamina_drain_sprint:
+		add_speed_modifier(SpeedMod.SPRINT, 2.0)
+		stamina = max(stamina - stamina_drain_sprint * delta, 0.0)
+	else:
+		remove_speed_modifier(SpeedMod.SPRINT)
+
+func _update_wall_jump_boost(delta: float) -> void:
+	if wall_jump_boost_timer <= 0.0:
+		remove_speed_modifier(SpeedMod.WALL_JUMP_BOOST)
+		return
+	wall_jump_boost_timer -= delta
+	var time_progress = 1.0 - (wall_jump_boost_timer / wall_jump_boost_duration)
+	var drag_factor = max(0.1, 0.6 - (time_progress * 0.5))
+	var boosted_speed = cache_max_speed * wall_jump_speed_boost * drag_factor
+	var speed_limit = (wall_jump_velocity_max / 2) - 20
+	var clamped_speed = max(cache_max_speed, min(boosted_speed, speed_limit))
+	add_speed_modifier(SpeedMod.WALL_JUMP_BOOST, clamped_speed / cache_max_speed)
+
+func do_dash(dir: Vector3 = Vector3.ZERO) -> void:
+	if not dashes:
+		return
+	add_speed_modifier(SpeedMod.DASH, dash_speed, dash_duration)
+	stamina = max(stamina - dash_stamina_cost, 0.0)
+	dashes = 0
+
 var cos_wall_angle_min := cos(deg_to_rad(wall_angle))
 var cos_wall_angle_max := cos(deg_to_rad(max_wall_angle))
 var cos_straight_min := cos(deg_to_rad(90 - straight_wall_leeway))
 var cos_straight_max := cos(deg_to_rad(90 + straight_wall_leeway))
+
 func _process(delta):
 	update_camera_fov(delta)
 	update_stamina_and_timers(delta)
@@ -114,22 +167,18 @@ func _process(delta):
 func _physics_process(delta):
 	last_gnd_time += delta
 	last_jump_time += delta
+	dash_cooldown_timer = max(dash_cooldown_timer - delta, 0.0)
 	
-	if wall_jump_boost_timer > 0:
-		wall_jump_boost_timer -= delta
-		
-		var time_progress = 1.0 - (wall_jump_boost_timer / wall_jump_boost_duration)
-		var drag_factor = max(0.1, 0.6 - (time_progress * 0.5))
-		
-		var base_speed = cache_max_speed
-		var boosted_speed = (base_speed * wall_jump_speed_boost) * drag_factor
-		var speed_limit = (wall_jump_velocity_max / 2) - 20
-		max_speed = max(base_speed, min(boosted_speed, speed_limit))
-	else:
-		max_speed = cache_max_speed
+	_update_sprint_modifier(delta)
+	_update_wall_jump_boost(delta)
+	_update_speed_modifiers(delta)
+	max_speed = get_effective_max_speed()
 	
 	var input = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	direction = (transform.basis * Vector3(input.x, 0, input.y)).normalized()
+	
+	if Input.is_action_just_pressed("move_dash"):
+		do_dash()
 	
 	if wall_jump_timer > 0:
 		wall_jump_timer -= delta
@@ -157,6 +206,7 @@ func _physics_process(delta):
 	if grounded:
 		last_gnd_time = 0.0
 		jumps = jump_max
+		dashes = 1
 		is_sliding = false
 	else:
 		velocity.y -= gravity * delta
@@ -177,9 +227,9 @@ func _physics_process(delta):
 		velocity.z *= 0.98
 
 	var horiz = Vector2(velocity.x, velocity.z)
-	var max_horiz_speed = max_speed * (sprint_speed if Input.is_action_pressed("move_sprint") else 1.0)
-	if wall_jump_velocity_preserve_timer > 0:
-		wall_jump_velocity_preserve_timer -= delta
+	var max_horiz_speed = max_speed
+	if movement_override_timer > 0:
+		movement_override_timer -= delta
 	else:
 		if horiz.length() > max_horiz_speed:
 			horiz = horiz.normalized() * max_horiz_speed
@@ -187,7 +237,6 @@ func _physics_process(delta):
 			velocity.z = horiz.y
 		just_wall_jumped = false
 		handle_move(delta, grounded)
-	
 	move_and_slide()
 
 func update_stamina_and_timers(delta):
@@ -221,13 +270,7 @@ func get_body_center() -> Vector3:
 func handle_move(delta: float, grounded: bool):
 	var control_force = 1.0 if grounded else air_speed
 	if direction != Vector3.ZERO:
-		if Input.is_action_pressed("move_sprint") and stamina > stamina_drain_sprint:
-			sprint_speed = 2
-			stamina -= stamina_drain_sprint * delta
-			stamina = max(stamina, 0.0)
-		else:
-			sprint_speed = 1
-		var target_vel = (direction * max_speed) * sprint_speed
+		var target_vel = direction * max_speed
 		velocity.x = move_toward(velocity.x, target_vel.x, accel * delta * control_force)
 		velocity.z = move_toward(velocity.z, target_vel.z, accel * delta * control_force)
 	else:
@@ -236,13 +279,14 @@ func handle_move(delta: float, grounded: bool):
 		velocity.z *= damp
 
 func handle_jump_buffer(_delta: float, grounded: bool):
-	if Input.is_action_just_pressed("move_jump") and last_jump_time > jump_cooldown:
-		if is_sliding and jumps > 0:
-			do_wall_jump()
-		elif jumps > 0 and grounded:
-			do_jump(Vector3.UP)
-		elif jumps > 0:
-			do_jump(Vector3.UP)
+	if Input.is_action_just_pressed("move_jump"):
+		if last_jump_time > jump_cooldown:
+			if is_sliding and jumps > 0:
+				do_wall_jump()
+			elif jumps > 0 and grounded:
+				do_jump(Vector3.UP)
+			elif jumps > 0:
+				do_jump(Vector3.UP)
 
 func do_jump(direction: Vector3):
 	if stamina < stamina_drain_jump:
@@ -283,7 +327,7 @@ func do_wall_jump():
 	last_jump_time = 0.0
 	wall_jump_timer += jump_cooldown
 	just_wall_jumped = true
-	wall_jump_velocity_preserve_timer = wall_jump_velocity_preserve_time
+	movement_override_timer = wall_jump_velocity_preserve_time
 	wall_jump_boost_timer += wall_jump_boost_duration
 
 func update_wall_status(input_dir):
@@ -297,27 +341,27 @@ func update_wall_status(input_dir):
 	var has_input = input.length() > 0.001
 	
 	var found_wall = false
-	var new_wall_normal = Vector3.ZERO
-	
 	for ray in wall_rays:
 		if ray.is_colliding():
 			var normal = ray.get_collision_normal()
-			var angle_deg = normal.dot(Vector3.UP)
-			if angle_deg > cos_straight_max and angle_deg < cos_straight_min:
+			var angle_dot = normal.dot(Vector3.UP)
+			if angle_dot > cos_straight_max and angle_dot < cos_straight_min:
 				continue
-			if angle_deg > cos_wall_angle_max and angle_deg < cos_wall_angle_min:
+			if angle_dot > cos_wall_angle_max and angle_dot < cos_wall_angle_min:
 				var to_wall = -normal.normalized()
-				var toward_wall = has_input and input_dir.dot(to_wall) > 0.1
+				var dot = input_dir.dot(to_wall)
+				var toward_wall = has_input and dot > 0.1
 				if toward_wall or (is_sliding and wall_normal.dot(normal) > 0.7):
-					new_wall_normal += normal
+					wall_normal = normal
 					found_wall = true
-	
+					break
 	if found_wall and not is_on_floor() and last_gnd_time > 0.1:
 		if not is_sliding:
 			wall_stick_timer = wall_stick_duration
 			jumps = jump_max
+			dashes = 1
 		
-		wall_normal = new_wall_normal.normalized()
+		wall_normal = wall_normal.normalized()
 		is_sliding = true
 		
 		if wall_stick_timer > 0.0:
