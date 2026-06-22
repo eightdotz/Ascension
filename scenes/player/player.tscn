@@ -20,6 +20,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 slide_on_ceiling = false
 script = ExtResource("1_4flbx")
+pixelization = 0.1
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44442, -0.0576912)
@@ -32,6 +33,122 @@ transform = Transform3D(2, 0, 1.4210855e-14, 0, 2, 0, -1.4210855e-14, 0, 2, -4.0
 mesh = SubResource("QuadMesh_8afob")
 skeleton = NodePath("../..")
 
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" type="Control" parent="Interface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health" type="ProgressBar" parent="Interface/HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -32.0
+offset_right = -60.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+step = 0.1
+
+[node name="Stamina" type="ProgressBar" parent="Interface/HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 4.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+step = 0.1
+
+[node name="Jumps" type="ProgressBar" parent="Interface/HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -32.0
+offset_right = 68.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 3.0
+step = 1.0
+
+[node name="Diagnostics" type="Control" parent="Interface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CurrentSpeed" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_right = 260.0
+offset_bottom = 49.0
+
+[node name="BoostDuration" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 260.0
+offset_bottom = 73.0
+
+[node name="Sliding" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 260.0
+offset_bottom = 97.0
+
+[node name="WallAngle" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_top = 72.0
+offset_right = 260.0
+offset_bottom = 121.0
+
+[node name="MaxSpeed" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_left = 816.0
+offset_right = 1076.0
+offset_bottom = 49.0
+
+[node name="MvOverride" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_left = 816.0
+offset_top = 24.0
+offset_right = 1076.0
+offset_bottom = 73.0
+
+[node name="FOV" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_left = 816.0
+offset_top = 48.0
+offset_right = 1076.0
+offset_bottom = 97.0
+
+[node name="Direction" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_left = 816.0
+offset_top = 72.0
+offset_right = 1076.0
+offset_bottom = 121.0
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.00757465, 0, 0.999971, 0, 1, 0, -0.999971, 0, -0.00757465, 0.0097437, -0.284527, -0.0227154)
 mesh = SubResource("CapsuleMesh_4gf2a")
@@ -42,15 +159,6 @@ shape = SubResource("ConvexPolygonShape3D_7r32s")
 
 [node name="GNDRayCast" type="RayCast3D" parent="."]
 target_position = Vector3(0, -1.01, 0)
-
-[node name="FrontRayUp" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.64427, 0.764798, 0, -0.764798, -0.64427, 0, 0, 0)
-visible = false
-target_position = Vector3(0, 0, 1)
-
-[node name="FrontRay" type="RayCast3D" parent="."]
-transform = Transform3D(-1, 7.43466e-08, 4.5992685e-08, 0, 0.5260949, -0.850426, -8.742277e-08, -0.850426, -0.5260949, 0, 0, 0)
-target_position = Vector3(0, 0, 1.1)
 
 [node name="WallCast" type="RayCast3D" parent="."]
 
@@ -67,7 +175,7 @@ transform = Transform3D(-0.606294, 0.795241, 0, -0.795241, -0.606294, 0, 0, 0, 1
 target_position = Vector3(-1, 0, 0)
 
 [node name="BackRay" type="RayCast3D" parent="WallCast"]
-transform = Transform3D(-1.25, -1.2509126e-07, 8.456895e-08, 0, 0.56007487, 0.828442, -1.8874475e-07, 0.828442, -0.56007487, 0, 0, 0)
+transform = Transform3D(-1, -1.2509126e-07, 1.05711194e-07, 0, 0.56007487, 1.0355525, -1.509958e-07, 0.828442, -0.70009357, 0, 0, 0)
 target_position = Vector3(0, 0, -1.1)
 
 [node name="LeftRay" type="RayCast3D" parent="WallCast"]

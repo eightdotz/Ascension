@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://duce7pumqt6v3"]
+[gd_scene load_steps=8 format=3 uid="uid://duce7pumqt6v3"]
 
 [ext_resource type="PackedScene" uid="uid://bk2r4u7mfbf1b" path="res://scenes/player/player.tscn" id="1_ov3wj"]
-[ext_resource type="PackedScene" uid="uid://bpeocd8rfiow5" path="res://scenes/sewer/TestSewer.tscn" id="3_1lbuk"]
-[ext_resource type="PackedScene" uid="uid://caxqswj3j4ip4" path="res://scenes/sewer/TestSewer_2.tscn" id="3_ov3wj"]
+[ext_resource type="PackedScene" uid="uid://br2mh76kytuwi" path="res://scenes/sewer/8M_Pipe_Straight.tscn" id="2_4toud"]
+[ext_resource type="PackedScene" uid="uid://cnjnwqit4vl7s" path="res://scenes/sewer/4M_Pipe_45.tscn" id="2_gy821"]
+[ext_resource type="PackedScene" uid="uid://bgtl8l4n6h1st" path="res://scenes/sewer/4M_Pipe_90.tscn" id="4_1lbuk"]
 
 [sub_resource type="Environment" id="Environment_fr6qw"]
 background_mode = 1
@@ -23,18 +24,15 @@ camera_attributes = SubResource("CameraAttributesPractical_oiqhk")
 compositor = SubResource("Compositor_p3v23")
 
 [node name="player" parent="." instance=ExtResource("1_ov3wj")]
-transform = Transform3D(-0.6810021, 0, 0.73228145, 0, 1, 0, -0.73228145, 0, -0.6810021, -160.84216, -16.013367, -19.350632)
+transform = Transform3D(-0.6810021, 0, 0.73228145, 0, 1, 0, -0.73228145, 0, -0.6810021, 357.77893, 7.9866333, -12.350632)
 max_wall_angle = 170.0
 pixelization = 3.0
 
-[node name="TestSewer" parent="." instance=ExtResource("3_1lbuk")]
-transform = Transform3D(0.9999991, -0.0013438461, 0, 0.0013438461, 0.9999991, 0, 0, 0, 1, -65.27118, -22.666931, -42.978333)
+[node name="TestSewer" parent="." instance=ExtResource("4_1lbuk")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -397.42325, -0.19155121, -178.93881)
 
-[node name="TestSewer2" parent="." instance=ExtResource("3_1lbuk")]
-transform = Transform3D(0.9999991, -0.0013438461, 0, 0.0013438461, 0.9999991, 0, 0, 0, 1, -371.81918, -22.666931, -42.978333)
+[node name="TestSewer3" parent="." instance=ExtResource("2_4toud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 245, 0, 0)
 
-[node name="TestSewer3" parent="." instance=ExtResource("3_1lbuk")]
-transform = Transform3D(0.9999991, -0.0013438461, 0, 0.0013438461, 0.9999991, 0, 0, 0, 1, 238.41406, -22.666931, -42.978333)
-
-[node name="TestSewer4" parent="." instance=ExtResource("3_ov3wj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -676.7923, -23.571611, -43.228054)
+[node name="TestSewer2" parent="." instance=ExtResource("2_gy821")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -231.02791, 0, 0)

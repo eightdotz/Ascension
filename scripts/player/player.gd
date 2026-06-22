@@ -1,4 +1,6 @@
 extends CharacterBody3D
+
+@export var diagnostics_enabled: bool = false
 @export_group("Health")
 @export var health := 100.0 ##Player starting health
 @export var health_max := 100.0 ##The maximum health that the player can heal to
@@ -27,14 +29,21 @@ var invincibility_timer := 0.0
 @export var jump_max := 3 ##Amount of jumps avaliable
 @export var jump_cooldown := 0.2 ##Length in seconds between jumps to prevent spamming
 @export var jump_max_held := 0.2 ##Allows for higher jumps when pressed longer
+
+@export var mouse_sensitivity := 0.1 ##Sensitivity
+
+@export_group("Wall Jump")
 @export var wall_jump_force := 140.0 ##Speed of a jump when departing from a wall
 @export var wall_jump_force_init := 125.0 ##The initial speed burst when performing a wall jump
-@export var mouse_sensitivity := 0.1 ##Sensitivity
 @export var wall_angle := 5.0 ##Minimum angle for walls to be jumped off of
 @export var max_wall_angle := 150.0 ##Maximum angle for walls to be jumped off of
 @export var straight_wall_leeway = 3 ##The amount of range to or from 90 degrees that is accepted as a "straight wall" or surface that cannot be jumped off of
 @export var wall_jump_velocity_preserve_time := 0.2 ##Amount of time top speed is preserved
 @export var wall_jump_velocity_max := 160 ##Maximum speed with any boost
+@export var wall_jump_speed_boost := 1.5
+@export var wall_jump_boost_duration := 4.5
+@export var wall_jump_boost_timer := 0.0
+@export var wall_jump_timer := 0.0
 
 @export_group("FOV")
 @export var base_fov := 75.0 ##Default field of view
@@ -61,16 +70,12 @@ var _speed_modifiers: Dictionary = {}
 var dashes = 1
 var dash_cooldown_timer := 0.0
 
-var wall_jump_boost_timer := 0.0
-var wall_jump_timer := 0.0
-var movement_override_timer := 0.0 ## While > 0, the normal speed clamp/accel is skipped. Used by wall jump and dash.
+var movement_override_timer := 0.0 #while > 0, the normal speed clamp/accel is skipped. Used by wall jump and dash.
 var wall_stick_timer := 0.0
 var jump_time := 0.0
 var last_gnd_time := 0.0
 var last_jump_time := 0.0
 
-var wall_jump_speed_boost := 1.5
-var wall_jump_boost_duration := 4.5
 var tilt_amount = 0.1
 var rotation_x := 0.0
 
@@ -89,6 +94,18 @@ var wall_stick_velocity_threshold := 5.0
 #Performance shiz
 @onready var wall_rays = $WallCast.get_children() #so we dont use get_children every loop
 @onready var gnd_ray = $GNDRayCast
+@onready var diagnostics: Control = $Interface/Diagnostics
+@onready var label_current_speed: Label = $Interface/Diagnostics/CurrentSpeed
+@onready var label_boost_duration: Label = $Interface/Diagnostics/BoostDuration
+@onready var label_sliding: Label = $Interface/Diagnostics/Sliding
+@onready var label_wall_angle: Label = $Interface/Diagnostics/WallAngle
+@onready var label_mv_override: Label = $Interface/Diagnostics/MvOverride
+@onready var label_max_speed: Label = $Interface/Diagnostics/MaxSpeed
+@onready var label_fov: Label = $Interface/Diagnostics/FOV
+@onready var label_direction: Label = $Interface/Diagnostics/Direction
+@onready var bar_health: ProgressBar = $Interface/HUD/Health
+@onready var bar_stamina: ProgressBar = $Interface/HUD/Stamina
+@onready var bar_jumps: ProgressBar = $Interface/HUD/Jumps
 
 
 func _input(event):
@@ -104,7 +121,12 @@ func _unhandled_input(_event):
 		Input.set_mouse_mode(mode)
 
 func _ready():
+	if diagnostics_enabled:
+		diagnostics.visible = true
+	else:
+		diagnostics.visible = false
 	jumps = jump_max
+	bar_jumps.value = jump_max
 	gnd_ray.target_position = Vector3(0, -1.1, 0)
 	gnd_ray.enabled = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -145,6 +167,7 @@ func _update_wall_jump_boost(delta: float) -> void:
 		remove_speed_modifier(SpeedMod.WALL_JUMP_BOOST)
 		return
 	wall_jump_boost_timer -= delta
+	label_boost_duration.text = str(wall_jump_boost_timer)
 	var time_progress = 1.0 - (wall_jump_boost_timer / wall_jump_boost_duration)
 	var drag_factor = max(0.1, 0.6 - (time_progress * 0.5))
 	var boosted_speed = cache_max_speed * wall_jump_speed_boost * drag_factor
@@ -180,7 +203,7 @@ func _physics_process(delta):
 	_update_wall_jump_boost(delta)
 	_update_speed_modifiers(delta)
 	max_speed = get_effective_max_speed()
-	
+	label_max_speed.text = "Effective Max Speed: " + str(max_speed)
 	var input = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	direction = (transform.basis * Vector3(input.x, 0, input.y)).normalized()
 	
@@ -189,7 +212,7 @@ func _physics_process(delta):
 		is_sliding = false
 	else:
 		update_wall_status(direction)
-
+	label_direction.text = "Moving Direction: " + str(direction)
 	if is_sliding and wall_normal != Vector3.ZERO:
 		var right_vector = transform.basis.x.normalized()
 		
@@ -239,6 +262,9 @@ func _physics_process(delta):
 			velocity.z = horiz.y
 		just_wall_jumped = false
 		handle_move(delta, grounded)
+	label_mv_override.text = "Speed Boost Override Timer: " + str(movement_override_timer)
+	label_current_speed.text = "Current Speed: " + str(max_horiz_speed)
+	label_sliding.text = "Is Character Sliding: " + str(is_sliding)
 	move_and_slide()
 
 func update_stamina_and_timers(delta):
@@ -250,7 +276,8 @@ func update_stamina_and_timers(delta):
 		invincibility_timer -= delta
 		if invincibility_timer <= 0:
 			is_invincible = false
-
+	bar_health.value = health
+	bar_stamina.value = stamina
 func update_camera_fov(delta):
 	if not camera or stamina < stamina_drain_sprint:
 		return
@@ -265,7 +292,7 @@ func update_camera_fov(delta):
 	
 	target_fov = clamp(target_fov, base_fov, base_fov + sprint_fov_boost + wall_jump_fov_boost)
 	camera.fov = lerp(camera.fov, target_fov, fov_lerp_speed * delta)
-
+	label_fov.text = "Field of View: " + str(camera.fov)
 func get_body_center() -> Vector3:
 	return global_position + Vector3(0, -0.8, 0)
 
@@ -298,6 +325,7 @@ func do_jump(direction: Vector3):
 	stamina = max(stamina, 0.0)
 	jump_time = 0.0
 	jumps -= 1
+	bar_jumps.value = jumps
 	last_jump_time = 0.0
 	velocity.y = direction.y * jump_speed
 
@@ -326,6 +354,7 @@ func do_wall_jump():
 	is_jumping = true
 	jump_time = 0.0
 	jumps -= 1
+	bar_jumps.value = jumps
 	last_jump_time = 0.0
 	wall_jump_timer += jump_cooldown
 	just_wall_jumped = true
@@ -355,12 +384,14 @@ func update_wall_status(input_dir):
 				var toward_wall = has_input and dot > 0.1
 				if toward_wall or (is_sliding and wall_normal.dot(normal) > 0.7):
 					wall_normal = normal
+					label_wall_angle.text = str(normal)
 					found_wall = true
 					break
 	if found_wall and not is_on_floor() and last_gnd_time > 0.1:
 		if not is_sliding:
 			wall_stick_timer = wall_stick_duration
 			jumps = jump_max
+			bar_jumps.value = jumps
 			dashes = 1
 		
 		wall_normal = wall_normal.normalized()

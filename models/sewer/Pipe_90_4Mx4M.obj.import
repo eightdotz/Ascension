@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dpnpplfls00ko"
+path="res://.godot/imported/Pipe_90_4Mx4M.obj-4350c8c045248cee44d62ed9fb883bff.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Pipe_90_4Mx4M.obj-4350c8c045248cee44d62ed9fb883bff.mesh"]
+
+source_file="res://models/sewer/Pipe_90_4Mx4M.obj"
+dest_files=["res://.godot/imported/Pipe_90_4Mx4M.obj-4350c8c045248cee44d62ed9fb883bff.mesh", "res://.godot/imported/Pipe_90_4Mx4M.obj-4350c8c045248cee44d62ed9fb883bff.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://msvn8detmtg1"]
+
+[ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/test_sewer.gd" id="1_b45rf"]
+
+[node name="TestSewer" type="Node3D"]
+script = ExtResource("1_b45rf")
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 98.56998, 21.141161, 0)
+light_energy = 10.0
+light_bake_mode = 1
+spot_range = 37.104343
+spot_attenuation = 0.43
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -47.734486, 21.141161, -53.59797)
+light_energy = 10.0
+light_bake_mode = 1
+spot_range = 37.104343
+spot_attenuation = 0.43
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 12.307289, 21.141161, -5.903702)
+light_energy = 10.0
+light_bake_mode = 1
+spot_range = 37.104343
+spot_attenuation = 0.43

@@ -52,6 +52,7 @@ environment = SubResource("Environment_x8sxc")
 transform = Transform3D(0.5556869, 0.7438045, -0.37143916, 0.71389997, -0.1979154, 0.6716967, 0.4260975, -0.6384234, -0.64098096, -15727.112, 434.35776, 0)
 
 [node name="player" parent="World" instance=ExtResource("2_0ghb2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 6.739174, 0)
 
 [node name="Buildings" type="Node3D" parent="World"]
 
