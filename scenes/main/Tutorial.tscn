@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://duce7pumqt6v3"]
+[gd_scene load_steps=10 format=3 uid="uid://duce7pumqt6v3"]
 
+[ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level.gd" id="1_edy4c"]
 [ext_resource type="PackedScene" uid="uid://bk2r4u7mfbf1b" path="res://scenes/player/player.tscn" id="1_ov3wj"]
 [ext_resource type="PackedScene" uid="uid://br2mh76kytuwi" path="res://scenes/sewer/8M_Pipe_Straight.tscn" id="2_4toud"]
 [ext_resource type="PackedScene" uid="uid://cnjnwqit4vl7s" path="res://scenes/sewer/4M_Pipe_45.tscn" id="2_gy821"]
 [ext_resource type="PackedScene" uid="uid://bgtl8l4n6h1st" path="res://scenes/sewer/4M_Pipe_90.tscn" id="4_1lbuk"]
+[ext_resource type="PackedScene" uid="uid://bpiy2djajhaif" path="res://scenes/main/Goal.tscn" id="5_1lbuk"]
 
 [sub_resource type="Environment" id="Environment_fr6qw"]
 background_mode = 1
@@ -17,16 +19,17 @@ fog_density = 0.1622
 [sub_resource type="Compositor" id="Compositor_p3v23"]
 
 [node name="Tutorial" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_fr6qw")
-camera_attributes = SubResource("CameraAttributesPractical_oiqhk")
-compositor = SubResource("Compositor_p3v23")
+script = ExtResource("1_edy4c")
 
 [node name="player" parent="." instance=ExtResource("1_ov3wj")]
 transform = Transform3D(-0.6810021, 0, 0.73228145, 0, 1, 0, -0.73228145, 0, -0.6810021, 357.77893, 7.9866333, -12.350632)
 max_wall_angle = 170.0
 pixelization = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fr6qw")
+camera_attributes = SubResource("CameraAttributesPractical_oiqhk")
+compositor = SubResource("Compositor_p3v23")
 
 [node name="TestSewer" parent="." instance=ExtResource("4_1lbuk")]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -397.42325, -0.19155121, -178.93881)
@@ -36,3 +39,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 245, 0, 0)
 
 [node name="TestSewer2" parent="." instance=ExtResource("2_gy821")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -231.02791, 0, 0)
+
+[node name="Goal" parent="." instance=ExtResource("5_1lbuk")]
+transform = Transform3D(-0.71527815, 0, 0.6988398, 0, 1, 0, -0.6988398, 0, -0.71527815, -302.31305, 0, -263.18134)

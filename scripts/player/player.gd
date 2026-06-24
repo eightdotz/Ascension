@@ -91,6 +91,7 @@ var wall_slide_speed := 10.0
 var wall_stick_duration := 0.3
 var wall_stick_velocity_threshold := 5.0
 
+var tween = null
 #Performance shiz
 @onready var wall_rays = $WallCast.get_children() #so we dont use get_children every loop
 @onready var gnd_ray = $GNDRayCast
@@ -106,19 +107,9 @@ var wall_stick_velocity_threshold := 5.0
 @onready var bar_health: ProgressBar = $Interface/HUD/Health
 @onready var bar_stamina: ProgressBar = $Interface/HUD/Stamina
 @onready var bar_jumps: ProgressBar = $Interface/HUD/Jumps
+@onready var black_screen: ColorRect = $Interface/HUD/BlackScreen
+@onready var hud: Control = $Interface/HUD
 
-
-func _input(event):
-	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
-		rotation_x = clamp(rotation_x - event.relative.y * mouse_sensitivity, -90, 90)
-		player_head.rotation.x = deg_to_rad(rotation_x)
-
-func _unhandled_input(_event):
-	if Input.is_action_just_pressed("move_pause"):
-		mouse_captured = !mouse_captured
-		var mode = Input.MOUSE_MODE_CAPTURED if mouse_captured else Input.MOUSE_MODE_VISIBLE
-		Input.set_mouse_mode(mode)
 
 func _ready():
 	if diagnostics_enabled:
@@ -134,6 +125,16 @@ func _ready():
 	if camera:
 		camera.fov = base_fov
 	shader_mesh.mesh.get_material().set("shader_parameter/pixel_size",pixelization)
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
+		rotation_x = clamp(rotation_x - event.relative.y * mouse_sensitivity, -90, 90)
+		player_head.rotation.x = deg_to_rad(rotation_x)
+
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed("move_pause"):
+		toggle_mouse()
 
 func add_speed_modifier(id: SpeedMod, multiplier: float, duration: float = -1.0) -> void:
 	_speed_modifiers[id] = {"mult": multiplier, "timer": duration}
@@ -447,3 +448,32 @@ func respawn_player():
 
 func is_player():
 	return 1
+
+#HUD
+func toggle_mouse():
+	mouse_captured = !mouse_captured
+	var mode = Input.MOUSE_MODE_CAPTURED if mouse_captured else Input.MOUSE_MODE_VISIBLE
+	Input.warp_mouse((hud.get_viewport_rect().size / 2.0))
+	Input.set_mouse_mode(mode)
+
+func disable_mouse():
+	set_process_input(false)
+
+func enable_mouse():
+	set_process_input(true)
+
+func disable_movement():
+	set_physics_process(false)
+	set_process_unhandled_input(false)
+	
+func enable_movement():
+	set_physics_process(true)
+	set_process_unhandled_input(false)
+	
+func fade_to_black():
+	tween = create_tween()
+	tween.tween_property(black_screen, "modulate:a", 1.0, 1.0)
+
+func fade_to_clear(time: float = 0.5):
+	tween = create_tween()
+	tween.tween_property(black_screen, "modulate:a", 0.0, time)

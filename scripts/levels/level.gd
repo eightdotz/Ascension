@@ -4,6 +4,8 @@ extends Node3D
 @export var traps: Array[NodePath] = [] ##Assign the paths to traps here
 
 func _ready():
+	var player = get_tree().get_first_node_in_group("player")
+	player.fade_to_clear()
 	if randomize_traps:
 		turn_off_traps()
 		randomize_trap()

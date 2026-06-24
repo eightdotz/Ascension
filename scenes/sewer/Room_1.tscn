@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://msvn8detmtg1"]
 
-[ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/test_sewer.gd" id="1_b45rf"]
+[ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level.gd" id="1_b45rf"]
 
 [node name="TestSewer" type="Node3D"]
 script = ExtResource("1_b45rf")

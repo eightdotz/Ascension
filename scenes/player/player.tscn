@@ -94,6 +94,12 @@ grow_vertical = 0
 max_value = 3.0
 step = 1.0
 
+[node name="BlackScreen" type="ColorRect" parent="Interface/HUD"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
 [node name="Diagnostics" type="Control" parent="Interface"]
 anchors_preset = 0
 offset_right = 40.0

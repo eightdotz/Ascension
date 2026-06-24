@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgtl8l4n6h1st"]
 
-[ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/test_sewer.gd" id="1_m4rqj"]
+[ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level.gd" id="1_m4rqj"]
 [ext_resource type="ArrayMesh" uid="uid://yg3fm5w8d8yy" path="res://!TESTING/models/Pipes/90_Pipe.obj" id="2_m4rqj"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_a1oqc"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://br2mh76kytuwi"]
 
-[ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/test_sewer.gd" id="1_if2db"]
+[ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level.gd" id="1_if2db"]
 [ext_resource type="ArrayMesh" uid="uid://dpj8bspnlnvd7" path="res://models/sewer/Pipe_Straight_8M.obj" id="2_joffn"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_37uwp"]
