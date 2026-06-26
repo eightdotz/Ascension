@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=4 uid="uid://b5txbjxbfhejj"]
 
-[ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://scripts/levels/test_tower.gd" id="1_xq6n7"]
+[ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://scripts/levels/level.gd" id="1_xq6n7"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_xq6n7"]
 noise_type = 3

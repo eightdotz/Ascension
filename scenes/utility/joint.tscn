@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpusjfcrmkgc5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuo2f"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.5803922)
+emission_enabled = true
+emission = Color(0, 0.93266183, 0.82395476, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5v41h"]
+material = SubResource("StandardMaterial3D_nuo2f")
+
+[node name="Joint" type="Node3D"]
+
+[node name="AttachmentPoint" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5v41h")
+
+[node name="Face" type="Label3D" parent="AttachmentPoint"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.46162665)
+text = "Facing
+"

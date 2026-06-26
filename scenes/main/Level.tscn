@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpxtv3md8pmge"]
+[gd_scene load_steps=6 format=3 uid="uid://bpxtv3md8pmge"]
 
-[ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://scripts/levels/test_tower.gd" id="1_jkde5"]
+[ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://scripts/levels/level.gd" id="1_jkde5"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_obw8s"]
-[ext_resource type="PackedScene" uid="uid://bgtl8l4n6h1st" path="res://scenes/sewer/4M_Pipe_90.tscn" id="3_aw0bt"]
-[ext_resource type="PackedScene" uid="uid://br2mh76kytuwi" path="res://scenes/sewer/8M_Pipe_Straight.tscn" id="4_vro52"]
-[ext_resource type="PackedScene" uid="uid://cnjnwqit4vl7s" path="res://scenes/sewer/4M_Pipe_45.tscn" id="5_qyxxl"]
 
 [sub_resource type="Environment" id="Environment_fr6qw"]
 background_mode = 1
@@ -20,6 +17,7 @@ fog_density = 0.1622
 [node name="Dungeon" type="Node3D"]
 script = ExtResource("1_jkde5")
 type = "Dungeon"
+biome = "Sewer"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fr6qw")
@@ -32,11 +30,4 @@ transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 
 [node name="GoalPoint" parent="." instance=ExtResource("2_obw8s")]
 transform = Transform3D(-0.6344472, 0, 0.772966, 0, 1, 0, -0.772966, 0, -0.6344472, -295.40775, 0, -255.48077)
 
-[node name="TestSewer" parent="." instance=ExtResource("3_aw0bt")]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -397.42325, -0.19155121, -178.93881)
-
-[node name="TestSewer3" parent="." instance=ExtResource("4_vro52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 245, 0, 0)
-
-[node name="TestSewer2" parent="." instance=ExtResource("5_qyxxl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -231.02791, 0, 0)
+[node name="Pieces" type="Node3D" parent="."]

@@ -11,6 +11,7 @@ extends Node3D
 
 @onready var LEVEL = "res://scenes/main/Level.tscn"
 
+
 var current_floor = -1
 signal level_changed
 
@@ -48,6 +49,9 @@ func load_level(path: String):
 
 	dungeon = load(path).instantiate()
 	level_node.add_child(dungeon)
+	dungeon.populate()
+	dungeon.configure_spawn(10)
+	await dungeon.spawn()
 	print(dungeon.get_level_type())
 	var spawn = dungeon.get_node("SpawnPoint")
 	if not spawn:

@@ -2,6 +2,10 @@ extends Node3D
 
 @export var randomize_traps: bool = false ##When using multiple traps, this randomizes them
 @export var traps: Array[NodePath] = [] ##Assign the paths to traps here
+@onready var start: Node3D = $Start
+@onready var end: Node3D = $End
+
+var id: int = 0
 
 func _ready():
 	if randomize_traps:
@@ -37,3 +41,12 @@ func get_level_type():
 #	if body.has_method("is_player"):
 #		body.in_water = false
 #		print("Player left water.")
+
+func set_id(new_id: int):
+	id = new_id
+
+func get_start() -> Vector3:
+	return start.position
+
+func get_end() -> Vector3:
+	return end.position
