@@ -64,7 +64,7 @@ Modifiers:
 		Rim: Fill = True
 
 Data (Curve mode only):
-	Resolution: 12
+	Resolution: 6
 	Depth: 0.75
 
 ## NOTES ##

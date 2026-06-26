@@ -14,7 +14,7 @@ material = SubResource("ShaderMaterial_lvxji")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dovo2"]
 shader = ExtResource("3_gmlin")
-shader_parameter/pixel_size = 4.0
+shader_parameter/pixel_size = 2.0000000475
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4gf2a"]
 
@@ -25,7 +25,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 slide_on_ceiling = false
 script = ExtResource("1_4flbx")
-pixelization = 0.1
+pixelization = 2.0
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44442, -0.0576912)
@@ -55,6 +55,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Level" type="Label" parent="Interface/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "0"
 
 [node name="PixelFilter" type="ColorRect" parent="Interface/HUD"]
 material = SubResource("ShaderMaterial_dovo2")

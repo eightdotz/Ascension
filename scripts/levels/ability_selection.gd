@@ -1,14 +1,17 @@
 extends Node3D
+@export_enum("Dungeon", "Ability", "Shop") var level_type: String
+var type
 @export var cursor: GPUParticles3D
 @onready var player = get_parent().get_parent().get_node("player")
 @onready var ability: Node3D = $Abilities/Ability
 @onready var ability_2: Node3D = $Abilities/Ability2
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var parent = get_parent().get_parent()
+@onready var root = get_parent().get_parent()
 var on_card = false
 var selected_card = 0
 var viewing = false
 
+var value = 0
 signal level_completed
 
 func _ready():
@@ -17,10 +20,9 @@ func _ready():
 	cursor.visible = false
 	player.disable_mouse()
 	player.disable_movement()
-	#parent.connect("level_completed", parent, "_on_goal_level_completed")
+	level_completed.connect(root._on_goal_level_completed)
 	call_deferred("_intro")
 	
-
 func random(list:Array):
 	return list[randi() % list.size()]
 
@@ -47,8 +49,8 @@ func random_rarity():
 		rarity = "Common"
 	return rarity
 
-func random_value(rarity: String, type:String):
-	if type == "Upgrade":
+func random_value(rarity: String, current_type:String):
+	if current_type == "Upgrade":
 		var common: float = (randi_range(10, 50) / 10.0)
 		var uncommon: float = (randi_range(15, 70) / 10.0)
 		var rare: float = (randi_range(25, 100) / 10.0)
@@ -65,42 +67,46 @@ func random_value(rarity: String, type:String):
 			return uncommon + (randi_range(5, 15) / 10.0)
 		else:
 			return common + (randi_range(1, 10) / 10.0)
-
+	return 0
 func randomize_ability():
 	var rarity = random_rarity()
 	ability.set_rarity(rarity)
 	
 	var upgrade_options = ability.selected_ability.get_upgrades()
 	var abilities = ability.selected_ability.get_abilities()
-	var type = random_type()
+	var current_type = random_type()
 	
-	ability.selected_ability.configure_new_ability(type)
-	var value = random_value(rarity, type)
-	
-	if type == "Ability":
+	ability.selected_ability.configure_new_ability(current_type)
+	value = random_value(rarity, current_type)
+	print(value)
+	if current_type == "Ability":
 		var new_ability = random(abilities)
 		if new_ability == "timeslow":
 			value = randi_range(10, 80) / 100.0
+			print(value)
 		ability.selected_ability.set_ability_options(new_ability, value, (randi_range(100, 500) / 100.0))
+		ability.set_page_name(new_ability)
 	else:
-		ability.selected_ability.set_ability_options(random(upgrade_options), value)
+		var upgrade_option = random(upgrade_options)
+		ability.set_page_name(upgrade_option)
+		ability.selected_ability.set_ability_options(upgrade_option, value)
 	ability.set_page_value(1)
-
 	rarity = random_rarity()
 	type = random_type()
 	value = random_value(rarity, type)
-	
 	ability_2.set_rarity(rarity)
 	ability_2.selected_ability.configure_new_ability(type)
-	ability_2.set_rarity(rarity)
-	ability_2.selected_ability.configure_new_ability(type)
-	
-	if type == "Ability":
+	print(value)
+	if current_type == "Ability":
 		var new_ability = random(abilities)
 		if new_ability == "timeslow":
 			value = randi_range(10, 80) / 100.0
+			print(value)
 		ability_2.selected_ability.set_ability_options(new_ability, value, (randi_range(100, 500) / 100.0))
+		ability_2.set_page_name(new_ability)
 	else:
+		var upgrade_option = random(upgrade_options)
+		ability_2.set_page_name(upgrade_option)
 		ability_2.selected_ability.set_ability_options(random(upgrade_options), value)
 	ability_2.set_page_value(2)
 
@@ -114,7 +120,7 @@ func _intro():
 	player.toggle_mouse()
 	player.enable_mouse()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	var cam := player.get_child(0).get_child(0) #Gets camera object
 	var mouse = player.get_mouse()
@@ -148,17 +154,22 @@ func select_card():
 	else:
 		player.add_ability(ability_2.selected_ability)
 	animation_player.play("Accept_" + str(selected_card))
-	while animation_player.is_playing(): pass
+	await animation_player.animation_finished
+	set_physics_process(true)
+	player.enable_movement()
+	player.enable_mouse()
+	player.toggle_mouse()
 	emit_signal("level_completed")
+	#level_completed.disconnect(root._on_goal_level_completed)
 	
-func _on_ability_select(value: int) -> void:
+func _on_ability_select(new_value: int) -> void:
 	on_card = true
-	selected_card = value
+	selected_card = new_value
 
-func _on_ability_unselect(value: int) -> void:
+func _on_ability_unselect(new_value: int) -> void:
 	if not viewing:
 		on_card = false
-		selected_card = value
+		selected_card = new_value
 
 func _on_click(button: int) -> void:
 	if not on_card and not viewing:
@@ -172,4 +183,6 @@ func _on_click(button: int) -> void:
 		toggle_card()
 
 func get_level_type():
-	return "Ability"
+	if not level_type:
+		printerr("Type not set yet! Maybe be a timing issue!")
+	return level_type

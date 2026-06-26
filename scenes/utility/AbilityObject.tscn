@@ -67,5 +67,17 @@ mesh = SubResource("PlaneMesh_fngpf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_8isn6")
 
+[node name="Name" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9789954, 0.20388088, 0, -0.20388088, 0.9789954, 0, 0.56676036, -0.036647458)
+text = "Name"
+font_size = 25
+outline_size = 2
+
+[node name="Value" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.97899526, 0.20388085, 0, -0.20388085, 0.97899526, 0, 0.3480284, 0.0068617053)
+text = "Value"
+font_size = 25
+outline_size = 2
+
 [connection signal="area_entered" from="InputArea" to="." method="_mouse_entered"]
 [connection signal="area_exited" from="InputArea" to="." method="_mouse_left"]

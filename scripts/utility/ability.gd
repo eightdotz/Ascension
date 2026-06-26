@@ -11,39 +11,49 @@ class_name Ability
 @export var duration: float
 
 @export_group("Upgrades")
-@export_enum("Max Health", "Regeneration", "Max Stamina","Max Speed", "Jump Quanitiy", "Jump Height", "Wall Jump Boost Duration", "Wall Jump Speed Boost") var upgrade_choice: String
+@export_enum("Max Health", "Regeneration", "Max Stamina","Max Speed", "Jump Quanity", "Jump Height", "Wall Jump Boost Duration", "Wall Jump Speed Boost") var upgrade_choice: String
 @export var upgrade_amount: float
 
-var executables = {"timeslow": timeslow, "boost": boost}
+var executables: Dictionary
 
 var abilities = ["timeslow", "boost"]
 var upgradables = ["Max Health", "Regeneration", "Max Stamina", "Max Speed", "Jump Quanity", "Jump Height", "Wall Jump Boost Duration", "Wall Jump Speed Boost", "Wall Jump Max Speed"]
 
 enum SpeedMod {SPRINT, WALL_JUMP_BOOST, DASH, BOOST}
 
-func execute():
+func _ready() -> void:
+	executables = {"timeslow": timeslow, "boost": boost}
+
+func execute(player_node:CharacterBody3D = null):
 	if type == "Upgrade":
+		print("Type: " + type)
 		if upgrade_choice not in upgradables:
 			printerr("That is not an stat you can upgrade! " + upgrade_choice)
 			return
 		var player = get_parent()
 		if player:
+			print("Node found")
 			if not player.has_method("is_player"):
 				printerr("Not assigned to player!")
+				if player_node:
+					print("This has been resolved.")
+					player = player_node
+			print("Applying upgrade")
 			player.upgrade(upgrade_choice, upgrade_amount)
 		else:
 			printerr("Not assigned to player!")
 	else:
-		if not executables.find_key(ability_choice):
+		print("Executing ability")
+		if not executables.has(ability_choice):
 			printerr("No existing ability with the name: " + ability_choice)
 			return
-		executables.call(ability_choice)
+		executables[ability_choice].call()
 
-func get_upgrades():
-	return upgradables
+func get_upgrades() -> Array:
+	return upgradables.duplicate()
 
-func get_abilities():
-	return abilities
+func get_abilities() -> Array:
+	return abilities.duplicate()
 
 func configure_new_ability(new_type:String):
 	type = new_type
@@ -52,7 +62,7 @@ func set_ability_options(new_name:String, new_value:float, new_duration:float = 
 	if type == "Ability":
 		ability_choice = new_name
 		intensity = new_value
-		if duration > 0:
+		if new_duration > 0:
 			duration = new_duration
 		else:
 			printerr("Type has been declared as ability. SET THE DURATION PROPERLY")
@@ -74,11 +84,15 @@ func set_ability_options(new_name:String, new_value:float, new_duration:float = 
 	print(new_duration)
 
 func timeslow():
+	print("Slowing time")
 	Engine.time_scale = intensity
-	await get_tree().create_timer(duration).timeout
+	print(Engine.time_scale)
+	await get_tree().create_timer(duration, true, false, true).timeout
 	Engine.time_scale = 1.0
-
+	print(Engine.time_scale)
+	
 func boost():
+	print("Boosting")
 	var player = get_parent()
 	player.add_speed_modifier(SpeedMod.BOOST, intensity)
 	await get_tree().create_timer(duration).timeout

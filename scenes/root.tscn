@@ -3,18 +3,27 @@
 [ext_resource type="Script" uid="uid://bfqgxqjw6mqic" path="res://scripts/root.gd" id="1_j5px3"]
 [ext_resource type="PackedScene" uid="uid://bk2r4u7mfbf1b" path="res://scenes/player/player.tscn" id="2_twpsu"]
 [ext_resource type="PackedScene" uid="uid://bpiy2djajhaif" path="res://scenes/utility/Goal.tscn" id="3_lrqlo"]
-[ext_resource type="PackedScene" uid="uid://duce7pumqt6v3" path="res://scenes/main/Tutorial.tscn" id="4_sqa0i"]
+[ext_resource type="PackedScene" uid="uid://cg014uv8lnw3h" path="res://scenes/utility/ability.tscn" id="4_sqa0i"]
 
 [node name="ROOT" type="Node3D"]
 script = ExtResource("1_j5px3")
+assigned_level = "res://scenes/main/AbilitySelection.tscn"
 
-[node name="player" parent="." instance=ExtResource("2_twpsu")]
+[node name="Level" type="Node3D" parent="."]
 
 [node name="Goal" parent="." instance=ExtResource("3_lrqlo")]
 transform = Transform3D(0.82173645, 0, -0.5698676, 0, 1, 0, 0.5698676, 0, 0.82173645, -20.931824, 0, -97.102844)
 
-[node name="Level" type="Node3D" parent="."]
+[node name="player" parent="." node_paths=PackedStringArray("root", "ability_1") instance=ExtResource("2_twpsu")]
+diagnostics_enabled = true
+root = NodePath("..")
+ability_1 = NodePath("../Ability")
 
-[node name="Dungeon" parent="Level" instance=ExtResource("4_sqa0i")]
+[node name="Ability" parent="." instance=ExtResource("4_sqa0i")]
+type = "Ability"
+ability_choice = "timeslow"
+intensity = 0.5
+duration = 2.0
 
+[connection signal="level_changed" from="." to="player" method="_on_root_level_changed"]
 [connection signal="level_completed" from="Goal" to="." method="_on_goal_level_completed"]

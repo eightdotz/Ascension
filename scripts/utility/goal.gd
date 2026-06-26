@@ -13,3 +13,9 @@ func _ready():
 func _on_entered(body: Node3D) -> void:
 	if body.has_method("is_player"):
 		emit_signal("level_completed")
+
+func disable():
+	self.visible = false
+	
+func enable():
+	self.visible = true

@@ -16,10 +16,10 @@ func turn_off_traps():
 		
 
 func randomize_trap():
-	var name = traps[randi_range(0, traps.size() - 1)]
+	var new_name = traps[randi_range(0, traps.size() - 1)]
 	print("Selected:")
 	print(name)
-	var trap = get_node(name)
+	var trap = get_node(new_name)
 	if not trap:
 		printerr("Trap not found! You have an invalid path inside of your trap randomization!")
 	trap.visible = true

@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var diagnostics_enabled: bool = false
+@export var root: Node3D = get_parent() 
 
 @export_group("Abilities")
 @export var ability_1: Ability
@@ -58,11 +59,6 @@ var invincibility_timer := 0.0
 @export var wall_jump_fov_boost := 25.0 ##The amount field of view can increase during a wall jump or max speed
 @export var fov_lerp_speed := 8.0 ##The speed at which the field of view changes
 
-@export_group("Dash")
-@export var dash_speed := 60.0
-@export var dash_duration := 0.2
-@export var dash_stamina_cost := 20.0
-
 @export_group("Shader")
 @export_range (0.0, 100.0, 0.1) var pixelization: float
 @onready var shader_mesh: ColorRect = $Interface/HUD/PixelFilter
@@ -71,13 +67,11 @@ var invincibility_timer := 0.0
 @onready var player_head = $Head
 @onready var camera = $Head/Camera
 
-enum SpeedMod {SPRINT, WALL_JUMP_BOOST, DASH, BOOST}
+enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST}
 var _speed_modifiers: Dictionary = {}
 
-var dashes = 1
-var dash_cooldown_timer := 0.0
-
 var movement_override_timer := 0.0 #while > 0, the normal speed clamp/accel is skipped. Used by wall jump and dash.
+
 var wall_stick_timer := 0.0
 var jump_time := 0.0
 var last_gnd_time := 0.0
@@ -116,6 +110,7 @@ var tween = null
 @onready var bar_jumps: ProgressBar = $Interface/HUD/Jumps
 @onready var black_screen: ColorRect = $Interface/HUD/BlackScreen
 @onready var hud: Control = $Interface/HUD
+@onready var level: Label = $Interface/HUD/Level
 
 #mouse signals
 signal on_click
@@ -194,16 +189,9 @@ func _update_wall_jump_boost(delta: float) -> void:
 	var time_progress = 1.0 - (wall_jump_boost_timer / wall_jump_boost_duration)
 	var drag_factor = max(0.1, 0.6 - (time_progress * 0.5))
 	var boosted_speed = cache_max_speed * wall_jump_speed_boost * drag_factor
-	var speed_limit = (wall_jump_velocity_max / 2) - 20
+	var speed_limit = (wall_jump_velocity_max / 2.0) - 20
 	var clamped_speed = max(cache_max_speed, min(boosted_speed, speed_limit))
 	add_speed_modifier(SpeedMod.WALL_JUMP_BOOST, clamped_speed / cache_max_speed)
-
-func do_dash(dir: Vector3 = Vector3.ZERO) -> void:
-	if not dashes:
-		return
-	add_speed_modifier(SpeedMod.DASH, dash_speed, dash_duration)
-	stamina = max(stamina - dash_stamina_cost, 0.0)
-	dashes = 0
 
 var cos_wall_angle_min := cos(deg_to_rad(wall_angle))
 var cos_wall_angle_max := cos(deg_to_rad(max_wall_angle))
@@ -217,10 +205,6 @@ func _process(delta):
 func _physics_process(delta):
 	last_gnd_time += delta
 	last_jump_time += delta
-	dash_cooldown_timer = max(dash_cooldown_timer - delta, 0.0)
-	
-	if Input.is_action_just_pressed("move_dash"):
-		do_dash()
 	
 	_update_sprint_modifier(delta)
 	_update_wall_jump_boost(delta)
@@ -254,7 +238,6 @@ func _physics_process(delta):
 	if grounded:
 		last_gnd_time = 0.0
 		jumps = jump_max
-		dashes = 1
 		is_sliding = false
 	else:
 		velocity.y -= gravity * delta
@@ -340,7 +323,7 @@ func handle_jump_buffer(_delta: float, grounded: bool):
 			elif jumps > 0:
 				do_jump(Vector3.UP)
 
-func do_jump(direction: Vector3):
+func do_jump(new_direction: Vector3):
 	if stamina < stamina_drain_jump:
 		return
 	is_jumping = true
@@ -350,7 +333,7 @@ func do_jump(direction: Vector3):
 	jumps -= 1
 	bar_jumps.value = jumps
 	last_jump_time = 0.0
-	velocity.y = direction.y * jump_speed
+	velocity.y = new_direction.y * jump_speed
 
 func do_wall_jump():
 	if stamina < stamina_drain_jump:
@@ -415,7 +398,6 @@ func update_wall_status(input_dir):
 			wall_stick_timer = wall_stick_duration
 			jumps = jump_max
 			bar_jumps.value = jumps
-			dashes = 1
 		
 		wall_normal = wall_normal.normalized()
 		is_sliding = true
@@ -490,7 +472,7 @@ func disable_movement():
 	
 func enable_movement():
 	set_physics_process(true)
-	set_process_unhandled_input(false)
+	set_process_unhandled_input(true)
 	
 func fade_to_black(time: float = 0.5, wait:bool = false):
 	tween = create_tween()
@@ -512,13 +494,16 @@ func _on_click(button: int) -> void:
 	
 func upgrade(upgrade_name: String, amount: float):
 	var upgradables = {"Max Health": health_max, "Regeneration": regen, "Max Stamina": stamina_max, "Max Speed": max_speed, "Jump Quanity":jumps, "Jump Height":jump_speed, "Wall Jump Boost Duration":wall_jump_boost_duration, "Wall Jump Speed": wall_jump_force, "Wall Jump Max Speed":wall_jump_velocity_max}
+	print("Upgrading " + upgrade_name + " by " + str(amount))
 	upgradables[upgrade_name] += amount
 
 
 func add_ability(new_ability: Ability):
 	if new_ability.type == "Upgrade":
-		new_ability.execute()
+		print("Upgrading")
+		new_ability.execute(self)
 		return
+	print("Assigning")
 	if not ability_1:
 		ability_1 = new_ability
 	elif not ability_2:
@@ -530,3 +515,30 @@ func add_ability(new_ability: Ability):
 
 func overwrite_ability(new_ability: Ability):
 	pass
+
+
+func _on_root_level_changed() -> void:
+	print("Level Changed")
+	if root:
+		print("Found Root")
+		if root.get_level_type() == "Ability":
+			print("Level Type is ability")
+			var dungeon = root.dungeon
+			if dungeon:
+				if on_click.is_connected(dungeon._on_click):
+					on_click.disconnect(dungeon._on_click)
+				on_click.connect(dungeon._on_click)
+
+func set_level(value: String):
+	#level.set("theme_override_colors/font_color", Color(1, 0, 0))
+	tween = create_tween()
+	tween.tween_property(level, "modulate:a", 0.0, 5.0)
+	await tween.finished
+	level.text = value
+	tween = create_tween()
+	tween.tween_property(level, "modulate:a", 1.0, 5.0)
+
+func reset_timers():
+	wall_jump_boost_timer = 0.0
+	movement_override_timer = 0.0
+	wall_jump_timer = 0.0

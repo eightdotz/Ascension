@@ -19,13 +19,14 @@ extends Node3D
 var num = 0
 signal select
 signal unselect
+@onready var name_label: Label3D = $Name
+@onready var value_label: Label3D = $Value
 
 
 func _ready() -> void:
 	particles.emitting = false
 	if rarity:
 		set_rarity_properties()
-
 
 func set_rarity(type: String): ##Configures the look of the item based on rarity and creates ability object
 	selected_ability = Ability.new()
@@ -56,11 +57,15 @@ func stop():
 	particles.emitting = false
 
 func set_page_value(value: int):
+	value_label.text = str(value)
 	num = value
 
 func toggle_hitbox():
 	input_area.monitoring = !input_area.monitoring
 	print(input_area.monitoring)
+
+func set_page_name(new_name:String):
+	name_label.text = new_name
 
 func _mouse_entered(area: Area3D) -> void:
 	page_mesh.mesh.material.emission_energy_multiplier += 2
