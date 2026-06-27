@@ -1,0 +1,10 @@
+Rooms:
+	Water Channel Width: 1.05 M
+	Wall Thickness: 0.3 M
+	Generic Wall Height: 3 M
+	Base Floor Height: 0.1 M
+	Concrete Floor Height: 0.15 M
+	Entrance Size: 1.5 x 1.5 M
+	Entrance Height from Floor: 2.1  M
+	
+	Rescale to 40 when importing into Redot.                                                  
