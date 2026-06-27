@@ -95,47 +95,106 @@ Lights:
 
 # - A numbered object
 
+Scene 'root.tscn' (under '/scenes'):
+	Description:
+		root.tscn or ROOT is the level manager. This script is resposible for loading and deloading levels along with teleporting
+		the player and goal to their proper position. This script contains four nodes with player and Level being persistant across 
+		the gameplay
 
-Declarations:
-	Lights will always be underneath a Node3D object named "Lighting"
-	Traps will always exist under a Node3D named "Trap"
-	Animation Players retain their default name
-	Trap Scripts need to be attached to the root node
-
-Root Scene Layout:
 	ROOT (Node3D):
-		player (child scene)
-		Goal (child scene)
-		Level (Node3D):
-			Dungeon (child scene, any full level object)
+		Emits 'level_changed' (See Signals). 
+		Attached script 'root.gd' (See Scripts) which is the level managing script.
+		The level manager, instantiates levels to be generated under the Level node
 
-Piece Scene Layouts:
-	Root (Node3D, named Dungeon):
-		AnimationPlayer
-		SpawnPoint - where the player spawns
-		GoalPoint - where the goal spawns
-		Structure (MeshInstance3D, name):
-			StaticBody3D:
-				CollisionShape3D (Trimesh)
-			Structures Inside Structure (water, ledges, rooms, decorations, etc)
-		Lighting (Node3D)
-		Trap# (Child Scene Instance)
+	|-  Level (Node3D):
+			The place ROOT stores and frees instantiated levels.
 
-Trap Scene Layouts:
-	Root (Node3D, named Trap):
-		Node3D (name of trap):
-			DetectionArea# (Area3D):
-				DetectionZone (CollisionShape3D, single convex)
-			DamageArea# (Area3D):
-				DamageZone (CollisionShape3D, single convex):
-			Node3D (named Construction):
-				Node3D (name of object):
-					MeshInstance3D# - NOTE: Does not need collision
+	|-  Goal (Child Scene 'goal.tscn', Node3D):
+			Emits 'level_completed' (See Signals).
+			Attached script 'goal.gd' (See Scripts).
+			s the only instance of 'Goal' anywhere in the project. Goal is teleported to the last piece of a level on load.
 
-Level Scene Layouts:
-	Root (Node3D, name of level)
-		World Enviorment:
-			DirectionalLight3D (if outside)
-		Player (Child Scene Instance)
-		Piece (Name and/or Number, Child Scene Instance)
+	|-  Player (Child Scene 'player.tscn', CharacterBody3D):
+			Emits 'on_click' (See Signals).
+			Attached 'player.gd'. Provides customization options for the player and game apperence (under Shaders)
+			Is the only instance of 'Player' anywhere in the project. The player is teleported to the first piece of a level on load.
+
+Scene 'Level.tscn' (under '/scenes/main'):
+	Description:
+		Level.tscn is responsible for generating levels by looping through and instantiating level pieces. 
+		Contains the spawn points for goals and players and requires a 'type' and 'biome' to be set. These are required to 
+		influence player behavior and which folders to search through. Levels also contain the world enviorment which 
+		has modifiers for ambient light and fog to set the tone of a level
 	
+	Dungeon (Node3d):
+		Attached script 'level.gd'. Controls the generation of levels by instantiating pieces under the Pieces Node.
+	
+	|-   WorldEnviorment:
+			Defines the look of the level with fog, ambient light, camera compositing, fog, reflections, etc.
+			
+	
+	|-  SpawnPoint (Child Scene 'SpawnPoint.tscn', Node3D):
+			Placed where the player will spawn at the level, usually at the starting joint of the first piece.
+			It works by moving this node to the global coords of the first joint of the first piece where the player will be teleported.
+	
+	|-  GoalPoint (Child Scene 'SpawnPoint.tscn', Node3D):
+			Placed where the goal will be placed, usually at the final joint of the last piece
+			It works by moving this node to the global coords of the first joint of the first piece.
+			
+	|-  Pieces (Node3D):
+			Contains all the pieces being instantiated. All pieces should be freed when the level itself is freed by the level manager.
+ 
+Piece Scenes (under '/scenes/biomes'):
+	Description:
+		Piece scenes are any scene that exsits to construct levels. These scenes make up big and small structures
+		Piece scenes require Start and End nodes made of 'Joint' scenes and a general structure. All else is optional.
+		It is encouraged that these scenes are filled with parts that funcionally make the gameplay intersting. This 
+		could be surfaces for players to navigate or traps for players to avoid.
+		
+	NamedNode (Node3D of any name):
+		Attached script 'level_piece.gd'.
+		This node can randomize the spawning of traps.
+
+	|-  NamedNode (MeshInstance3d of any name):
+			Primary structure of a piece. Think of a room but not the things inside it.
+			Decorations, traps, platforms, etc. Will be placed inside of this node.
+			
+			|-  StaticBody3D
+			
+					|- CollisionShape3D
+			
+	|-  Lighting (Node3D):
+			Contains all lighting of this scene. This can be used to create atmosphere by stratigically hiding this node or its children
+			as well as editing their modifiers dynamically
+
+	|-  Start (Child Scene 'joint.tscn', Node3D):
+		The enterance to the structure. Where a player spawn point can be placed. This node has a face on it to indicate the front
+		
+	|-  End (Child Scene 'joint.tscn', Node3D):
+		The exit to the structure. Where a goal spawn point can be placed. This node has a face on it to indicate the front.
+
+Trap Scenes (under '/traps'):
+	Description:
+		Traps are used to either A: Kill the player; B: Harm the player; C: Steal the player; D: Inconvience the player. Traps can be 
+		anything that thematically fit the level however they should not be outright unfair or hidden in a way that doesnt 
+		communicate the danger they present. There should always be a way out. Traps are always instantiated into level pieces.
+	
+	Trap (Node3D):
+		Contains the primary trap script for controlling how a trap activates, behaves, and effects its surroundings.
+		The general script for these will be marked with a '!' (like '!GenericTrap.gd') defining a catagory they posses
+		however if required a new script can be made for unique traps that arent able to be combined with others in terms 
+		of behavior
+		
+	|-  DetectionArea (Area3D):
+			Container and signal provider for detecting collision for triggers
+			
+			|-  DetectionZone (CollisionShape3D)
+			
+	|-  DamageArea (Area3D):
+			Container and signal provider for detecting collision for effecting the player
+			
+			|-  DamageZone (CollisionShape3D)
+			
+	|-  Construction (Node3D):
+			The general design of the trap. This can be meshes with textures, glow, particles, etc.
+			Any design element fall under this node.

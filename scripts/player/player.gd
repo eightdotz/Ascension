@@ -516,7 +516,6 @@ func add_ability(new_ability: Ability):
 func overwrite_ability(new_ability: Ability):
 	pass
 
-
 func _on_root_level_changed() -> void:
 	print("Level Changed")
 	if root:
