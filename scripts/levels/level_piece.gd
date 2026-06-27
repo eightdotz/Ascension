@@ -45,8 +45,8 @@ func get_level_type():
 func set_id(new_id: int):
 	id = new_id
 
-func get_start() -> Vector3:
-	return start.position
+func get_start_transform() -> Transform3D:
+	return start.transform
 
-func get_end() -> Vector3:
-	return end.position
+func get_end_transform() -> Transform3D:
+	return end.transform
