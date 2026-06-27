@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var skip_testing: bool = false
 @export var test_load: bool = false
 @export var assigned_level: String
 
@@ -49,6 +50,7 @@ func load_level(path: String):
 
 	dungeon = load(path).instantiate()
 	level_node.add_child(dungeon)
+	dungeon.skip_testing = skip_testing
 	dungeon.populate()
 	dungeon.configure_spawn(10)
 	await dungeon.spawn()
