@@ -28,8 +28,8 @@ func spawn():
 	var spawn_tracker: Array = []
 	while spawn_amount:
 		if avaliable_pieces.size() > 1:
-			selection = randi_range(0, avaliable_pieces.size())
-			selected_item = avaliable_pieces[selection - 1]
+			selection = randi_range(0, avaliable_pieces.size() - 1)
+			selected_item = avaliable_pieces[selection]
 			if skip_testing:
 				if "-" in selected_item:
 					continue

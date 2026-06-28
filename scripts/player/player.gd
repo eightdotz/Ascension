@@ -111,6 +111,8 @@ var tween = null
 @onready var black_screen: ColorRect = $Interface/HUD/BlackScreen
 @onready var hud: Control = $Interface/HUD
 @onready var level: Label = $Interface/HUD/Level
+@onready var pause: Control = $Interface/Pause
+@onready var main_menu: Control = $Interface/MainMenu
 
 #mouse signals
 signal on_click
@@ -124,11 +126,12 @@ func _ready():
 	bar_jumps.value = jump_max
 	gnd_ray.target_position = Vector3(0, -1.1, 0)
 	gnd_ray.enabled = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	add_to_group("player")
 	if camera:
 		camera.fov = base_fov
 	shader_mesh.get_material().set("shader_parameter/pixel_size",pixelization)
+	toggle_mouse()
+	set_process_input(!is_processing_input())
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -142,7 +145,9 @@ func _input(event):
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("move_pause"):
-		toggle_mouse()
+		_on_menu_button_pressed()
+
+
 	if Input.is_action_just_pressed("ability_1"):
 		if ability_1:
 			ability_1.execute()
@@ -541,3 +546,23 @@ func reset_timers():
 	wall_jump_boost_timer = 0.0
 	movement_override_timer = 0.0
 	wall_jump_timer = 0.0
+
+
+func _on_menu_button_pressed() -> void:
+	set_process_input(!is_processing_input())
+	pause.visible = !pause.visible
+	toggle_mouse()
+	if pause.visible:
+		Engine.time_scale = 0
+	else:
+		Engine.time_scale = 1
+
+
+func _start_game() -> void:
+	main_menu.visible = !main_menu.visible
+	toggle_mouse()
+	set_process_input(!is_processing_input())
+
+
+func _on_exit() -> void:
+	get_tree().quit()

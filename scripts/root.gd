@@ -11,12 +11,13 @@ extends Node3D
 @onready var ABILITY_SELECTION = "res://scenes/main/AbilitySelection.tscn"
 
 @onready var LEVEL = "res://scenes/main/Level.tscn"
+@onready var STARTING = "res://scenes/main/StartingArea.tscn"
 
 
 var current_floor = -1
 signal level_changed
 
-func _ready() -> void:
+func _ready():
 	load_first_level()
 	set_player()
 	set_goal()
@@ -59,14 +60,13 @@ func load_level(path: String):
 	var spawn = dungeon.get_node("SpawnPoint")
 	if not spawn:
 		printerr("No spawn point!!!")
-	player.global_position = spawn.global_position
-	player.global_rotation = spawn.global_rotation
+	set_player()
+	set_goal()
 	emit_signal("level_changed")
 	if level_type == "Dungeon":
 		player.fade_to_clear()
 	else:
 		print("Resetting timers")
-		player.fade_to_clear(2.0)
 		player.set_level("???")
 		player.reset_timers()
 		return
@@ -74,20 +74,20 @@ func load_level(path: String):
 	current_floor += 1
 	if current_floor > 0:
 		player.set_level(str(current_floor))
+	await player.fade_to_clear(2.0)
 
 func load_first_level():
 	player.fade_to_black(1.0, true)
 	if test_load:
 		load_level(assigned_level)
 	else:
-		load_level(LEVEL)
-		
+		load_level(STARTING)
 
 func _on_goal_level_completed() -> void:
-	player.fade_to_black(1.0, true)
+	await player.fade_to_black(1.0, true)
 	if test_load:
 		load_level(assigned_level)
-	elif not randi_range(0, 10):
+	elif not randi_range(0, 5) and current_floor > 1:
 		load_level(ABILITY_SELECTION)
 	else:
 		load_level(LEVEL)
