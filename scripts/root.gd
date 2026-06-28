@@ -53,9 +53,9 @@ func load_level(path: String):
 	var level_type = dungeon.get_level_type()
 	if level_type == "Dungeon":
 		dungeon.skip_testing = skip_testing
-	dungeon.populate()
-	dungeon.configure_spawn(10)
-	await dungeon.spawn()
+		dungeon.populate()
+		dungeon.configure_spawn(10)
+		await dungeon.spawn()
 	print(level_type)
 	var spawn = dungeon.get_node("SpawnPoint")
 	if not spawn:

@@ -16,6 +16,7 @@ transform = Transform3D(0.82173645, 0, -0.5698676, 0, 1, 0, 0.5698676, 0, 0.8217
 
 [node name="player" parent="." node_paths=PackedStringArray("root") instance=ExtResource("2_twpsu")]
 root = NodePath("..")
+pixelization = 6.0
 
 [connection signal="level_changed" from="." to="player" method="_on_root_level_changed"]
 [connection signal="level_completed" from="Goal" to="." method="_on_goal_level_completed"]
