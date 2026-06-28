@@ -33,7 +33,8 @@ Measurements (Not tracked by blender, use ruler tool):
 	STANDADRS:
 		Total Length (per node placement): * 4 Meters
 		Pipe Resolution: 6
-		Inner Diameter: * 0.75 Depth OR 1.5 Inner Diameter (equal when measured)
+		Inner Diameter: * 0.75 Depth OR 1.5 Meters Inner Diameter (equal when measured)
+		Room Entrance and Exit Diameter: 0.6 Meters
 		Angles: 1 Meter Offset @90° scaled to angle (45° == 0.5m Offset)
 		Circle Cut: See Flare Depth
 		Flare Width: * 0.15 Meters
@@ -86,7 +87,10 @@ Data (Curve mode only):
 ## For Development ##
 
 Pipe Sizing:
-	Reize to 75
+	Reize to 30
+	
+Room Sizing:
+	Resize to 40
 	
 Lights:
 	Bake mode: Static

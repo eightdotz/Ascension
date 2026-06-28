@@ -42,7 +42,6 @@ omni_attenuation = 0.029
 
 [node name="player" parent="." instance=ExtResource("2_pbam3")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 40.263794, 112.7785, 105.18439)
-pixelization = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -146.70424, 53.631157, -406.82446)
