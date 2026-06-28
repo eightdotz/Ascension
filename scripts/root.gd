@@ -5,7 +5,6 @@ extends Node3D
 
 @export_group("Experimental Settings")
 @export var room_cooldown_enable_divide: bool = false ##Instead of the room cooldown variable representing the amount of connection pieces between rooms, it instead specifies the ratio of rooms to Spawn Amount. With this enabled, Room Cooldown being set to 2 means that if Spawn Amount is 10, room cooldown would be Spawn Amount / Room Cooldown or 5
-@export var skip_unfinished_levels: bool = false ##Skips testing levels prefixed with "-"
 @export var test_load: bool = false ##Enables the default loading of the assigned level
 @export var assigned_level: String ##A scene you want to load by default. Needs to comply with level specifications
 
@@ -62,7 +61,6 @@ func load_level(path: String):
 	level_node.add_child(dungeon)
 	var level_type = dungeon.get_level_type()
 	if level_type == "Dungeon":
-		dungeon.skip_testing = skip_unfinished_levels
 		dungeon.populate()
 		dungeon.configure_spawn(spawn_amount, room_cooldown)
 		await dungeon.spawn()

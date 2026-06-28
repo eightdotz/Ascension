@@ -5,7 +5,6 @@ extends Node3D
 @onready var pieces: Node3D = $Pieces
 @onready var spawn_point: Node3D = $SpawnPoint
 @onready var goal_point: Node3D = $GoalPoint
-var skip_testing = 1
 var room_cooldown = 0
 var get_biome = {"Sewer":"res://scenes/biomes/sewer/", "Fields":"res://scenes/biomes/fields/", "Space":"res://scenes/biomes/space/","Tower":"res://scenes/biomes/tower/"}
 
@@ -14,6 +13,9 @@ var current_id: int = 0
 var avaliable_pieces: Array = []
 var next_position = Vector3(0,0,0)
 var spawned_pieces: Dictionary = {}
+
+var player_position = 0
+var last_light_position = 4
 
 func _ready() -> void:
 	if not type:
@@ -24,17 +26,12 @@ func _ready() -> void:
 func spawn():
 	var selected_item
 	var next_transform := Transform3D.IDENTITY
-	var selection
 	var spawn_tracker: Array = []
 	while spawn_amount:
 		if avaliable_pieces.size() > 1:
-			selection = randi_range(0, avaliable_pieces.size() - 1)
-			selected_item = avaliable_pieces[selection]
-			if skip_testing:
-				if "-" in selected_item:
-					continue
+			selected_item = avaliable_pieces.pick_random()
 			if room_cooldown > 0:
-				while "Room" in selected_item:
+				while "Room" in selected_item or "!Master" in selected_item:
 					selected_item = avaliable_pieces.pick_random()
 				room_cooldown -= 1
 			else:
@@ -46,12 +43,11 @@ func spawn():
 		var piece = load(selected_item).instantiate()
 		pieces.add_child(piece)
 		piece.set_id(current_id)
-		
+		if current_id > 5:
+			piece.toggle_lights()
+		piece.player_entered.connect(_on_piece_entered)
 		piece.global_transform = next_transform * piece.get_start_transform().inverse()
 		next_transform = piece.get_node("End").global_transform
-		#if randi_range(0, 1):
-		#	if "Room" not in selected_item:
-		#		piece.rotation.y += 180
 		spawn_amount -= 1
 		spawned_pieces[current_id] = piece
 		current_id += 1
@@ -64,6 +60,7 @@ func spawn():
 func configure_spawn(amount: int, cooldown: int): ##Needs to be called by controller second
 	spawn_amount = amount
 	room_cooldown = cooldown
+
 func populate(): ##Needs to be called by controller first
 	var dir := DirAccess.open(get_biome[biome])
 	if dir == null: printerr("Could not open folder"); return
@@ -83,3 +80,20 @@ func get_piece_start(id: int):
 
 func get_piece_end(id: int):
 	return spawned_pieces[id].get_end()
+
+func _on_piece_entered(value:int):
+	player_position = value
+	print("Player Position: " + str(value) + " " + str(last_light_position))
+	spawned_pieces[player_position].get_node("Checkpoint").queue_free()
+	if player_position <= last_light_position:
+		return
+	for pos in range(player_position, spawned_pieces.size() - 1):
+		spawned_pieces[pos].toggle_lights()
+		if pos > player_position + 4:
+			last_light_position = pos
+			break
+	for pos in range(player_position - 4, player_position):
+		spawned_pieces[pos].toggle_lights()
+	for pos in range(0, 1):
+		spawned_pieces[0].queue_free()
+		spawned_pieces.erase(0)

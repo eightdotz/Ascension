@@ -536,7 +536,6 @@ func _on_root_level_changed() -> void:
 				on_click.connect(dungeon._on_click)
 
 func set_level(value: String):
-	#level.set("theme_override_colors/font_color", Color(1, 0, 0))
 	tween = create_tween()
 	tween.tween_property(level, "modulate:a", 0.0, 2.0)
 	await tween.finished

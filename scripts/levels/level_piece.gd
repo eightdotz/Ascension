@@ -8,10 +8,18 @@ extends Node3D
 
 var id: int = 0
 
+signal player_entered(id)
+
+
+
 func _ready():
 	if randomize_traps:
 		turn_off_traps()
 		randomize_trap()
+
+func toggle_lights():
+	for light in lights:
+		light.toggle_lights()
 
 func turn_off_traps():
 	print("Randomized traps ARE enabled, ensure this is intentional. Any trap assigned will be set to invisible.")
@@ -51,3 +59,7 @@ func get_start_transform() -> Transform3D:
 
 func get_end_transform() -> Transform3D:
 	return end.transform
+
+func _on_checkpoint_body_entered(body: Node3D) -> void:
+	if body.has_method("is_player"):
+		player_entered.emit(id)

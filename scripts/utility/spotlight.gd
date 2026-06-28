@@ -57,3 +57,6 @@ func _update():
 		light.light_energy = energy
 	if mesh and mesh.material:
 		mesh.material.emission = color
+
+func toggle_lights():
+	toggle = !toggle
