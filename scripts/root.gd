@@ -17,11 +17,13 @@ extends Node3D
 @onready var LEVEL = "res://scenes/main/Level.tscn"
 @onready var STARTING = "res://scenes/main/StartingArea.tscn"
 
-
+var base_spawn
+var current_level_type
 var current_floor = -1
 signal level_changed
 
 func _ready():
+	base_spawn = spawn_amount
 	if not spawn_amount:
 		printerr("No spawn amount set! Will crash!")
 		return
@@ -59,23 +61,23 @@ func load_level(path: String):
 		child.queue_free()
 	dungeon = load(path).instantiate()
 	level_node.add_child(dungeon)
-	var level_type = dungeon.get_level_type()
-	if level_type == "Dungeon":
+	current_level_type = dungeon.get_level_type()
+	if current_level_type == "Dungeon":
 		dungeon.populate()
 		dungeon.configure_spawn(spawn_amount, room_cooldown)
 		await dungeon.spawn()
-	print(level_type)
+	print(current_level_type)
 	var spawn = dungeon.get_node("SpawnPoint")
 	if not spawn:
 		printerr("No spawn point!!!")
 	set_player()
 	set_goal()
 	emit_signal("level_changed")
-	if level_type == "Dungeon":
+	if current_level_type == "Dungeon":
 		player.fade_to_clear()
 	else:
 		print("Resetting timers")
-		if level_type == "Ability":
+		if current_level_type == "Ability":
 			player.set_level("???")
 		else:
 			player.set_level("Sentenced")
@@ -94,10 +96,13 @@ func load_first_level():
 		load_level(STARTING)
 
 func _on_goal_level_completed() -> void:
-	await player.fade_to_black(1.0, true)
+	print(base_spawn)
+	spawn_amount = base_spawn + current_floor
+	print(spawn_amount)
 	if test_load:
 		load_level(assigned_level)
-	elif not randi_range(0, 5) and current_floor > 1:
+	elif not randi_range(0, 1) and current_floor > 1 and current_level_type != "Ability":
+		await player.fade_to_black(1.0, true)
 		load_level(ABILITY_SELECTION)
 	else:
 		load_level(LEVEL)
