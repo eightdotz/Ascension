@@ -40,3 +40,5 @@ transform = Transform3D(-0.9999999, 0, 2.7818125e-08, 0, 1, 0, -2.7818125e-08, 0
 
 [node name="End" parent="." instance=ExtResource("4_iy0fe")]
 transform = Transform3D(-0.99999994, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -0.99999994, -136.84229, 77.161835, 4.9716797)
+
+[node name="OverlapChecks" type="Node3D" parent="."]

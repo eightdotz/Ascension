@@ -97,7 +97,7 @@ Lights:
 	
 ## Scene Standards ##
 
-# - A numbered object
+Overlap Detection is set to collision layer and mask 5 on ready
 
 Scene 'root.tscn' (under '/scenes'):
 	Description:

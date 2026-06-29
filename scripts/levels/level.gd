@@ -13,9 +13,10 @@ var current_id: int = 0
 var avaliable_pieces: Array = []
 var next_position = Vector3(0,0,0)
 var spawned_pieces: Dictionary = {}
-
+var ramp_pieces: Array = []
 var player_position = 0
 var last_light_position = 4
+var next_piece: String
 
 func _ready() -> void:
 	if not type:
@@ -31,7 +32,7 @@ func spawn():
 		if avaliable_pieces.size() > 1:
 			selected_item = avaliable_pieces.pick_random()
 			if room_cooldown > 0:
-				while "Room" in selected_item or "!Master" in selected_item:
+				while "Room" in selected_item:
 					selected_item = avaliable_pieces.pick_random()
 				room_cooldown -= 1
 			else:
@@ -39,6 +40,9 @@ func spawn():
 					room_cooldown = 4
 		else:
 			selected_item = avaliable_pieces[0]
+		if next_piece:
+			selected_item = next_piece
+			
 		spawn_tracker.append(selected_item)
 		var piece = load(selected_item).instantiate()
 		pieces.add_child(piece)
@@ -51,11 +55,18 @@ func spawn():
 		spawn_amount -= 1
 		spawned_pieces[current_id] = piece
 		current_id += 1
-
+		if piece.overlaps():
+			print("Overlapping!")
+			#on_overlap()
+		else:
+			print("Pipe is not overlapping")
+			
 	spawn_point.global_transform = spawned_pieces[0].get_node("Start").global_transform
 	var end_index = spawned_pieces.keys().size() - 1
 	if end_index > 0:
 		goal_point.global_transform = spawned_pieces[end_index].get_node("End").global_transform
+	for index in spawned_pieces:
+		print(str(spawned_pieces[index].id) + " " + str(spawned_pieces[index].overlaps()))
 
 func configure_spawn(amount: int, cooldown: int): ##Needs to be called by controller second
 	spawn_amount = amount
@@ -68,7 +79,11 @@ func populate(): ##Needs to be called by controller first
 	for file: String in dir.get_files():
 		var resource := dir.get_current_dir() + file
 		print(resource)
-		avaliable_pieces.append(resource)
+		if "!Master" not in resource:
+			if "Ramp" in resource:
+				ramp_pieces.append(resource)
+			else:
+				avaliable_pieces.append(resource)
 
 func get_level_type():
 	if not type:
@@ -81,15 +96,23 @@ func get_piece_start(id: int):
 func get_piece_end(id: int):
 	return spawned_pieces[id].get_end()
 
+func on_overlap():
+	print("Overlap detected!")
+	spawned_pieces[spawned_pieces.size()].queue_free()
+	spawn_amount += 1
+	if ramp_pieces:
+		next_piece = ramp_pieces.pick_random()
+	
 func _on_piece_entered(value: int):
 	player_position = value
 	print("Player Position: " + str(value) + " " + str(last_light_position))
 	spawned_pieces[player_position].get_node("Checkpoint").queue_free()
-	if player_position <= last_light_position:
+
+	if player_position < last_light_position:
 		return
 	for pos in range(player_position, spawned_pieces.size() - 1):
 		spawned_pieces[pos].toggle_lights()
-		if pos > player_position + 4:
+		if pos > player_position + 3:
 			last_light_position = pos
 			break
 	for pos in range(player_position - 4, player_position):

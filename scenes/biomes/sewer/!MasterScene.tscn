@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cephaaldw7crw"]
+[gd_scene load_steps=5 format=3 uid="uid://cephaaldw7crw"]
 
 [ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level_piece.gd" id="1_xclrk"]
+[ext_resource type="PackedScene" uid="uid://cjm1spq12xcv" path="res://scenes/utility/OverlapDetector.tscn" id="4_eprv6"]
 [ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://scenes/utility/joint.tscn" id="4_g268m"]
 [ext_resource type="PackedScene" uid="uid://b6rimfxkx2217" path="res://scenes/utility/Checkpoint.tscn" id="5_e68en"]
 
@@ -20,5 +21,10 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0
 
 [node name="Checkpoint" parent="." instance=ExtResource("5_e68en")]
 transform = Transform3D(16.8, 0, 0, 0, 54.432, 0, 0, 0, 53.946, 0, 0, 0)
+
+[node name="OverlapChecks" type="Node3D" parent="."]
+
+[node name="OverlapDetector" parent="OverlapChecks" instance=ExtResource("4_eprv6")]
+transform = Transform3D(1346.8019, 0, 0, 0, 35.445, 0, 0, 0, 35.445, -93.85065, 0, 0)
 
 [connection signal="body_entered" from="Checkpoint" to="." method="_on_checkpoint_body_entered"]

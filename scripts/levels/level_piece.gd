@@ -5,14 +5,18 @@ extends Node3D
 @onready var start: Node3D = $Start
 @onready var end: Node3D = $End
 @onready var lights = $Lighting.get_children()
-
+@onready var overlap = $OverlapChecks.get_children()
 var id: int = 0
 
 signal player_entered(id)
 
 
-
 func _ready():
+	for area in overlap:
+		area.collision_layer = 5
+		area.collision_mask = 5
+		area.monitoring = true
+		area.monitorable = true
 	if randomize_traps:
 		turn_off_traps()
 		randomize_trap()
@@ -63,3 +67,23 @@ func get_end_transform() -> Transform3D:
 func _on_checkpoint_body_entered(body: Node3D) -> void:
 	if body.has_method("is_player"):
 		player_entered.emit(id)
+	
+func overlaps() -> bool:
+	for area in overlap:
+		var collision_shape = area.get_node("CollisionShape3D")
+		if not collision_shape or not collision_shape.shape:
+			printerr("OverlapCheck child is missing a CollisionShape3D!")
+			continue
+
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsShapeQueryParameters3D.new()
+		query.shape = collision_shape.shape
+		query.transform = collision_shape.global_transform
+		query.collision_mask = area.collision_mask
+		query.exclude = [area]
+
+		var results = space_state.intersect_shape(query, 1)
+		if results.size() > 0:
+			print("Piece is overlapping: ", name)
+			return true
+	return false
