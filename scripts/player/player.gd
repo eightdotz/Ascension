@@ -114,6 +114,9 @@ var tween = null
 @onready var pause: Control = $Interface/Pause
 @onready var main_menu: Control = $Interface/MainMenu
 
+var respawn_pos: Vector3
+var respawn_rot: Vector3
+
 #mouse signals
 signal on_click
 
@@ -453,7 +456,8 @@ func handle_death():
 
 func respawn_player():
 	health = health_max
-	global_position = Vector3(-464, 1, 0)
+	self.global_position = respawn_pos
+	self.global_rotation = respawn_rot
 
 func is_player():
 	return 1
@@ -570,3 +574,8 @@ func _start_game() -> void:
 
 func _on_exit() -> void:
 	get_tree().quit()
+
+func set_respawn():
+	respawn_pos = self.global_position
+	respawn_rot = self.global_rotation
+	

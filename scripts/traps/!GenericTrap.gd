@@ -2,8 +2,7 @@ extends Node3D
 
 @onready var construction: Node3D = $Lazer/Construction #No change
 @onready var animation_player: AnimationPlayer = get_parent().get_node("AnimationPlayer") #No change
-@onready var lights = get_parent().get_node("Lighting").get_children() #No change
-
+@onready var lights = $"../..".get_node("Lighting").get_children() #No change
 @export var idle_animation_name = ""
 @export var action_animation_name = ""
 @export var hide_mesh_until_trigger: bool = false

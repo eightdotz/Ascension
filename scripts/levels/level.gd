@@ -48,14 +48,18 @@ func spawn():
 		pieces.add_child(piece)
 		piece.set_id(current_id)
 		if current_id > 5:
-			piece.toggle_lights()
+			piece.set_lights(false)
 		piece.player_entered.connect(_on_piece_entered)
 		piece.global_transform = next_transform * piece.get_start_transform().inverse()
 		next_transform = piece.get_node("End").global_transform
 		spawn_amount -= 1
 		spawned_pieces[current_id] = piece
 		current_id += 1
-		piece.overlaps()
+		if piece.overlaps():
+			#piece.queue_free()
+			#spawned_pieces.erase(current_id)
+			#spawn_tracker.erase(current_id)
+			break
 	spawn_point.global_transform = spawned_pieces[0].get_node("Start").global_transform
 	var end_index = spawned_pieces.keys().size() - 1
 	if end_index > 0:
@@ -90,8 +94,8 @@ func get_piece_end(id: int):
 	return spawned_pieces[id].get_end()
 
 func on_overlap():
-	print("Overlap detected!")
-	spawned_pieces[spawned_pieces.size()].queue_free()
+	#spawned_pieces[spawned_pieces.size() - 1].queue_free()
+	return
 	spawn_amount += 1
 	if ramp_pieces:
 		next_piece = ramp_pieces.pick_random()
@@ -104,12 +108,16 @@ func _on_piece_entered(value: int):
 	if player_position < last_light_position:
 		return
 	for pos in range(player_position, spawned_pieces.size() - 1):
-		spawned_pieces[pos].toggle_lights()
-		if pos > player_position + 3:
-			last_light_position = pos
-			break
-	for pos in range(player_position - 4, player_position):
-		spawned_pieces[pos].toggle_lights()
-	var oldest_key = spawned_pieces.keys().min()
-	spawned_pieces[oldest_key].queue_free()
-	spawned_pieces.erase(oldest_key)
+		spawned_pieces[pos].set_lights(true)
+		if player_position + 6 < spawned_pieces.size() - 1:
+			if pos > player_position + 6:
+				last_light_position = pos - 2
+				break
+			
+	for pos in range(player_position - 2, player_position):
+		if pos - 2 > -1:
+			spawned_pieces[pos - 2].set_lights(false)
+	for index in range(0, 1):
+		var oldest_key = spawned_pieces.keys().min()
+		spawned_pieces[oldest_key].queue_free()
+		spawned_pieces.erase(oldest_key)

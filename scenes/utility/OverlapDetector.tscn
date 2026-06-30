@@ -13,6 +13,8 @@ albedo_color = Color(0, 1, 1, 0.58431375)
 material = SubResource("StandardMaterial3D_2i6lm")
 
 [node name="OverlapDetector" type="Area3D"]
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("1_bt2cw")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]

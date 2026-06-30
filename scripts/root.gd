@@ -44,6 +44,7 @@ func set_player():
 		printerr("No spawn point!!!")
 	player.global_position = spawn.global_position
 	player.global_rotation = spawn.global_rotation
+	player.set_respawn()
 	player.fade_to_clear()
 
 func set_goal():

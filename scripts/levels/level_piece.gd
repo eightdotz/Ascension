@@ -13,17 +13,17 @@ signal player_entered(id)
 
 func _ready():
 	for area in overlap:
-		area.collision_layer = 5
-		area.collision_mask = 5
+		area.set_collision_layer_value(5, true)
+		area.set_collision_mask_value(5, true)
 		area.monitoring = true
 		area.monitorable = true
 	if randomize_traps:
 		turn_off_traps()
 		randomize_trap()
 
-func toggle_lights():
-	for light in lights:
-		light.toggle_lights()
+func set_lights(toggle: bool):
+	for item in lights:
+		item.set_light(toggle)
 
 func turn_off_traps():
 	print("Randomized traps ARE enabled, ensure this is intentional. Any trap assigned will be set to invisible.")
@@ -69,6 +69,7 @@ func _on_checkpoint_body_entered(body: Node3D) -> void:
 		player_entered.emit(id)
 	
 func overlaps() -> bool:
+	var found_overlap := false
 	for detector in overlap:
 		var collision_shape: CollisionShape3D = null
 		for child in detector.get_children():
@@ -84,10 +85,21 @@ func overlaps() -> bool:
 		query.shape = collision_shape.shape
 		query.transform = collision_shape.global_transform
 		query.collision_mask = detector.collision_mask
-		query.exclude = [detector]
-
-		var results = space_state.intersect_shape(query, 1)
+		query.exclude = [detector.get_rid()] 
+		var results = space_state.intersect_shape(query, 32)
 		if results.size() > 0:
-			print("Piece is overlapping: ", name)
-			return true
-	return false
+			found_overlap = true
+			print("Piece '%s' detector '%s' overlaps with:" % [name, detector.name])
+			for result in results:
+				var collider = result.collider
+				if collider:
+					var owner_node = collider.owner if collider.owner else collider
+					print("%s (path: %s, mask: %d, layer: %d)" % [
+						collider.name,
+						collider.get_path(),
+						collider.collision_mask,
+						collider.collision_layer
+					])
+				else:
+					print("  -> (no collider on result, rid: %s)" % str(result.get("rid")))
+	return found_overlap

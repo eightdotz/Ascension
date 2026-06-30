@@ -58,5 +58,5 @@ func _update():
 	if mesh and mesh.material:
 		mesh.material.emission = color
 
-func toggle_lights():
-	toggle = !toggle
+func set_light(toggle: bool):
+	light.visible = toggle
