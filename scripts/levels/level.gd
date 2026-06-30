@@ -57,7 +57,7 @@ func spawn():
 		current_id += 1
 
 		if piece.overlaps():
-			break
+			pass
 
 	spawn_point.global_transform = spawned_pieces[0].get_node("Start").global_transform
 	var end_index = spawned_pieces.keys().size() - 1
