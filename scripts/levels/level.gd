@@ -27,7 +27,9 @@ func _ready() -> void:
 func spawn():
 	var selected_item
 	var spawn_tracker: Array = []
+	
 	while spawn_amount:
+		await get_tree().physics_frame
 		if avaliable_pieces.size() > 1:
 			selected_item = avaliable_pieces.pick_random()
 			if room_cooldown > 0:
@@ -58,9 +60,10 @@ func spawn():
 			piece.queue_free()
 			spawn_tracker.pop_back()
 			fix_overlap()
-		spawn_amount -= 1
-		spawned_pieces[current_id] = piece
-		current_id += 1
+		else:
+			spawn_amount -= 1
+			spawned_pieces[current_id] = piece
+			current_id += 1
 	spawn_point.global_transform = spawned_pieces[0].get_node("Start").global_transform
 	var end_index = spawned_pieces.keys().size() - 1
 	if end_index > 0:
@@ -95,8 +98,10 @@ func get_piece_end(id: int):
 	return spawned_pieces[id].get_end()
 
 func fix_overlap():
+	print(current_id)
+	print(spawned_pieces.keys())
 	var previous_id = current_id - 1
-
+	await get_tree().physics_frame
 	spawned_pieces[previous_id].queue_free()
 	#print(is_instance_valid(spawned_pieces[current_id]))
 	spawned_pieces.erase(previous_id)
@@ -105,7 +110,7 @@ func fix_overlap():
 	spawn_amount += 1
 
 	if current_id > 0:
-		next_transform = spawned_pieces[current_id - 1].get_node("End").global_transform
+		next_transform = spawned_pieces[previous_id - 1].get_node("End").global_transform
 	else:
 		next_transform = Transform3D.IDENTITY
 
