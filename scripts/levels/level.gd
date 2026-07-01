@@ -18,6 +18,8 @@ var player_position = 0
 var last_light_position = 4
 var next_piece: String
 
+var total_spawned_pieces: int
+
 func _ready() -> void:
 	if not type:
 		printerr("Level type not set!")
@@ -64,6 +66,7 @@ func spawn():
 			spawn_amount -= 1
 			spawned_pieces[current_id] = piece
 			current_id += 1
+	total_spawned_pieces = spawned_pieces.size()
 	spawn_point.global_transform = spawned_pieces[0].get_node("Start").global_transform
 	var end_index = spawned_pieces.keys().size() - 1
 	if end_index > 0:
@@ -123,16 +126,20 @@ func _on_piece_entered(value: int):
 		spawned_pieces[player_position].get_node("Checkpoint").queue_free()
 	if player_position < last_light_position:
 		return
-	for pos in range(player_position, spawned_pieces.size() - 1):
-		spawned_pieces[pos].set_lights(true)
-		if player_position + 6 < spawned_pieces.size() - 1:
-			if pos > player_position + 6:
-				last_light_position = pos - 2
-				break
+	var future_position = player_position + 4
+	if spawned_pieces.keys().max() > future_position:
+		for pos in range(player_position, future_position):
+			spawned_pieces[pos].set_lights(true)
+			last_light_position = pos - 2
+	else:
+		for item in spawned_pieces.keys():
+			if spawned_pieces[item].id > player_position:
+				spawned_pieces[item].set_lights(true)
 			
-	for pos in range(player_position - 2, player_position):
-		if pos - 2 > -1:
-			spawned_pieces[pos - 2].set_lights(false)
+	for pos in range(0, player_position - 1):
+		if spawned_pieces.has(pos):
+			spawned_pieces[pos].set_lights(false)
+
 	for index in range(0, 1):
 		var oldest_key = spawned_pieces.keys().min()
 		spawned_pieces[oldest_key].queue_free()

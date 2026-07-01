@@ -5,7 +5,6 @@
 
 [sub_resource type="Environment" id="Environment_fr6qw"]
 background_mode = 1
-background_color = Color(0.22911215, 0.22911218, 0.22911209, 1)
 fog_mode = 1
 fog_light_color = Color(0.4539231, 0.4955957, 0.42497364, 1)
 fog_density = 0.1622

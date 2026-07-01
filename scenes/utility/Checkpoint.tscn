@@ -1,12 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6rimfxkx2217"]
+[gd_scene load_steps=5 format=3 uid="uid://b6rimfxkx2217"]
 
 [ext_resource type="Script" uid="uid://cbxh3o18hby6f" path="res://scripts/utility/checkpoint.gd" id="1_2i6lm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2i6lm"]
+transparency = 1
+albedo_color = Color(0.41960785, 1, 1, 0.36862746)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2i6lm"]
+material = SubResource("StandardMaterial3D_2i6lm")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_uuhvl"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="Checkpoint" type="Area3D"]
 script = ExtResource("1_2i6lm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_2i6lm")
+skeleton = NodePath("../CollisionShape3D2")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

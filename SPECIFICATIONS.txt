@@ -172,10 +172,18 @@ Piece Scenes (under '/scenes/biomes'):
 			as well as editing their modifiers dynamically
 
 	|-  Start (Child Scene 'joint.tscn', Node3D):
-		The enterance to the structure. Where a player spawn point can be placed. This node has a face on it to indicate the front
+			The enterance to the structure. Where a player spawn point can be placed. This node has a face on it to indicate the front
 		
 	|-  End (Child Scene 'joint.tscn', Node3D):
-		The exit to the structure. Where a goal spawn point can be placed. This node has a face on it to indicate the front.
+			The exit to the structure. Where a goal spawn point can be placed. This node has a face on it to indicate the front.
+	
+	|-  Checkpoint
+			Area3D that tracks what pipe the current player has just entered
+	
+	|-  OverlapChecks (Node3D):
+			Organizer for overlap detectors
+			|-  OverlapDetector#
+					Detects whether two Area3Ds overlap on layer 5
 
 Trap Scenes (under '/traps'):
 	Description:
