@@ -18,6 +18,13 @@ material = SubResource("ShaderMaterial_lvxji")
 shader = ExtResource("3_gmlin")
 shader_parameter/pixel_size = 4.0
 shader_parameter/levels = 32.0
+shader_parameter/pivot = 0.35
+shader_parameter/shadow_crush = 0.0
+shader_parameter/highlight_boost = 0.0
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_pivot = 0.5
+shader_parameter/flash_softness = 0.05
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4gf2a"]
 

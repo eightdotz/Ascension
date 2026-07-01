@@ -116,8 +116,8 @@ func fix_overlap():
 		next_transform = spawned_pieces[previous_id - 1].get_node("End").global_transform
 	else:
 		next_transform = Transform3D.IDENTITY
-
-	next_piece = ramp_pieces.pick_random()
+	if ramp_pieces:
+		next_piece = ramp_pieces.pick_random()
 	
 func _on_piece_entered(value: int):
 	player_position = value

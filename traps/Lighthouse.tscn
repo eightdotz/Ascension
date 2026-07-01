@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba7k3rdfxedy6"]
+[gd_scene load_steps=6 format=3 uid="uid://ba7k3rdfxedy6"]
 
-[ext_resource type="PackedScene" uid="uid://cfaf4w6k7dy1x" path="res://scenes/player/player_reference.tscn" id="1_g6lj2"]
 [ext_resource type="Script" uid="uid://dyra5pyeeqmc3" path="res://scripts/traps/LighthouseTrap.gd" id="1_uoqu2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ffthb"]
@@ -22,6 +21,7 @@ script = ExtResource("1_uoqu2")
 [node name="Construction" type="Node3D" parent="."]
 
 [node name="Head" type="Node3D" parent="Construction"]
+transform = Transform3D(4.565, 0, 0, 0, 4.565, 0, 0, 0, 4.565, 0, 0, -34.507706)
 
 [node name="Skull" type="MeshInstance3D" parent="Construction/Head"]
 transform = Transform3D(8.000665, 0, 0, 0, 8.205969, 0, 0, 0, 14.595677, 0, 0, 0)
@@ -32,25 +32,25 @@ transform = Transform3D(8.000665, 0, 0, 0, 0.38225392, 3.5670066, 0, -0.25523058
 mesh = SubResource("BoxMesh_ffthb")
 
 [node name="PanelBottom" type="MeshInstance3D" parent="Construction/Head"]
-transform = Transform3D(-8.000665, 6.002549e-05, 0.00056012854, -0.0012563478, -0.38225394, -3.567006, 0, -0.25523058, 5.342237, 0, -4.8481903, 7.9238815)
+transform = Transform3D(-8.000665, 5.9990125e-05, 0.0005601284, -0.0012558356, -0.38225394, -3.5670063, 3.4182378e-07, -0.2552306, 5.3422365, 0, -4.8481903, 7.9238815)
 mesh = SubResource("BoxMesh_ffthb")
 
 [node name="PanelRight" type="MeshInstance3D" parent="Construction/Head"]
-transform = Transform3D(-0.0129865445, 0.38225347, 3.5670018, -8.000654, -0.0006204528, -0.0057902215, -1.7671353e-09, -0.25523058, 5.342237, 4.5375247, -0.4211583, 7.9238815)
+transform = Transform3D(-0.012986827, 0.38225353, 3.5670016, -8.000654, -0.0006204876, -0.005789906, 1.8627999e-07, -0.2552306, 5.342237, 4.5375247, -0.4211583, 7.9238815)
 mesh = SubResource("BoxMesh_ffthb")
 
 [node name="PanelLeft" type="MeshInstance3D" parent="Construction/Head"]
-transform = Transform3D(-0.025273828, -0.3822521, -3.5669887, 8.000625, -0.0012075424, -0.011267728, -1.7671353e-09, -0.25523058, 5.342237, -5.0266232, -0.4211583, 7.9238815)
+transform = Transform3D(-0.02527386, -0.3822521, -3.5669882, 8.000625, -0.0012075296, -0.011268051, -1.95594e-08, -0.25523055, 5.342237, -5.0266232, -0.4211583, 7.9238815)
 mesh = SubResource("BoxMesh_ffthb")
 
 [node name="Bulb" type="MeshInstance3D" parent="Construction/Head"]
-transform = Transform3D(5.205, 0, 0, 0, -0.044695027, -5.2048078, 0, 5.2048078, -0.044695027, -0.0017447472, 0.0069236755, 5.1657057)
+transform = Transform3D(5.205, 0, 0, 0, -0.044695023, -5.2048073, 0, 5.2048073, -0.044695023, -0.0017447472, 0.0069236755, 5.1657057)
 mesh = SubResource("CapsuleMesh_aa3rj")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Construction/Head/Bulb"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.88162756, -0.0075707696)
 light_color = Color(0.9864418, 0.8314378, 0.49529797, 1)
-spot_range = 69.303734
+spot_range = 207.59387
 spot_attenuation = -0.31
 spot_angle = 19.687498
 
@@ -58,12 +58,12 @@ spot_angle = 19.687498
 transform = Transform3D(1, 0, 0, 0, -0.008586941, 0.9999631, 0, -0.9999631, -0.008586941, 0, 0.5186182, -0.004453509)
 light_energy = 5.0
 light_bake_mode = 1
-omni_range = 8.999
+omni_range = 61.83305
 
 [node name="DetectArea" type="Area3D" parent="."]
 
 [node name="Rays" type="Node3D" parent="DetectArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.097599)
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 12.097599)
 
 [node name="RayCast3D" type="RayCast3D" parent="DetectArea/Rays"]
 transform = Transform3D(10, 0, 0, 0, -2.6226833e-06, 10, 0, -60, -4.371139e-07, 0, 0.47257984, -2.0626554)
@@ -111,8 +111,7 @@ transform = Transform3D(9.99776, 1.1043987, -0.10446489, 0.10428459, 0.064514525
 transform = Transform3D(9.974694, -4.265821, -3.1077494e-08, 0, -2.6226833e-06, 10, -0.71097016, -59.848167, -4.3600775e-07, 1.5317762, -0.107812405, -2.0626554)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectArea"]
-transform = Transform3D(11.773289, 0, 0, 0, 11.222916, 0, 0, 0, 55.5539, -1.5276184, 0, 42.307793)
+transform = Transform3D(39.853, 0, 0, 0, 37.991, 0, 0, 0, 188.057, -1.5276184, 0, 128.24937)
 shape = SubResource("ConvexPolygonShape3D_bfwq2")
 
-[node name="PlayerReference" parent="." instance=ExtResource("1_g6lj2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15973544, 0, 54.018368)
+[connection signal="body_entered" from="DetectArea" to="." method="_detect_player"]
