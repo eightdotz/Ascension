@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bk2r4u7mfbf1b"]
+[gd_scene load_steps=12 format=3 uid="uid://bk2r4u7mfbf1b"]
 
 [ext_resource type="Script" uid="uid://d17g4tbdc00a" path="res://scripts/player/player.gd" id="1_4flbx"]
 [ext_resource type="Shader" uid="uid://pbatm8n807ut" path="res://scenes/player/pixelator.gdshader" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://dwpy71qv53ekt" path="res://scenes/player/pixelator_canvas.gdshader" id="3_gmlin"]
+[ext_resource type="Shader" uid="uid://c8no1o4vm7do4" path="res://scenes/player/blur.gdshader" id="4_lvxji"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
 render_priority = 0
@@ -12,9 +13,15 @@ shader_parameter/pixel_size = 4.0
 [sub_resource type="QuadMesh" id="QuadMesh_8afob"]
 material = SubResource("ShaderMaterial_lvxji")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gmlin"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dovo2"]
 shader = ExtResource("3_gmlin")
 shader_parameter/pixel_size = 2.0000000475
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p47bc"]
+shader = ExtResource("4_lvxji")
+shader_parameter/lod = 0.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4gf2a"]
 
@@ -25,6 +32,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 slide_on_ceiling = false
 script = ExtResource("1_4flbx")
+stamina_drain_sprint = 0.2
 pixelization = 2.0
 
 [node name="Head" type="Node3D" parent="."]
@@ -56,7 +64,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="DamageFilter" type="ColorRect" parent="Interface/HUD"]
+material = SubResource("CanvasItemMaterial_gmlin")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5803922, 0, 0.12156863, 0)
+
 [node name="PixelFilter" type="ColorRect" parent="Interface/HUD"]
+visible = false
 material = SubResource("ShaderMaterial_dovo2")
 layout_mode = 1
 anchors_preset = 15
@@ -65,6 +84,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="BlurFilter" type="ColorRect" parent="Interface/HUD"]
+material = SubResource("ShaderMaterial_p47bc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="Level" type="Label" parent="Interface/HUD"]
 layout_mode = 1
@@ -123,11 +152,13 @@ max_value = 3.0
 step = 1.0
 
 [node name="BlackScreen" type="ColorRect" parent="Interface/HUD"]
-visible = false
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
 
 [node name="Diagnostics" type="Control" parent="Interface"]
 anchors_preset = 0

@@ -15,6 +15,12 @@ material = SubResource("StandardMaterial3D_ie17p")
 
 [node name="Trap" type="Node3D"]
 script = ExtResource("1_gbsiq")
+do_damage = true
+min_damage = 8
+max_damage = 12
+slow_player = true
+intensity = 0.3
+duration = 0.8
 
 [node name="Lazer" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756, 0, 0)

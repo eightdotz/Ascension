@@ -15,11 +15,18 @@ material = SubResource("StandardMaterial3D_ie17p")
 
 [node name="Trap" type="Node3D"]
 script = ExtResource("1_dtewt")
+do_damage = true
+min_damage = 8
+max_damage = 12
+slow_player = true
+intensity = 0.3
+duration = 0.8
 
 [node name="Lazer" type="Node3D" parent="."]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -127.680756, 0, 0)
 
 [node name="DamageArea" type="Area3D" parent="Lazer"]
+transform = Transform3D(0.2820269, 0, 0, 0, 1, 0, 0, 0, 1, -16.957947, 0, 0)
 
 [node name="DamageZone2" type="CollisionShape3D" parent="Lazer/DamageArea"]
 transform = Transform3D(9.884256, 0, 0, 0, 57.13498, 0, 0, 0, 6.8349113, -24.444763, 0, -28.932745)

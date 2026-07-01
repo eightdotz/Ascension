@@ -83,14 +83,13 @@ func load_level(path: String):
 		else:
 			player.set_level("Sentenced")
 		player.reset_timers()
-		player.fade_to_clear(2.0)
+		player.fade_to_clear(1.0)
 		return
 	goal.enable()
 	current_floor += 1
 	player.set_level(str(current_floor))
 
 func load_first_level():
-	player.fade_to_black(1.0, true)
 	if test_load:
 		load_level(assigned_level)
 	else:
@@ -106,4 +105,5 @@ func _on_goal_level_completed() -> void:
 		await player.fade_to_black(1.0, true)
 		load_level(ABILITY_SELECTION)
 	else:
+		await player.fade_to_black(1.0, true)
 		load_level(LEVEL)

@@ -119,8 +119,8 @@ func fix_overlap():
 func _on_piece_entered(value: int):
 	player_position = value
 	print("Player Position: " + str(value) + " " + str(last_light_position))
-	spawned_pieces[player_position].get_node("Checkpoint").queue_free()
-
+	if spawned_pieces:
+		spawned_pieces[player_position].get_node("Checkpoint").queue_free()
 	if player_position < last_light_position:
 		return
 	for pos in range(player_position, spawned_pieces.size() - 1):

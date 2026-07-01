@@ -3,12 +3,28 @@ extends Node3D
 @onready var construction: Node3D = $Lazer/Construction #No change
 #@onready var animation_player: AnimationPlayer = get_parent().get_node("AnimationPlayer") #No change
 @onready var lights = $"../..".get_node("Lighting").get_children() #No change
-@export var idle_animation_name = ""
-@export var action_animation_name = ""
-@export var hide_mesh_until_trigger: bool = false
-@export var turn_off_lights: bool = false
-@export var destroy_trap_on_end: bool = true
+@export_group("Damage")
+@export var do_damage: bool ##Enables or disables the ability to a random amount of damage
+@export var min_damage: int ##Minimum amount of damage within range
+@export var max_damage: int ##Maximum amount of damage within range
+@export_group("Speed Effects")
+@export var slow_player: bool ##Enables slowing of player
+@export var intensity: float ##How much to the player slows. 1 = normal speed, 2 = double speed, 0.5 = half speed
+@export var duration: float ##How long it lasts
+@export_group("Group")
+@export var idle_animation_name = "" ##Name of idle animation within parent scene. Typing in a name will assume activation on ready
+@export var action_animation_name = "" ##Name of action animation within parent scene trigged by detection zone. Typing in a name assumes it will be used on activation
+@export var hide_mesh_until_trigger: bool = false ##Hides the meshes of an object until player is detected. This does not effect hitboxes
+@export_group("Light Control")
+@export var turn_off_lights: bool = false ##Searches for and turns off lights within parent scene
+@export var colors: Array[Color] ##Colors that will be cycled through
+@export var lasting_color_duration: float = 1.0
+@export var tween_duration: float = 1.0 ##Time between cycles
 
+@export var destroy_trap_on_end: bool = true
+@onready var damage_area: Area3D = $Lazer/DamageArea
+
+enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
 
 var err = 0
 
@@ -28,21 +44,41 @@ func _ready():
 
 func _detect_player(body: Node3D) -> void:
 	if body.has_method("is_player"):
-		if turn_off_lights:
-			if lights:
-				for item in lights:
-					item.toggle = false
+		lights_off()
 		construction.visible = true
 		if action_animation_name:
 	#		animation_player.play(action_animation_name)
 	#		await animation_player.animation_finished
 			if destroy_trap_on_end:
 				queue_free()
-		if lights:
-			for item in lights:
-				item.toggle = true
+		lights_on()
 
+func lights_on():
+	if lights:
+		for item in lights:
+			item.toggle = true
+
+func lights_off():
+	if turn_off_lights:
+			if lights:
+				for item in lights:
+					item.toggle = false
 
 func _detect_hitbox(body: Node3D) -> void:
 	if body.has_method("is_player"):
-		body.take_damage(10)
+		if slow_player:
+			body.add_speed_modifier(SpeedMod.SLOW, intensity)
+		if do_damage:
+			body.take_damage(randi_range(min_damage, max_damage))
+			body.apply_damage_filter()
+			await get_tree().create_timer(0.2).timeout
+			body.remove_damage_filter()
+		if slow_player:
+			await get_tree().create_timer(duration).timeout
+			body.remove_speed_modifier(SpeedMod.SLOW)
+
+func disable_hitbox():
+	damage_area.monitoring = false
+
+func enable_hitbox():
+	damage_area.monitoring = true

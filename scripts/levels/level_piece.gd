@@ -25,13 +25,14 @@ func turn_off_traps():
 	for i in traps:
 		var temp = get_node(i)
 		temp.visible = false
+		temp.disable_hitbox()
 		
 
 func randomize_trap():
 	var new_name = traps[randi_range(0, traps.size() - 1)]
 	var trap = get_node(new_name)
 	trap.visible = true
-
+	trap.enable_hitbox()
 func get_level_type():
 	return "Piece"
 

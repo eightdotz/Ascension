@@ -67,7 +67,7 @@ var invincibility_timer := 0.0
 @onready var player_head = $Head
 @onready var camera = $Head/Camera
 
-enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST}
+enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
 var _speed_modifiers: Dictionary = {}
 
 var movement_override_timer := 0.0 #while > 0, the normal speed clamp/accel is skipped. Used by wall jump and dash.
@@ -113,6 +113,8 @@ var tween = null
 @onready var level: Label = $Interface/HUD/Level
 @onready var pause: Control = $Interface/Pause
 @onready var main_menu: Control = $Interface/MainMenu
+@onready var damage_filter: ColorRect = $Interface/HUD/DamageFilter
+@onready var blur_filter: ColorRect = $Interface/HUD/BlurFilter
 
 var respawn_pos: Vector3
 var respawn_rot: Vector3
@@ -149,7 +151,6 @@ func _input(event):
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("move_pause"):
 		_on_menu_button_pressed()
-
 
 	if Input.is_action_just_pressed("ability_1"):
 		if ability_1:
@@ -276,7 +277,7 @@ func _physics_process(delta):
 			velocity.z = horiz.y
 		just_wall_jumped = false
 		handle_move(delta, grounded)
-	label_mv_override.text = "Speed Boost Override Timer: " + str(movement_override_timer)
+	label_mv_override.text = "Engine Time: " + str(Engine.time_scale)
 	label_current_speed.text = "Current Speed: " + str(max_horiz_speed)
 	label_sliding.text = "Is Character Sliding: " + str(is_sliding)
 	move_and_slide()
@@ -292,6 +293,7 @@ func update_stamina_and_timers(delta):
 			is_invincible = false
 	bar_health.value = health
 	bar_stamina.value = stamina
+
 func update_camera_fov(delta):
 	if not camera or stamina < stamina_drain_sprint:
 		return
@@ -412,6 +414,7 @@ func update_wall_status(input_dir):
 		
 		if wall_stick_timer > 0.0:
 			wall_stick_timer -= get_physics_process_delta_time()
+			Engine.time_scale = 0.7
 			var horizontal_vel = Vector3(velocity.x, 0, velocity.z)
 			var wall_direction = -wall_normal
 			wall_direction.y = 0
@@ -430,6 +433,7 @@ func update_wall_status(input_dir):
 		is_sliding = false
 		wall_normal = Vector3.ZERO
 		wall_stick_timer = 0.0
+		Engine.time_scale = 1.0
 
 func take_damage(damage: float) -> float:
 	if is_invincible or health <= 0:
@@ -486,14 +490,14 @@ func enable_movement():
 func fade_to_black(time: float = 0.5, wait:bool = false):
 	black_screen.color.a = 0.0
 	tween = create_tween()
-	tween.tween_property(black_screen, "modulate:a", 1.0, time)
+	tween.tween_property(black_screen, "color:a", 1.0, time)
 	if wait:
 		await tween.finished
 
 func fade_to_clear(time: float = 0.5, wait:bool = false):
 	black_screen.color.a = 1.0
 	tween = create_tween()
-	tween.tween_property(black_screen, "modulate:a", 0.0, time)
+	tween.tween_property(black_screen, "color:a", 0.0, time)
 	if wait:
 		await tween.finished
 
@@ -578,4 +582,19 @@ func _on_exit() -> void:
 func set_respawn():
 	respawn_pos = self.global_position
 	respawn_rot = self.global_rotation
-	
+
+func apply_damage_filter():
+	tween = create_tween()
+	tween.tween_property(damage_filter, "color:a", 0.1, 0.2)
+
+func remove_damage_filter():
+	tween = create_tween()
+	tween.tween_property(damage_filter, "color:a", 0.0, 0.2)
+
+func apply_blur_filter(amount: float, length: float):
+	tween = create_tween()
+	tween.tween_property(blur_filter, "modulate:a", amount, length)
+
+func remove_blur_filter(length: float):
+	tween = create_tween()
+	tween.tween_property(blur_filter, "modulate:a", 0.0, length)
