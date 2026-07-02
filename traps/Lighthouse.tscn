@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba7k3rdfxedy6"]
+[gd_scene load_steps=10 format=3 uid="uid://ba7k3rdfxedy6"]
 
 [ext_resource type="Script" uid="uid://dyra5pyeeqmc3" path="res://scripts/traps/LighthouseTrap.gd" id="1_uoqu2"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6lj2"]
+albedo_color = Color(0.3515629, 0.3515629, 0.35156286, 1)
+metallic = 0.64
+metallic_specular = 1.0
+roughness = 0.33
+
 [sub_resource type="BoxMesh" id="BoxMesh_ffthb"]
+material = SubResource("StandardMaterial3D_g6lj2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s742c"]
 emission_enabled = true
@@ -12,16 +19,25 @@ emission_energy_multiplier = 2.9
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_aa3rj"]
 material = SubResource("StandardMaterial3D_s742c")
 
+[sub_resource type="BoxMesh" id="BoxMesh_uoqu2"]
+material = SubResource("StandardMaterial3D_g6lj2")
+
+[sub_resource type="BoxMesh" id="BoxMesh_4ycsl"]
+material = SubResource("StandardMaterial3D_g6lj2")
+
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bfwq2"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g6lj2"]
 
 [node name="Trap" type="Node3D"]
 script = ExtResource("1_uoqu2")
 
 [node name="Construction" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9985178, -0.054427385, 0, 0.054427385, 0.9985178, 0, 0, 0)
 
 [node name="Head" type="Node3D" parent="Construction"]
-transform = Transform3D(4.565, 0, 0, 0, 4.565, 0, 0, 0, 4.565, 0, 0, -34.507706)
+transform = Transform3D(4.565, 0, 0, 0, 4.173569, -1.8494714, 0, 1.8494714, 4.173569, 0, 0, -34.507706)
 
 [node name="Skull" type="MeshInstance3D" parent="Construction/Head"]
 transform = Transform3D(8.000665, 0, 0, 0, 8.205969, 0, 0, 0, 14.595677, 0, 0, 0)
@@ -60,58 +76,38 @@ light_energy = 5.0
 light_bake_mode = 1
 omni_range = 61.83305
 
+[node name="Neck" type="Node3D" parent="Construction"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Construction/Neck"]
+transform = Transform3D(25.88604, 0, 0, 0, 38.819855, -1.7881393e-07, 0, 2.3841858e-07, 18.348976, 0, -24.20892, -53.637737)
+mesh = SubResource("BoxMesh_uoqu2")
+
+[node name="Body" type="Node3D" parent="Construction"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Construction/Body"]
+transform = Transform3D(131.67075, 0, 0, 0, 193.00403, -1.66893e-06, 0, 9.536743e-07, 42.71512, 0, -131.7244, -47.777264)
+mesh = SubResource("BoxMesh_uoqu2")
+
+[node name="Arms" type="Node3D" parent="Construction"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Construction/Arms"]
+transform = Transform3D(20, 0, 0, 0, 118.4572, 5.9604645e-08, 0, 4.7683716e-07, 16.90442, -71, -98.16698, -44.235573)
+mesh = SubResource("BoxMesh_4ycsl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Construction/Arms"]
+transform = Transform3D(20, 0, 0, 0, 118.457214, 5.9604645e-08, 0, 1.4305115e-06, 16.904425, 75.32802, -98.16699, -44.235573)
+mesh = SubResource("BoxMesh_4ycsl")
+
 [node name="DetectArea" type="Area3D" parent="."]
-
-[node name="Rays" type="Node3D" parent="DetectArea"]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 12.097599)
-
-[node name="RayCast3D" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(10, 0, 0, 0, -2.6226833e-06, 10, 0, -60, -4.371139e-07, 0, 0.47257984, -2.0626554)
-
-[node name="RayCast3D3" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(10, 0, 0, 0, 2.1368725, 9.993656, 0, -59.961937, 0.35614544, -0.5157943, 0.47257984, -2.0626554)
-
-[node name="RayCast3D9" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(10, 0, 0, 0, -5.6746516, 9.955175, 0, -59.73105, -0.9457753, 0.5021992, 0.9828013, -2.0626554)
-
-[node name="RayCast3D13" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(9.998333, 1.0946119, 0.0064698006, -3.098358e-08, -2.126465, 9.993717, 0.18254998, -59.952312, -0.35435182, -1.0211406, 0.9828013, -2.0626554)
-
-[node name="RayCast3D15" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(10, 0, 0, 0, -6.351894, 9.943806, 0, -59.66283, -1.058649, 1.424022, 0.935285, -2.0626554)
-
-[node name="RayCast3D19" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(10, 0, 0, 0, -2.4665034, 9.991547, 0, -59.94928, -0.41108388, -0.5157943, 1.5129126, -2.0626554)
-
-[node name="RayCast3D23" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(10, 0, 0, 0, -1.3821836, 9.997347, 0, -59.984077, -0.23036392, 0.5021992, 2.031354, -2.0626554)
-
-[node name="RayCast3D27" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(10, 0, 0, 0, -1.1382352, 9.9982, 0, -59.989204, -0.18970586, 1.9671144, 2.031354, -2.0626554)
-
-[node name="RayCast3D8" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(9.993246, -2.204901, -1.6063215e-08, 0, -2.6226833e-06, 10, -0.3674835, -59.959473, -4.3681865e-07, 1.0183065, -1.6665864, -2.0626554)
-
-[node name="RayCast3D6" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(9.99811, -1.0425613, 0.08717097, -0.07879663, 2.8616383, 9.988309, -0.17771453, -59.92265, 0.4754804, -1.0353446, -0.010785341, -2.0626554)
-
-[node name="RayCast3D10" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(10, 0, 0, 0, -2.6226833e-06, 10, 0, -60, -4.371139e-07, 0.5021992, -1.156365, -2.0626554)
-
-[node name="RayCast3D14" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(9.999457, 0.09869099, 0.10287214, -0.10378941, 4.319354, 9.973515, 0.008999258, -59.844242, 0.720024, -0.5294776, -0.4931146, -2.0626554)
-
-[node name="RayCast3D18" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(9.97851, -3.9315019, -2.8641903e-08, 0, -2.6226833e-06, 10, -0.6552503, -59.871056, -4.361745e-07, 1.0183065, -0.6262537, -2.0626554)
-
-[node name="RayCast3D22" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(9.99776, 1.1043987, -0.10446489, 0.10428459, 0.064514525, 9.999451, 0.18416867, -59.9898, 0.008830483, -1.6359794, -0.6262537, -2.0626554)
-
-[node name="RayCast3D26" type="RayCast3D" parent="DetectArea/Rays"]
-transform = Transform3D(9.974694, -4.265821, -3.1077494e-08, 0, -2.6226833e-06, 10, -0.71097016, -59.848167, -4.3600775e-07, 1.5317762, -0.107812405, -2.0626554)
+transform = Transform3D(1, 0, 0, 0, 0.9985178, -0.054427385, 0, 0.054427385, 0.9985178, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectArea"]
-transform = Transform3D(39.853, 0, 0, 0, 37.991, 0, 0, 0, 188.057, -1.5276184, 0, 128.24937)
+transform = Transform3D(39.853, 0, 0, 0, 34.73342, -76.18971, 0, 15.391737, 171.93185, -1.5276184, -57.064053, 95.7491)
 shape = SubResource("ConvexPolygonShape3D_bfwq2")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DetectArea/CollisionShape3D"]
+visible = false
+mesh = SubResource("BoxMesh_g6lj2")
+
 [connection signal="body_entered" from="DetectArea" to="." method="_detect_player"]
+[connection signal="body_exited" from="DetectArea" to="." method="_player_exited"]

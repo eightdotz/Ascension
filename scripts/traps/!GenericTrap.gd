@@ -1,7 +1,6 @@
 extends Node3D
 
-@onready var construction: Node3D = $Lazer/Construction #No change
-#@onready var animation_player: AnimationPlayer = get_parent().get_node("AnimationPlayer") #No change
+@onready var construction: Node3D = $Construction
 @onready var lights = $"../..".get_node("Lighting").get_children() #No change
 @export_group("Damage")
 @export var do_damage: bool ##Enables or disables the ability to a random amount of damage
@@ -21,9 +20,10 @@ extends Node3D
 @export var colors: Array[Color] ##Colors that will be cycled through
 @export var lasting_color_duration: float = 1.0
 @export var tween_duration: float = 1.0 ##Time between cycles
+@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
 @export var destroy_trap_on_end: bool = true
-@onready var damage_area: Area3D = $Lazer/DamageArea
+@onready var damage_area: Area3D = $DamageArea
 
 enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
 
@@ -33,23 +33,24 @@ func _ready():
 	if not lights:
 		printerr("No lights in scene! Disabling light turn off")
 		err = 1
-	#if not animation_player:
-	#	printerr("No Anim Player in scene! Functionality will break!")
-	#	err = 1
+	if not animation_player:
+		printerr("No Anim Player in scene! Functionality will break!")
+		err = 1
+	else:
+		if idle_animation_name:
+			animation_player.play(idle_animation_name)
 	if err:
 		printerr("Please check your specifications! This scene does not appear to be compliant!")
 	if hide_mesh_until_trigger:
 		construction.visible = false
-	#if idle_animation_name:
-	#	animation_player.play(idle_animation_name)
 
 func _detect_player(body: Node3D) -> void:
 	if body.has_method("is_player"):
 		lights_off()
 		construction.visible = true
-		if action_animation_name:
-	#		animation_player.play(action_animation_name)
-	#		await animation_player.animation_finished
+		if action_animation_name and animation_player:
+			animation_player.play(action_animation_name)
+			await animation_player.animation_finished
 			if destroy_trap_on_end:
 				queue_free()
 		lights_on()

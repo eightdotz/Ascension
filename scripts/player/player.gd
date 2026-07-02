@@ -598,13 +598,11 @@ func restore_filter(length: float):
 	tween = create_tween()
 	tween.tween_property(shader_mesh.get_material(), "shader_parameter/pixel_size", pixelization, length)
 
-func impact():
+func impact(length: float):
 	shader_mesh.get_material().set("shader_parameter/flash_amount", 1.0)
 	shader_mesh.get_material().set("shader_parameter/flash_pivot", 0.114)
 	shader_mesh.get_material().set("shader_parameter/flash_softness", 0.0)
-	Engine.time_scale = 0.0
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(length).timeout
 	shader_mesh.get_material().set("shader_parameter/flash_amount", 0.0)
 	shader_mesh.get_material().set("shader_parameter/flash_pivot", 0.5)
 	shader_mesh.get_material().set("shader_parameter/flash_softness", 0.05)
-	Engine.time_scale = 1.0
