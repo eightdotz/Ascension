@@ -20,7 +20,7 @@ extends Node3D
 @export var colors: Array[Color] ##Colors that will be cycled through
 @export var lasting_color_duration: float = 1.0
 @export var tween_duration: float = 1.0 ##Time between cycles
-@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var animation_player: AnimationPlayer
 
 @export var destroy_trap_on_end: bool = true
 @onready var damage_area: Area3D = $DamageArea
@@ -30,6 +30,7 @@ enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
 var err = 0
 
 func _ready():
+	animation_player = $"../../AnimationPlayer"
 	if not lights:
 		printerr("No lights in scene! Disabling light turn off")
 		err = 1
@@ -38,6 +39,7 @@ func _ready():
 		err = 1
 	else:
 		if idle_animation_name:
+			print("Playing idle animation: ", idle_animation_name)
 			animation_player.play(idle_animation_name)
 	if err:
 		printerr("Please check your specifications! This scene does not appear to be compliant!")
