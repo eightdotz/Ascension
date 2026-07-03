@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://di6pur5l1vwis"]
+
+[ext_resource type="Texture2D" uid="uid://bv1g5lps4lgp5" path="res://images/sewer/Pipe/bricks_1.png" id="1_6dmer"]
+
+[resource]
+albedo_texture = ExtResource("1_6dmer")
+uv1_triplanar = true
+texture_filter = 0
