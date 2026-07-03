@@ -8,3 +8,8 @@ Rooms:
 	Entrance Height from Floor: 2.1  M
 	
 	Rescale to 40 when importing into Redot.                                                  
+
+Inside Pipes:
+	side lengths: 0.5
+	channel length: 0.26
+	channel height: 0.085
