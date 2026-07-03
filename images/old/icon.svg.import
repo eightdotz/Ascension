@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2k4171bha8o3"
-path="res://.godot/imported/boost_bar.png-659259e9d3348b1bcb33a26fa1d78e0f.ctex"
+uid="uid://kseawleu2a8"
+path="res://.godot/imported/icon.svg-c5ad42e832c58ef9d5af8cdaa7d3d86c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/boost_bar.png"
-dest_files=["res://.godot/imported/boost_bar.png-659259e9d3348b1bcb33a26fa1d78e0f.ctex"]
+source_file="res://images/old/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-c5ad42e832c58ef9d5af8cdaa7d3d86c.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

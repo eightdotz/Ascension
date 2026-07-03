@@ -13,7 +13,7 @@ config_version=5
 config/name="tower"
 run/main_scene="uid://dwfe0askk5jyw"
 config/features=PackedStringArray("26.1", "GL Compatibility", "Redot")
-config/icon="res://images/icon.svg"
+config/icon="res://images/old/icon.svg"
 
 [display]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd6fddmli0mk5"
-path="res://.godot/imported/insanity_bar.png-eb023144a693c2ca0348e834919b8bbe.ctex"
+uid="uid://so5v5gskhsus"
+path="res://.godot/imported/jump_bar.png-278d0a97fa378b40ec2b742d75700acc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/insanity_bar.png"
-dest_files=["res://.godot/imported/insanity_bar.png-eb023144a693c2ca0348e834919b8bbe.ctex"]
+source_file="res://images/old/jump_bar.png"
+dest_files=["res://.godot/imported/jump_bar.png-278d0a97fa378b40ec2b742d75700acc.ctex"]
 
 [params]
 

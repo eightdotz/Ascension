@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://252m7on5mjqd"
-path="res://.godot/imported/damaged_bar.png-6d5881968ccf80fa1e32e00677de45cd.ctex"
+uid="uid://dx6qg7ipxb8hg"
+path="res://.godot/imported/stamina_bar.png-06532c067dd0d9e9c2d532af85f33fc4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/damaged_bar.png"
-dest_files=["res://.godot/imported/damaged_bar.png-6d5881968ccf80fa1e32e00677de45cd.ctex"]
+source_file="res://images/old/stamina_bar.png"
+dest_files=["res://.godot/imported/stamina_bar.png-06532c067dd0d9e9c2d532af85f33fc4.ctex"]
 
 [params]
 

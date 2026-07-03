@@ -30,7 +30,8 @@ enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
 var err = 0
 
 func _ready():
-	animation_player = $"../../AnimationPlayer"
+	if idle_animation_name or action_animation_name:
+		animation_player = $"../../AnimationPlayer"
 	if not lights:
 		printerr("No lights in scene! Disabling light turn off")
 		err = 1
