@@ -1,10 +1,11 @@
-[gd_scene load_steps=392 format=4 uid="uid://ct684lgqrgig6"]
+[gd_scene load_steps=393 format=4 uid="uid://ct684lgqrgig6"]
 
 [ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level_piece.gd" id="1_0mkk4"]
 [ext_resource type="ArrayMesh" uid="uid://c5hsko4nbkbep" path="res://!TESTING/models/Rooms/Pool_Room.obj" id="2_sswvg"]
 [ext_resource type="PackedScene" uid="uid://4ixc6odmpa52" path="res://scenes/utility/Omnilight.tscn" id="3_ed21h"]
 [ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://scenes/utility/joint.tscn" id="4_d63wn"]
 [ext_resource type="PackedScene" uid="uid://b6rimfxkx2217" path="res://scenes/utility/Checkpoint.tscn" id="5_8q4x7"]
+[ext_resource type="PackedScene" uid="uid://cjm1spq12xcv" path="res://scenes/utility/OverlapDetector.tscn" id="5_rmm41"]
 [ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="6_k3nbt"]
 [ext_resource type="ArrayMesh" uid="uid://bwclss1mb4hwl" path="res://models/sewer/4M_Pipe_45.tres" id="9_k3nbt"]
 
@@ -1461,6 +1462,12 @@ transform = Transform3D(0.9999999, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0,
 transform = Transform3D(1, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, 1, -125.84229, 77.161835, -2415.7104)
 
 [node name="OverlapChecks" type="Node3D" parent="."]
+
+[node name="OverlapDetector" parent="OverlapChecks" instance=ExtResource("5_rmm41")]
+transform = Transform3D(3856.1997, 0, 0, 0, 169.19585, 0, 0, 0, 2364.5996, -115.34027, 161.09682, -1194.3616)
+
+[node name="OverlapDetector2" parent="OverlapChecks" instance=ExtResource("5_rmm41")]
+transform = Transform3D(2517.9219, 0, 0, 0, 323.59875, 0, 0, 0, 1265.0413, -115.34027, -147.55843, -1194.3616)
 
 [node name="Checkpoint" parent="." instance=ExtResource("5_8q4x7")]
 transform = Transform3D(-1.888332e-06, 0, -43.2, 0, 43.2, 0, 43.2, 0, -1.888332e-06, -126, 76, 6)

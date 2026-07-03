@@ -16,8 +16,8 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [node name="Trap" type="Node3D"]
 script = ExtResource("1_lsft3")
 do_damage = true
-min_damage = 8
-max_damage = 12
+min_damage = 16
+max_damage = 24
 slow_player = true
 intensity = 0.3
 duration = 0.8
@@ -112,6 +112,12 @@ skeleton = NodePath("")
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -1.069229)
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Construction"]
+transform = Transform3D(1.4285715, 0, 0, 0, 1.4285715, 0, 0, 0, 1.4285715, -24.28572, 0, 0)
+light_color = Color(1, 0, 0.33333334, 1)
+omni_range = 48.0
+omni_attenuation = 0.789
 
 [node name="DamageArea" type="Area3D" parent="."]
 transform = Transform3D(0.19840689, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -140.69759, 0, 0)

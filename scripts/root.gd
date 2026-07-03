@@ -2,7 +2,8 @@ extends Node3D
 
 @export var spawn_amount: int = 0 ##The amount of total pieces that can be spawned
 @export var room_cooldown: int = 0 ##The amount of connection pieces required before another room can spawn
-
+@export var ability_spawn_range: int = 1
+@export var ability_spawn_threshold: int = 5
 @export_group("Experimental Settings")
 @export var room_cooldown_enable_divide: bool = false ##Instead of the room cooldown variable representing the amount of connection pieces between rooms, it instead specifies the ratio of rooms to Spawn Amount. With this enabled, Room Cooldown being set to 2 means that if Spawn Amount is 10, room cooldown would be Spawn Amount / Room Cooldown or 5
 @export var test_load: bool = false ##Enables the default loading of the assigned level
@@ -101,7 +102,7 @@ func _on_goal_level_completed() -> void:
 	print(spawn_amount)
 	if test_load:
 		load_level(assigned_level)
-	elif not randi_range(0, 1) and current_floor > 1 and current_level_type != "Ability":
+	elif not randi_range(0, ability_spawn_range) and current_floor > ability_spawn_threshold and current_level_type != "Ability":
 		await player.fade_to_black(1.0, true)
 		load_level(ABILITY_SELECTION)
 	else:

@@ -413,7 +413,6 @@ func update_wall_status(input_dir):
 		
 		if wall_stick_timer > 0.0:
 			wall_stick_timer -= get_physics_process_delta_time()
-			Engine.time_scale = 0.7
 			var horizontal_vel = Vector3(velocity.x, 0, velocity.z)
 			var wall_direction = -wall_normal
 			wall_direction.y = 0
@@ -432,7 +431,6 @@ func update_wall_status(input_dir):
 		is_sliding = false
 		wall_normal = Vector3.ZERO
 		wall_stick_timer = 0.0
-		Engine.time_scale = 1.0
 
 func take_damage(damage: float) -> float:
 	if is_invincible or health <= 0:
