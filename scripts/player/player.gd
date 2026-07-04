@@ -115,6 +115,7 @@ var tween = null
 @onready var main_menu: Control = $Interface/MainMenu
 @onready var damage_filter: ColorRect = $Interface/HUD/DamageFilter
 @onready var interface: Control = $Interface
+@onready var menu_music_player: AudioStreamPlayer = $Node3D/MenuMusicPlayer
 
 var respawn_pos: Vector3
 var respawn_rot: Vector3
@@ -123,6 +124,9 @@ var respawn_rot: Vector3
 signal on_click
 
 func _ready():
+	camera.global_rotation.x -= 50
+	menu_music_player.stream = preload("res://audio/gamemaintheme.ogg")
+	menu_music_player.play()
 	if diagnostics_enabled:
 		diagnostics.visible = true
 	else:
@@ -134,7 +138,7 @@ func _ready():
 	add_to_group("player")
 	if camera:
 		camera.fov = base_fov
-	shader_mesh.get_material().set("shader_parameter/pixel_size",pixelization)
+	pause_effect()
 	toggle_mouse()
 	set_process_input(!is_processing_input())
 
@@ -572,6 +576,11 @@ func _start_game() -> void:
 	main_menu.visible = !main_menu.visible
 	toggle_mouse()
 	set_process_input(!is_processing_input())
+	unpause_effect()
+	tween = create_tween()
+	tween.tween_property(menu_music_player, "volume_db", -100.0, 3.0)
+	await tween.finished
+	menu_music_player.stop()
 
 
 func _on_exit() -> void:
@@ -607,6 +616,23 @@ func disable_impact():
 	shader_mesh.get_material().set("shader_parameter/flash_pivot", 0.5)
 	shader_mesh.get_material().set("shader_parameter/flash_softness", 0.05)
 
+func pause_effect():
+	shader_mesh.get_material().set("shader_parameter/flash_amount", 1.0)
+	shader_mesh.get_material().set("shader_parameter/flash_pivot", 1.0)
+	shader_mesh.get_material().set("shader_parameter/flash_softness", 0.05)
+	shader_mesh.get_material().set("shader_parameter/pixel_size", pixelization * 10)
+	shader_mesh.get_material().set("shader_parameter/shadow_crush", 0.95)
+	shader_mesh.get_material().set("shader_parameter/highlight_boost", 3.0)
+	
+func unpause_effect():
+	tween = create_tween()
+	tween.set_parallel()
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/flash_amount", 0.0, 1.0)
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/flash_pivot", 0.5, 1.0)
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/flash_softness", 0.05, 1.0)
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/pixel_size", pixelization, 1.0)
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/shadow_crush", 0.0, 1.0)
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/highlight_boost", 0.0, 1.0)
 	
 func screen_fx_enable(vfxname: String):
 	var vfx = interface.get_node("VFX/"+vfxname)
@@ -624,3 +650,7 @@ func screen_fx_disable(vfxname: String):
 	else:
 		vfx.visible = false
 	
+
+
+func _on_main_menu_music_volume_change(value: float) -> void:
+	menu_music_player.volume_db = value

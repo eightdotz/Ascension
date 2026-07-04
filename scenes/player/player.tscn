@@ -23,7 +23,7 @@ shader_parameter/shadow_crush = 0.0
 shader_parameter/highlight_boost = 0.0
 shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_pivot = 0.5
+shader_parameter/flash_pivot = 1.0
 shader_parameter/flash_softness = 0.05
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4gf2a"]
@@ -304,6 +304,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Interface/MainMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -348,6 +349,31 @@ text = "Exit"
 item_count = 1
 popup/item_0/id = 0
 
+[node name="MusicVolumeSlider" type="HScrollBar" parent="Interface/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -539.0
+offset_top = 4.0
+offset_right = -312.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = -30.0
+max_value = 10.0
+value = -10.0
+
+[node name="Label" type="Label" parent="Interface/MainMenu/MusicVolumeSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Music Volume"
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.00757465, 0, 0.999971, 0, 1, 0, -0.999971, 0, -0.00757465, 0.0097437, -0.284527, -0.0227154)
 mesh = SubResource("CapsuleMesh_4gf2a")
@@ -385,7 +411,15 @@ target_position = Vector3(1.1, 0, 0)
 transform = Transform3D(-0.7011167, 0.8115638, 1.509958e-07, 0.9738766, 0.58426386, -3.023311e-09, -1.08810006e-07, 1.2077632e-07, -1, 0, 0, 0)
 target_position = Vector3(-1.1, 0, 0)
 
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="Node3D"]
+volume_db = -10.0
+
+[node name="SpatialAudioPlayer" type="AudioStreamPlayer3D" parent="Node3D"]
+
 [connection signal="pressed" from="Interface/Pause/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Interface/Pause/MenuButton2" to="." method="_on_exit"]
 [connection signal="pressed" from="Interface/MainMenu/MenuButton" to="." method="_start_game"]
 [connection signal="pressed" from="Interface/MainMenu/MenuButton3" to="." method="_on_exit"]
+[connection signal="value_changed" from="Interface/MainMenu/MusicVolumeSlider" to="." method="_on_main_menu_music_volume_change"]
