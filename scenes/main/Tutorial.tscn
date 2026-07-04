@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://scripts/levels/level.gd" id="1_edy4c"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_1lbuk"]
-[ext_resource type="PackedScene" uid="uid://bky1iwdrmhyy6" path="res://scenes/biomes/sewer/8M_Pipe_Straight.tscn" id="2_4toud"]
-[ext_resource type="PackedScene" uid="uid://cnjnwqit4vl7s" path="res://scenes/biomes/sewer/4M_Pipe_45.tscn" id="2_gy821"]
-[ext_resource type="PackedScene" uid="uid://cpblg5cthjhf0" path="res://scenes/biomes/sewer/4M_Pipe_90.tscn" id="4_1lbuk"]
+[ext_resource type="PackedScene" uid="uid://bky1iwdrmhyy6" path="res://scenes/biomes/8M_Pipe_Straight.tscn" id="2_4toud"]
+[ext_resource type="PackedScene" uid="uid://cnjnwqit4vl7s" path="res://scenes/biomes/4M_Pipe_45.tscn" id="2_gy821"]
+[ext_resource type="PackedScene" uid="uid://cpblg5cthjhf0" path="res://scenes/biomes/4M_Pipe_90.tscn" id="4_1lbuk"]
 
 [sub_resource type="Environment" id="Environment_fr6qw"]
 background_mode = 1

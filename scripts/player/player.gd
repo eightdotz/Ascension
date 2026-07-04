@@ -114,6 +114,7 @@ var tween = null
 @onready var pause: Control = $Interface/Pause
 @onready var main_menu: Control = $Interface/MainMenu
 @onready var damage_filter: ColorRect = $Interface/HUD/DamageFilter
+@onready var interface: Control = $Interface
 
 var respawn_pos: Vector3
 var respawn_rot: Vector3
@@ -596,11 +597,30 @@ func restore_filter(length: float):
 	tween = create_tween()
 	tween.tween_property(shader_mesh.get_material(), "shader_parameter/pixel_size", pixelization, length)
 
-func impact(length: float):
+func enable_impact():
 	shader_mesh.get_material().set("shader_parameter/flash_amount", 1.0)
 	shader_mesh.get_material().set("shader_parameter/flash_pivot", 0.114)
 	shader_mesh.get_material().set("shader_parameter/flash_softness", 0.0)
-	await get_tree().create_timer(length).timeout
+
+func disable_impact():
 	shader_mesh.get_material().set("shader_parameter/flash_amount", 0.0)
 	shader_mesh.get_material().set("shader_parameter/flash_pivot", 0.5)
 	shader_mesh.get_material().set("shader_parameter/flash_softness", 0.05)
+
+	
+func screen_fx_enable(vfxname: String):
+	var vfx = interface.get_node("VFX/"+vfxname)
+	if not vfx:
+		printerr("VFX Node with that name does not exist")
+		return
+	else:
+		vfx.visible = true
+		
+func screen_fx_disable(vfxname: String):
+	var vfx = interface.get_node("VFX/"+vfxname)
+	if not vfx:
+		printerr("VFX Node with that name does not exist")
+		return
+	else:
+		vfx.visible = false
+	
