@@ -278,6 +278,7 @@ shape = SubResource("ConvexPolygonShape3D_y4gum")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -0.0014429092, -0.071084976, 70.28891)
+visible = false
 mesh = SubResource("ArrayMesh_64p37")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

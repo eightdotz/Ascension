@@ -27,13 +27,13 @@ func _detect_player(body: Node3D) -> void:
 		body.screen_fx_enable("DontMove")
 		await get_tree().create_timer(0.5).timeout
 		body.screen_fx_disable("DontMove")
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(1.0).timeout
 		var current_pos = body.global_position
 		body.enable_impact()
 		light.visible = true
 		for item in eyes:
 			item.visible = true
-		for i in range(0, 2):
+		for i in range(0, 20):
 			await get_tree().create_timer(0.1).timeout
 			if body.global_position != current_pos:
 				player_found = 1

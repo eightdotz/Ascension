@@ -115,7 +115,9 @@ var tween = null
 @onready var main_menu: Control = $Interface/MainMenu
 @onready var damage_filter: ColorRect = $Interface/HUD/DamageFilter
 @onready var interface: Control = $Interface
-@onready var menu_music_player: AudioStreamPlayer = $Node3D/MenuMusicPlayer
+@onready var menu_music_player: AudioStreamPlayer = $AFX/MenuMusicPlayer
+@onready var dialog_player: AudioStreamPlayer = $AFX/DialogPlayer
+@onready var sfx_player: AudioStreamPlayer = $AFX/SFXPlayer
 
 var respawn_pos: Vector3
 var respawn_rot: Vector3
@@ -564,12 +566,13 @@ func reset_timers():
 
 func _on_menu_button_pressed() -> void:
 	set_process_input(!is_processing_input())
+	set_physics_process(!is_physics_processing())
 	pause.visible = !pause.visible
 	toggle_mouse()
 	if pause.visible:
-		Engine.time_scale = 0
+		pause_effect()
 	else:
-		Engine.time_scale = 1
+		unpause_effect()
 
 
 func _start_game() -> void:
@@ -617,12 +620,14 @@ func disable_impact():
 	shader_mesh.get_material().set("shader_parameter/flash_softness", 0.05)
 
 func pause_effect():
-	shader_mesh.get_material().set("shader_parameter/flash_amount", 1.0)
-	shader_mesh.get_material().set("shader_parameter/flash_pivot", 1.0)
-	shader_mesh.get_material().set("shader_parameter/flash_softness", 0.05)
-	shader_mesh.get_material().set("shader_parameter/pixel_size", pixelization * 10)
-	shader_mesh.get_material().set("shader_parameter/shadow_crush", 0.95)
-	shader_mesh.get_material().set("shader_parameter/highlight_boost", 3.0)
+	tween = create_tween()
+	tween.set_parallel()
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/flash_amount", 1.0, 1.0)
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/flash_pivot", 1.0, 1.0)
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/flash_softness", 0.05, 1.0)
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/pixel_size", pixelization * 10, 1.0)
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/shadow_crush", 0.95, 1.0)
+	tween.tween_property(shader_mesh.get_material(), "shader_parameter/highlight_boost", 3.0, 1.0)
 	
 func unpause_effect():
 	tween = create_tween()
@@ -633,7 +638,7 @@ func unpause_effect():
 	tween.tween_property(shader_mesh.get_material(), "shader_parameter/pixel_size", pixelization, 1.0)
 	tween.tween_property(shader_mesh.get_material(), "shader_parameter/shadow_crush", 0.0, 1.0)
 	tween.tween_property(shader_mesh.get_material(), "shader_parameter/highlight_boost", 0.0, 1.0)
-	
+
 func screen_fx_enable(vfxname: String):
 	var vfx = interface.get_node("VFX/"+vfxname)
 	if not vfx:
@@ -654,3 +659,20 @@ func screen_fx_disable(vfxname: String):
 
 func _on_main_menu_music_volume_change(value: float) -> void:
 	menu_music_player.volume_db = value
+
+
+
+
+func _on_settings() -> void:
+	var main = $Interface/MainMenu/Main
+	var settings = $Interface/MainMenu/Settings
+	main.visible = !main.visible
+	settings.visible = !settings.visible
+
+
+func _on_sfx_volume_change(value: float) -> void:
+	sfx_player.volume_db = value
+
+
+func _on_dialog_volume_change(value: float) -> void:
+	dialog_player.volume_db = value
