@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://4rwdo06j6u7m"
-path="res://.godot/imported/Slide_4.wav-d25ec1d0c99f3075b4bfa150e872f2a5.sample"
+uid="uid://dfe7ben8btwce"
+path="res://.godot/imported/Slide_2.wav-16608b2e937c49812ed7625adfaaf09d.sample"
 
 [deps]
 
-source_file="res://audio/Slide_4.wav"
-dest_files=["res://.godot/imported/Slide_4.wav-d25ec1d0c99f3075b4bfa150e872f2a5.sample"]
+source_file="res://audio/fooley/Slide_2.wav"
+dest_files=["res://.godot/imported/Slide_2.wav-16608b2e937c49812ed7625adfaaf09d.sample"]
 
 [params]
 

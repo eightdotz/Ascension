@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bk2r4u7mfbf1b"]
+[gd_scene load_steps=11 format=3 uid="uid://bk2r4u7mfbf1b"]
 
 [ext_resource type="Script" uid="uid://d17g4tbdc00a" path="res://scripts/player/player.gd" id="1_4flbx"]
 [ext_resource type="Shader" uid="uid://pbatm8n807ut" path="res://scenes/player/pixelator.gdshader" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://dwpy71qv53ekt" path="res://scenes/player/pixelator_canvas.gdshader" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://dd04plgmxt2mr" path="res://scripts/utility/audio_player.gd" id="4_lvxji"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
 render_priority = 0
@@ -493,10 +494,13 @@ target_position = Vector3(-1.1, 0, 0)
 
 [node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="AFX"]
 volume_db = -15.0
+max_polyphony = 2
+script = ExtResource("4_lvxji")
 
 [node name="DialogPlayer" type="AudioStreamPlayer" parent="AFX"]
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="AFX"]
+script = ExtResource("4_lvxji")
 
 [connection signal="pressed" from="Interface/Pause/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Interface/Pause/MenuButton2" to="." method="_on_exit"]
@@ -507,3 +511,5 @@ volume_db = -15.0
 [connection signal="value_changed" from="Interface/MainMenu/Settings/MusicVolumeSlider" to="." method="_on_main_menu_music_volume_change"]
 [connection signal="value_changed" from="Interface/MainMenu/Settings/SFXVolumeSlider" to="." method="_on_sfx_volume_change"]
 [connection signal="value_changed" from="Interface/MainMenu/Settings/DialogVolumeSlider" to="." method="_on_dialog_volume_change"]
+[connection signal="finished" from="AFX/MenuMusicPlayer" to="AFX/MenuMusicPlayer" method="_on_finished"]
+[connection signal="finished" from="AFX/SFXPlayer" to="AFX/SFXPlayer" method="_on_finished"]

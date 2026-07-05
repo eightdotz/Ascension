@@ -127,8 +127,7 @@ signal on_click
 
 func _ready():
 	camera.global_rotation.x -= 50
-	menu_music_player.stream = preload("res://audio/gamemaintheme.ogg")
-	menu_music_player.play()
+	menu_play("res://audio/music/gamemaintheme_rev_2.ogg", true)
 	if diagnostics_enabled:
 		diagnostics.visible = true
 	else:
@@ -537,6 +536,10 @@ func overwrite_ability(new_ability: Ability):
 
 func _on_root_level_changed() -> void:
 	print("Level Changed")
+	menu_stop()
+	menu_stop()
+	sfx_stop()
+	sfx_stop()
 	if root:
 		print("Found Root")
 		if root.get_level_type() == "Ability":
@@ -584,7 +587,8 @@ func _start_game() -> void:
 	tween.tween_property(menu_music_player, "volume_db", -100.0, 3.0)
 	await tween.finished
 	menu_music_player.stop()
-
+	menu_play("res://audio/music/StartingAreaSong1.ogg", true)
+	menu_play("res://audio/ambience/StartingAreaWhiteNoise.ogg", true)
 
 func _on_exit() -> void:
 	get_tree().quit()
@@ -676,3 +680,25 @@ func _on_sfx_volume_change(value: float) -> void:
 
 func _on_dialog_volume_change(value: float) -> void:
 	dialog_player.volume_db = value
+
+func sfx_play(path: String, repeat: bool):
+	sfx_player.stream = load(path)
+	sfx_player.play()
+	sfx_player.loop = repeat
+
+func sfx_stop():
+	tween = create_tween()
+	tween.tween_property(sfx_player, "volume_db", -100.0, 3.0)
+	await tween.finished
+	sfx_player.stop()
+
+func menu_play(path: String, repeat: bool):
+	menu_music_player.stream = load(path)
+	menu_music_player.play()
+	menu_music_player.loop = repeat
+
+func menu_stop():
+	tween = create_tween()
+	tween.tween_property(menu_music_player, "volume_db", -100.0, 3.0)
+	await tween.finished
+	menu_music_player.stop()

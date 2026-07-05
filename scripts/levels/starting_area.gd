@@ -20,7 +20,7 @@ func _ready() -> void:
 		printerr("Level type not set!")
 	if type == "Dungeon" and not biome:
 		printerr("Type is of Dungeon but the Biome has not been defined. This will break!")
-
+	
 func spawn():
 	return
 

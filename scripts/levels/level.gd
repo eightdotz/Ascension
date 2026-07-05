@@ -2,6 +2,10 @@ extends Node3D
 
 @export_enum("Dungeon", "Ability", "Shop") var type: String
 @export_enum("Sewer", "Fields", "Space","Tower") var biome: String
+@export_group("Audio")
+@export var ambience: String
+@export var music: String
+@export var music_interval: int = 0
 @onready var pieces: Node3D = $Pieces
 @onready var spawn_point: Node3D = $SpawnPoint
 @onready var goal_point: Node3D = $GoalPoint
@@ -71,7 +75,10 @@ func spawn():
 	var end_index = spawned_pieces.keys().size() - 1
 	if end_index > 0:
 		goal_point.global_transform = spawned_pieces[end_index].get_node("End").global_transform
-
+	if ambience:
+		get_parent().get_parent().get_node("player").sfx_play(ambience, true)
+	if music:
+		get_parent().get_parent().get_node("player").sfx_play(music, true)
 func configure_spawn(amount: int, cooldown: int): ##Needs to be called by controller second
 	spawn_amount = amount
 	room_cooldown = cooldown
