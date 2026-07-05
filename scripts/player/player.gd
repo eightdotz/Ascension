@@ -116,18 +116,24 @@ var tween = null
 @onready var damage_filter: ColorRect = $Interface/HUD/DamageFilter
 @onready var interface: Control = $Interface
 @onready var menu_music_player: AudioStreamPlayer = $AFX/MenuMusicPlayer
-@onready var dialog_player: AudioStreamPlayer = $AFX/DialogPlayer
-@onready var sfx_player: AudioStreamPlayer = $AFX/SFXPlayer
+@onready var level_ambience: AudioStreamPlayer = $AFX/LevelAmbience
+@onready var level_music: AudioStreamPlayer = $AFX/LevelMusic
+@onready var sfx_player: AudioStreamPlayer = $AFX/SFX
+@onready var all_audio = $AFX.get_children()
+
 
 var respawn_pos: Vector3
 var respawn_rot: Vector3
-
+var current_ambience = ""
 #mouse signals
 signal on_click
 
+var walking_sounds = []
+
 func _ready():
+	#load_sounds()
 	camera.global_rotation.x -= 50
-	menu_play("res://audio/music/gamemaintheme_rev_2.ogg", true)
+	menu_play("res://audio/music/gamemaintheme_rev_2.ogg")
 	if diagnostics_enabled:
 		diagnostics.visible = true
 	else:
@@ -142,6 +148,7 @@ func _ready():
 	pause_effect()
 	toggle_mouse()
 	set_process_input(!is_processing_input())
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -458,7 +465,7 @@ func flash_screen_red():
 	print("Player hit! Screen should flash red")
 
 func handle_death():
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	respawn_player()
 
 func respawn_player():
@@ -536,10 +543,6 @@ func overwrite_ability(new_ability: Ability):
 
 func _on_root_level_changed() -> void:
 	print("Level Changed")
-	menu_stop()
-	menu_stop()
-	sfx_stop()
-	sfx_stop()
 	if root:
 		print("Found Root")
 		if root.get_level_type() == "Ability":
@@ -568,13 +571,18 @@ func reset_timers():
 
 
 func _on_menu_button_pressed() -> void:
+	if main_menu.visible:
+		_start_game()
+		return
 	set_process_input(!is_processing_input())
 	set_physics_process(!is_physics_processing())
 	pause.visible = !pause.visible
 	toggle_mouse()
 	if pause.visible:
+		pause_audio()
 		pause_effect()
 	else:
+		resume_audio()
 		unpause_effect()
 
 
@@ -584,11 +592,8 @@ func _start_game() -> void:
 	set_process_input(!is_processing_input())
 	unpause_effect()
 	tween = create_tween()
-	tween.tween_property(menu_music_player, "volume_db", -100.0, 3.0)
-	await tween.finished
-	menu_music_player.stop()
-	menu_play("res://audio/music/StartingAreaSong1.ogg", true)
-	menu_play("res://audio/ambience/StartingAreaWhiteNoise.ogg", true)
+	menu_stop()
+	start_ambience("res://audio/ambience/StartingAreaWhiteNoise.ogg", "res://audio/music/StartingAreaSong1.ogg")
 
 func _on_exit() -> void:
 	get_tree().quit()
@@ -663,7 +668,7 @@ func screen_fx_disable(vfxname: String):
 
 func _on_main_menu_music_volume_change(value: float) -> void:
 	menu_music_player.volume_db = value
-
+	
 
 
 
@@ -676,29 +681,56 @@ func _on_settings() -> void:
 
 func _on_sfx_volume_change(value: float) -> void:
 	sfx_player.volume_db = value
+	
 
 
 func _on_dialog_volume_change(value: float) -> void:
-	dialog_player.volume_db = value
+	level_ambience.volume_db = value
 
-func sfx_play(path: String, repeat: bool):
-	sfx_player.stream = load(path)
-	sfx_player.play()
-	sfx_player.loop = repeat
 
-func sfx_stop():
-	tween = create_tween()
-	tween.tween_property(sfx_player, "volume_db", -100.0, 3.0)
-	await tween.finished
-	sfx_player.stop()
+func start_ambience(level_type, ambience_path, music_path = ""):
+	if level_type == current_ambience:
+		return
+	current_ambience = level_type
+	stop_ambience()
+	level_ambience.stream = load(ambience_path)
+	if music_path:
+		level_music.stream = load(music_path)
+		level_music.play()
+	level_ambience.play()
 
-func menu_play(path: String, repeat: bool):
+func stop_ambience():
+	level_music.stop()
+	level_ambience.stop()
+
+func menu_play(path: String):
 	menu_music_player.stream = load(path)
 	menu_music_player.play()
-	menu_music_player.loop = repeat
 
 func menu_stop():
 	tween = create_tween()
 	tween.tween_property(menu_music_player, "volume_db", -100.0, 3.0)
 	await tween.finished
 	menu_music_player.stop()
+
+
+func _on_level_music_value_change(value: float) -> void:
+	level_music.volume_db = value
+
+func load_sounds():
+	var dir := DirAccess.open("res://audio/fooley/")
+	if dir == null: printerr("Could not open folder"); return
+	dir.list_dir_begin()
+	for file: String in dir.get_files():
+		var resource := dir.get_current_dir() + file
+		var loaded = load(resource)
+		if "Footstep" in resource:
+			walking_sounds.append(loaded)
+
+func pause_audio():
+	for item in all_audio:
+		item.stream_paused = true
+		
+func resume_audio():
+	for item in all_audio:
+		item.stream_paused = false

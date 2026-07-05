@@ -27,7 +27,7 @@ func _detect_player(body: Node3D) -> void:
 		body.screen_fx_enable("DontMove")
 		await get_tree().create_timer(0.5).timeout
 		body.screen_fx_disable("DontMove")
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(0.7).timeout
 		var current_pos = body.global_position
 		body.enable_impact()
 		light.visible = true
@@ -37,6 +37,7 @@ func _detect_player(body: Node3D) -> void:
 			await get_tree().create_timer(0.1).timeout
 			if body.global_position != current_pos:
 				player_found = 1
+				break
 				for item in eyes:
 					pass
 					#item.lookat(body.global_position)
@@ -51,7 +52,7 @@ func _detect_player(body: Node3D) -> void:
 
 
 func kill_player(body: Node3D):
-	body.global_position = Vector3(0, 0, 0)
+	body.respawn_player()
 
 
 func _on_detect_area_body_exited(body: Node3D) -> void:

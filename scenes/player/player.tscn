@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bk2r4u7mfbf1b"]
+[gd_scene load_steps=10 format=3 uid="uid://bk2r4u7mfbf1b"]
 
 [ext_resource type="Script" uid="uid://d17g4tbdc00a" path="res://scripts/player/player.gd" id="1_4flbx"]
 [ext_resource type="Shader" uid="uid://pbatm8n807ut" path="res://scenes/player/pixelator.gdshader" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://dwpy71qv53ekt" path="res://scenes/player/pixelator_canvas.gdshader" id="3_gmlin"]
-[ext_resource type="Script" uid="uid://dd04plgmxt2mr" path="res://scripts/utility/audio_player.gd" id="4_lvxji"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
 render_priority = 0
@@ -360,6 +359,15 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Label2" type="Label" parent="Interface/MainMenu/Settings"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 422.0
+offset_right = 525.0
+offset_bottom = 445.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "SFX"
+
 [node name="MenuButton5" type="MenuButton" parent="Interface/MainMenu/Settings"]
 layout_mode = 1
 anchors_preset = 8
@@ -368,9 +376,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 372.0
-offset_top = 556.0
+offset_top = 652.0
 offset_right = 475.0
-offset_bottom = 631.0
+offset_bottom = 727.0
 grow_horizontal = 2
 grow_vertical = 2
 button_pressed = true
@@ -401,7 +409,32 @@ offset_top = -34.0
 offset_right = 109.0
 offset_bottom = -11.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Music Volume"
+text = "Menu Music"
+
+[node name="MusicVolumeSlider2" type="HScrollBar" parent="Interface/MainMenu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 596.0
+offset_right = 623.0
+offset_bottom = 638.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = -30.0
+max_value = 0.0
+value = -15.0
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/MusicVolumeSlider2"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Level Music"
 
 [node name="SFXVolumeSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
 layout_mode = 1
@@ -416,17 +449,17 @@ offset_right = 623.0
 offset_bottom = 478.0
 grow_horizontal = 2
 grow_vertical = 2
-min_value = -30.0
+min_value = -20.0
 max_value = 0.0
-value = -15.0
+value = -10.0
 
 [node name="Label" type="Label" parent="Interface/MainMenu/Settings/SFXVolumeSlider"]
 layout_mode = 0
-offset_top = -34.0
+offset_top = -160.0
 offset_right = 109.0
-offset_bottom = -11.0
+offset_bottom = -137.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "SFX"
+text = "Volume Controls"
 
 [node name="DialogVolumeSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
 layout_mode = 1
@@ -441,9 +474,9 @@ offset_right = 623.0
 offset_bottom = 558.0
 grow_horizontal = 2
 grow_vertical = 2
-min_value = -30.0
+min_value = -40.0
 max_value = 0.0
-value = -15.0
+value = -20.0
 
 [node name="Label" type="Label" parent="Interface/MainMenu/Settings/DialogVolumeSlider"]
 layout_mode = 0
@@ -451,7 +484,7 @@ offset_top = -34.0
 offset_right = 109.0
 offset_bottom = -11.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Dialog"
+text = "Ambience"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.00757465, 0, 0.999971, 0, 1, 0, -0.999971, 0, -0.00757465, 0.0097437, -0.284527, -0.0227154)
@@ -494,13 +527,15 @@ target_position = Vector3(-1.1, 0, 0)
 
 [node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="AFX"]
 volume_db = -15.0
-max_polyphony = 2
-script = ExtResource("4_lvxji")
+max_polyphony = 4
 
-[node name="DialogPlayer" type="AudioStreamPlayer" parent="AFX"]
+[node name="SFX" type="AudioStreamPlayer" parent="AFX"]
 
-[node name="SFXPlayer" type="AudioStreamPlayer" parent="AFX"]
-script = ExtResource("4_lvxji")
+[node name="LevelAmbience" type="AudioStreamPlayer" parent="AFX"]
+volume_db = -20.0
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="AFX"]
+volume_db = -15.0
 
 [connection signal="pressed" from="Interface/Pause/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Interface/Pause/MenuButton2" to="." method="_on_exit"]
@@ -509,7 +544,6 @@ script = ExtResource("4_lvxji")
 [connection signal="pressed" from="Interface/MainMenu/Main/MenuButton4" to="." method="_on_settings"]
 [connection signal="pressed" from="Interface/MainMenu/Settings/MenuButton5" to="." method="_on_settings"]
 [connection signal="value_changed" from="Interface/MainMenu/Settings/MusicVolumeSlider" to="." method="_on_main_menu_music_volume_change"]
+[connection signal="value_changed" from="Interface/MainMenu/Settings/MusicVolumeSlider2" to="." method="_on_level_music_value_change"]
 [connection signal="value_changed" from="Interface/MainMenu/Settings/SFXVolumeSlider" to="." method="_on_sfx_volume_change"]
 [connection signal="value_changed" from="Interface/MainMenu/Settings/DialogVolumeSlider" to="." method="_on_dialog_volume_change"]
-[connection signal="finished" from="AFX/MenuMusicPlayer" to="AFX/MenuMusicPlayer" method="_on_finished"]
-[connection signal="finished" from="AFX/SFXPlayer" to="AFX/SFXPlayer" method="_on_finished"]

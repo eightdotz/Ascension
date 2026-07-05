@@ -18,6 +18,8 @@ fog_density = 0.1622
 script = ExtResource("1_jkde5")
 type = "Dungeon"
 biome = "Sewer"
+ambience = "res://audio/ambience/SewerWhiteNoise.ogg"
+music = "res://audio/ambience/SewerWhiteNoise.ogg"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fr6qw")

@@ -24,6 +24,7 @@ var next_piece: String
 
 var total_spawned_pieces: int
 
+
 func _ready() -> void:
 	if not type:
 		printerr("Level type not set!")
@@ -76,9 +77,8 @@ func spawn():
 	if end_index > 0:
 		goal_point.global_transform = spawned_pieces[end_index].get_node("End").global_transform
 	if ambience:
-		get_parent().get_parent().get_node("player").sfx_play(ambience, true)
-	if music:
-		get_parent().get_parent().get_node("player").sfx_play(music, true)
+		get_parent().get_parent().get_node("player").start_ambience(type, ambience, music)
+
 func configure_spawn(amount: int, cooldown: int): ##Needs to be called by controller second
 	spawn_amount = amount
 	room_cooldown = cooldown

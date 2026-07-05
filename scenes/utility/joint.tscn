@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpusjfcrmkgc5"]
+[gd_scene load_steps=4 format=3 uid="uid://dpusjfcrmkgc5"]
+
+[ext_resource type="Script" uid="uid://cta5c75jhp4ei" path="res://scripts/utility/joint.gd" id="1_5v41h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuo2f"]
 transparency = 1
@@ -10,6 +12,7 @@ emission = Color(0, 0.93266183, 0.82395476, 1)
 material = SubResource("StandardMaterial3D_nuo2f")
 
 [node name="Joint" type="Node3D"]
+script = ExtResource("1_5v41h")
 
 [node name="AttachmentPoint" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_5v41h")

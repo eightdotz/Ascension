@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dne434f64le8s"]
+[gd_scene load_steps=13 format=4 uid="uid://dne434f64le8s"]
 
 [ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level_piece.gd" id="1_134g1"]
 [ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="2_vny4r"]
@@ -8,10 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://b6rimfxkx2217" path="res://scenes/utility/Checkpoint.tscn" id="5_bwi5h"]
 [ext_resource type="PackedScene" uid="uid://cjm1spq12xcv" path="res://scenes/utility/OverlapDetector.tscn" id="6_s7iic"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ka1g"]
-albedo_color = Color(0.4204391, 0.46132118, 0.4933287, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vny4r"]
+albedo_color = Color(0.5469653, 0.99999994, 0.8248984, 1)
 albedo_texture = ExtResource("3_vny4r")
-uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ka1g"]
+albedo_color = Color(0.5469653, 0.99999994, 0.8248984, 1)
+albedo_texture = ExtResource("3_vny4r")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2j2pl"]
 _surfaces = [{
@@ -68,7 +71,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 84,
 "index_data": PackedByteArray("AAABAAIAAgABAAEAAQAAAAEAAgABAAIAAQAAAAAAAAACAAIAAAACAAAAAwAEAAUABQAEAAYABwAIAAkACgALAAwADAALAA0ADgAPABAAEAAPABEAEgATABQAFQAWABcAFwAWABgAGQAaABsAGwAaABwAHQAeAB8AHwAeACAAIQAiACMAIwAiACQAJQAmACcAKAApACoAKgApACsALAAtAC4ALgAtAC8A"),
-"material": SubResource("StandardMaterial3D_7ka1g"),
+"material": SubResource("StandardMaterial3D_vny4r"),
 "name": "Ledge 1",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
