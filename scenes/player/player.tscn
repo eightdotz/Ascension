@@ -35,6 +35,9 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 slide_on_ceiling = false
 script = ExtResource("1_4flbx")
+infection_limit = 100.0
+infection_rate = 0.8
+infection_speed_relief = 240.0
 stamina_drain_sprint = 0.2
 pixelization = 2.0
 
@@ -105,13 +108,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -64.0
+offset_left = -136.0
 offset_top = -32.0
-offset_right = -60.0
+offset_right = -132.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 step = 0.1
+
+[node name="Label" type="Label" parent="Interface/HUD/Health"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -56.0
+offset_right = 28.0
+offset_bottom = -33.0
+text = "Health"
 
 [node name="Stamina" type="ProgressBar" parent="Interface/HUD"]
 layout_mode = 1
@@ -120,12 +131,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -48.0
 offset_top = -32.0
-offset_right = 4.0
+offset_right = -44.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 step = 0.1
+
+[node name="Label2" type="Label" parent="Interface/HUD/Stamina"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -56.0
+offset_right = 32.0
+offset_bottom = -33.0
+text = "Stamina"
 
 [node name="Jumps" type="ProgressBar" parent="Interface/HUD"]
 layout_mode = 1
@@ -134,14 +154,44 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 64.0
+offset_left = 52.0
 offset_top = -32.0
-offset_right = 68.0
+offset_right = 56.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 3.0
 step = 1.0
+
+[node name="Label3" type="Label" parent="Interface/HUD/Jumps"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -56.0
+offset_right = 40.0
+offset_bottom = -33.0
+text = "Jumps"
+
+[node name="Infection" type="ProgressBar" parent="Interface/HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -32.0
+offset_right = 132.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label4" type="Label" parent="Interface/HUD/Infection"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -56.0
+offset_right = 45.0
+offset_bottom = -33.0
+text = "Infection"
 
 [node name="BlackScreen" type="ColorRect" parent="Interface/HUD"]
 layout_mode = 1

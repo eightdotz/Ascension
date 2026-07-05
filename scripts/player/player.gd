@@ -2,7 +2,11 @@ extends CharacterBody3D
 
 @export var diagnostics_enabled: bool = false
 @export var root: Node3D = get_parent() 
+@export var infection_limit: float
+@export var infection_rate: float
 
+var current_infection: float = 0.0
+var infecting: bool = false
 @export_group("Abilities")
 @export var ability_1: Ability
 @export var ability_2: Ability
@@ -48,10 +52,12 @@ var invincibility_timer := 0.0
 @export var straight_wall_leeway = 3 ##The amount of range to or from 90 degrees that is accepted as a "straight wall" or surface that cannot be jumped off of
 @export var wall_jump_velocity_preserve_time := 0.2 ##Amount of time top speed is preserved
 @export var wall_jump_velocity_max := 160 ##Maximum speed with any boost
-@export var wall_jump_speed_boost := 1.5
-@export var wall_jump_boost_duration := 4.5
+@export var wall_jump_speed_boost := 1.2
+@export var wall_jump_boost_duration := 3.5
 @export var wall_jump_boost_timer := 0.0
+@export var wall_jump_boost_timer_max := 30.0
 @export var wall_jump_timer := 0.0
+
 
 @export_group("FOV")
 @export var base_fov := 75.0 ##Default field of view
@@ -91,6 +97,7 @@ var just_wall_jumped := false
 var wall_slide_speed := 10.0
 var wall_stick_duration := 0.3
 var wall_stick_velocity_threshold := 5.0
+var infection_speed_relief : float = wall_jump_velocity_max
 
 var tween = null
 #Performance shiz
@@ -120,6 +127,7 @@ var tween = null
 @onready var level_music: AudioStreamPlayer = $AFX/LevelMusic
 @onready var sfx_player: AudioStreamPlayer = $AFX/SFX
 @onready var all_audio = $AFX.get_children()
+@onready var infection: ProgressBar = $Interface/HUD/Infection
 
 
 var respawn_pos: Vector3
@@ -163,7 +171,6 @@ func _input(event):
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("move_pause"):
 		_on_menu_button_pressed()
-
 	if Input.is_action_just_pressed("ability_1"):
 		if ability_1:
 			ability_1.execute()
@@ -210,7 +217,7 @@ func _update_wall_jump_boost(delta: float) -> void:
 	var time_progress = 1.0 - (wall_jump_boost_timer / wall_jump_boost_duration)
 	var drag_factor = max(0.1, 0.6 - (time_progress * 0.5))
 	var boosted_speed = cache_max_speed * wall_jump_speed_boost * drag_factor
-	var speed_limit = (wall_jump_velocity_max / 2.0) - 20
+	var speed_limit = (wall_jump_velocity_max / 2.0)
 	var clamped_speed = max(cache_max_speed, min(boosted_speed, speed_limit))
 	add_speed_modifier(SpeedMod.WALL_JUMP_BOOST, clamped_speed / cache_max_speed)
 
@@ -293,7 +300,7 @@ func _physics_process(delta):
 	label_current_speed.text = "Current Speed: " + str(max_horiz_speed)
 	label_sliding.text = "Is Character Sliding: " + str(is_sliding)
 	move_and_slide()
-
+	
 func update_stamina_and_timers(delta):
 	if not Input.is_action_pressed("move_sprint"):
 		stamina += stamina_build_passive * delta
@@ -305,6 +312,14 @@ func update_stamina_and_timers(delta):
 			is_invincible = false
 	bar_health.value = health
 	bar_stamina.value = stamina
+	
+	if current_infection <= infection_limit:
+		if infecting:
+			var relief_percent = clamp(get_effective_max_speed() / infection_speed_relief, 0.0, 1.0)
+			current_infection += infection_rate * (1.0 - relief_percent) * delta
+			infection.value = current_infection
+	else:
+		handle_death()
 
 func update_camera_fov(delta):
 	if not camera or stamina < stamina_drain_sprint:
@@ -387,7 +402,8 @@ func do_wall_jump():
 	wall_jump_timer += jump_cooldown
 	just_wall_jumped = true
 	movement_override_timer = wall_jump_velocity_preserve_time
-	wall_jump_boost_timer += wall_jump_boost_duration
+	if wall_jump_boost_timer < wall_jump_boost_timer_max:
+		wall_jump_boost_timer += wall_jump_boost_duration
 
 func update_wall_status(input_dir):
 	if is_on_floor():
@@ -470,6 +486,7 @@ func handle_death():
 
 func respawn_player():
 	health = health_max
+	current_infection += current_infection * 0.1
 	self.global_position = respawn_pos
 	self.global_rotation = respawn_rot
 
@@ -521,7 +538,7 @@ func upgrade(upgrade_name: String, amount: float):
 	var upgradables = {"Max Health": health_max, "Regeneration": regen, "Max Stamina": stamina_max, "Max Speed": max_speed, "Jump Quanity":jumps, "Jump Height":jump_speed, "Wall Jump Boost Duration":wall_jump_boost_duration, "Wall Jump Speed": wall_jump_force, "Wall Jump Max Speed":wall_jump_velocity_max}
 	print("Upgrading " + upgrade_name + " by " + str(amount))
 	upgradables[upgrade_name] += amount
-
+	infection_speed_relief = wall_jump_velocity_max
 
 func add_ability(new_ability: Ability):
 	if new_ability.type == "Upgrade":
@@ -545,13 +562,19 @@ func _on_root_level_changed() -> void:
 	print("Level Changed")
 	if root:
 		print("Found Root")
+		infecting = true
+		if current_infection:
+			current_infection -= (current_infection / 4)
 		if root.get_level_type() == "Ability":
+			infecting = false
 			print("Level Type is ability")
 			var dungeon = root.dungeon
 			if dungeon:
 				if on_click.is_connected(dungeon._on_click):
 					on_click.disconnect(dungeon._on_click)
 				on_click.connect(dungeon._on_click)
+		elif root.get_level_type() == "Shop":
+			infecting = false
 
 func set_level(value: String):
 	tween = create_tween()
@@ -579,9 +602,12 @@ func _on_menu_button_pressed() -> void:
 	pause.visible = !pause.visible
 	toggle_mouse()
 	if pause.visible:
+		infecting = false
 		pause_audio()
 		pause_effect()
+		
 	else:
+		infecting = true
 		resume_audio()
 		unpause_effect()
 
