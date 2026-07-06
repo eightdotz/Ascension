@@ -21,6 +21,7 @@ max_damage = 12
 slow_player = true
 intensity = 0.3
 duration = 0.8
+hide_mesh_until_trigger = true
 
 [node name="DetectionArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -2.4421997, 0, 0)
@@ -347,6 +348,12 @@ skeleton = NodePath("")
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -1.069229)
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Construction"]
+transform = Transform3D(1.4285715, 0, 0, 0, 1.4285715, 0, 0, 0, 1.4285715, -24.28572, 0, 0)
+light_color = Color(1, 0, 0.33333334, 1)
+omni_range = 51.0
+omni_attenuation = 0.789
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_detect_player"]
 [connection signal="body_entered" from="DamageArea" to="." method="_detect_hitbox"]

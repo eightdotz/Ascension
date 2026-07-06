@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var root: Node3D = get_parent() 
 @export var infection_limit: float
 @export var infection_rate: float
-
+@export var enable_flashlight:bool = false
 
 @export_group("Abilities")
 @export var ability_1: Ability
@@ -135,6 +135,7 @@ var tween = null
 @onready var sfx_player: AudioStreamPlayer = $AFX/SFX
 @onready var all_audio = $AFX.get_children()
 @onready var infection: ProgressBar = $Interface/HUD/Infection
+@onready var flashlight: SpotLight3D = $Head/Flashlight
 
 
 var respawn_pos: Vector3
@@ -146,6 +147,10 @@ var walking_sounds = []
 signal on_click
 
 func _ready():
+	if enable_flashlight:
+		flashlight.visible = true
+	else:
+		flashlight.visible = false
 	cos_wall_angle_min = cos(deg_to_rad(wall_angle))
 	cos_wall_angle_max = cos(deg_to_rad(max_wall_angle))
 	cos_straight_min = cos(deg_to_rad(90 - straight_wall_leeway))

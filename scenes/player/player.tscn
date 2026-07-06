@@ -53,6 +53,13 @@ layers = 524288
 mesh = SubResource("QuadMesh_8afob")
 skeleton = NodePath("../..")
 
+[node name="Flashlight" type="SpotLight3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49191496, 0)
+light_energy = 1.227
+spot_range = 72.76841
+spot_attenuation = 0.72
+spot_angle = 31.535633
+
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15

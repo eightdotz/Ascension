@@ -1,7 +1,7 @@
 extends Node3D
 
-@onready var construction: Node3D = $Construction
-@onready var lights = $"../..".get_node("Lighting").get_children() #No change
+@onready var construction: Node3D = $"."
+@onready var lights = $"../Lighting"
 @export var animation_player: AnimationPlayer
 
 @export_group("Damage")
@@ -59,7 +59,8 @@ func _detect_player(body: Node3D) -> void:
 				queue_free()
 			elif destroy_detection_on_end:
 				detect_area.queue_free()
-		lights_on()
+		if turn_off_lights:
+			lights_on()
 
 func lights_on():
 	if lights:

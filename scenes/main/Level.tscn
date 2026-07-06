@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_obw8s"]
 
 [sub_resource type="Environment" id="Environment_fr6qw"]
-background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.1
 fog_mode = 1
 fog_light_color = Color(0.4539231, 0.4955957, 0.42497364, 1)
