@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var diagnostics_enabled: bool = false
-@export var root: Node3D = get_parent() 
+@onready var root: Node3D = get_parent() 
 @export var infection_limit: float
 @export var infection_rate: float
 @export var enable_flashlight:bool = false
@@ -147,6 +147,8 @@ var walking_sounds = []
 signal on_click
 
 func _ready():
+	if not root:
+		root = get_parent()
 	if enable_flashlight:
 		flashlight.visible = true
 	else:
@@ -499,9 +501,18 @@ func flash_screen_red():
 	print("Player hit! Screen should flash red")
 
 func handle_death():
-	await get_tree().create_timer(1.0).timeout
-	respawn_player()
-
+	toggle_mouse()
+	disable_movement()
+	var death_interface = $Interface/Death
+	var label: Label = $Interface/Death/Label
+	death_interface.visible = true
+	tween = create_tween()
+	fade_to_black(1.0)
+	tween.tween_property(label, "theme_override_colors/font_color:a", 1.0, 2.0)
+	await tween.finished
+	for item in death_interface.get_children():
+		item.visible = true
+	
 func respawn_player():
 	health = health_max
 	current_infection += current_infection * 0.1
@@ -578,6 +589,9 @@ func overwrite_ability(new_ability: Ability):
 
 func _on_root_level_changed() -> void:
 	print("Level Changed")
+	await get_tree().process_frame
+	if not root:
+		root = get_parent()
 	if root:
 		print("Found Root")
 		infecting = true
@@ -778,3 +792,9 @@ func pause_audio():
 func resume_audio():
 	for item in all_audio:
 		item.stream_paused = false
+
+
+func _on_restart() -> void:
+	if not root:
+		root = get_parent()
+	root.restart()
