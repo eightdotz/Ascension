@@ -5,8 +5,7 @@ extends CharacterBody3D
 @export var infection_limit: float
 @export var infection_rate: float
 
-var current_infection: float = 0.0
-var infecting: bool = false
+
 @export_group("Abilities")
 @export var ability_1: Ability
 @export var ability_2: Ability
@@ -26,8 +25,7 @@ var infecting: bool = false
 @export var stamina_drain_jump := 0.5 ##Stamina drain from jumping 
 
 
-var is_invincible := false
-var invincibility_timer := 0.0
+
 @export_group("Speed")
 @export var max_speed := 30.0 ##Max speed with no modifiers or sprint
 @export var air_speed := 1.5 ##The amount of control while in air
@@ -52,12 +50,9 @@ var invincibility_timer := 0.0
 @export var straight_wall_leeway = 3 ##The amount of range to or from 90 degrees that is accepted as a "straight wall" or surface that cannot be jumped off of
 @export var wall_jump_velocity_preserve_time := 0.2 ##Amount of time top speed is preserved
 @export var wall_jump_velocity_max := 160 ##Maximum speed with any boost
-@export var wall_jump_speed_boost := 1.2
-@export var wall_jump_boost_duration := 3.5
-@export var wall_jump_boost_timer := 0.0
-@export var wall_jump_boost_timer_max := 30.0
-@export var wall_jump_timer := 0.0
-
+@export var wall_jump_speed_boost := 1.2 ##Amount added to maximum speed after wall jump
+@export var wall_jump_boost_duration := 3.5 ##Amount of time added to boost duration
+@export var wall_jump_boost_timer_max := 30.0 ##Maximum boost time for wall jumps
 
 @export_group("FOV")
 @export var base_fov := 75.0 ##Default field of view
@@ -98,6 +93,17 @@ var wall_slide_speed := 10.0
 var wall_stick_duration := 0.3
 var wall_stick_velocity_threshold := 5.0
 var infection_speed_relief : float = wall_jump_velocity_max
+var wall_jump_boost_timer := 0.0
+var wall_jump_timer := 0.0
+var is_invincible := false
+var invincibility_timer := 0.0
+var current_infection: float = 0.0
+var infecting: bool = false
+
+var cos_wall_angle_min: float
+var cos_wall_angle_max: float
+var cos_straight_min: float
+var cos_straight_max: float
 
 var tween = null
 #Performance shiz
@@ -112,6 +118,7 @@ var tween = null
 @onready var label_max_speed: Label = $Interface/Diagnostics/MaxSpeed
 @onready var label_fov: Label = $Interface/Diagnostics/FOV
 @onready var label_direction: Label = $Interface/Diagnostics/Direction
+
 @onready var bar_health: ProgressBar = $Interface/HUD/Health
 @onready var bar_stamina: ProgressBar = $Interface/HUD/Stamina
 @onready var bar_jumps: ProgressBar = $Interface/HUD/Jumps
@@ -133,12 +140,16 @@ var tween = null
 var respawn_pos: Vector3
 var respawn_rot: Vector3
 var current_ambience = ""
+var walking_sounds = []
+
 #mouse signals
 signal on_click
 
-var walking_sounds = []
-
 func _ready():
+	cos_wall_angle_min = cos(deg_to_rad(wall_angle))
+	cos_wall_angle_max = cos(deg_to_rad(max_wall_angle))
+	cos_straight_min = cos(deg_to_rad(90 - straight_wall_leeway))
+	cos_straight_max = cos(deg_to_rad(90 + straight_wall_leeway))
 	#load_sounds()
 	camera.global_rotation.x -= 50
 	menu_play("res://audio/music/gamemaintheme_rev_2.ogg")
@@ -213,7 +224,6 @@ func _update_wall_jump_boost(delta: float) -> void:
 		remove_speed_modifier(SpeedMod.WALL_JUMP_BOOST)
 		return
 	wall_jump_boost_timer -= delta
-	label_boost_duration.text = str(wall_jump_boost_timer)
 	var time_progress = 1.0 - (wall_jump_boost_timer / wall_jump_boost_duration)
 	var drag_factor = max(0.1, 0.6 - (time_progress * 0.5))
 	var boosted_speed = cache_max_speed * wall_jump_speed_boost * drag_factor
@@ -221,10 +231,7 @@ func _update_wall_jump_boost(delta: float) -> void:
 	var clamped_speed = max(cache_max_speed, min(boosted_speed, speed_limit))
 	add_speed_modifier(SpeedMod.WALL_JUMP_BOOST, clamped_speed / cache_max_speed)
 
-var cos_wall_angle_min := cos(deg_to_rad(wall_angle))
-var cos_wall_angle_max := cos(deg_to_rad(max_wall_angle))
-var cos_straight_min := cos(deg_to_rad(90 - straight_wall_leeway))
-var cos_straight_max := cos(deg_to_rad(90 + straight_wall_leeway))
+
 
 func _process(delta):
 	update_camera_fov(delta)
@@ -238,7 +245,7 @@ func _physics_process(delta):
 	_update_wall_jump_boost(delta)
 	_update_speed_modifiers(delta)
 	max_speed = get_effective_max_speed()
-	label_max_speed.text = "Effective Max Speed: " + str(max_speed)
+
 	var input = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	direction = (transform.basis * Vector3(input.x, 0, input.y)).normalized()
 	
@@ -247,7 +254,7 @@ func _physics_process(delta):
 		is_sliding = false
 	else:
 		update_wall_status(direction)
-	label_direction.text = "Moving Direction: " + str(direction)
+	
 	if is_sliding and wall_normal != Vector3.ZERO:
 		var right_vector = transform.basis.x.normalized()
 		
@@ -296,9 +303,15 @@ func _physics_process(delta):
 			velocity.z = horiz.y
 		just_wall_jumped = false
 		handle_move(delta, grounded)
-	label_mv_override.text = "Engine Time: " + str(Engine.time_scale)
-	label_current_speed.text = "Current Speed: " + str(max_horiz_speed)
-	label_sliding.text = "Is Character Sliding: " + str(is_sliding)
+	if diagnostics_enabled:
+		label_mv_override.text = "Engine Time: " + str(Engine.time_scale)
+		label_current_speed.text = "Current Speed: " + str(max_horiz_speed)
+		label_sliding.text = "Is Character Sliding: " + str(is_sliding)
+		label_direction.text = "Moving Direction: " + str(direction)
+		label_boost_duration.text = str(wall_jump_boost_timer)
+		label_fov.text = "Field of View: " + str(camera.fov)
+		label_direction.text = "FPS: " + str(Engine.get_frames_per_second())
+		#label_max_speed.text
 	move_and_slide()
 	
 func update_stamina_and_timers(delta):
@@ -335,7 +348,6 @@ func update_camera_fov(delta):
 	
 	target_fov = clamp(target_fov, base_fov, base_fov + sprint_fov_boost + wall_jump_fov_boost)
 	camera.fov = lerp(camera.fov, target_fov, fov_lerp_speed * delta)
-	label_fov.text = "Field of View: " + str(camera.fov)
 func get_body_center() -> Vector3:
 	return global_position + Vector3(0, -0.8, 0)
 
@@ -428,7 +440,8 @@ func update_wall_status(input_dir):
 				var toward_wall = has_input and dot > 0.1
 				if toward_wall or (is_sliding and wall_normal.dot(normal) > 0.7):
 					wall_normal = normal
-					label_wall_angle.text = str(normal)
+					
+
 					found_wall = true
 					break
 	if found_wall and not is_on_floor() and last_gnd_time > 0.1:

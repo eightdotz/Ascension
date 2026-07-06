@@ -64,13 +64,13 @@ shadow_mesh = SubResource("ArrayMesh_vgvk5")
 [node name="8M_Straight" type="Node3D"]
 script = ExtResource("1_8wpa6")
 
-[node name="Pipe" type="MeshInstance3D" parent="."]
+[node name="MainBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(5.7320556e-14, 1.3113415e-06, -29.999998, 29.999998, -1.3113415e-06, 0, -1.3113415e-06, -29.999998, -1.3113415e-06, 132.15466, 0, 0)
 mesh = SubResource("ArrayMesh_qevgk")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Pipe"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MainBody"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pipe/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainBody/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_bluya")
 
 [node name="Lighting" type="Node3D" parent="."]

@@ -75,6 +75,13 @@ func spawn():
 			spawn_amount -= 1
 			spawned_pieces[current_id] = piece
 			current_id += 1
+		var main_body = piece.get_node("MainBody")
+		if main_body:
+			main_body.visibility_range_end = 300
+		else:
+			printerr("MainBody doesnt exist within piece scene! Performance will suffer!")
+		#piece.get_node("Traps").visibility_parent = "../MainBody"
+		#piece.get_node("Lighting").visibility_parent = "../MainBody"
 	total_spawned_pieces = spawned_pieces.size()
 	spawn_point.global_transform = spawned_pieces[0].get_node("Start").global_transform
 	var end_index = spawned_pieces.keys().size() - 1

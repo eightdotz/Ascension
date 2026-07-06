@@ -33,14 +33,20 @@ func _detect_player(body: Node3D) -> void:
 		light.visible = true
 		for item in eyes:
 			item.visible = true
-		for i in range(0, 20):
+		var j = 20
+		var stare = randi_range(0, 1)
+		for i in range(0, j):
 			await get_tree().create_timer(0.1).timeout
 			if body.global_position != current_pos:
 				player_found = 1
-				break
-				for item in eyes:
-					pass
-					#item.lookat(body.global_position)
+				if not stare:
+					for item in eyes:
+						item.look_at(body.global_position, Vector3.UP)
+					await get_tree().create_timer(0.3).timeout
+					break
+				else:
+					for item in eyes:
+						item.look_at(body.global_position, Vector3.UP)
 		if player_found:
 			kill_player(body)
 		
@@ -49,8 +55,7 @@ func _detect_player(body: Node3D) -> void:
 		body.disable_impact()
 		for item in eyes:
 			item.visible = false
-
-
+	
 func kill_player(body: Node3D):
 	body.respawn_player()
 

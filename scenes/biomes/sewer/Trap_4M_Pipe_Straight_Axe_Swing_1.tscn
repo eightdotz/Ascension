@@ -129,13 +129,13 @@ _data = {
 [node name="4M_Straight_AS1" type="Node3D"]
 script = ExtResource("1_t4sgn")
 
-[node name="Pipe" type="MeshInstance3D" parent="."]
+[node name="MainBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(5.732055e-14, 1.3113414e-06, -29.999998, -1.1368684e-13, 29.999998, 1.3113414e-06, 29.999998, 1.1368684e-13, 5.732056e-14, -55.845337, 0, 0)
 mesh = SubResource("ArrayMesh_yuqlu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Pipe"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MainBody"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pipe/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainBody/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_yuqlu")
 
 [node name="Lighting" type="Node3D" parent="."]

@@ -159,7 +159,7 @@ Piece Scenes (under '/scenes/biomes'):
 		Attached script 'level_piece.gd'.
 		This node can randomize the spawning of traps.
 
-	|-  NamedNode (MeshInstance3d of any name):
+	|-  MainBody (MeshInstance3D):
 			Primary structure of a piece. Think of a room but not the things inside it.
 			Decorations, traps, platforms, etc. Will be placed inside of this node.
 			

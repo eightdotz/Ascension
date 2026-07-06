@@ -37,7 +37,6 @@ slide_on_ceiling = false
 script = ExtResource("1_4flbx")
 infection_limit = 100.0
 infection_rate = 0.8
-infection_speed_relief = 240.0
 stamina_drain_sprint = 0.2
 pixelization = 2.0
 
@@ -265,30 +264,42 @@ offset_right = 260.0
 offset_bottom = 121.0
 
 [node name="MaxSpeed" type="Label" parent="Interface/Diagnostics"]
-layout_mode = 0
-offset_left = 816.0
-offset_right = 1076.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
+offset_right = 1879.0
 offset_bottom = 49.0
 
 [node name="MvOverride" type="Label" parent="Interface/Diagnostics"]
-layout_mode = 0
-offset_left = 816.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
 offset_top = 24.0
-offset_right = 1076.0
+offset_right = 1879.0
 offset_bottom = 73.0
 
 [node name="FOV" type="Label" parent="Interface/Diagnostics"]
-layout_mode = 0
-offset_left = 816.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
 offset_top = 48.0
-offset_right = 1076.0
+offset_right = 1879.0
 offset_bottom = 97.0
 
 [node name="Direction" type="Label" parent="Interface/Diagnostics"]
-layout_mode = 0
-offset_left = 816.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
 offset_top = 72.0
-offset_right = 1076.0
+offset_right = 1879.0
 offset_bottom = 121.0
 
 [node name="Pause" type="Control" parent="Interface"]
