@@ -13,13 +13,13 @@ data = PackedVector3Array(-0.6929, 2.5149, 0.2865, -0.6929, 1.2574999, 0.2866999
 [node name="45" type="Node3D"]
 script = ExtResource("1_kex0t")
 
-[node name="Pipe" type="MeshInstance3D" parent="."]
+[node name="MainBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.3113416e-06, -30, 0, 30, -1.3113416e-06, 0, 0, 0, 30, 132.15466, 0, 0)
 mesh = ExtResource("2_jnyyo")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Pipe"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MainBody"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pipe/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainBody/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_dthli")
 
 [node name="Lighting" type="Node3D" parent="."]

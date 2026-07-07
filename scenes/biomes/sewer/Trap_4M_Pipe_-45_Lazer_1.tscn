@@ -19,13 +19,13 @@ script = ExtResource("1_8k47j")
 randomize_traps = true
 traps = Array[NodePath]([NodePath("Traps/Trap"), NodePath("Traps/Trap2"), NodePath("Traps/Trap3"), NodePath("Traps/Trap4")])
 
-[node name="Pipe" type="MeshInstance3D" parent="."]
+[node name="MainBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.3113415e-06, -29.999998, 0, -29.999998, 1.3113415e-06, 2.622683e-06, -2.622683e-06, 1.1464111e-13, -29.999998, 132.15466, 0, 0)
 mesh = ExtResource("2_24b6g")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Pipe"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MainBody"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pipe/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainBody/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_dthli")
 
 [node name="Lighting" type="Node3D" parent="."]

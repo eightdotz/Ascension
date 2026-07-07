@@ -8,7 +8,7 @@
 [node name="TestSewer" type="Node3D"]
 script = ExtResource("1_xclrk")
 
-[node name="Pipe" type="MeshInstance3D" parent="."]
+[node name="MainBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(5.7320556e-14, 1.3113415e-06, -29.999998, 29.999998, -1.3113415e-06, 0, -1.3113415e-06, -29.999998, -1.3113415e-06, 0, 0, 0)
 
 [node name="Lighting" type="Node3D" parent="."]

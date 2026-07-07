@@ -14,6 +14,7 @@ material = SubResource("StandardMaterial3D_61vvq")
 
 [node name="Bulb" type="MeshInstance3D" node_paths=PackedStringArray("light")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+visibility_range_end = 300.0
 mesh = SubResource("BoxMesh_jiknq")
 script = ExtResource("1_jiknq")
 light = NodePath("Spotlight")
@@ -21,3 +22,5 @@ color = Color(0.95828694, 0.86651665, 0.5565578, 1)
 
 [node name="Spotlight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_color = Color(0.95828694, 0.86651665, 0.5565578, 1)
+spot_range = 10.0

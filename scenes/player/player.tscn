@@ -35,6 +35,8 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 slide_on_ceiling = false
 script = ExtResource("1_4flbx")
+infection_limit = 100.0
+infection_rate = 0.8
 stamina_drain_sprint = 0.2
 pixelization = 2.0
 
@@ -43,6 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44442, -0.0576912)
 
 [node name="Camera" type="Camera3D" parent="Head"]
 transform = Transform3D(0.333333, 0, -1.77636e-15, 0, 0.333333, 0, 1.77636e-15, 0, 0.333333, 2.86787e-10, 0.00264922, 0.00656464)
+cull_mask = 1
 
 [node name="PixelFilter" type="MeshInstance3D" parent="Head/Camera"]
 transform = Transform3D(2, 0, 1.4210855e-14, 0, 2, 0, -1.4210855e-14, 0, 2, -4.0321435e-09, -0.0026492178, -0.09224848)
@@ -50,6 +53,13 @@ visible = false
 layers = 524288
 mesh = SubResource("QuadMesh_8afob")
 skeleton = NodePath("../..")
+
+[node name="Flashlight" type="SpotLight3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49191496, 0)
+light_energy = 1.227
+spot_range = 72.76841
+spot_attenuation = 0.72
+spot_angle = 31.535633
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
@@ -105,13 +115,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -64.0
+offset_left = -136.0
 offset_top = -32.0
-offset_right = -60.0
+offset_right = -132.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 step = 0.1
+
+[node name="Label" type="Label" parent="Interface/HUD/Health"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -56.0
+offset_right = 28.0
+offset_bottom = -33.0
+text = "Health"
 
 [node name="Stamina" type="ProgressBar" parent="Interface/HUD"]
 layout_mode = 1
@@ -120,12 +138,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -48.0
 offset_top = -32.0
-offset_right = 4.0
+offset_right = -44.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 step = 0.1
+
+[node name="Label2" type="Label" parent="Interface/HUD/Stamina"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -56.0
+offset_right = 32.0
+offset_bottom = -33.0
+text = "Stamina"
 
 [node name="Jumps" type="ProgressBar" parent="Interface/HUD"]
 layout_mode = 1
@@ -134,14 +161,44 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 64.0
+offset_left = 52.0
 offset_top = -32.0
-offset_right = 68.0
+offset_right = 56.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 3.0
 step = 1.0
+
+[node name="Label3" type="Label" parent="Interface/HUD/Jumps"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -56.0
+offset_right = 40.0
+offset_bottom = -33.0
+text = "Jumps"
+
+[node name="Infection" type="ProgressBar" parent="Interface/HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -32.0
+offset_right = 132.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label4" type="Label" parent="Interface/HUD/Infection"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -56.0
+offset_right = 45.0
+offset_bottom = -33.0
+text = "Infection"
 
 [node name="BlackScreen" type="ColorRect" parent="Interface/HUD"]
 layout_mode = 1
@@ -186,6 +243,74 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "dont move"
 
+[node name="Death" type="Control" parent="Interface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Interface/Death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -11.5
+offset_right = 34.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.61960787, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 25
+text = "You Died"
+
+[node name="MenuButton3" type="MenuButton" parent="Interface/Death"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = 65.0
+offset_right = 50.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 29
+button_pressed = true
+text = "Restart"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="MenuButton4" type="MenuButton" parent="Interface/Death"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = 146.0
+offset_right = 50.0
+offset_bottom = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 29
+button_pressed = true
+text = "Exit"
+item_count = 1
+popup/item_0/id = 0
+
 [node name="Diagnostics" type="Control" parent="Interface"]
 anchors_preset = 0
 offset_right = 40.0
@@ -215,30 +340,42 @@ offset_right = 260.0
 offset_bottom = 121.0
 
 [node name="MaxSpeed" type="Label" parent="Interface/Diagnostics"]
-layout_mode = 0
-offset_left = 816.0
-offset_right = 1076.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
+offset_right = 1879.0
 offset_bottom = 49.0
 
 [node name="MvOverride" type="Label" parent="Interface/Diagnostics"]
-layout_mode = 0
-offset_left = 816.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
 offset_top = 24.0
-offset_right = 1076.0
+offset_right = 1879.0
 offset_bottom = 73.0
 
 [node name="FOV" type="Label" parent="Interface/Diagnostics"]
-layout_mode = 0
-offset_left = 816.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
 offset_top = 48.0
-offset_right = 1076.0
+offset_right = 1879.0
 offset_bottom = 97.0
 
 [node name="Direction" type="Label" parent="Interface/Diagnostics"]
-layout_mode = 0
-offset_left = 816.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
 offset_top = 72.0
-offset_right = 1076.0
+offset_right = 1879.0
 offset_bottom = 121.0
 
 [node name="Pause" type="Control" parent="Interface"]
@@ -537,6 +674,8 @@ volume_db = -20.0
 [node name="LevelMusic" type="AudioStreamPlayer" parent="AFX"]
 volume_db = -15.0
 
+[connection signal="pressed" from="Interface/Death/MenuButton3" to="." method="_on_restart"]
+[connection signal="pressed" from="Interface/Death/MenuButton4" to="." method="_on_exit"]
 [connection signal="pressed" from="Interface/Pause/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Interface/Pause/MenuButton2" to="." method="_on_exit"]
 [connection signal="pressed" from="Interface/MainMenu/Main/MenuButton" to="." method="_start_game"]

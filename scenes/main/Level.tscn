@@ -1,18 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpxtv3md8pmge"]
+[gd_scene load_steps=3 format=3 uid="uid://bpxtv3md8pmge"]
 
 [ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://scripts/levels/level.gd" id="1_jkde5"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_obw8s"]
-
-[sub_resource type="Environment" id="Environment_fr6qw"]
-background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 0.1
-fog_mode = 1
-fog_light_color = Color(0.4539231, 0.4955957, 0.42497364, 1)
-fog_density = 0.1622
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_oiqhk"]
-
-[sub_resource type="Compositor" id="Compositor_p3v23"]
 
 [node name="Dungeon" type="Node3D"]
 script = ExtResource("1_jkde5")
@@ -22,9 +11,6 @@ ambience = "res://audio/ambience/SewerWhiteNoise.ogg"
 music = "res://audio/ambience/SewerWhiteNoise.ogg"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_fr6qw")
-camera_attributes = SubResource("CameraAttributesPractical_oiqhk")
-compositor = SubResource("Compositor_p3v23")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("2_obw8s")]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 375.18115, 0, 12.097671)

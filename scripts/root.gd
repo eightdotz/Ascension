@@ -17,6 +17,7 @@ extends Node3D
 
 @onready var LEVEL = "res://scenes/main/Level.tscn"
 @onready var STARTING = "res://scenes/main/StartingArea.tscn"
+@onready var player_path = "res://scenes/player/player.tscn"
 
 var base_spawn
 var current_level_type
@@ -108,3 +109,13 @@ func _on_goal_level_completed() -> void:
 	else:
 		await player.fade_to_black(1.0, true)
 		load_level(LEVEL)
+
+func restart():
+	player.queue_free()
+	await get_tree().process_frame
+	player = load(player_path).instantiate()
+	$".".add_child(player)
+	player.name = "player"
+	print(player.name)
+	load_first_level()
+	

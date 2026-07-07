@@ -54,7 +54,11 @@ func spawn():
 			next_piece = ""
 			
 		spawn_tracker.append(selected_item)
-		var piece = load(selected_item).instantiate()
+		var scene_res = load(selected_item)
+		if scene_res == null:
+			push_error("Failed to load piece: " + selected_item)
+			continue
+		var piece = scene_res.instantiate()
 		pieces.add_child(piece)
 		piece.set_id(current_id)
 		if current_id > 5:
@@ -71,6 +75,13 @@ func spawn():
 			spawn_amount -= 1
 			spawned_pieces[current_id] = piece
 			current_id += 1
+		var main_body = piece.get_node("MainBody")
+		if main_body:
+			main_body.visibility_range_end = 300
+		else:
+			printerr("MainBody doesnt exist within piece scene! Performance will suffer!")
+		#piece.get_node("Traps").visibility_parent = "../MainBody"
+		#piece.get_node("Lighting").visibility_parent = "../MainBody"
 	total_spawned_pieces = spawned_pieces.size()
 	spawn_point.global_transform = spawned_pieces[0].get_node("Start").global_transform
 	var end_index = spawned_pieces.keys().size() - 1
@@ -84,11 +95,16 @@ func configure_spawn(amount: int, cooldown: int): ##Needs to be called by contro
 	room_cooldown = cooldown
 
 func populate(): ##Needs to be called by controller first
-	var dir := DirAccess.open(get_biome[biome])
+	var folder_path: String = get_biome[biome]
+	var dir := DirAccess.open(folder_path)
 	if dir == null: printerr("Could not open folder"); return
 	dir.list_dir_begin()
 	for file: String in dir.get_files():
-		var resource := dir.get_current_dir() + file
+		if file.ends_with(".import"):
+			continue
+		if file.ends_with(".remap"):
+			file = file.trim_suffix(".remap")
+		var resource := folder_path + file #ignoring OS dict formatting
 		print(resource)
 		if "!Master" not in resource:
 			if "Ramp" in resource:
