@@ -1,0 +1,119 @@
+[gd_scene load_steps=15 format=3 uid="uid://35yq15oxqwbi"]
+
+[ext_resource type="Script" uid="uid://djhcwnqxecd7l" path="res://scripts/traps/trip_wire.gd" id="1_gd7b8"]
+[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="2_gd7b8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gd7b8"]
+frequency = 0.0133
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0iuqs"]
+noise = SubResource("FastNoiseLite_gd7b8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mt6ns"]
+albedo_color = Color(0.35656494, 0.3565649, 0.3565649, 1)
+albedo_texture = SubResource("NoiseTexture2D_0iuqs")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t883r"]
+material = SubResource("StandardMaterial3D_mt6ns")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5j1n"]
+albedo_color = Color(0.48962224, 0.48962224, 0.48962218, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dwvmo"]
+material = SubResource("StandardMaterial3D_p5j1n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fno5w"]
+albedo_color = Color(1, 0.48336625, 0.415765, 1)
+emission_enabled = true
+emission = Color(0.88199043, 5.583167e-06, 1.2513996e-06, 1)
+emission_energy_multiplier = 1.36
+
+[sub_resource type="SphereMesh" id="SphereMesh_eyqx8"]
+material = SubResource("StandardMaterial3D_fno5w")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hiov7"]
+points = PackedVector3Array(-0.5, -1, 0, -0.49765074, -1, -0.049040705, -0.49765074, -1, 0.048942864, -0.5, 1, 0, -0.4904072, -1, -0.097592026, -0.49765074, 1, -0.049040705, -0.4904072, -1, 0.097494125, -0.49765074, 1, 0.048942864, -0.47856304, -1, -0.14516446, -0.4904072, 1, -0.097592026, -0.47856304, -1, 0.14506656, -0.4904072, 1, 0.097494125, -0.46202037, -1, -0.1913665, -0.47856304, 1, -0.14516446, -0.46202037, -1, 0.19126862, -0.47856304, 1, 0.14506656, -0.44097495, -1, -0.23570868, -0.46202037, 1, -0.1913665, -0.44097495, -1, 0.23561078, -0.46202037, 1, 0.19126862, -0.41581833, -1, -0.27779955, -0.44097495, 1, -0.23570868, -0.41581833, -1, 0.27770162, -0.44097495, 1, 0.23561078, -0.38655052, -1, -0.31724745, -0.41581833, 1, -0.27779955, -0.38655052, -1, 0.31714958, -0.41581833, 1, 0.27770162, -0.35356304, -1, -0.35356304, -0.38655052, 1, -0.31724745, -0.35356304, -1, 0.35346514, -0.38655052, 1, 0.31714958, -0.31724745, -1, -0.38655052, -0.35356304, 1, -0.35356304, -0.31724745, -1, 0.38645262, -0.35356304, 1, 0.35346514, -0.27779955, -1, -0.41581833, -0.31724745, 1, -0.38655052, -0.27779955, -1, 0.41572046, -0.31724745, 1, 0.38645262, -0.23570868, -1, -0.44097495, -0.27779955, 1, -0.41581833, -0.23570868, -1, 0.44087708, -0.27779955, 1, 0.41572046, -0.1913665, -1, -0.46202037, -0.23570868, 1, -0.44097495, -0.1913665, -1, 0.46192247, -0.23570868, 1, 0.44087708, -0.14516446, -1, -0.47856304, -0.1913665, 1, -0.46202037, -0.14516446, -1, 0.47846514, -0.1913665, 1, 0.46192247, -0.097592026, -1, -0.4904072, -0.14516446, 1, -0.47856304, -0.097592026, -1, 0.4903093, -0.14516446, 1, 0.47846514, -0.049040705, -1, -0.49765074, -0.097592026, 1, -0.4904072, -0.049040705, -1, 0.49755287, -0.097592026, 1, 0.4903093, 0, -1, -0.5, -0.049040705, 1, -0.49765074, 0, -1, 0.5, -0.049040705, 1, 0.49755287, 0.048942864, -1, -0.49765074, 0, 1, -0.5, 0.048942864, -1, 0.49755287, 0, 1, 0.5, 0.097494125, -1, -0.4904072, 0.048942864, 1, -0.49765074, 0.097494125, -1, 0.4903093, 0.048942864, 1, 0.49755287, 0.14506656, -1, -0.47856304, 0.097494125, 1, -0.4904072, 0.14506656, -1, 0.47846514, 0.097494125, 1, 0.4903093, 0.19126862, -1, -0.46202037, 0.14506656, 1, -0.47856304, 0.19126862, -1, 0.46192247, 0.14506656, 1, 0.47846514, 0.23561078, -1, -0.44097495, 0.19126862, 1, -0.46202037, 0.23561078, -1, 0.44087708, 0.19126862, 1, 0.46192247, 0.27770162, -1, -0.41581833, 0.23561078, 1, -0.44097495, 0.27770162, -1, 0.41572046, 0.23561078, 1, 0.44087708, 0.31714958, -1, -0.38655052, 0.27770162, 1, -0.41581833, 0.31714958, -1, 0.38645262, 0.27770162, 1, 0.41572046, 0.35346514, -1, -0.35356304, 0.31714958, 1, -0.38655052, 0.35346514, -1, 0.35346514, 0.31714958, 1, 0.38645262, 0.38645262, -1, -0.31724745, 0.35346514, 1, -0.35356304, 0.38645262, -1, 0.31714958, 0.35346514, 1, 0.35346514, 0.41572046, -1, -0.27779955, 0.38645262, 1, -0.31724745, 0.41572046, -1, 0.27770162, 0.38645262, 1, 0.31714958, 0.44087708, -1, -0.23570868, 0.41572046, 1, -0.27779955, 0.44087708, -1, 0.23561078, 0.41572046, 1, 0.27770162, 0.46192247, -1, -0.1913665, 0.44087708, 1, -0.23570868, 0.46192247, -1, 0.19126862, 0.44087708, 1, 0.23561078, 0.47846514, -1, -0.14516446, 0.46192247, 1, -0.1913665, 0.47846514, -1, 0.14506656, 0.46192247, 1, 0.19126862, 0.4903093, -1, -0.097592026, 0.47846514, 1, -0.14516446, 0.4903093, -1, 0.097494125, 0.47846514, 1, 0.14506656, 0.49755287, -1, -0.049040705, 0.4903093, 1, -0.097592026, 0.49755287, -1, 0.048942864, 0.4903093, 1, 0.097494125, 0.5, -1, 0, 0.49755287, 1, -0.049040705, 0.49755287, 1, 0.048942864, 0.5, 1, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0iuqs"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+initial_velocity_min = 168.51999
+initial_velocity_max = 291.37
+gravity = Vector3(0, -32, 18)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0iuqs"]
+material = ExtResource("2_gd7b8")
+size = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p5j1n"]
+initial_velocity_min = 177.22
+initial_velocity_max = 246.78
+
+[node name="TripWire" type="Node3D"]
+script = ExtResource("1_gd7b8")
+damage_min = 20.0
+damage_max = 25.0
+
+[node name="Wire" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.23, 0, 0, 0, -1.1646899e-06, 0.23, 0, -26.645, -1.0053619e-08, 0, 0, 0)
+visibility_range_end = 150.0
+mesh = SubResource("CylinderMesh_t883r")
+
+[node name="Bomb" type="MeshInstance3D" parent="Wire"]
+transform = Transform3D(4.3478246, 0, 0, 0, -1.6405095e-09, -0.03753048, 0, 4.3478246, -1.9004942e-07, 0, 0.82567054, 4.1810868e-06)
+mesh = SubResource("SphereMesh_dwvmo")
+skeleton = NodePath("../..")
+
+[node name="Light" type="MeshInstance3D" parent="Wire/Bomb"]
+transform = Transform3D(0.71, 0, 0, 0, 0.71, -4.2351647e-21, 0, -2.1175824e-21, 0.71, 0.011304859, -1.895104e-15, 0.2667122)
+mesh = SubResource("SphereMesh_eyqx8")
+skeleton = NodePath("../../..")
+
+[node name="Bomb2" type="MeshInstance3D" parent="Wire"]
+transform = Transform3D(4.347822, 0, 0, 0, -1.6405093e-09, -0.037530463, 0, 4.347822, -1.9004929e-07, 0, -0.8321492, -4.213894e-06)
+mesh = SubResource("SphereMesh_dwvmo")
+skeleton = NodePath("../..")
+
+[node name="Light" type="MeshInstance3D" parent="Wire/Bomb2"]
+transform = Transform3D(0.7099999, 0, 0, 0, 0.7099999, -1.6940659e-21, 0, -8.4703295e-21, 0.7100003, -0.0076974714, 2.8219343e-15, -0.26475334)
+mesh = SubResource("SphereMesh_eyqx8")
+skeleton = NodePath("../../..")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.553, 0, 0, 0, -1.1629414e-06, 1.553, 0, -26.605, -6.788378e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_hiov7")
+
+[node name="ExplosionFX" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="ExplosionFX"]
+transform = Transform3D(0.85645634, 0, -0.5162195, 0, 1, 0, 0.5162195, 0, 0.85645634, 0, 0, -21.856531)
+emitting = false
+amount = 20
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(5.815, -2.735, -7.355, 26.88, 17.225, 37.035)
+process_material = SubResource("ParticleProcessMaterial_0iuqs")
+draw_pass_1 = SubResource("BoxMesh_0iuqs")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="ExplosionFX"]
+transform = Transform3D(0.83380866, 0, 0.55205345, 0, 1, 0, -0.55205345, 0, 0.83380866, 0, 0, 22.107794)
+emitting = false
+amount = 20
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(10.725, -4, -16.525, 40.755, 19.05, 35.945)
+process_material = SubResource("ParticleProcessMaterial_p5j1n")
+draw_pass_1 = SubResource("BoxMesh_0iuqs")
+
+[node name="Flash" type="OmniLight3D" parent="."]
+light_energy = 0.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 42.182
+omni_attenuation = 0.235
+
+[connection signal="body_entered" from="Area3D" to="." method="_detected"]

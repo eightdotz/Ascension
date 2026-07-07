@@ -498,7 +498,9 @@ func take_damage(damage: float) -> float:
 	return damage_dealt
 
 func flash_screen_red():
-	print("Player hit! Screen should flash red")
+	apply_damage_filter()
+	await get_tree().create_timer(0.2).timeout
+	remove_damage_filter()
 
 func handle_death():
 	toggle_mouse()
