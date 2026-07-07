@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cytafqsfxveai"]
+
+[ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://scripts/levels/level.gd" id="1_kagwo"]
+[ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_okul7"]
+
+[sub_resource type="Environment" id="Environment_8pofb"]
+
+[node name="Dungeon" type="Node3D"]
+script = ExtResource("1_kagwo")
+type = "Dungeon"
+biome = "Sewer"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8pofb")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("2_okul7")]
+
+[node name="GoalPoint" parent="." instance=ExtResource("2_okul7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64.64689)
+
+[node name="Pieces" type="Node3D" parent="."]

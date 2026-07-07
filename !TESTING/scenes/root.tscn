@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1ps85r46y6w6"]
+
+[ext_resource type="Script" uid="uid://bfqgxqjw6mqic" path="res://scripts/root.gd" id="1_jpsh0"]
+[ext_resource type="PackedScene" uid="uid://bpiy2djajhaif" path="res://scenes/utility/Goal.tscn" id="2_88eva"]
+[ext_resource type="PackedScene" uid="uid://bk2r4u7mfbf1b" path="res://scenes/player/player.tscn" id="3_hbhsd"]
+
+[node name="Root" type="Node3D"]
+script = ExtResource("1_jpsh0")
+spawn_amount = 5
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="Goal" parent="." instance=ExtResource("2_88eva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 88.46828)
+
+[node name="player" parent="." instance=ExtResource("3_hbhsd")]
+pixelization = 4.0
+
+[connection signal="level_changed" from="." to="player" method="_on_root_level_changed"]
+[connection signal="level_completed" from="Goal" to="." method="_on_goal_level_completed"]
