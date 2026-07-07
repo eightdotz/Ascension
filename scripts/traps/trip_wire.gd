@@ -40,5 +40,5 @@ func _detected(body: Node3D) -> void:
 		await get_tree().create_timer(0.2).timeout
 		reset_lights()
 		if destroy_on_end:
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(1.0).timeout
 			self.queue_free()
