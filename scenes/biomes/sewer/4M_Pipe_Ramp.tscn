@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://7ut58w5epawe"]
 
 [ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level_piece.gd" id="1_brkij"]
-[ext_resource type="ArrayMesh" uid="uid://cxwp5n3vfbic4" path="res://!TESTING/models/Pipes/Pipes/4M_Ramp_1.obj" id="2_brkij"]
+[ext_resource type="ArrayMesh" uid="uid://dubimsab60vix" path="res://resources/4M_Pipe_Ramp.tres" id="2_brkij"]
 [ext_resource type="PackedScene" uid="uid://bf4ffw7b6ndob" path="res://scenes/utility/Spotlight.tscn" id="3_rfflx"]
 [ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://scenes/utility/joint.tscn" id="4_0a6bl"]
 [ext_resource type="PackedScene" uid="uid://b6rimfxkx2217" path="res://scenes/utility/Checkpoint.tscn" id="5_h7dgd"]
