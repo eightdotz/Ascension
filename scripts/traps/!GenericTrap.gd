@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var construction: Node3D = $Construction
-@onready var lights = $"../..".get_node("Lighting").get_children() #No change
+@onready var lights = $"../../MainBody/Lighting".get_children() #No change
 @export var animation_player: AnimationPlayer
 
 @export_group("Damage")

@@ -19,6 +19,21 @@ script = ExtResource("1_8k47j")
 randomize_traps = true
 traps = Array[NodePath]([NodePath("Traps/Trap"), NodePath("Traps/Trap2"), NodePath("Traps/Trap3"), NodePath("Traps/Trap4")])
 
+[node name="Traps" type="Node3D" parent="."]
+transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0, 0, -4.5474735e-13)
+
+[node name="Trap" parent="Traps" instance=ExtResource("7_3hrjf")]
+transform = Transform3D(1, 0, 1.3909066e-08, 0, 1, 0, -1.3909066e-08, 0, 1, 234.28503, 0, 0)
+
+[node name="Trap2" parent="Traps" instance=ExtResource("8_p5hjd")]
+transform = Transform3D(0.7071067, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071067, -3.2421722, 0, 20)
+
+[node name="Trap3" parent="Traps" instance=ExtResource("9_s47l2")]
+transform = Transform3D(-1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1.0000001, -100.62091, 0, 0)
+
+[node name="Trap4" parent="Traps" instance=ExtResource("10_uuvnb")]
+transform = Transform3D(-0.86602557, 0.4829629, 0.12940958, -5.2758683e-08, 0.25881913, -0.96592605, -0.50000006, -0.83651656, -0.22414395, -154.73264, 0, -87)
+
 [node name="MainBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.3113415e-06, 0, 29.999998, 0, 29.999998, 0, -29.999998, 0, -1.3113415e-06, 132.15466, -32, 0)
 mesh = ExtResource("2_3hrjf")
@@ -28,24 +43,24 @@ mesh = ExtResource("2_3hrjf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainBody/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_p5hjd")
 
-[node name="Lighting" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
+[node name="Lighting" type="Node3D" parent="MainBody"]
+transform = Transform3D(-1.4570464e-09, 0, -0.033333335, 0, 0.033333335, 0, 0.033333335, 0, -1.4570464e-09, -0.2666665, 1.1, -4.4051557)
 
-[node name="Bulb" parent="Lighting" instance=ExtResource("3_j8pbr")]
+[node name="Bulb" parent="MainBody/Lighting" instance=ExtResource("3_j8pbr")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 101.59736, 17.027002, -5)
 range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
 
-[node name="Bulb2" parent="Lighting" instance=ExtResource("3_j8pbr")]
+[node name="Bulb2" parent="MainBody/Lighting" instance=ExtResource("3_j8pbr")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -27.984816, 18.027002, -16.414642)
 range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
 
-[node name="Bulb3" parent="Lighting" instance=ExtResource("3_j8pbr")]
+[node name="Bulb3" parent="MainBody/Lighting" instance=ExtResource("3_j8pbr")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -87.75283, 18.027002, -71.59987)
 range = 54.41
 attenuation = 0.485
@@ -53,7 +68,7 @@ angle = 55.74
 energy = 1.5
 
 [node name="Start" parent="." instance=ExtResource("4_av084")]
-transform = Transform3D(-0.70710665, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710665, -125.82095, 0, -106.2364)
+transform = Transform3D(-0.70710665, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710665, -125.076805, -2, -105.724846)
 
 [node name="End" parent="." instance=ExtResource("4_av084")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 129.366, -1, 0)
@@ -68,19 +83,5 @@ transform = Transform3D(246.84459, 0, -25.06339, 0, 35.444992, 0, 246.8446, 0, 2
 
 [node name="OverlapDetector2" parent="OverlapChecks" instance=ExtResource("6_p5hjd")]
 transform = Transform3D(337.4252, 0, 0, 0, 35.444992, 0, 0, 0, 35.444996, 75.23508, 0, -3)
-
-[node name="Traps" type="Node3D" parent="."]
-
-[node name="Trap" parent="Traps" instance=ExtResource("7_3hrjf")]
-transform = Transform3D(1, 0, 1.3909066e-08, 0, 1, 0, -1.3909066e-08, 0, 1, 234.28503, 0, 0)
-
-[node name="Trap2" parent="Traps" instance=ExtResource("8_p5hjd")]
-transform = Transform3D(0.7071067, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071067, -3.2421722, 0, 20)
-
-[node name="Trap3" parent="Traps" instance=ExtResource("9_s47l2")]
-transform = Transform3D(-1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1.0000001, -100.62091, 0, 0)
-
-[node name="Trap4" parent="Traps" instance=ExtResource("10_uuvnb")]
-transform = Transform3D(-0.86602557, 0.4829629, 0.12940958, -5.2758683e-08, 0.25881913, -0.96592605, -0.50000006, -0.83651656, -0.22414395, -154.73264, 0, -87)
 
 [connection signal="body_entered" from="Checkpoint" to="." method="_on_checkpoint_body_entered"]

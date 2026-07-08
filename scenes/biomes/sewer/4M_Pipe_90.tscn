@@ -23,24 +23,24 @@ mesh = ExtResource("2_58c3t")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainBody/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_j8p8j")
 
-[node name="Lighting" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="Lighting" type="Node3D" parent="MainBody"]
+transform = Transform3D(-1.4570462e-09, 0, -0.03333333, 0, 0.03333333, 0, 0.03333333, 0, -1.4570462e-09, 0.5560042, 1.0333333, -4.728697)
 
-[node name="Bulb" parent="Lighting" instance=ExtResource("2_x607q")]
+[node name="Bulb" parent="MainBody/Lighting" instance=ExtResource("2_x607q")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 113.59736, 19.027002, 16)
 range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
 
-[node name="Bulb2" parent="Lighting" instance=ExtResource("2_x607q")]
+[node name="Bulb2" parent="MainBody/Lighting" instance=ExtResource("2_x607q")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24.015184, 19.027002, -14.414643)
 range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
 
-[node name="Bulb3" parent="Lighting" instance=ExtResource("2_x607q")]
+[node name="Bulb3" parent="MainBody/Lighting" instance=ExtResource("2_x607q")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8.2471695, 19.027002, -85.59987)
 range = 54.41
 attenuation = 0.485

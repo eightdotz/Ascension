@@ -7,6 +7,7 @@ extends Node3D
 @onready var explosion_fx: Array[Node] = $ExplosionFX.get_children()
 @onready var flash: OmniLight3D = $Flash
 @onready var gpu_particles_3d: GPUParticles3D = $ExplosionFX/GPUParticles3D
+enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
 
 
 func _ready() -> void:
@@ -35,6 +36,8 @@ func _detected(body: Node3D) -> void:
 		await get_tree().create_timer(0.1).timeout
 		flash_lights()
 		body.take_damage(randf_range(damage_min, damage_max))
+		body.add_speed_modifier(SpeedMod.SLOW, 0.5)
+		body.increase_filter(0.1)
 		for item in explosion_fx:
 			item.emitting = true
 		await get_tree().create_timer(0.2).timeout
@@ -42,3 +45,5 @@ func _detected(body: Node3D) -> void:
 		if destroy_on_end:
 			await get_tree().create_timer(1.0).timeout
 			self.queue_free()
+		body.remove_speed_modifier(SpeedMod.SLOW)
+		body.restore_filter(0.5)
