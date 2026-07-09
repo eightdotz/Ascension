@@ -24,8 +24,6 @@ extends CharacterBody3D
 @export var stamina_drain_sprint := 1.0 ##Stamina drain from sprinting * delta
 @export var stamina_drain_jump := 0.5 ##Stamina drain from jumping 
 
-
-
 @export_group("Speed")
 @export var max_speed := 30.0 ##Max speed with no modifiers or sprint
 @export var air_speed := 1.5 ##The amount of control while in air
@@ -40,6 +38,7 @@ extends CharacterBody3D
 @export var jump_cooldown := 0.2 ##Length in seconds between jumps to prevent spamming
 @export var jump_max_held := 0.2 ##Allows for higher jumps when pressed longer
 
+@export_group("Settings")
 @export var mouse_sensitivity := 0.1 ##Sensitivity
 
 @export_group("Wall Jump")
@@ -63,6 +62,9 @@ extends CharacterBody3D
 @export_group("Shader")
 @export_range (0.0, 100.0, 0.1) var pixelization: float
 @onready var shader_mesh: ColorRect = $Interface/HUD/PixelFilter
+
+@export_group("Misc")
+@export var knockback_decay: float = 4.0
 
 @onready var cache_max_speed := max_speed
 @onready var player_head = $Head
@@ -105,6 +107,9 @@ var cos_wall_angle_max: float
 var cos_straight_min: float
 var cos_straight_max: float
 
+var knockback_velocity: Vector3
+var knockback_dir: Vector3
+var being_knocked_back: int = 0
 var tween = null
 #Performance shiz
 @onready var wall_rays = $WallCast.get_children() #so we dont use get_children every loop
@@ -319,6 +324,8 @@ func _physics_process(delta):
 		label_fov.text = "Field of View: " + str(camera.fov)
 		label_direction.text = "FPS: " + str(Engine.get_frames_per_second())
 		#label_max_speed.text
+	if being_knocked_back:
+		apply_knockback(delta)
 	move_and_slide()
 	
 func update_stamina_and_timers(delta):
@@ -730,8 +737,6 @@ func _on_main_menu_music_volume_change(value: float) -> void:
 	menu_music_player.volume_db = value
 	
 
-
-
 func _on_settings() -> void:
 	var main = $Interface/MainMenu/Main
 	var settings = $Interface/MainMenu/Settings
@@ -800,3 +805,18 @@ func _on_restart() -> void:
 	if not root:
 		root = get_parent()
 	root.restart()
+
+func set_knockback(dir: Vector3, vel: Vector3):
+	being_knocked_back = 1
+	knockback_velocity = vel
+	knockback_dir = (global_position - dir).normalized()
+
+func remove_knockback():
+	being_knocked_back = 0
+
+func apply_knockback(delta):
+	velocity.x = knockback_velocity.x
+	velocity.z = knockback_velocity.z
+	knockback_velocity = knockback_velocity.lerp(Vector3.ZERO, knockback_decay * delta)
+	if knockback_velocity.length() < 1.5:
+		remove_knockback()

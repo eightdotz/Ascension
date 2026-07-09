@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var knockback_force: float = 40.0
 @export var destroy_on_end: bool = true
 @export var do_damage: bool = false
 @export var damage_min: float = 0.0
@@ -36,7 +37,8 @@ func _detected(body: Node3D) -> void:
 		await get_tree().create_timer(0.1).timeout
 		flash_lights()
 		body.take_damage(randf_range(damage_min, damage_max))
-		body.add_speed_modifier(SpeedMod.SLOW, 0.5)
+		body.set_knockback(global_position, Vector3(knockback_force, knockback_force, knockback_force))
+		body.add_speed_modifier(SpeedMod.SLOW, 0.8)
 		body.increase_filter(0.1)
 		for item in explosion_fx:
 			item.emitting = true
