@@ -1,0 +1,1572 @@
+[gd_scene load_steps=11 format=3 uid="uid://bu7h2f4mjo3id"]
+
+[ext_resource type="Script" uid="uid://b27mo8avap2w0" path="res://scripts/traps/spike_trap.gd" id="1_mxj8s"]
+[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="2_k28qe"]
+[ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/Pipe_Channel_Cement.tres" id="3_mxj8s"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y6abw"]
+initial_velocity_min = 17.39
+initial_velocity_max = 52.539997
+gravity = Vector3(0, -38, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5so3h"]
+material = ExtResource("2_k28qe")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hy7h7"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2d8th"]
+material = SubResource("StandardMaterial3D_hy7h7")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e463q"]
+material = ExtResource("3_mxj8s")
+top_radius = 0.01
+height = 8.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k28qe"]
+points = PackedVector3Array(-0.5, -4, 0, -0.40015662, -2.4001565, -0.039447933, -0.49765074, -4, -0.049040705, -0.49765074, -4, 0.048942864, -0.40015662, -2.4001565, 0.039350033, -0.010082215, 4, 0, -0.4904072, -4, -0.097592026, -0.10757634, 2.3993735, -0.010669529, -0.009886444, 4, -0.0019577146, -0.2021339, 0.79953, -0.04023102, -0.4904072, -4, 0.097494125, -0.2021339, 0.79953, 0.04013312, -0.009886444, 4, 0.0018598437, -0.10757634, 2.3993735, 0.010571659, -0.009984344, 4, 0.0009788871, -0.009984344, 4, -0.0010767281, -0.47856304, -4, -0.14516446, -0.009299129, 4, -0.003915429, -0.47856304, -4, 0.14506656, -0.009299129, 4, 0.0038175583, -0.46202037, -4, -0.1913665, -0.008907586, 4, -0.0047963858, -0.46202037, -4, 0.19126862, -0.008907586, 4, 0.004698515, -0.44097495, -4, -0.23570868, -0.0071456432, 4, -0.0071456432, -0.15925997, 0.79953, -0.13077524, -0.25283867, -0.80031323, -0.16895068, -0.41581833, -4, -0.27779955, -0.44097495, -4, 0.23561078, -0.15925997, 0.79953, 0.13067734, -0.0071456432, 4, 0.0070477724, -0.41581833, -4, 0.27770162, -0.25283867, -0.80031323, 0.1688528, -0.0047963858, 4, -0.008907586, -0.13077524, 0.79953, -0.15925997, -0.31724745, -4, -0.38655052, -0.21505481, -0.80031323, -0.21505481, -0.38655052, -4, -0.31724745, -0.38655052, -4, 0.31714958, -0.13077524, 0.79953, 0.1591621, -0.0047963858, 4, 0.008809686, -0.21505481, -0.80031323, 0.21495694, -0.31724745, -4, 0.38645262, -0.003915429, 4, -0.009299129, -0.1913665, -4, -0.46202037, -0.23570868, -4, -0.44097495, -0.27779955, -4, -0.41581833, -0.16895068, -0.80031323, -0.25283867, -0.35356304, -4, -0.35356304, -0.35356304, -4, 0.35346514, -0.16895068, -0.80031323, 0.2527408, -0.003915429, 4, 0.009201229, -0.27779955, -4, 0.41572046, -0.09720048, 0.79953, 0.18167579, -0.1913665, -4, 0.46192247, -0.0019577146, 4, -0.009886444, -0.14516446, -4, -0.47856304, -0.0019577146, 4, 0.009788573, -0.14516446, -4, 0.47846514, -0.23570868, -4, 0.44087708, -0.0010767281, 4, -0.009984344, -0.010669529, 2.3993735, -0.10757634, -0.039447933, -2.4001565, -0.40015662, -0.04023102, 0.79953, -0.2021339, -0.097592026, -4, -0.4904072, -0.04023102, 0.79953, 0.20203602, -0.039447933, -2.4001565, 0.40005875, -0.010669529, 2.3993735, 0.10747844, -0.0010767281, 4, 0.009886444, -0.097592026, -4, 0.4903093, 0, 4, -0.010082215, 0, -4, -0.5, -0.049040705, -4, -0.49765074, -0.049040705, -4, 0.49755287, 0, -4, 0.5, 0, 4, 0.009984314, 0.0009788871, 4, -0.009984344, 0.010571659, 2.3993735, -0.10757634, 0.039350033, -2.4001565, -0.40015662, 0.048942864, -4, -0.49765074, 0.048942864, -4, 0.49755287, 0.039350033, -2.4001565, 0.40005875, 0.010571659, 2.3993735, 0.10747844, 0.0009788871, 4, 0.009886444, 0.0018598437, 4, -0.009886444, 0.097494125, -4, -0.4904072, 0.04013312, 0.79953, -0.2021339, 0.097494125, -4, 0.4903093, 0.04013312, 0.79953, 0.20203602, 0.0018598437, 4, 0.009788573, 0.0038175583, 4, -0.009299129, 0.14506656, -4, -0.47856304, 0.14506656, -4, 0.47846514, 0.0038175583, 4, 0.009201229, 0.004698515, 4, -0.008907586, 0.19126862, -4, -0.46202037, 0.19126862, -4, 0.46192247, 0.004698515, 4, 0.008809686, 0.0070477724, 4, -0.0071456432, 0.13067734, 0.79953, -0.15925997, 0.1688528, -0.80031323, -0.25283867, 0.27770162, -4, -0.41581833, 0.23561078, -4, -0.44097495, 0.23561078, -4, 0.44087708, 0.09710258, 0.79953, 0.18167579, 0.13067734, 0.79953, 0.1591621, 0.0070477724, 4, 0.0070477724, 0.27770162, -4, 0.41572046, 0.1688528, -0.80031323, 0.2527408, 0.008809686, 4, -0.0047963858, 0.1591621, 0.79953, -0.13077524, 0.38645262, -4, -0.31724745, 0.21495694, -0.80031323, -0.21505481, 0.31714958, -4, -0.38655052, 0.31714958, -4, 0.38645262, 0.1591621, 0.79953, 0.13067734, 0.008809686, 4, 0.004698515, 0.21495694, -0.80031323, 0.21495694, 0.38645262, -4, 0.31714958, 0.009201229, 4, -0.003915429, 0.46192247, -4, -0.1913665, 0.18167579, 0.79953, -0.09720048, 0.41572046, -4, -0.27779955, 0.2527408, -0.80031323, -0.16895068, 0.35346514, -4, -0.35356304, 0.35346514, -4, 0.35346514, 0.2527408, -0.80031323, 0.1688528, 0.009201229, 4, 0.0038175583, 0.41572046, -4, 0.27770162, 0.18167579, 0.79953, 0.09710258, 0.46192247, -4, 0.19126862, 0.009788573, 4, -0.0019577146, 0.47846514, -4, -0.14516446, 0.44087708, -4, -0.23570868, 0.009788573, 4, 0.0018598437, 0.47846514, -4, 0.14506656, 0.44087708, -4, 0.23561078, 0.009886444, 4, -0.0010767281, 0.10747844, 2.3993735, -0.010669529, 0.40005875, -2.4001565, -0.039447933, 0.20203602, 0.79953, -0.04023102, 0.4903093, -4, -0.097592026, 0.20203602, 0.79953, 0.04013312, 0.40005875, -2.4001565, 0.039350033, 0.10747844, 2.3993735, 0.010571659, 0.009886444, 4, 0.0009788871, 0.4903093, -4, 0.097494125, 0.009984314, 4, 0, 0.5, -4, 0, 0.49755287, -4, -0.049040705, 0.49755287, -4, 0.048942864)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mxj8s"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Spikes" type="Node3D"]
+script = ExtResource("1_mxj8s")
+
+[node name="Construction" type="Node3D" parent="."]
+
+[node name="Rocks6" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.371139e-08, -1, 0, 0.17364813, -7.590401e-09, 0.9848077, -0.9848077, 4.304731e-08, 0.17364813, 54, -5.1, 28)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks6"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks6/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks6/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks6/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks6/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks7" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.3711392e-08, -1, 6.169221e-16, -0.087155774, 3.8097e-09, 0.99619466, -0.99619466, 4.354505e-08, -0.087155774, 54, 1.9000001, 28.5)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks7"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks7/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks7/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks7/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks7/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks8" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -2.5148863e-16, -0.2588191, 1.1313344e-08, 0.96592575, -0.96592575, 4.2221956e-08, -0.2588191, 54, 7.9, 27.4)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks8"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks8/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks8/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks8/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks8/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks9" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -3.3892679e-15, -0.4226183, 1.8473235e-08, 0.9063077, -0.9063077, 3.9615962e-08, -0.4226183, 54, 13.9, 24.9)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks9"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks9/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks9/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks9/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks9/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks14" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.371139e-08, -1, 0, 0.17364813, -7.590401e-09, 0.9848077, -0.9848077, 4.304731e-08, 0.17364813, 34, -5.1, 28)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks14"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks14/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks14/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks14/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks14/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks15" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.3711392e-08, -1, 6.169221e-16, -0.087155774, 3.8097e-09, 0.99619466, -0.99619466, 4.354505e-08, -0.087155774, 34, 1.9000001, 28.5)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks15"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks15/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks15/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks15/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks15/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks16" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -2.5148863e-16, -0.2588191, 1.1313344e-08, 0.96592575, -0.96592575, 4.2221956e-08, -0.2588191, 34, 7.9, 27.4)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks16"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks16/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks16/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks16/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks16/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks17" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -3.3892679e-15, -0.4226183, 1.8473235e-08, 0.9063077, -0.9063077, 3.9615962e-08, -0.4226183, 34, 13.9, 24.9)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks17"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks17/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks17/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks17/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks17/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks22" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.371139e-08, -1, 0, 0.17364813, -7.590401e-09, 0.9848077, -0.9848077, 4.304731e-08, 0.17364813, 14, -5.1, 28)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks22"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks22/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks22/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks22/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks22/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks23" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.3711392e-08, -1, 6.169221e-16, -0.087155774, 3.8097e-09, 0.99619466, -0.99619466, 4.354505e-08, -0.087155774, 14, 1.9000001, 28.5)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks23"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks23/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks23/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks23/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks23/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks24" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -2.5148863e-16, -0.2588191, 1.1313344e-08, 0.96592575, -0.96592575, 4.2221956e-08, -0.2588191, 14, 7.9, 27.4)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks24"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks24/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks24/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks24/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks24/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks25" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -3.3892679e-15, -0.4226183, 1.8473235e-08, 0.9063077, -0.9063077, 3.9615962e-08, -0.4226183, 14, 13.9, 24.9)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks25"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks25/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks25/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks25/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks25/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks30" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.371139e-08, -1, 0, 0.17364813, -7.590401e-09, 0.9848077, -0.9848077, 4.304731e-08, 0.17364813, -6, -5.1, 28)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks30"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks30/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks30/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks30/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks30"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks30/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks31" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.3711392e-08, -1, 6.169221e-16, -0.087155774, 3.8097e-09, 0.99619466, -0.99619466, 4.354505e-08, -0.087155774, -6, 1.9000001, 28.5)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks31"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks31/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks31/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks31/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks31"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks31/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks32" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -2.5148863e-16, -0.2588191, 1.1313344e-08, 0.96592575, -0.96592575, 4.2221956e-08, -0.2588191, -6, 7.9, 27.4)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks32"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks32/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks32/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks32/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks32"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks32/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks33" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -3.3892679e-15, -0.4226183, 1.8473235e-08, 0.9063077, -0.9063077, 3.9615962e-08, -0.4226183, -6, 13.9, 24.9)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks33"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks33/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks33/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks33/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks33"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks33/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks38" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.371139e-08, -1, 0, 0.17364813, -7.590401e-09, 0.9848077, -0.9848077, 4.304731e-08, 0.17364813, -26, -5.1, 28)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks38"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks38/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks38/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks38/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks38"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks38/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks39" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.3711392e-08, -1, 6.169221e-16, -0.087155774, 3.8097e-09, 0.99619466, -0.99619466, 4.354505e-08, -0.087155774, -26, 1.9000001, 28.5)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks39"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks39/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks39/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks39/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks39"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks39/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks40" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -2.5148863e-16, -0.2588191, 1.1313344e-08, 0.96592575, -0.96592575, 4.2221956e-08, -0.2588191, -26, 7.9, 27.4)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks40"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks40/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks40/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks40/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks40"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks40/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks41" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -3.3892679e-15, -0.4226183, 1.8473235e-08, 0.9063077, -0.9063077, 3.9615962e-08, -0.4226183, -26, 13.9, 24.9)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks41"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks41/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks41/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks41/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks41"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks41/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks46" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.371139e-08, -1, 0, 0.17364813, -7.590401e-09, 0.9848077, -0.9848077, 4.304731e-08, 0.17364813, -46, -5.1, 28)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks46"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks46/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks46/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks46/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks46"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks46/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks47" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.3711392e-08, -1, 6.169221e-16, -0.087155774, 3.8097e-09, 0.99619466, -0.99619466, 4.354505e-08, -0.087155774, -46, 1.9000001, 28.5)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks47"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks47/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks47/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks47/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks47"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks47/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks48" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -2.5148863e-16, -0.2588191, 1.1313344e-08, 0.96592575, -0.96592575, 4.2221956e-08, -0.2588191, -46, 7.9, 27.4)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks48"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks48/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks48/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks48/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks48"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks48/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks49" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.37114e-08, -1, -3.3892679e-15, -0.4226183, 1.8473235e-08, 0.9063077, -0.9063077, 3.9615962e-08, -0.4226183, -46, 13.9, 24.9)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks49"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks49/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks49/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks49/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks49"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks49/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks10" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.2383235e-08, 1, 1.5180804e-08, 0.17364815, -7.590402e-09, 0.9848077, 0.9848077, 4.4375465e-08, -0.17364815, -46, -5.1, -27.8)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks10"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks10/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks10/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks10/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks10/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks11" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.337871e-08, 1, -7.6194e-09, -0.087155774, 3.8096997e-09, 0.99619466, 0.99619466, 4.3877726e-08, 0.087155774, -46, 1.9000001, -28.3)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks11"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks11/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks11/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks11/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks11/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks12" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.0732512e-08, 1, -2.2626685e-08, -0.2588191, 1.1313344e-08, 0.96592575, 0.96592575, 4.520082e-08, 0.2588191, -46, 7.9, -27.199999)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks12"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks12/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks12/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks12/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks12/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks13" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-3.5520532e-08, 1, -3.694646e-08, -0.4226183, 1.8473235e-08, 0.9063077, 0.9063077, 4.7806815e-08, 0.4226183, -46, 13.9, -24.699999)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks13"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks13/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks13/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks13/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks13/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks18" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.2383235e-08, 1, 1.5180804e-08, 0.17364815, -7.590402e-09, 0.9848077, 0.9848077, 4.4375465e-08, -0.17364815, -26, -5.1, -27.799997)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks18"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks18/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks18/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks18/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks18/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks19" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.337871e-08, 1, -7.6194e-09, -0.087155774, 3.8096997e-09, 0.99619466, 0.99619466, 4.3877726e-08, 0.087155774, -26, 1.9000001, -28.299997)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks19"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks19/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks19/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks19/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks19/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks20" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.0732512e-08, 1, -2.2626685e-08, -0.2588191, 1.1313344e-08, 0.96592575, 0.96592575, 4.520082e-08, 0.2588191, -26, 7.9, -27.199997)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks20"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks20/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks20/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks20/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks20/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks21" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-3.5520532e-08, 1, -3.694646e-08, -0.4226183, 1.8473235e-08, 0.9063077, 0.9063077, 4.7806815e-08, 0.4226183, -26, 13.9, -24.699997)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks21"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks21/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks21/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks21/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks21/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks26" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.2383235e-08, 1, 1.5180804e-08, 0.17364815, -7.590402e-09, 0.9848077, 0.9848077, 4.4375465e-08, -0.17364815, -6, -5.1, -27.799995)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks26"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks26/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks26/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks26/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks26/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks27" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.337871e-08, 1, -7.6194e-09, -0.087155774, 3.8096997e-09, 0.99619466, 0.99619466, 4.3877726e-08, 0.087155774, -6, 1.9000001, -28.299995)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks27"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks27/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks27/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks27/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks27"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks27/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks28" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.0732512e-08, 1, -2.2626685e-08, -0.2588191, 1.1313344e-08, 0.96592575, 0.96592575, 4.520082e-08, 0.2588191, -6, 7.9, -27.199995)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks28"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks28/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks28/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks28/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks28"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks28/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks29" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-3.5520532e-08, 1, -3.694646e-08, -0.4226183, 1.8473235e-08, 0.9063077, 0.9063077, 4.7806815e-08, 0.4226183, -6, 13.9, -24.699997)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks29"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks29/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks29/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks29/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks29"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks29/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks34" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.2383235e-08, 1, 1.5180804e-08, 0.17364815, -7.590402e-09, 0.9848077, 0.9848077, 4.4375465e-08, -0.17364815, 14, -5.1, -27.799995)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks34"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks34/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks34/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks34/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks34"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks34/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks35" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.337871e-08, 1, -7.6194e-09, -0.087155774, 3.8096997e-09, 0.99619466, 0.99619466, 4.3877726e-08, 0.087155774, 14, 1.9000001, -28.299995)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks35"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks35/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks35/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks35/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks35"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks35/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks36" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.0732512e-08, 1, -2.2626685e-08, -0.2588191, 1.1313344e-08, 0.96592575, 0.96592575, 4.520082e-08, 0.2588191, 14, 7.9, -27.199995)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks36"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks36/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks36/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks36/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks36"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks36/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks37" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-3.5520532e-08, 1, -3.694646e-08, -0.4226183, 1.8473235e-08, 0.9063077, 0.9063077, 4.7806815e-08, 0.4226183, 14, 13.9, -24.699993)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks37"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks37/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks37/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks37/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks37"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks37/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks42" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.2383235e-08, 1, 1.5180804e-08, 0.17364815, -7.590402e-09, 0.9848077, 0.9848077, 4.4375465e-08, -0.17364815, 34, -5.1, -27.799994)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks42"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks42/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks42/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks42/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks42"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks42/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks43" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.337871e-08, 1, -7.6194e-09, -0.087155774, 3.8096997e-09, 0.99619466, 0.99619466, 4.3877726e-08, 0.087155774, 34, 1.9000001, -28.299994)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks43"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks43/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks43/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks43/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks43"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks43/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks44" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.0732512e-08, 1, -2.2626685e-08, -0.2588191, 1.1313344e-08, 0.96592575, 0.96592575, 4.520082e-08, 0.2588191, 34, 7.9, -27.199993)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks44"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks44/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks44/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks44/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks44"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks44/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks45" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-3.5520532e-08, 1, -3.694646e-08, -0.4226183, 1.8473235e-08, 0.9063077, 0.9063077, 4.7806815e-08, 0.4226183, 34, 13.9, -24.699993)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks45"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks45/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks45/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks45/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks45"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks45/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks50" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.2383235e-08, 1, 1.5180804e-08, 0.17364815, -7.590402e-09, 0.9848077, 0.9848077, 4.4375465e-08, -0.17364815, 54, -5.1, -27.799992)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks50"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks50/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks50/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks50/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks50"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks50/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks51" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.337871e-08, 1, -7.6194e-09, -0.087155774, 3.8096997e-09, 0.99619466, 0.99619466, 4.3877726e-08, 0.087155774, 54, 1.9000001, -28.299992)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks51"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks51/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks51/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks51/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks51"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks51/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks52" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-4.0732512e-08, 1, -2.2626685e-08, -0.2588191, 1.1313344e-08, 0.96592575, 0.96592575, 4.520082e-08, 0.2588191, 54, 7.9, -27.199991)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks52"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks52/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks52/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks52/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks52"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks52/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")
+
+[node name="Rocks53" type="GPUParticles3D" parent="Construction"]
+transform = Transform3D(-3.5520532e-08, 1, -3.694646e-08, -0.4226183, 1.8473235e-08, 0.9063077, 0.9063077, 4.7806815e-08, 0.4226183, 54, 13.9, -24.699991)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y6abw")
+draw_pass_1 = SubResource("BoxMesh_5so3h")
+
+[node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks53"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
+mesh = SubResource("SphereMesh_2d8th")
+skeleton = NodePath("Spike")
+
+[node name="Spike" type="MeshInstance3D" parent="Construction/Rocks53/PlacementPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6000004, -1.4305115e-06)
+mesh = SubResource("CylinderMesh_e463q")
+skeleton = NodePath("../../..")
+
+[node name="DamageArea" type="Area3D" parent="Construction/Rocks53/PlacementPoint/Spike"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.4305115e-06)
+
+[node name="DamageShape" type="CollisionShape3D" parent="Construction/Rocks53/PlacementPoint/Spike/DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -1.4305115e-06)
+shape = SubResource("ConvexPolygonShape3D_k28qe")
+
+[node name="DetectArea" type="Area3D" parent="Construction/Rocks53"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.059797e-07, 4.7683716e-07)
+
+[node name="DetectShape" type="CollisionShape3D" parent="Construction/Rocks53/DetectArea"]
+transform = Transform3D(8.704, 0, 0, 2.842171e-14, 2.4999995, 0, -2.842171e-14, 0, 2.5000005, 3, -1.3113413e-07, 0)
+shape = SubResource("ConvexPolygonShape3D_mxj8s")

@@ -38,6 +38,8 @@ script = ExtResource("1_4flbx")
 infection_limit = 100.0
 infection_rate = 0.8
 stamina_drain_sprint = 0.2
+wall_jump_velocity_max = 120
+wall_jump_boost_timer_max = 15.0
 pixelization = 2.0
 
 [node name="Head" type="Node3D" parent="."]

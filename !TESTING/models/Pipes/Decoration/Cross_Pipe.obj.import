@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b78qkdxum4e0d"
+path="res://.godot/imported/Cross_Pipe.obj-8eedd3cbb6abbc33eef7587b8df5e49f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Cross_Pipe.obj-8eedd3cbb6abbc33eef7587b8df5e49f.mesh"]
+
+source_file="res://!TESTING/models/Pipes/Decoration/Cross_Pipe.obj"
+dest_files=["res://.godot/imported/Cross_Pipe.obj-8eedd3cbb6abbc33eef7587b8df5e49f.mesh", "res://.godot/imported/Cross_Pipe.obj-8eedd3cbb6abbc33eef7587b8df5e49f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

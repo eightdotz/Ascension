@@ -4,7 +4,7 @@ extends Node3D
 @export var traps: Array[NodePath] = [] ##Assign the paths to traps here
 @onready var start: Node3D = $Start
 @onready var end: Node3D = $End
-@onready var lights = $Lighting.get_children()
+@onready var lights = $MainBody/Lighting.get_children()
 @onready var overlap = $OverlapChecks.get_children()
 var id: int = 0
 
