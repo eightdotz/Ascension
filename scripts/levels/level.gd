@@ -27,9 +27,9 @@ var total_spawned_pieces: int
 
 func _ready() -> void:
 	if not type:
-		printerr("Level type not set!")
+		printerr("PLAYER:\nLevel type not set!")
 	if type == "Dungeon" and not biome:
-		printerr("Type is of Dungeon but the Biome has not been defined. This will break!")
+		printerr("PLAYER:\nType is of Dungeon but the Biome has not been defined. This will break!")
 
 func spawn():
 	var selected_item
@@ -49,14 +49,14 @@ func spawn():
 		else:
 			selected_item = avaliable_pieces[0]
 		if next_piece:
-			print("Swapping to overridden piece")
+			print("LEVEL GENERATION:\nSwapping to overridden piece")
 			selected_item = next_piece
 			next_piece = ""
 			
 		spawn_tracker.append(selected_item)
 		var scene_res = load(selected_item)
 		if scene_res == null:
-			push_error("Failed to load piece: " + selected_item)
+			push_error("LEVEL GENERATION:\nFailed to load piece: " + selected_item)
 			continue
 		var piece = scene_res.instantiate()
 		pieces.add_child(piece)
@@ -79,7 +79,7 @@ func spawn():
 		if main_body:
 			main_body.visibility_range_end = 300
 		else:
-			printerr("MainBody doesnt exist within piece scene! Performance will suffer!")
+			printerr("LEVEL GENERATION:\nMainBody doesnt exist within piece scene! Performance will suffer!")
 		#piece.get_node("Traps").visibility_parent = "../MainBody"
 		#piece.get_node("Lighting").visibility_parent = "../MainBody"
 	total_spawned_pieces = spawned_pieces.size()
@@ -89,7 +89,9 @@ func spawn():
 		goal_point.global_transform = spawned_pieces[end_index].get_node("End").global_transform
 	if ambience:
 		get_parent().get_parent().get_node("player").start_ambience(type, ambience, music)
-
+	print("LEVEL GENERATION:")
+	for i in spawned_pieces:
+		print("Spawned: ", spawned_pieces[i].name)
 func configure_spawn(amount: int, cooldown: int): ##Needs to be called by controller second
 	spawn_amount = amount
 	room_cooldown = cooldown
@@ -97,8 +99,9 @@ func configure_spawn(amount: int, cooldown: int): ##Needs to be called by contro
 func populate(): ##Needs to be called by controller first
 	var folder_path: String = get_biome[biome]
 	var dir := DirAccess.open(folder_path)
-	if dir == null: printerr("Could not open folder"); return
+	if dir == null: printerr("LEVEL GENERATION:\nCould not open folder"); return
 	dir.list_dir_begin()
+	print("LEVEL GENERATION:")
 	for file: String in dir.get_files():
 		if file.ends_with(".import"):
 			continue
@@ -114,7 +117,7 @@ func populate(): ##Needs to be called by controller first
 
 func get_level_type():
 	if not type:
-		printerr("Type not set yet! Maybe be a timing issue!")
+		printerr("LEVEL GENERATION:\nType not set yet! Maybe be a timing issue!")
 	return type
 
 func get_piece_start(id: int):
@@ -124,8 +127,12 @@ func get_piece_end(id: int):
 	return spawned_pieces[id].get_end()
 
 func fix_overlap():
-	print(current_id)
-	print(spawned_pieces.keys())
+	print("LEVEL GENERATION:")
+	print("Fixing overlap")
+	print("Current pipe ID: ",current_id)
+	print("Current spawned pieces")
+	for i in spawned_pieces.values():
+		print(i.name)
 	var previous_id = current_id - 1
 	await get_tree().physics_frame
 	spawned_pieces[previous_id].queue_free()
@@ -144,7 +151,7 @@ func fix_overlap():
 	
 func _on_piece_entered(value: int):
 	player_position = value
-	print("Player Position: " + str(value) + " " + str(last_light_position))
+	print("LEVEL GENERATION:\nPlayer Position: " + str(value) + " " + str(last_light_position))
 	if spawned_pieces:
 		spawned_pieces[player_position].get_node("Checkpoint").queue_free()
 	if player_position < last_light_position:

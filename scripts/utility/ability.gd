@@ -26,26 +26,26 @@ func _ready() -> void:
 
 func execute(player_node:CharacterBody3D = null):
 	if type == "Upgrade":
-		print("Type: " + type)
+		print("ABILITY: Type: " + type)
 		if upgrade_choice not in upgradables:
 			printerr("That is not an stat you can upgrade! " + upgrade_choice)
 			return
 		var player = get_parent()
 		if player:
-			print("Node found")
+			print("ABILITY: Node found")
 			if not player.has_method("is_player"):
-				printerr("Not assigned to player!")
+				printerr("ABILITY: Not assigned to player!")
 				if player_node:
-					print("This has been resolved.")
+					print("ABILITY: This has been resolved.")
 					player = player_node
-			print("Applying upgrade")
+			print("ABILITY: Applying upgrade")
 			player.upgrade(upgrade_choice, upgrade_amount)
 		else:
-			printerr("Not assigned to player!")
+			printerr("ABILITY: Not assigned to player!")
 	else:
-		print("Executing ability")
+		print("ABILITY: Executing ability")
 		if not executables.has(ability_choice):
-			printerr("No existing ability with the name: " + ability_choice)
+			printerr("ABILITY: No existing ability with the name: " + ability_choice)
 			return
 		executables[ability_choice].call()
 
@@ -65,7 +65,7 @@ func set_ability_options(new_name:String, new_value:float, new_duration:float = 
 		if new_duration > 0:
 			duration = new_duration
 		else:
-			printerr("Type has been declared as ability. SET THE DURATION PROPERLY")
+			printerr("ABILITY: Type has been declared as ability. SET THE DURATION PROPERLY")
 	else:
 		upgrade_choice = new_name
 		if upgrade_choice == "Jump Quanity":
@@ -78,13 +78,9 @@ func set_ability_options(new_name:String, new_value:float, new_duration:float = 
 				new_value = 0.1
 				
 		upgrade_amount = new_value
-	
-	print(new_name)
-	print(new_value)
-	print(new_duration)
 
 func timeslow():
-	print("Slowing time")
+	print("ABILITY: Slowing time")
 	Engine.time_scale = intensity
 	print(Engine.time_scale)
 	await get_tree().create_timer(duration, true, false, true).timeout
@@ -92,7 +88,7 @@ func timeslow():
 	print(Engine.time_scale)
 	
 func boost():
-	print("Boosting")
+	print("ABILITY: Boosting")
 	var player = get_parent()
 	player.add_speed_modifier(SpeedMod.BOOST, intensity)
 	await get_tree().create_timer(duration).timeout

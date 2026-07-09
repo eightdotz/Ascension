@@ -574,16 +574,16 @@ func _on_click(button: int) -> void:
 	
 func upgrade(upgrade_name: String, amount: float):
 	var upgradables = {"Max Health": health_max, "Regeneration": regen, "Max Stamina": stamina_max, "Max Speed": max_speed, "Jump Quanity":jumps, "Jump Height":jump_speed, "Wall Jump Boost Duration":wall_jump_boost_duration, "Wall Jump Speed": wall_jump_force, "Wall Jump Max Speed":wall_jump_velocity_max}
-	print("Upgrading " + upgrade_name + " by " + str(amount))
+	print("PLAYER:\nUpgrading " + upgrade_name + " by " + str(amount))
 	upgradables[upgrade_name] += amount
 	infection_speed_relief = wall_jump_velocity_max
 
 func add_ability(new_ability: Ability):
 	if new_ability.type == "Upgrade":
-		print("Upgrading")
+		print("PLAYER:\nUpgrading")
 		new_ability.execute(self)
 		return
-	print("Assigning")
+	print("PLAYER:\nAssigning")
 	if not ability_1:
 		ability_1 = new_ability
 	elif not ability_2:
@@ -597,18 +597,18 @@ func overwrite_ability(new_ability: Ability):
 	pass
 
 func _on_root_level_changed() -> void:
-	print("Level Changed")
+	print("PLAYER:\nLevel Changed")
 	await get_tree().process_frame
 	if not root:
 		root = get_parent()
 	if root:
-		print("Found Root")
+		print("PLAYER:\nFound Root")
 		infecting = true
 		if current_infection:
 			current_infection -= (current_infection / 4)
 		if root.get_level_type() == "Ability":
 			infecting = false
-			print("Level Type is ability")
+			print("PLAYER:\nLevel Type is ability")
 			var dungeon = root.dungeon
 			if dungeon:
 				if on_click.is_connected(dungeon._on_click):
@@ -718,7 +718,7 @@ func unpause_effect():
 func screen_fx_enable(vfxname: String):
 	var vfx = interface.get_node("VFX/"+vfxname)
 	if not vfx:
-		printerr("VFX Node with that name does not exist")
+		printerr("PLAYER:\nVFX Node with that name does not exist")
 		return
 	else:
 		vfx.visible = true
@@ -726,7 +726,7 @@ func screen_fx_enable(vfxname: String):
 func screen_fx_disable(vfxname: String):
 	var vfx = interface.get_node("VFX/"+vfxname)
 	if not vfx:
-		printerr("VFX Node with that name does not exist")
+		printerr("PLAYER:\nVFX Node with that name does not exist")
 		return
 	else:
 		vfx.visible = false
@@ -784,7 +784,7 @@ func _on_level_music_value_change(value: float) -> void:
 
 func load_sounds():
 	var dir := DirAccess.open("res://audio/fooley/")
-	if dir == null: printerr("Could not open folder"); return
+	if dir == null: printerr("PLAYER:\nCould not open folder"); return
 	dir.list_dir_begin()
 	for file: String in dir.get_files():
 		var resource := dir.get_current_dir() + file

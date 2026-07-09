@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var lighting: Node3D = $"../../Lighting"
+@onready var lighting: Node3D = $"../../MainBody/Lighting"
 @export var bad_color: Color
 @export var pass_color: Color
 @export var idle_animation_name = ""

@@ -78,30 +78,27 @@ func randomize_ability():
 	
 	ability.selected_ability.configure_new_ability(current_type)
 	value = random_value(rarity, current_type)
-	print(value)
 	if current_type == "Ability":
 		var new_ability = random(abilities)
 		if new_ability == "timeslow":
 			value = randi_range(10, 80) / 100.0
-			print(value)
 		ability.selected_ability.set_ability_options(new_ability, value, (randi_range(100, 500) / 100.0))
 		ability.set_page_name(new_ability)
 	else:
 		var upgrade_option = random(upgrade_options)
 		ability.set_page_name(upgrade_option)
 		ability.selected_ability.set_ability_options(upgrade_option, value)
+	print("ABILITY GENERATION:\nType: %s\nRarity: %s\nValue: %f", current_type, rarity, value)
 	ability.set_page_value(1)
 	rarity = random_rarity()
 	type = random_type()
 	value = random_value(rarity, type)
 	ability_2.set_rarity(rarity)
 	ability_2.selected_ability.configure_new_ability(type)
-	print(value)
 	if current_type == "Ability":
 		var new_ability = random(abilities)
 		if new_ability == "timeslow":
 			value = randi_range(10, 80) / 100.0
-			print(value)
 		ability_2.selected_ability.set_ability_options(new_ability, value, (randi_range(100, 500) / 100.0))
 		ability_2.set_page_name(new_ability)
 	else:
@@ -109,6 +106,7 @@ func randomize_ability():
 		ability_2.set_page_name(upgrade_option)
 		ability_2.selected_ability.set_ability_options(random(upgrade_options), value)
 	ability_2.set_page_value(2)
+	print("ABILITY GENERATION:\nType: %s\nRarity: %s\nValue: %f", current_type, rarity, value)
 
 func _intro():
 	animation_player.play("Fall")
@@ -136,7 +134,6 @@ func _physics_process(_delta: float) -> void:
 
 func toggle_card():
 	if animation_player.is_playing(): return
-	print(viewing, on_card, selected_card)
 	ability_2.toggle_hitbox()
 	ability.toggle_hitbox()
 	if not viewing:
