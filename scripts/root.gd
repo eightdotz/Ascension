@@ -4,6 +4,7 @@ extends Node3D
 @export var room_cooldown: int = 0 ##The amount of connection pieces required before another room can spawn
 @export var ability_spawn_range: int = 1
 @export var ability_spawn_threshold: int = 5
+@export var piss_break_floor: int = 10
 @export_group("Experimental Settings")
 @export var room_cooldown_enable_divide: bool = false ##Instead of the room cooldown variable representing the amount of connection pieces between rooms, it instead specifies the ratio of rooms to Spawn Amount. With this enabled, Room Cooldown being set to 2 means that if Spawn Amount is 10, room cooldown would be Spawn Amount / Room Cooldown or 5
 @export var test_load: bool = false ##Enables the default loading of the assigned level
@@ -14,11 +15,12 @@ extends Node3D
 @onready var player: CharacterBody3D = $player
 @onready var goal: Node3D = $Goal
 @onready var ABILITY_SELECTION = "res://scenes/main/AbilitySelection.tscn"
-
+@onready var PISS_BREAK = "res://scenes/main/PissBreak.tscn"
 @onready var LEVEL = "res://scenes/main/Level.tscn"
 @onready var STARTING = "res://scenes/main/StartingArea.tscn"
 @onready var player_path = "res://scenes/player/player.tscn"
 
+var on_break = 0
 var base_spawn
 var current_level_type
 var current_floor = -1
@@ -103,12 +105,18 @@ func _on_goal_level_completed() -> void:
 	print(spawn_amount)
 	if test_load:
 		load_level(assigned_level)
+		return
+	if current_floor % piss_break_floor and not on_break:
+		on_break = 1
+		load_level(PISS_BREAK)
 	elif not randi_range(0, ability_spawn_range) and current_floor > ability_spawn_threshold and current_level_type != "Ability":
 		await player.fade_to_black(1.0, true)
 		load_level(ABILITY_SELECTION)
+		on_break = 0
 	else:
 		await player.fade_to_black(1.0, true)
 		load_level(LEVEL)
+		on_break = 0
 
 func restart():
 	player.queue_free()
