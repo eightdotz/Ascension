@@ -9,6 +9,7 @@ extends Node3D
 @onready var flash: OmniLight3D = $Flash
 @onready var gpu_particles_3d: GPUParticles3D = $ExplosionFX/GPUParticles3D
 enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
+@onready var wire: MeshInstance3D = $Wire
 
 
 func _ready() -> void:
@@ -36,6 +37,7 @@ func _detected(body: Node3D) -> void:
 	if body.has_method("is_player"):
 		await get_tree().create_timer(0.1).timeout
 		flash_lights()
+		wire.visible = false
 		body.take_damage(randf_range(damage_min, damage_max))
 		body.set_knockback(global_position, Vector3(knockback_force, knockback_force, knockback_force))
 		body.add_speed_modifier(SpeedMod.SLOW, 0.8)

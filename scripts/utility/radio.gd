@@ -4,10 +4,11 @@ var songs = "res://audio/music/"
 var pos = 0
 var songs_to_load = []
 @onready var audio_stream_player_3d: AudioStreamPlayer3D = $"../../AudioStreamPlayer3D"
+@onready var label_3d: Label3D = $"../Label3D"
 
 func _ready():
 	populate()
-
+	label_3d.text = "Paused"
 func interact(button):
 	if not songs_to_load:
 		print("RADIO: No songs to play")
@@ -15,6 +16,7 @@ func interact(button):
 	if button == MOUSE_BUTTON_LEFT:
 		if audio_stream_player_3d.stream_paused:
 			audio_stream_player_3d.stream_paused = !audio_stream_player_3d.stream_paused
+			label_3d.text = "Playing " + str(pos)
 			return
 		print("RADIO: Playing song ", songs_to_load[pos])
 		var music = load(songs_to_load[pos])
@@ -23,10 +25,15 @@ func interact(button):
 		pos += 1
 		if pos > songs_to_load.size() - 1:
 			pos = 0
+		label_3d.text = "Playing " + str(pos)
 	else:
 		print("RADIO: Stopping songs")
 		audio_stream_player_3d.stream_paused = !audio_stream_player_3d.stream_paused
-
+		if audio_stream_player_3d.stream_paused:
+			label_3d.text = "Resume"
+		else:
+			label_3d.text = "Playing " + str(pos)
+			
 func populate(): 
 	print("RADIO: Populating list")
 	var dir := DirAccess.open(songs)
