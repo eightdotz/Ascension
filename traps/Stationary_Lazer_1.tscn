@@ -160,6 +160,7 @@ transform = Transform3D(7.1428566, 0, 0, 0, 0.0456194, 0, 0, 0, 7.1428576, -3.84
 light_color = Color(1, 0, 0.33333334, 1)
 omni_range = 51.0
 omni_attenuation = 0.789
+omni_shadow_mode = 0
 
 [node name="DamageArea" type="Area3D" parent="."]
 transform = Transform3D(0.102226384, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -141.67, 0, 0)

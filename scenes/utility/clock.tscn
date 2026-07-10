@@ -41,3 +41,4 @@ light_color = Color(0.31099907, 0.8917758, 0, 1)
 light_energy = 1.65
 omni_range = 5.640289
 omni_attenuation = -0.048
+omni_shadow_mode = 0

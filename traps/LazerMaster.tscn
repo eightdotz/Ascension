@@ -414,6 +414,7 @@ transform = Transform3D(5, 0, 0, 0, 0.03193358, 0, 0, 0, 5.0000005, -3.843628, 0
 light_color = Color(1, 0, 0.33333334, 1)
 omni_range = 51.0
 omni_attenuation = 0.789
+omni_shadow_mode = 0
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_detect_player"]
 [connection signal="body_entered" from="DamageArea" to="." method="_detect_hitbox"]

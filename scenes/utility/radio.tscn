@@ -110,6 +110,12 @@ outline_modulate = Color(0, 0, 0, 0)
 text = "Play me!"
 font_size = 16
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Box/Label3D"]
+light_color = Color(0, 0.88766277, 0, 1)
+omni_range = 0.277
+omni_attenuation = 0.71
+omni_shadow_mode = 0
+
 [node name="Label3D2" type="Label3D" parent="Box"]
 transform = Transform3D(0.33333334, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.029102057, 0.4154784, 0.5323787)
 modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)

@@ -52,5 +52,6 @@ light_color = Color(0.547547, 0.9771727, 1.1551381e-06, 1)
 light_energy = 1.681
 omni_range = 49.043808
 omni_attenuation = 0.71
+omni_shadow_mode = 0
 
 [connection signal="body_entered" from="Goal/GoalArea" to="." method="_on_entered"]

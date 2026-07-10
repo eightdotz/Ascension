@@ -68,6 +68,7 @@ func load_level(path: String):
 	level_node.add_child(dungeon)
 	current_level_type = dungeon.get_level_type()
 	if current_level_type == "Dungeon":
+		dungeon.check_transition(current_floor)
 		dungeon.populate()
 		dungeon.configure_spawn(spawn_amount, room_cooldown)
 		await dungeon.spawn()
@@ -100,6 +101,7 @@ func load_first_level():
 		load_level(STARTING)
 
 func _on_goal_level_completed() -> void:
+	
 	print(base_spawn)
 	spawn_amount = base_spawn + current_floor
 	print(spawn_amount)

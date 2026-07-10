@@ -1,7 +1,18 @@
 extends Node3D
+@onready var particles: Node3D = $Particles
+@onready var world_environment: WorldEnvironment = $WorldEnvironment
 
+@export_group("Generation")
 @export_enum("Dungeon", "Ability", "Shop") var type: String
 @export_enum("Sewer", "Fields", "Space","Tower") var biome: String
+@export var transition_1: int = 25
+@export_enum("Sewer", "Fields", "Space","Tower") var biome_2: String
+@export var transition_2: int = 50
+@export_enum("Sewer", "Fields", "Space","Tower") var biome_3: String
+@export var transition_3: int = 75
+@export_enum("Sewer", "Fields", "Space","Tower") var biome_4: String
+
+
 @export_group("Audio")
 @export var ambience: String
 @export var music: String
@@ -9,6 +20,9 @@ extends Node3D
 @onready var pieces: Node3D = $Pieces
 @onready var spawn_point: Node3D = $SpawnPoint
 @onready var goal_point: Node3D = $GoalPoint
+
+var get_env = {"Space": "res://enviorments/space.tres", "Sewer": null, "Fields": null, "Tower": null}
+
 var room_cooldown = 0
 var get_biome = {"Sewer":"res://scenes/biomes/sewer/", "Fields":"res://scenes/biomes/fields/", "Space":"res://scenes/biomes/space/","Tower":"res://scenes/biomes/tower/"}
 var next_transform := Transform3D.IDENTITY
@@ -92,14 +106,23 @@ func spawn():
 	print("LEVEL GENERATION:")
 	for i in spawned_pieces:
 		print("Spawned: ", spawned_pieces[i].name)
+
 func configure_spawn(amount: int, cooldown: int): ##Needs to be called by controller second
 	spawn_amount = amount
 	room_cooldown = cooldown
 
 func populate(): ##Needs to be called by controller first
+	if get_env[biome]:
+		world_environment.environment = load(get_env[biome])
+	else:
+		world_environment.environment = null
+	if biome == "Space":
+			particles.visible = true
+	else:
+		particles.visible = false
 	var folder_path: String = get_biome[biome]
 	var dir := DirAccess.open(folder_path)
-	if dir == null: printerr("LEVEL GENERATION:\nCould not open folder"); return
+	if dir == null: printerr("LEVEL GENERATION: Could not open folder"); return
 	dir.list_dir_begin()
 	print("LEVEL GENERATION:")
 	for file: String in dir.get_files():
@@ -151,8 +174,11 @@ func fix_overlap():
 	
 func _on_piece_entered(value: int):
 	player_position = value
-	print("LEVEL GENERATION:\nPlayer Position: " + str(value) + " " + str(last_light_position))
+	print("LEVEL GENERATION: Player Position: " + str(value) + " " + str(last_light_position))
 	if spawned_pieces:
+		if biome == "Space":
+			print("LEVEL GENERATION: Moving particles")
+			particles.global_position = spawned_pieces[player_position].get_node("Checkpoint").global_position
 		spawned_pieces[player_position].get_node("Checkpoint").queue_free()
 	if player_position < last_light_position:
 		return
@@ -174,3 +200,17 @@ func _on_piece_entered(value: int):
 		var oldest_key = spawned_pieces.keys().min()
 		spawned_pieces[oldest_key].queue_free()
 		spawned_pieces.erase(oldest_key)
+
+func check_transition(floor: int):
+	print("LEVEL GENERATION: Checking for transition at floor ", str(floor))
+	if floor >= transition_1 and floor < transition_2:
+		print("Transitioning to 2!")
+		biome = biome_2
+	elif floor >= transition_2 and floor< transition_3:
+		print("Transitioning to 3!")
+		biome = biome_3
+	elif floor >= transition_3:
+		print("Transitioning to 4!")
+		biome = biome_4
+	else:
+		print("No need to transition")

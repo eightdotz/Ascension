@@ -75,6 +75,7 @@ transform = Transform3D(1, 0, 0, 0, -0.008586941, 0.9999631, 0, -0.9999631, -0.0
 light_energy = 5.0
 light_bake_mode = 1
 omni_range = 61.83305
+omni_shadow_mode = 0
 
 [node name="Neck" type="Node3D" parent="Construction"]
 

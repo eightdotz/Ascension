@@ -24,3 +24,4 @@ color = Color(0.95828694, 0.86651665, 0.5565578, 1)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.95828694, 0.86651665, 0.5565578, 1)
 omni_range = 10.0
+omni_shadow_mode = 0
