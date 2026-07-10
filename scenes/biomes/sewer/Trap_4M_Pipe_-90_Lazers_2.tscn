@@ -68,10 +68,10 @@ angle = 55.74
 energy = 1.5
 
 [node name="Start" parent="." instance=ExtResource("4_rn73i")]
-transform = Transform3D(0.9999999, 0, 1.03316026e-07, 0, 1, 0, -1.03316026e-07, 0, 0.9999999, 116.47905, 1.7945595, -0.21290588)
+transform = Transform3D(-1.4702742e-07, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -1.4702742e-07, 116.47905, 1.7945595, -0.21290588)
 
 [node name="End" parent="." instance=ExtResource("4_rn73i")]
-transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -12.70723, 2, -135)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -12.70723, 2, -135)
 
 [node name="Checkpoint" parent="." instance=ExtResource("5_06a6p")]
 transform = Transform3D(-16.8, 0, -4.7161093e-06, 0, 54.431995, 0, 1.4687027e-06, 0, -53.946007, 115.62249, 0, 1)

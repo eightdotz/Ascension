@@ -1,16 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bk2r4u7mfbf1b"]
+[gd_scene load_steps=7 format=3 uid="uid://bk2r4u7mfbf1b"]
 
 [ext_resource type="Script" uid="uid://d17g4tbdc00a" path="res://scripts/player/player.gd" id="1_4flbx"]
-[ext_resource type="Shader" uid="uid://pbatm8n807ut" path="res://scenes/player/pixelator.gdshader" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://dwpy71qv53ekt" path="res://scenes/player/pixelator_canvas.gdshader" id="3_gmlin"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
-render_priority = 0
-shader = ExtResource("2_dovo2")
-shader_parameter/pixel_size = 4.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_8afob"]
-material = SubResource("ShaderMaterial_lvxji")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gmlin"]
 
@@ -49,19 +40,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44442, -0.0576912)
 transform = Transform3D(0.333333, 0, -1.77636e-15, 0, 0.333333, 0, 1.77636e-15, 0, 0.333333, 2.86787e-10, 0.00264922, 0.00656464)
 cull_mask = 1
 
-[node name="PixelFilter" type="MeshInstance3D" parent="Head/Camera"]
-transform = Transform3D(2, 0, 1.4210855e-14, 0, 2, 0, -1.4210855e-14, 0, 2, -4.0321435e-09, -0.0026492178, -0.09224848)
-visible = false
-layers = 524288
-mesh = SubResource("QuadMesh_8afob")
-skeleton = NodePath("../..")
-
 [node name="Flashlight" type="SpotLight3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49191496, 0)
 light_energy = 1.227
 spot_range = 72.76841
 spot_attenuation = 0.72
 spot_angle = 31.535633
+
+[node name="Interact" type="RayCast3D" parent="Head"]
+transform = Transform3D(1, 4.371139e-08, -4.3711392e-08, -4.371139e-08, 0, -1.0000001, -4.371139e-08, 1.0000001, 1.9106857e-15, -6.6920904e-09, 0, -0.15309702)
+target_position = Vector3(0, -2.7, 0)
+collision_mask = 2
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
@@ -346,9 +335,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = -11.175
 anchor_right = -11.175
-offset_left = 1619.0
-offset_right = 1879.0
-offset_bottom = 49.0
+offset_left = 1537.0
+offset_top = 2.0
+offset_right = 1797.0
+offset_bottom = 51.0
 
 [node name="MvOverride" type="Label" parent="Interface/Diagnostics"]
 layout_mode = 1

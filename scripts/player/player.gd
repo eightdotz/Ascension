@@ -69,6 +69,7 @@ extends CharacterBody3D
 @onready var cache_max_speed := max_speed
 @onready var player_head = $Head
 @onready var camera = $Head/Camera
+@onready var interact: RayCast3D = $Head/Interact
 
 enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
 var _speed_modifiers: Dictionary = {}
@@ -190,6 +191,7 @@ func _input(event):
 		if event is InputEventMouseButton:
 			if event.button_index and event.is_pressed():
 				_on_click(event.button_index)
+				interact_with(event.button_index)
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("move_pause"):
@@ -323,7 +325,6 @@ func _physics_process(delta):
 		label_boost_duration.text = str(wall_jump_boost_timer)
 		label_fov.text = "Field of View: " + str(camera.fov)
 		label_direction.text = "FPS: " + str(Engine.get_frames_per_second())
-		#label_max_speed.text
 	if being_knocked_back:
 		apply_knockback(delta)
 	move_and_slide()
@@ -820,3 +821,11 @@ func apply_knockback(delta):
 	knockback_velocity = knockback_velocity.lerp(Vector3.ZERO, knockback_decay * delta)
 	if knockback_velocity.length() < 1.5:
 		remove_knockback()
+		
+func interact_with(button: int):
+	var obj = interact.get_collider()
+	if obj:
+		label_max_speed.text = "Interacting with: " + obj.name
+		print("Interacting with ", obj.name)
+		if obj.has_method("interact"):
+			obj.interact(button)

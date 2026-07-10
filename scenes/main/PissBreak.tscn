@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://08s4p3p5ek3a"]
+[gd_scene load_steps=23 format=3 uid="uid://08s4p3p5ek3a"]
 
 [ext_resource type="Script" uid="uid://bk7481a8wevwx" path="res://scripts/levels/starting_area.gd" id="1_tltij"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_4qhhf"]
 [ext_resource type="PackedScene" uid="uid://4ixc6odmpa52" path="res://scenes/utility/Omnilight.tscn" id="3_4qhhf"]
 [ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/Pipe_Channel_Cement.tres" id="3_mt6f7"]
 [ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="4_f6hr6"]
+[ext_resource type="PackedScene" uid="uid://dnk26md2ogk3u" path="res://scenes/utility/radio.tscn" id="6_f6hr6"]
+[ext_resource type="PackedScene" uid="uid://bk2r4u7mfbf1b" path="res://scenes/player/player.tscn" id="7_nlco4"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q0o21"]
 emission_shape_scale = Vector3(1, 1, 0.525)
@@ -72,14 +74,6 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fk2b0"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="Environment" id="Environment_q0o21"]
-background_mode = 1
-background_color = Color(0.18404675, 0.0006731627, 0.14575937, 1)
-background_energy_multiplier = 0.3
-ambient_light_energy = 0.0
-reflected_light_source = 1
-tonemap_mode = 2
-
 [node name="Dungeon" type="Node3D"]
 script = ExtResource("1_tltij")
 type = "Shop"
@@ -92,7 +86,7 @@ transform = Transform3D(-0.9999999, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, 
 
 [node name="GPUParticles3D6" type="GPUParticles3D" parent="GoalPoint"]
 transform = Transform3D(-8.8679917e-07, 0, 39.26971, 0, 9.248369, 0, -20.287548, 0, -1.7165362e-06, -6.081778, 8.305101, -20.362556)
-amount = 300
+amount = 150
 lifetime = 3.89
 preprocess = 1.8
 speed_scale = 0.1
@@ -101,7 +95,7 @@ draw_pass_1 = SubResource("BoxMesh_6vw8a")
 
 [node name="GPUParticles3D7" type="GPUParticles3D" parent="GoalPoint"]
 transform = Transform3D(-3.458518e-07, 0, 19.634853, 0, 9.248369, 0, -7.912142, 0, -8.5826844e-07, -2.0817738, 3.3051019, 7.6374493)
-amount = 300
+amount = 100
 lifetime = 1.7
 preprocess = 1.8
 speed_scale = 0.1
@@ -110,7 +104,7 @@ draw_pass_1 = SubResource("BoxMesh_6vw8a")
 
 [node name="GPUParticles3D8" type="GPUParticles3D" parent="GoalPoint"]
 transform = Transform3D(-3.458518e-07, 0, 19.634853, 0, 9.248369, 0, -7.912142, 0, -8.5826844e-07, -2.0817738, 3.3051019, 7.6374493)
-amount = 300
+amount = 100
 lifetime = 1.75
 preprocess = 1.8
 speed_scale = 0.1
@@ -119,7 +113,7 @@ draw_pass_1 = SubResource("BoxMesh_obbe3")
 
 [node name="GPUParticles3D9" type="GPUParticles3D" parent="GoalPoint"]
 transform = Transform3D(-3.458518e-07, 0, 19.634853, 0, 9.248369, 0, -7.912142, 0, -8.5826844e-07, -2.0817738, 3.3051019, 7.6374493)
-amount = 300
+amount = 100
 lifetime = 1.75
 preprocess = 1.8
 speed_scale = 0.1
@@ -227,9 +221,6 @@ attenuation = 0.725
 color = Color(0.84580326, 0.9024179, 0.65455145, 1)
 energy = 1.46
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_q0o21")
-
 [node name="Label3D2" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7674265, 7.742159, -18.723297)
 modulate = Color(0.12156863, 1, 1, 0.105882354)
@@ -240,3 +231,10 @@ font_size = 252
 light_energy = 0.44
 omni_range = 6.231
 omni_attenuation = -0.153
+
+[node name="Radio" parent="." instance=ExtResource("6_f6hr6")]
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 17, 0, 17)
+
+[node name="player" parent="." instance=ExtResource("7_nlco4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 3, 0)
+diagnostics_enabled = true

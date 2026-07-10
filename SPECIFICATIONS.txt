@@ -210,3 +210,22 @@ Trap Scenes (under '/traps'):
 	|-  Construction (Node3D):
 			The general design of the trap. This can be meshes with textures, glow, particles, etc.
 			Any design element fall under this node.
+
+Object Scenes (under ?):
+	Object scenes are anything that the player can use their mouse to interact with OUTSIDE of
+	the ability selection scene. Objects can be placed in any scene and require a 
+	script with a function of interact(button: int). Without this the object cant be used.
+	
+	It is a requirement that the collision for the interactable object has layer and mask 2 selected as
+	the players interaction raycast only works on layer 2 objects
+	
+	NamedNode (Node3D of any name):
+		
+		|-  NamedNode (MeshInstance3D of any name):
+
+			|-  NamedNode (MeshInstance3D of any name, name it well for debug):
+					This node is the one with the script for the object is attached
+
+					|-  NamedNode (CollisionShape3D of any name)
+
+			|- NamedNode (AudioStreamPlayer3D of any name ONLY IF object plays audio, like a radio)
