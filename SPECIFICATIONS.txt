@@ -97,7 +97,10 @@ Lights:
 	
 ## Scene Standards ##
 
-Overlap Detection is set to collision layer and mask 5 on ready
+Overlap Detection is set to collision layer and mask 16 on ready
+Interactable objects need to be on collision layer/mask 2
+All settings menu operate through the "global.gd" script
+All audio nodes require the audio.gd script
 
 Scene 'root.tscn' (under '/scenes'):
 	Description:

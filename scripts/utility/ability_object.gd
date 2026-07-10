@@ -56,7 +56,7 @@ func start():
 func stop():
 	particles.emitting = false
 
-func set_page_value(value: int):
+func set_page_value(value: float):
 	value_label.text = str(value)
 	num = value
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dluynpbcpkkoq"]
+[gd_scene load_steps=10 format=3 uid="uid://dluynpbcpkkoq"]
 
 [ext_resource type="Script" uid="uid://cpcoan4ucaeui" path="res://scripts/utility/ability_object.gd" id="1_8isn6"]
+[ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://scripts/utility/particles.gd" id="2_7djc8"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_n1m7g"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
@@ -57,6 +58,7 @@ lifetime = 2.36
 speed_scale = 1.45
 process_material = SubResource("ParticleProcessMaterial_fngpf")
 draw_pass_1 = SubResource("BoxMesh_8isn6")
+script = ExtResource("2_7djc8")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.191, 0, 0, 0, 0.0949461, -0.28566223, 0, 0.48886526, 0.05548056, 0, 0.37028313, 0)

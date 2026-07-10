@@ -26,22 +26,13 @@ func _ready() -> void:
 
 func execute(player_node:CharacterBody3D = null):
 	if type == "Upgrade":
-		print("ABILITY: Type: " + type)
+		print("ABILITY: Type " + type)
 		if upgrade_choice not in upgradables:
 			printerr("That is not an stat you can upgrade! " + upgrade_choice)
 			return
-		var player = get_parent()
-		if player:
-			print("ABILITY: Node found")
-			if not player.has_method("is_player"):
-				printerr("ABILITY: Not assigned to player!")
-				if player_node:
-					print("ABILITY: This has been resolved.")
-					player = player_node
-			print("ABILITY: Applying upgrade")
-			player.upgrade(upgrade_choice, upgrade_amount)
-		else:
-			printerr("ABILITY: Not assigned to player!")
+		print("ABILITY: Applying upgrade")
+		player_node.upgrade(upgrade_choice, upgrade_amount)
+
 	else:
 		print("ABILITY: Executing ability")
 		if not executables.has(ability_choice):

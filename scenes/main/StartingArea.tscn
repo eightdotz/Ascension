@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://bt7lf8ump465u"]
+[gd_scene load_steps=26 format=3 uid="uid://bt7lf8ump465u"]
 
 [ext_resource type="Script" uid="uid://bk7481a8wevwx" path="res://scripts/levels/starting_area.gd" id="1_xmuvs"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_q0o21"]
+[ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://scripts/utility/particles.gd" id="3_khmfx"]
 [ext_resource type="PackedScene" uid="uid://4ixc6odmpa52" path="res://scenes/utility/Omnilight.tscn" id="3_q0o21"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q0o21"]
@@ -118,6 +119,7 @@ preprocess = 1.8
 speed_scale = 2.0
 process_material = SubResource("ParticleProcessMaterial_q0o21")
 draw_pass_1 = SubResource("BoxMesh_khmfx")
+script = ExtResource("3_khmfx")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="GoalPoint"]
 transform = Transform3D(-8.844471e-07, 0, 64.18295, 0, 17.727879, 0, -20.233767, 0, -2.805526e-06, 0.087288484, 1.3051019, 13.353758)
@@ -127,6 +129,7 @@ preprocess = 1.8
 speed_scale = 1.44
 process_material = SubResource("ParticleProcessMaterial_q0o21")
 draw_pass_1 = SubResource("BoxMesh_s6tb3")
+script = ExtResource("3_khmfx")
 
 [node name="GPUParticles3D5" type="GPUParticles3D" parent="GoalPoint"]
 transform = Transform3D(-8.827438e-07, 0, 89.822845, 0, 23.205559, 0, -20.1948, 0, -3.926285e-06, 0.087288685, 1.3051019, 18.754904)
@@ -135,6 +138,7 @@ lifetime = 1.45
 preprocess = 1.8
 process_material = SubResource("ParticleProcessMaterial_q0o21")
 draw_pass_1 = SubResource("BoxMesh_fk2b0")
+script = ExtResource("3_khmfx")
 
 [node name="GPUParticles3D3" type="GPUParticles3D" parent="GoalPoint"]
 transform = Transform3D(-1.224743e-06, 0, 94.95953, 0, 23.659063, 0, -28.018822, 0, -4.1508133e-06, 0.0872891, 1.3051019, 27.711508)
@@ -144,6 +148,7 @@ preprocess = 1.8
 speed_scale = 0.89
 process_material = SubResource("ParticleProcessMaterial_q0o21")
 draw_pass_1 = SubResource("BoxMesh_6vw8a")
+script = ExtResource("3_khmfx")
 
 [node name="GPUParticles3D4" type="GPUParticles3D" parent="GoalPoint"]
 transform = Transform3D(-1.6602744e-06, 0, 101.98733, 0, 27.299532, 0, -37.982613, 0, -4.458008e-06, 0.087289385, 1.3051019, 34.012848)
@@ -153,6 +158,7 @@ preprocess = 1.8
 speed_scale = 0.4
 process_material = SubResource("ParticleProcessMaterial_q0o21")
 draw_pass_1 = SubResource("BoxMesh_dga6a")
+script = ExtResource("3_khmfx")
 
 [node name="GPUParticles3D6" type="GPUParticles3D" parent="GoalPoint"]
 transform = Transform3D(-1.9194765e-06, 0, 118.05468, 0, 30.827896, 0, -43.91244, 0, -5.160335e-06, 0.087289736, 1.3051019, 41.8796)
@@ -162,6 +168,7 @@ preprocess = 1.8
 speed_scale = 0.1
 process_material = SubResource("ParticleProcessMaterial_q0o21")
 draw_pass_1 = SubResource("BoxMesh_6vw8a")
+script = ExtResource("3_khmfx")
 
 [node name="Pieces" type="Node3D" parent="."]
 

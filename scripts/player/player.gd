@@ -575,7 +575,7 @@ func _on_click(button: int) -> void:
 	
 func upgrade(upgrade_name: String, amount: float):
 	var upgradables = {"Max Health": health_max, "Regeneration": regen, "Max Stamina": stamina_max, "Max Speed": max_speed, "Jump Quanity":jumps, "Jump Height":jump_speed, "Wall Jump Boost Duration":wall_jump_boost_duration, "Wall Jump Speed": wall_jump_force, "Wall Jump Max Speed":wall_jump_velocity_max}
-	print("PLAYER:\nUpgrading " + upgrade_name + " by " + str(amount))
+	print("PLAYER: Upgrading %s by %f" % [upgrade_name, amount])
 	upgradables[upgrade_name] += amount
 	infection_speed_relief = wall_jump_velocity_max
 
@@ -643,14 +643,13 @@ func _on_menu_button_pressed() -> void:
 	set_physics_process(!is_physics_processing())
 	pause.visible = !pause.visible
 	toggle_mouse()
+	Global.pause_sound.emit()
 	if pause.visible:
 		infecting = false
-		pause_audio()
 		pause_effect()
 		
 	else:
 		infecting = true
-		resume_audio()
 		unpause_effect()
 
 
@@ -733,26 +732,38 @@ func screen_fx_disable(vfxname: String):
 		vfx.visible = false
 	
 
-
-func _on_main_menu_music_volume_change(value: float) -> void:
-	menu_music_player.volume_db = value
-	
-
 func _on_settings() -> void:
-	var main = $Interface/MainMenu/Main
-	var settings = $Interface/MainMenu/Settings
+	var settings
+	var main_menu = $Interface/MainMenu
+	if main_menu.visible:
+		settings = $Interface/MainMenu/Settings
+	else:
+		settings = $Interface/Pause/Settings
+		
+	var main = settings.get_parent().get_node("Main")
+	
 	main.visible = !main.visible
 	settings.visible = !settings.visible
 
+func _on_main_menu_music_volume_change(value: float) -> void:
+	Global.menu_volume = value
+	menu_music_player.volume_db = Global.menu_volume
+	Global.menu_volume_changed.emit(value)
 
 func _on_sfx_volume_change(value: float) -> void:
-	sfx_player.volume_db = value
-	
-
+	Global.sfx_volume = value
+	sfx_player.volume_db = Global.sfx_volume
+	Global.sfx_volume_changed.emit(value)
 
 func _on_dialog_volume_change(value: float) -> void:
-	level_ambience.volume_db = value
+	Global.level_ambience_volume = value
+	level_ambience.volume_db = Global.level_ambience_volume
+	Global.level_ambience_volume_changed.emit(value)
 
+func _on_level_music_value_change(value: float) -> void:
+	Global.level_music_volume = value
+	level_music.volume_db = Global.level_music_volume
+	Global.level_music_volume_changed.emit(value)
 
 func start_ambience(level_type, ambience_path, music_path = ""):
 	if level_type == current_ambience:
@@ -779,10 +790,6 @@ func menu_stop():
 	await tween.finished
 	menu_music_player.stop()
 
-
-func _on_level_music_value_change(value: float) -> void:
-	level_music.volume_db = value
-
 func load_sounds():
 	var dir := DirAccess.open("res://audio/fooley/")
 	if dir == null: printerr("PLAYER:\nCould not open folder"); return
@@ -792,15 +799,6 @@ func load_sounds():
 		var loaded = load(resource)
 		if "Footstep" in resource:
 			walking_sounds.append(loaded)
-
-func pause_audio():
-	for item in all_audio:
-		item.stream_paused = true
-		
-func resume_audio():
-	for item in all_audio:
-		item.stream_paused = false
-
 
 func _on_restart() -> void:
 	if not root:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpxtv3md8pmge"]
+[gd_scene load_steps=9 format=3 uid="uid://bpxtv3md8pmge"]
 
 [ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://scripts/levels/level.gd" id="1_jkde5"]
 [ext_resource type="Environment" uid="uid://thplg3hg33ev" path="res://enviorments/space.tres" id="2_04efn"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_obw8s"]
+[ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://scripts/utility/particles.gd" id="4_13rtt"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sn42l"]
 emission_shape = 3
@@ -51,6 +52,7 @@ lifetime = 6.0
 preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_sn42l")
 draw_pass_1 = SubResource("BoxMesh_13rtt")
+script = ExtResource("4_13rtt")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="Particles"]
 amount = 32
@@ -58,3 +60,4 @@ lifetime = 6.0
 preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_jkde5")
 draw_pass_1 = SubResource("BoxMesh_13rtt")
+script = ExtResource("4_13rtt")

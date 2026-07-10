@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dnk26md2ogk3u"]
+[gd_scene load_steps=18 format=3 uid="uid://dnk26md2ogk3u"]
 
 [ext_resource type="Script" uid="uid://dimo1ey6xyiko" path="res://scripts/utility/radio.gd" id="1_0orf7"]
+[ext_resource type="Script" uid="uid://dd04plgmxt2mr" path="res://scripts/utility/audio_player_3d.gd" id="2_06u1l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obnf8"]
 albedo_color = Color(0.3645916, 0.22286788, 9.62615e-08, 1)
@@ -183,3 +184,5 @@ shape = SubResource("ConvexPolygonShape3D_0orf7")
 volume_db = -10.617
 unit_size = 18.21
 max_db = -8.0
+script = ExtResource("2_06u1l")
+type = "Music"

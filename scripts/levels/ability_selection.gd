@@ -88,7 +88,7 @@ func randomize_ability():
 		var upgrade_option = random(upgrade_options)
 		ability.set_page_name(upgrade_option)
 		ability.selected_ability.set_ability_options(upgrade_option, value)
-	print("ABILITY GENERATION:\nType: %s\nRarity: %s\nValue: %f", current_type, rarity, value)
+	print("ABILITY GENERATION:\nType: %s\nRarity: %s\nValue: %f" % [current_type, rarity, value])
 	ability.set_page_value(1)
 	rarity = random_rarity()
 	type = random_type()
@@ -104,9 +104,9 @@ func randomize_ability():
 	else:
 		var upgrade_option = random(upgrade_options)
 		ability_2.set_page_name(upgrade_option)
-		ability_2.selected_ability.set_ability_options(random(upgrade_options), value)
+		ability_2.selected_ability.set_ability_options(upgrade_option, value)
 	ability_2.set_page_value(2)
-	print("ABILITY GENERATION:\nType: %s\nRarity: %s\nValue: %f", current_type, rarity, value)
+	print("ABILITY GENERATION:\nType: %s\nRarity: %s\nValue: %f" % [current_type, rarity, value])
 
 func _intro():
 	animation_player.play("Fall")

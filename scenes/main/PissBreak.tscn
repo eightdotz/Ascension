@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://08s4p3p5ek3a"]
+[gd_scene load_steps=19 format=3 uid="uid://08s4p3p5ek3a"]
 
 [ext_resource type="Script" uid="uid://bk7481a8wevwx" path="res://scripts/levels/starting_area.gd" id="1_tltij"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_4qhhf"]
+[ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://scripts/utility/particles.gd" id="3_0ji66"]
 [ext_resource type="PackedScene" uid="uid://4ixc6odmpa52" path="res://scenes/utility/Omnilight.tscn" id="3_4qhhf"]
 [ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/Pipe_Channel_Cement.tres" id="3_mt6f7"]
 [ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="4_f6hr6"]
@@ -64,6 +65,7 @@ preprocess = 1.8
 speed_scale = 0.1
 process_material = SubResource("ParticleProcessMaterial_q0o21")
 draw_pass_1 = SubResource("BoxMesh_6vw8a")
+script = ExtResource("3_0ji66")
 
 [node name="Pieces" type="Node3D" parent="."]
 

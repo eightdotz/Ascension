@@ -1,10 +1,10 @@
-extends AudioStreamPlayer
+extends AudioStreamPlayer3D
 
 @export_enum("Menu", "SFX", "Ambience", "Music") var type: String
 
 func _ready():
 	if not type:
-		printerr("AUDIO PLAYER: Type not set, using default volume")
+		printerr("AUDIO PLAYER 3D: Type not set, using default volume")
 	if type == "Menu":
 		Global.connect("menu_volume_changed", set_volume)
 		set_volume(Global.menu_volume)
@@ -25,6 +25,7 @@ func _ready():
 func pause():
 	stream_paused = !stream_paused
 
+
 func set_volume(value: float):
-	print("AUDIO PLAYER: Setting volume")
+	print("AUDIO PLAYER 3D: Setting volume")
 	volume_db = value
