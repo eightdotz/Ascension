@@ -1,7 +1,1 @@
-Connect player click signal to ability scene
-connect level completed signal from ability scene to root
-
-Before typecast:
-	low = 24
-After typecast:
-	low = 36	
+Use signals for visual stat updates, remove lines from all process when avaliable

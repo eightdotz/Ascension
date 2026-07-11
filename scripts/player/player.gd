@@ -343,7 +343,6 @@ func _physics_process(delta) -> void:
 		label_mv_override.text = "Engine Time: " + str(Engine.time_scale)
 		label_current_speed.text = "Current Speed: " + str(max_horiz_speed)
 		label_sliding.text = "Is Character Sliding: " + str(is_sliding)
-		label_direction.text = "Moving Direction: " + str(direction)
 		label_boost_duration.text = str(wall_jump_boost_timer)
 		label_fov.text = "Field of View: " + str(camera.fov)
 		label_direction.text = "FPS: " + str(Engine.get_frames_per_second())
