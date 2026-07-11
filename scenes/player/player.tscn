@@ -1,7 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://bk2r4u7mfbf1b"]
+[gd_scene load_steps=16 format=3 uid="uid://bk2r4u7mfbf1b"]
 
 [ext_resource type="Script" uid="uid://d17g4tbdc00a" path="res://scripts/player/player.gd" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="2_75vfm"]
+[ext_resource type="PackedScene" uid="uid://djjm6fa8kwvcr" path="res://scenes/player/map.tscn" id="2_75vfm"]
 [ext_resource type="Shader" uid="uid://dwpy71qv53ekt" path="res://scenes/player/pixelator_canvas.gdshader" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://bfn7sua7e6axo" path="res://scripts/utility/audio_player.gd" id="3_lvxji"]
 [ext_resource type="Script" uid="uid://c1e6hrwt1alxx" path="res://scripts/utility/volume_slider.gd" id="3_p47bc"]
@@ -60,48 +60,6 @@ _data = {
 &"show_terminal": SubResource("Animation_qek5x")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p47bc"]
-albedo_color = Color(0.61745477, 0.61745477, 0.6174547, 1)
-metallic = 0.83
-metallic_specular = 0.54
-roughness = 0.52
-
-[sub_resource type="BoxMesh" id="BoxMesh_p47bc"]
-material = SubResource("StandardMaterial3D_p47bc")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75vfm"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_0owmy"]
-material = SubResource("StandardMaterial3D_75vfm")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0owmy"]
-albedo_color = Color(0, 0, 0, 1)
-emission_enabled = true
-emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 0.6
-
-[sub_resource type="BoxMesh" id="BoxMesh_qek5x"]
-material = SubResource("StandardMaterial3D_0owmy")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qek5x"]
-albedo_color = Color(0, 0, 0, 1)
-emission_enabled = true
-emission = Color(0, 0, 1, 1)
-emission_energy_multiplier = 0.6
-
-[sub_resource type="BoxMesh" id="BoxMesh_5gtgg"]
-material = SubResource("StandardMaterial3D_qek5x")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gtgg"]
-albedo_color = Color(0, 0, 0, 1)
-emission_enabled = true
-emission = Color(0, 1, 0, 1)
-emission_energy_multiplier = 0.6
-
-[sub_resource type="BoxMesh" id="BoxMesh_h17s1"]
-material = SubResource("StandardMaterial3D_5gtgg")
-
 [sub_resource type="LabelSettings" id="LabelSettings_p47bc"]
 font_size = 31
 font_color = Color(1, 1, 1, 0)
@@ -144,67 +102,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_5gtgg")
 }
 
-[node name="Map" type="MeshInstance3D" parent="Head"]
+[node name="Map" parent="Head" instance=ExtResource("2_75vfm")]
 transform = Transform3D(0.25259775, 0, 0, 0, 0.31824172, 0, 0, 0, 0.07756197, -0.524692, -0.11397159, 0.066367134)
-mesh = SubResource("BoxMesh_p47bc")
-
-[node name="Screen" type="MeshInstance3D" parent="Head/Map"]
-transform = Transform3D(0.815011, 0, 0, 0, 0.2675815, 0, 2.842171e-14, 0, 0.29594618, 5.6751333e-09, 0.32863033, 0.42282486)
-mesh = SubResource("BoxMesh_0owmy")
-skeleton = NodePath("../..")
-
-[node name="Biome" type="Label3D" parent="Head/Map/Screen"]
-transform = Transform3D(0.7058744, 0, 1.3322676e-15, 0, 1.6320679, 0, -2.842171e-14, 0, 0.99999994, 0.007685423, 0.28488064, 0.5512546)
-modulate = Color(0.2489303, 2.6321504e-07, 5.4147094e-08, 1)
-text = "Sentenced"
-font_size = 40
-outline_size = 0
-
-[node name="Floor" type="Label3D" parent="Head/Map/Screen"]
-transform = Transform3D(0.70587426, 0, -1.3322676e-15, 0, 1.6320679, 0, 2.842171e-14, 0, 0.9999999, 2.6866758e-09, -0.17646456, 0.5512543)
-modulate = Color(0.2489303, 2.6321504e-07, 5.4147094e-08, 1)
-text = "Sentenced"
-font_size = 40
-outline_size = 0
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Head/Map/Screen"]
-transform = Transform3D(4.857437, 0, -4.2632564e-14, 0, 11.743216, 0, 0, 0, 43.56507, 3.9912464e-09, 0.032975674, 0.81892776)
-light_color = Color(0, 0.91692936, 0.32480213, 1)
-light_energy = 0.888
-omni_range = 0.17408812
-omni_attenuation = 0.0
-script = ExtResource("2_75vfm")
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="Head/Map/Screen"]
-transform = Transform3D(4.857437, 0, -4.2632564e-14, 0, 11.743216, 0, 0, 0, 43.56507, -0.1801236, 0.3130679, 0.81892776)
-light_color = Color(0.90526885, 3.272891e-06, 1.4439225e-06, 1)
-light_energy = 1.876
-omni_range = 0.07228835
-omni_attenuation = 0.01
-script = ExtResource("2_75vfm")
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="Head/Map/Screen"]
-transform = Transform3D(4.857437, 0, -4.2632564e-14, 0, 11.743216, 0, 0, 0, 43.56507, 0.020325044, -0.21387482, 0.81892776)
-light_color = Color(0.90526885, 3.272891e-06, 1.4439225e-06, 1)
-light_energy = 1.876
-omni_range = 0.07228835
-omni_attenuation = 0.01
-script = ExtResource("2_75vfm")
-
-[node name="Health" type="MeshInstance3D" parent="Head/Map"]
-transform = Transform3D(-6.6878436e-09, -0.20000002, -2.4504503e-08, 0.15300001, -8.742279e-09, -1.0686508e-08, 7.431981e-09, -2.227682e-08, 0.22000001, -0.2742269, 0.0971396, 0.42280436)
-mesh = SubResource("BoxMesh_qek5x")
-skeleton = NodePath("../..")
-
-[node name="Stamina" type="MeshInstance3D" parent="Head/Map"]
-transform = Transform3D(-6.6878436e-09, -0.20000002, -2.4504494e-08, 0.15300001, -8.742279e-09, -1.0686508e-08, 7.431981e-09, -2.227681e-08, 0.22000001, -0.0012691021, 0.097153425, 0.42282534)
-mesh = SubResource("BoxMesh_5gtgg")
-skeleton = NodePath("../..")
-
-[node name="Infection" type="MeshInstance3D" parent="Head/Map"]
-transform = Transform3D(-6.6878436e-09, -0.20000002, -2.4504496e-08, 0.15300001, -8.742279e-09, -1.0686508e-08, 7.431981e-09, -2.2276813e-08, 0.22000001, 0.27264297, 0.09716725, 0.42284587)
-mesh = SubResource("BoxMesh_h17s1")
-skeleton = NodePath("../..")
 
 [node name="Camera" type="Camera3D" parent="Head"]
 transform = Transform3D(0.333333, 0, -1.77636e-15, 0, 0.333333, 0, 1.77636e-15, 0, 0.333333, 2.86787e-10, 0.00264922, 0.00656464)
@@ -1197,6 +1096,7 @@ volume_db = -15.0
 script = ExtResource("3_lvxji")
 type = "Music"
 
+[connection signal="health_changed" from="." to="Head/Map" method="_on_player_health_changed"]
 [connection signal="pressed" from="Interface/Death/MenuButton3" to="." method="_on_restart"]
 [connection signal="pressed" from="Interface/Death/MenuButton4" to="." method="_on_exit"]
 [connection signal="pressed" from="Interface/Pause/Main/StartButton" to="." method="_on_menu_button_pressed"]

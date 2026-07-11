@@ -148,10 +148,6 @@ var tween = null
 @onready var stamina_bar: MeshInstance3D = $Head/Map/Stamina
 @onready var infection_bar: MeshInstance3D = $Head/Map/Infection
 
-var health_indicator: StandardMaterial3D
-var stamina_indicator: StandardMaterial3D
-var infection_indicator: StandardMaterial3D
-	
 var is_terminal_shown = false
 var respawn_pos: Vector3
 var respawn_rot: Vector3
@@ -160,6 +156,9 @@ var walking_sounds: Array = []
 
 #mouse signals
 signal on_click
+
+#stat signals
+signal health_changed(val: float)
 
 func _ready() -> void:
 	Global.connect("gravity_changed", set_gravity)
@@ -190,9 +189,7 @@ func _ready() -> void:
 	pause_effect()
 	toggle_mouse()
 	set_process_input(!is_processing_input())
-	health_indicator = $Head/Map/Health.get_active_material(0) as StandardMaterial3D
-	stamina_indicator = $Head/Map/Stamina.get_active_material(0) as StandardMaterial3D
-	infection_indicator = $Head/Map/Infection.get_active_material(0) as StandardMaterial3D
+
 
 func _input(event) -> void:
 	if event is InputEventMouseMotion:
@@ -339,6 +336,7 @@ func _physics_process(delta) -> void:
 			velocity.z = horiz.y
 		just_wall_jumped = false
 		handle_move(delta, grounded)
+		
 	if diagnostics_enabled:
 		label_mv_override.text = "Engine Time: " + str(Engine.time_scale)
 		label_current_speed.text = "Current Speed: " + str(max_horiz_speed)
@@ -346,6 +344,7 @@ func _physics_process(delta) -> void:
 		label_boost_duration.text = str(wall_jump_boost_timer)
 		label_fov.text = "Field of View: " + str(camera.fov)
 		label_direction.text = "FPS: " + str(Engine.get_frames_per_second())
+		
 	if being_knocked_back:
 		apply_knockback(delta)
 	move_and_slide()
@@ -359,14 +358,12 @@ func update_stamina_and_timers(delta) -> void:
 		invincibility_timer -= delta
 		if invincibility_timer <= 0:
 			is_invincible = false
-	health_indicator.emission = Color(health / 100, 0, 0, 1)
-	stamina_indicator.emission = Color(0, 0, stamina / 100, 1)
+
 	
 	if current_infection <= infection_limit:
 		if infecting:
 			var relief_percent = clamp(get_effective_max_speed() / infection_speed_relief, 0.0, 1.0)
 			current_infection += infection_rate * (1.0 - relief_percent) * delta
-			infection_indicator.emission = Color(0, current_infection / 100, 0, 1)
 	else:
 		handle_death()
 
@@ -516,7 +513,7 @@ func take_damage(damage: float) -> float:
 	
 	var damage_dealt = min(damage, health)
 	health -= damage_dealt
-		
+	health_changed.emit(health)
 	is_invincible = true
 	invincibility_timer = invincibility_duration
 	flash_screen_red()

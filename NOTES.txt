@@ -1,1 +1,2 @@
 Use signals for visual stat updates, remove lines from all process when avaliable
+Add break room as apart of level gen not a seperate scene

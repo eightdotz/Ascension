@@ -9,6 +9,7 @@ var songs_to_load = []
 func _ready() -> void:
 	populate()
 	label_3d.text = "Paused"
+	
 func interact(button) -> void:
 	if not songs_to_load:
 		print("RADIO: No songs to play")

@@ -7,6 +7,9 @@ var level_music_volume: float = -15.0
 var default_gravity: float = 50.0
 var particles_enabled = true
 var opt_light_enabled = true
+
+var current_floor = 0
+
 signal menu_volume_changed(new_val: float)
 signal sfx_volume_changed(new_val: float)
 signal level_ambience_volume_changed(new_val: float)
