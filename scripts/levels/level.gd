@@ -5,12 +5,24 @@ extends Node3D
 @export_group("Generation")
 @export_enum("Dungeon", "Ability", "Shop") var type: String
 @export_enum("Sewer", "Fields", "Space","Tower") var biome: String
+@export var title_1: String
+@export var desc_1: String
 @export var transition_1: int = 25
 @export_enum("Sewer", "Fields", "Space","Tower") var biome_2: String
+@export var title_2: String
+@export var desc_2: String
 @export var transition_2: int = 50
 @export_enum("Sewer", "Fields", "Space","Tower") var biome_3: String
+@export var title_3: String
+@export var desc_3: String
 @export var transition_3: int = 75
 @export_enum("Sewer", "Fields", "Space","Tower") var biome_4: String
+@export var title_4: String
+@export var desc_4: String
+
+var titles: Dictionary = {}
+
+var current_biome = ""
 
 @export_group("Audio")
 @export var ambience: String
@@ -42,6 +54,11 @@ var total_spawned_pieces: int
 
 
 func _ready() -> void:
+	titles[biome] = [title_1, desc_1]
+	titles[biome_2] = [title_2, desc_2]
+	titles[biome_3] = [title_3, desc_3]
+	titles[biome_4] = [title_4, desc_4]
+
 	if not type:
 		printerr("PLAYER:\nLevel type not set!")
 	if type == "Dungeon" and not biome:
@@ -218,3 +235,12 @@ func check_transition(floor: int) -> void:
 		biome = biome_4
 	else:
 		print("No need to transition")
+
+func get_intro_title():
+	print(titles)
+	print("Getting " + biome + " " + titles[biome][0])
+	return titles[biome][0]
+	
+func get_intro_desc():
+	print("Getting " + biome + " " + titles[biome][1])
+	return titles[biome][1]

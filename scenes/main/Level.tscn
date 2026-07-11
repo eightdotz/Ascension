@@ -26,9 +26,14 @@ gravity = Vector3(0, -1, 0)
 script = ExtResource("1_jkde5")
 type = "Dungeon"
 biome = "Sewer"
+title_1 = "The Sewer"
+desc_1 = "Get out before the infection gets you"
 biome_2 = "Space"
-biome_3 = "Sewer"
-biome_4 = "Space"
+title_2 = "The Void"
+biome_3 = "Tower"
+title_3 = "The Fields"
+biome_4 = "Tower"
+title_4 = "The Tower"
 ambience = "res://audio/ambience/SewerWhiteNoise.ogg"
 music = "res://audio/ambience/SewerWhiteNoise.ogg"
 

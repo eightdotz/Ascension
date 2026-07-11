@@ -19,17 +19,17 @@ extends Node3D
 @onready var LEVEL = "res://scenes/main/Level.tscn"
 @onready var STARTING = "res://scenes/main/StartingArea.tscn"
 @onready var player_path = "res://scenes/player/player.tscn"
-
-var on_break = 0
+var current_biome: String
+var on_break: int = 0
 var base_spawn
 var current_level_type
-var current_floor = -1
+var current_floor: int = -1
 signal level_changed
 
 func _ready() -> void:
 	base_spawn = spawn_amount
 	if not spawn_amount:
-		printerr("No spawn amount set! Will crash!")
+		printerr("ROOT: No spawn amount set! Will crash!")
 		return
 	if room_cooldown_enable_divide:
 		room_cooldown = spawn_amount / room_cooldown
@@ -45,7 +45,7 @@ func get_level_type() -> String:
 func set_player() -> void:
 	var spawn = dungeon.get_node("SpawnPoint")
 	if not spawn:
-		printerr("No spawn point!!!")
+		printerr("ROOT: No spawn point!!!")
 	player.global_position = spawn.global_position
 	player.global_rotation = spawn.global_rotation
 	player.set_respawn()
@@ -54,7 +54,7 @@ func set_player() -> void:
 func set_goal() -> void:
 	var spawn = dungeon.get_node("GoalPoint")
 	if not spawn:
-		printerr("No goal spawn point!!!")
+		printerr("ROOT: No goal spawn point!!!")
 		goal.disable()
 		return
 	goal.global_position = spawn.global_position
@@ -71,28 +71,35 @@ func load_level(path: String) -> void:
 		dungeon.check_transition(current_floor)
 		dungeon.populate()
 		dungeon.configure_spawn(spawn_amount, room_cooldown)
+		current_biome = dungeon.get_intro_title()
 		await dungeon.spawn()
 	print(current_level_type)
 	var spawn = dungeon.get_node("SpawnPoint")
 	if not spawn:
-		printerr("No spawn point!!!")
+		printerr("ROOT: No spawn point!!!")
 	set_player()
 	set_goal()
 	emit_signal("level_changed")
 	if current_level_type == "Dungeon":
+		if dungeon.biome != dungeon.current_biome:
+			player.set_intro(dungeon.get_intro_title(), dungeon.get_intro_desc())
+			#await get_tree().process_frame
+			player.toggle_intro()
+			dungeon.current_biome = dungeon.biome
+			
 		player.fade_to_clear()
 	else:
-		print("Resetting timers")
+		print("ROOT: Resetting timers")
 		if current_level_type == "Ability":
-			player.set_level("???")
+			player.set_level(current_biome, "???")
 		else:
-			player.set_level("Sentenced")
+			player.set_level(current_biome, "Sentenced")
 		player.reset_timers()
 		player.fade_to_clear(1.0)
 		return
 	goal.enable()
 	current_floor += 1
-	player.set_level(str(current_floor))
+	player.set_level(current_biome, str(current_floor))
 
 func load_first_level() -> void:
 	if test_load:

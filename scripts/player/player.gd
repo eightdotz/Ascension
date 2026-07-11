@@ -125,9 +125,9 @@ var tween = null
 @onready var label_fov: Label = $Interface/Diagnostics/FOV
 @onready var label_direction: Label = $Interface/Diagnostics/Direction
 
-@onready var bar_health: ProgressBar = $Interface/HUD/Health
-@onready var bar_stamina: ProgressBar = $Interface/HUD/Stamina
-@onready var bar_jumps: ProgressBar = $Interface/HUD/Jumps
+#@onready var bar_health: ProgressBar = $Interface/HUD/Health
+#@onready var bar_stamina: ProgressBar = $Interface/HUD/Stamina
+#@onready var bar_jumps: ProgressBar = $Interface/HUD/Jumps
 @onready var black_screen: ColorRect = $Interface/HUD/BlackScreen
 @onready var hud: Control = $Interface/HUD
 @onready var level: Label = $Interface/HUD/Level
@@ -140,10 +140,19 @@ var tween = null
 @onready var level_music: AudioStreamPlayer = $AFX/LevelMusic
 @onready var sfx_player: AudioStreamPlayer = $AFX/SFX
 @onready var all_audio = $AFX.get_children()
-@onready var infection: ProgressBar = $Interface/HUD/Infection
+#@onready var infection: ProgressBar = $Interface/HUD/Infection
 @onready var flashlight: SpotLight3D = $Head/Flashlight
+@onready var animation_player: AnimationPlayer = $Head/AnimationPlayer
 
+@onready var health_bar: MeshInstance3D = $Head/Map/Health
+@onready var stamina_bar: MeshInstance3D = $Head/Map/Stamina
+@onready var infection_bar: MeshInstance3D = $Head/Map/Infection
 
+var health_indicator: StandardMaterial3D
+var stamina_indicator: StandardMaterial3D
+var infection_indicator: StandardMaterial3D
+	
+var is_terminal_shown = false
 var respawn_pos: Vector3
 var respawn_rot: Vector3
 var current_ambience: String = ""
@@ -172,7 +181,7 @@ func _ready() -> void:
 	else:
 		diagnostics.visible = false
 	jumps = jump_max
-	bar_jumps.value = jump_max
+	#bar_jumps.value = jump_max
 	gnd_ray.target_position = Vector3(0, -1.1, 0)
 	gnd_ray.enabled = true
 	add_to_group("player")
@@ -181,7 +190,9 @@ func _ready() -> void:
 	pause_effect()
 	toggle_mouse()
 	set_process_input(!is_processing_input())
-
+	health_indicator = $Head/Map/Health.get_active_material(0) as StandardMaterial3D
+	stamina_indicator = $Head/Map/Stamina.get_active_material(0) as StandardMaterial3D
+	infection_indicator = $Head/Map/Infection.get_active_material(0) as StandardMaterial3D
 
 func _input(event) -> void:
 	if event is InputEventMouseMotion:
@@ -193,10 +204,20 @@ func _input(event) -> void:
 			if event.button_index and event.is_pressed():
 				_on_click(event.button_index)
 				interact_with(event.button_index)
+	if Input.is_action_just_pressed("move_pause"):
+		_on_menu_button_pressed()
 
 func _unhandled_input(_event) -> void:
 	if Input.is_action_just_pressed("move_pause"):
 		_on_menu_button_pressed()
+	if Input.is_action_just_pressed("show_term"):
+		if is_terminal_shown:
+			animation_player.play("hide_terminal")
+			is_terminal_shown = false
+		else:
+			animation_player.play("show_terminal")
+			is_terminal_shown = true
+		
 	if Input.is_action_just_pressed("ability_1"):
 		if ability_1:
 			ability_1.execute()
@@ -339,14 +360,14 @@ func update_stamina_and_timers(delta) -> void:
 		invincibility_timer -= delta
 		if invincibility_timer <= 0:
 			is_invincible = false
-	bar_health.value = health
-	bar_stamina.value = stamina
+	health_indicator.emission = Color(health / 100, 0, 0, 1)
+	stamina_indicator.emission = Color(0, 0, stamina / 100, 1)
 	
 	if current_infection <= infection_limit:
 		if infecting:
 			var relief_percent = clamp(get_effective_max_speed() / infection_speed_relief, 0.0, 1.0)
 			current_infection += infection_rate * (1.0 - relief_percent) * delta
-			infection.value = current_infection
+			infection_indicator.emission = Color(0, current_infection / 100, 0, 1)
 	else:
 		handle_death()
 
@@ -396,7 +417,7 @@ func do_jump(new_direction: Vector3) -> void:
 	stamina = max(stamina, 0.0)
 	jump_time = 0.0
 	jumps -= 1
-	bar_jumps.value = jumps
+	#bar_jumps.value = jumps
 	last_jump_time = 0.0
 	velocity.y = new_direction.y * jump_speed
 
@@ -425,7 +446,7 @@ func do_wall_jump() -> void:
 	is_jumping = true
 	jump_time = 0.0
 	jumps -= 1
-	bar_jumps.value = jumps
+	#bar_jumps.value = jumps
 	last_jump_time = 0.0
 	wall_jump_timer += jump_cooldown
 	just_wall_jumped = true
@@ -464,7 +485,7 @@ func update_wall_status(input_dir) -> void:
 		if not is_sliding:
 			wall_stick_timer = wall_stick_duration
 			jumps = jump_max
-			bar_jumps.value = jumps
+			#bar_jumps.value = jumps
 		
 		wall_normal = wall_normal.normalized()
 		is_sliding = true
@@ -619,13 +640,11 @@ func _on_root_level_changed() -> void:
 		elif root.get_level_type() == "Shop":
 			infecting = false
 
-func set_level(value: String) -> void:
-	tween = create_tween()
-	tween.tween_property(level, "modulate:a", 0.0, 2.0)
-	await tween.finished
-	level.text = value
-	tween = create_tween()
-	tween.tween_property(level, "modulate:a", 1.0, 2.0)
+func set_level(biome: String, value: String) -> void:
+	var title = $Head/Map/Screen/Biome
+	var floor = $Head/Map/Screen/Floor
+	title.text = biome
+	floor.text = value
 
 func get_level() -> String:
 	return level.text
@@ -828,5 +847,25 @@ func interact_with(button: int) -> void:
 		print("Interacting with ", obj.name)
 		if obj.has_method("interact"):
 			obj.interact(button)
+			
 func set_gravity(amount: float) -> void:
 	gravity = amount
+
+func set_intro(title: String, desc: String):
+	var t = $Interface/Intro/Title
+	var d = $Interface/Intro/Desc
+	t.text = title
+	d.text = desc
+
+func toggle_intro():
+	return
+	var t = $Interface/Intro/Title
+	var intro = $Interface/Intro
+	var tween = create_tween()
+	print("PLAYER: Toggling intro")
+	intro.visible = true
+	tween.tween_property(t, "label_settings/font_color:a", 1.0, 1.0) #doesnt exist
+		
+	#else:
+		#intro.visible = true
+		#tween.tween_property(t, "label_settings.font_color:a", 1.0, 1.0)
