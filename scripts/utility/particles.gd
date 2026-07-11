@@ -7,3 +7,4 @@ func _ready():
 func toggle_particles(value: bool):
 	print("Toggling particles to ", str(value))
 	emitting = value
+	visible = value

@@ -9,7 +9,6 @@ script = ExtResource("1_j5px3")
 spawn_amount = 5
 room_cooldown = 10
 ability_spawn_threshold = 1
-piss_break_floor = 1
 assigned_level = "res://scenes/main/AbilitySelection.tscn"
 
 [node name="Level" type="Node3D" parent="."]

@@ -153,6 +153,7 @@ var walking_sounds = []
 signal on_click
 
 func _ready():
+	Global.connect("gravity_changed", set_gravity)
 	if not root:
 		root = get_parent()
 	if enable_flashlight:
@@ -574,7 +575,7 @@ func _on_click(button: int) -> void:
 	emit_signal("on_click", button)
 	
 func upgrade(upgrade_name: String, amount: float):
-	var upgradables = {"Max Health": health_max, "Regeneration": regen, "Max Stamina": stamina_max, "Max Speed": max_speed, "Jump Quanity":jumps, "Jump Height":jump_speed, "Wall Jump Boost Duration":wall_jump_boost_duration, "Wall Jump Speed": wall_jump_force, "Wall Jump Max Speed":wall_jump_velocity_max}
+	var upgradables = {"Max Health": health_max, "Regeneration": regen, "Max Stamina": stamina_max, "Max Speed": max_speed, "Jump Quanity":jump_max, "Jump Height":jump_speed, "Wall Jump Boost Duration":wall_jump_boost_duration, "Wall Jump Speed": wall_jump_force, "Wall Jump Max Speed":wall_jump_velocity_max}
 	print("PLAYER: Upgrading %s by %f" % [upgrade_name, amount])
 	upgradables[upgrade_name] += amount
 	infection_speed_relief = wall_jump_velocity_max
@@ -827,3 +828,5 @@ func interact_with(button: int):
 		print("Interacting with ", obj.name)
 		if obj.has_method("interact"):
 			obj.interact(button)
+func set_gravity(amount: float):
+	gravity = amount

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7873s15rhq6x"]
+[gd_scene load_steps=7 format=3 uid="uid://c7873s15rhq6x"]
 
 [ext_resource type="Script" uid="uid://b77x8aljr5kec" path="res://scripts/utility/clock.gd" id="1_nf74e"]
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="2_4bhdv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bhdv"]
 albedo_color = Color(0.0619267, 0.0619267, 0.061926693, 1)
@@ -42,3 +43,4 @@ light_energy = 1.65
 omni_range = 5.640289
 omni_attenuation = -0.048
 omni_shadow_mode = 0
+script = ExtResource("2_4bhdv")

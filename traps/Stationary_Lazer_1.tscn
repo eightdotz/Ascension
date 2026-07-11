@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl7iy4xritwrf"]
+[gd_scene load_steps=6 format=3 uid="uid://dl7iy4xritwrf"]
 
 [ext_resource type="Script" uid="uid://dsjqdq4snij5h" path="res://scripts/traps/!GenericTrap.gd" id="1_ixuu4"]
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="2_dgq44"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ie17p"]
 emission_enabled = true
@@ -161,6 +162,7 @@ light_color = Color(1, 0, 0.33333334, 1)
 omni_range = 51.0
 omni_attenuation = 0.789
 omni_shadow_mode = 0
+script = ExtResource("2_dgq44")
 
 [node name="DamageArea" type="Area3D" parent="."]
 transform = Transform3D(0.102226384, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -141.67, 0, 0)

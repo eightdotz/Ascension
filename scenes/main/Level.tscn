@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpxtv3md8pmge"]
+[gd_scene load_steps=8 format=3 uid="uid://bpxtv3md8pmge"]
 
 [ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://scripts/levels/level.gd" id="1_jkde5"]
-[ext_resource type="Environment" uid="uid://thplg3hg33ev" path="res://enviorments/space.tres" id="2_04efn"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_obw8s"]
 [ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://scripts/utility/particles.gd" id="4_13rtt"]
 
@@ -34,7 +33,6 @@ ambience = "res://audio/ambience/SewerWhiteNoise.ogg"
 music = "res://audio/ambience/SewerWhiteNoise.ogg"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_04efn")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("2_obw8s")]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 375.18115, 0, 12.097671)

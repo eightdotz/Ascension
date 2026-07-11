@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dnk26md2ogk3u"]
+[gd_scene load_steps=19 format=3 uid="uid://dnk26md2ogk3u"]
 
 [ext_resource type="Script" uid="uid://dimo1ey6xyiko" path="res://scripts/utility/radio.gd" id="1_0orf7"]
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="1_gf08p"]
 [ext_resource type="Script" uid="uid://dd04plgmxt2mr" path="res://scripts/utility/audio_player_3d.gd" id="2_06u1l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obnf8"]
@@ -116,6 +117,7 @@ light_color = Color(0, 0.88766277, 0, 1)
 omni_range = 0.277
 omni_attenuation = 0.71
 omni_shadow_mode = 0
+script = ExtResource("1_gf08p")
 
 [node name="Label3D2" type="Label3D" parent="Box"]
 transform = Transform3D(0.33333334, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.029102057, 0.4154784, 0.5323787)

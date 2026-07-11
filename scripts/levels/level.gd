@@ -12,7 +12,6 @@ extends Node3D
 @export var transition_3: int = 75
 @export_enum("Sewer", "Fields", "Space","Tower") var biome_4: String
 
-
 @export_group("Audio")
 @export var ambience: String
 @export var music: String
@@ -20,6 +19,9 @@ extends Node3D
 @onready var pieces: Node3D = $Pieces
 @onready var spawn_point: Node3D = $SpawnPoint
 @onready var goal_point: Node3D = $GoalPoint
+
+@export_group("Misc Biome Settings")
+@export var space_gravity: float = 25.0
 
 var get_env = {"Space": "res://enviorments/space.tres", "Sewer": null, "Fields": null, "Tower": null}
 
@@ -118,8 +120,10 @@ func populate(): ##Needs to be called by controller first
 		world_environment.environment = null
 	if biome == "Space":
 			particles.visible = true
+			Global.gravity_changed.emit(space_gravity)
 	else:
 		particles.visible = false
+		Global.gravity_changed.emit(Global.default_gravity)
 	var folder_path: String = get_biome[biome]
 	var dir := DirAccess.open(folder_path)
 	if dir == null: printerr("LEVEL GENERATION: Could not open folder"); return

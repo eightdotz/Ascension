@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://cgjyggk3k3du3"]
+[gd_scene load_steps=29 format=3 uid="uid://cgjyggk3k3du3"]
 
 [ext_resource type="Script" uid="uid://jovdog6n0wl" path="res://scripts/levels/ability_selection.gd" id="1_esj08"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_7r16b"]
 [ext_resource type="PackedScene" uid="uid://dluynpbcpkkoq" path="res://scenes/utility/AbilityObject.tscn" id="3_2j44i"]
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="3_7r16b"]
 
 [sub_resource type="Animation" id="Animation_0fpu5"]
 resource_name = "Accept_1"
@@ -286,6 +287,7 @@ light_energy = 4.177
 spot_range = 4.3885636
 spot_attenuation = -1.7
 spot_angle = 24.350285
+script = ExtResource("3_7r16b")
 
 [node name="Abilities" type="Node3D" parent="."]
 

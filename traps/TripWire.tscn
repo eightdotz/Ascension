@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://35yq15oxqwbi"]
+[gd_scene load_steps=15 format=3 uid="uid://35yq15oxqwbi"]
 
 [ext_resource type="Script" uid="uid://djhcwnqxecd7l" path="res://scripts/traps/trip_wire.gd" id="1_gd7b8"]
 [ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="2_gd7b8"]
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="2_mt6ns"]
+[ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://scripts/utility/particles.gd" id="3_0iuqs"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gd7b8"]
 frequency = 0.0133
@@ -61,6 +63,7 @@ light_color = Color(1, 0, 0, 1)
 light_energy = 16.0
 omni_range = 3.51
 omni_shadow_mode = 0
+script = ExtResource("2_mt6ns")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Wire/Bomb"]
 transform = Transform3D(1.0000004, 0, 0, 0, 1.0000004, -7.105432e-15, 0, -3.552717e-15, 1.0000004, 1.8626458e-09, -1.9745925e-13, 43.7899)
@@ -68,6 +71,7 @@ light_color = Color(1, 0, 0, 1)
 light_energy = 16.0
 omni_range = 3.51
 omni_shadow_mode = 0
+script = ExtResource("2_mt6ns")
 
 [node name="Bomb2" type="MeshInstance3D" parent="Wire"]
 transform = Transform3D(4.347822, 0, 0, 0, -1.6405093e-09, -0.037530463, 0, 4.347822, -1.9004929e-07, 0, -0.8321492, -4.213894e-06)
@@ -92,6 +96,7 @@ explosiveness = 1.0
 visibility_aabb = AABB(5.815, -2.735, -7.355, 26.88, 17.225, 37.035)
 process_material = SubResource("ParticleProcessMaterial_0iuqs")
 draw_pass_1 = SubResource("BoxMesh_0iuqs")
+script = ExtResource("3_0iuqs")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="ExplosionFX"]
 transform = Transform3D(0.83380866, 0, 0.55205345, 0, 1, 0, -0.55205345, 0, 0.83380866, 0, 0, 22.107794)
@@ -103,6 +108,7 @@ explosiveness = 1.0
 visibility_aabb = AABB(10.725, -4, -16.525, 40.755, 19.05, 35.945)
 process_material = SubResource("ParticleProcessMaterial_p5j1n")
 draw_pass_1 = SubResource("BoxMesh_0iuqs")
+script = ExtResource("3_0iuqs")
 
 [node name="Flash" type="OmniLight3D" parent="."]
 light_energy = 0.0
@@ -111,5 +117,6 @@ light_volumetric_fog_energy = 0.0
 omni_range = 42.182
 omni_attenuation = 0.235
 omni_shadow_mode = 0
+script = ExtResource("2_mt6ns")
 
 [connection signal="body_entered" from="Area3D" to="." method="_detected"]

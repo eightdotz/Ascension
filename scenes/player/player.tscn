@@ -585,21 +585,76 @@ offset_bottom = -11.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Ambience"
 
-[node name="ParticleCheckbox" type="CheckBox" parent="Interface/Pause/Settings"]
+[node name="Graphics" type="Label" parent="Interface/Pause/Settings"]
+layout_mode = 0
+offset_left = 852.0
+offset_top = 168.0
+offset_right = 993.0
+offset_bottom = 191.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Graphical Settings"
+
+[node name="ParticleCheckbox" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 852.0
-offset_top = 218.0
-offset_right = 963.0
-offset_bottom = 218.0
+offset_left = -4.0
+offset_top = 50.0
+offset_right = 107.0
+offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
 button_pressed = true
 text = "Enable Particles"
 script = ExtResource("4_p47bc")
 type = "Particles"
+
+[node name="BorderlessCheckbox" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 90.0
+offset_right = 123.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enable Borderless"
+script = ExtResource("4_p47bc")
+type = "Borderless"
+
+[node name="LightingCheckbox" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 128.0
+offset_right = 107.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Enable Optional Lighting"
+script = ExtResource("4_p47bc")
+type = "OptLight"
+
+[node name="na" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 168.0
+offset_right = 123.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Not sure yet"
+script = ExtResource("4_p47bc")
+type = "Borderless"
 
 [node name="MainMenu" type="Control" parent="Interface"]
 layout_mode = 1
@@ -673,6 +728,77 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Graphics" type="Label" parent="Interface/MainMenu/Settings"]
+layout_mode = 0
+offset_left = 852.0
+offset_top = 168.0
+offset_right = 993.0
+offset_bottom = 191.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Graphical Settings"
+
+[node name="ParticleCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 50.0
+offset_right = 107.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Enable Particles"
+script = ExtResource("4_p47bc")
+type = "Particles"
+
+[node name="BorderlessCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 90.0
+offset_right = 123.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enable Borderless"
+script = ExtResource("4_p47bc")
+type = "Borderless"
+
+[node name="LightingCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 128.0
+offset_right = 107.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Enable Optional Lighting"
+script = ExtResource("4_p47bc")
+type = "OptLight"
+
+[node name="na" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 168.0
+offset_right = 123.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Not sure yet"
+script = ExtResource("4_p47bc")
+type = "Borderless"
 
 [node name="BackLabel" type="Label" parent="Interface/MainMenu/Settings"]
 layout_mode = 0
@@ -808,22 +934,6 @@ offset_right = 109.0
 offset_bottom = -11.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Ambience"
-
-[node name="ParticleCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 852.0
-offset_top = 218.0
-offset_right = 963.0
-offset_bottom = 218.0
-grow_horizontal = 2
-grow_vertical = 2
-button_pressed = true
-text = "Enable Particles"
-script = ExtResource("4_p47bc")
-type = "Particles"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.00757465, 0, 0.999971, 0, 1, 0, -0.999971, 0, -0.00757465, 0.0097437, -0.284527, -0.0227154)
