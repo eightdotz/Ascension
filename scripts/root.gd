@@ -98,8 +98,8 @@ func load_level(path: String) -> void:
 		player.fade_to_clear(1.0)
 		return
 	goal.enable()
-	current_floor += 1
-	player.set_level(current_biome, str(current_floor))
+	Global.current_floor += 1
+	player.set_level(current_biome, str(Global.current_floor))
 
 func load_first_level() -> void:
 	if test_load:
@@ -110,15 +110,15 @@ func load_first_level() -> void:
 func _on_goal_level_completed() -> void:
 	
 	print(base_spawn)
-	spawn_amount = base_spawn + current_floor
+	spawn_amount = base_spawn + Global.current_floor
 	print(spawn_amount)
 	if test_load:
 		load_level(assigned_level)
 		return
-	if current_floor % piss_break_floor == 0 and current_floor != -1 and current_floor and not on_break:
+	if Global.current_floor % piss_break_floor == 0 and Global.current_floor != -1 and Global.current_floor and not on_break:
 		on_break = true
 		load_level(PISS_BREAK)
-	elif not randi_range(0, ability_spawn_range) and current_floor > ability_spawn_threshold and current_level_type != "Ability":
+	elif not randi_range(0, ability_spawn_range) and Global.current_floor > ability_spawn_threshold and current_level_type != "Ability":
 		await player.fade_to_black(1.0, true)
 		load_level(ABILITY_SELECTION)
 		on_break = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://08s4p3p5ek3a"]
+[gd_scene load_steps=20 format=3 uid="uid://08s4p3p5ek3a"]
 
 [ext_resource type="Script" uid="uid://bk7481a8wevwx" path="res://scripts/levels/starting_area.gd" id="1_tltij"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_4qhhf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="4_f6hr6"]
 [ext_resource type="PackedScene" uid="uid://dnk26md2ogk3u" path="res://scenes/utility/radio.tscn" id="6_f6hr6"]
 [ext_resource type="PackedScene" uid="uid://c7873s15rhq6x" path="res://scenes/utility/clock.tscn" id="8_0ji66"]
+[ext_resource type="PackedScene" uid="uid://ba67ktdwluopf" path="res://scenes/utility/save_pc.tscn" id="9_obbe3"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q0o21"]
 emission_shape_scale = Vector3(1, 1, 0.525)
@@ -173,3 +174,6 @@ transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.
 
 [node name="Clock" parent="." instance=ExtResource("8_0ji66")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 14, 19.2)
+
+[node name="PC" parent="." instance=ExtResource("9_obbe3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2339644, 1.9478195, -19.234686)

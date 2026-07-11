@@ -8,7 +8,7 @@ var default_gravity: float = 50.0
 var particles_enabled = true
 var opt_light_enabled = true
 
-var current_floor = 0
+var current_floor = -1
 
 signal menu_volume_changed(new_val: float)
 signal sfx_volume_changed(new_val: float)

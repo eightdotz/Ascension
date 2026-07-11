@@ -12,3 +12,9 @@ func _on_player_health_changed(val: float) -> void:
 
 func _on_timer_timeout() -> void:
 	infection_indicator.emission = Color(0, player.current_infection / 100, 0, 1)
+
+func set_level(biome: String, value: String):
+	var title = $Screen/Biome
+	var floor = $Screen/Floor
+	title.text = biome
+	floor.text = value

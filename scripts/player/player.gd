@@ -201,8 +201,6 @@ func _input(event) -> void:
 			if event.button_index and event.is_pressed():
 				_on_click(event.button_index)
 				interact_with(event.button_index)
-	if Input.is_action_just_pressed("move_pause"):
-		_on_menu_button_pressed()
 
 func _unhandled_input(_event) -> void:
 	if Input.is_action_just_pressed("move_pause"):
@@ -637,10 +635,8 @@ func _on_root_level_changed() -> void:
 			infecting = false
 
 func set_level(biome: String, value: String) -> void:
-	var title = $Head/Map/Screen/Biome
-	var floor = $Head/Map/Screen/Floor
-	title.text = biome
-	floor.text = value
+	var map = $Head/Map
+	map.set_level(biome, value)
 
 func get_level() -> String:
 	return level.text

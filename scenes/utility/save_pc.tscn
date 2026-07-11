@@ -63,8 +63,8 @@ transform = Transform3D(2, 0, 1.7763011e-15, -3.1572627e-29, 0.3, 5.3290705e-15,
 shape = SubResource("ConvexPolygonShape3D_7fl1b")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Case/Screen"]
-transform = Transform3D(2.3255813, 0, 0, 0, 2.3255813, 7.1054274e-15, 0, -7.1054274e-15, 2.3255813, 0, 0.09777486, -4.273879e-09)
+transform = Transform3D(2.3255813, 0, 0, 0, 2.3255813, 2.1316282e-14, 0, -2.1316282e-14, 2.3255813, 0, 0.09777486, 0.1907281)
 light_color = Color(0, 1, 0, 1)
-omni_range = 1.0922579
-omni_attenuation = 0.005
+omni_range = 1.142
+omni_attenuation = -0.533
 script = ExtResource("1_xgr0f")
