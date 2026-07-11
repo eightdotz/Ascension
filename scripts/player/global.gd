@@ -19,6 +19,8 @@ signal particles_toggled(opt: bool)
 signal light_toggled(opt: bool)
 signal pause_sound()
 signal gravity_changed(amount: float)
+signal load_stats
+var player_stats = {}
 
 func set_gravity(amount: float) -> void:
 	gravity_changed.emit(amount)
@@ -47,3 +49,20 @@ func set_level_ambience_volume(value: float) -> void:
 
 func set_level_music_volume(value: float) -> void:
 	level_music_volume_changed.emit(value)
+
+func save_game(dict: Dictionary):
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	for item in dict.keys():
+		save_file.store_line("%s:%s" % [item, dict[item]])
+
+func load_game():
+	if not FileAccess.file_exists("user://savegame.save"):
+		return
+	else:
+		var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+		var dict = {}
+		while save_file.get_position() < save_file.get_length():
+			var line: Array = save_file.get_line().rsplit(":", true, 1)
+			dict[line[0]] = line[1]
+			print("%s %s", line[0], line[1])
+		return dict

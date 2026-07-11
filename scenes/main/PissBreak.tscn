@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://08s4p3p5ek3a"]
+[gd_scene load_steps=23 format=3 uid="uid://08s4p3p5ek3a"]
 
 [ext_resource type="Script" uid="uid://bk7481a8wevwx" path="res://scripts/levels/starting_area.gd" id="1_tltij"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_4qhhf"]
@@ -41,6 +41,17 @@ material = ExtResource("4_f6hr6")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l7tg4"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_obbe3"]
+load_path = "res://.godot/imported/bricks_1.png-b9c6200b5ebfb3151056ade95c0104f6.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aif3o"]
+albedo_texture = SubResource("CompressedTexture2D_obbe3")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_aghol"]
+material = SubResource("StandardMaterial3D_aif3o")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6vw8a"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
@@ -124,7 +135,7 @@ shape = SubResource("ConvexPolygonShape3D_l7tg4")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Pieces"]
 transform = Transform3D(-4.4184333e-08, 0, 22.47336, 0, 20, 0, -1.0108197, 0, -9.823418e-07, 7.9438076, 8.355303, -19.417435)
-mesh = SubResource("BoxMesh_ygdie")
+mesh = SubResource("BoxMesh_aghol")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Pieces/MeshInstance3D5"]
@@ -176,4 +187,4 @@ transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 14, 19.2)
 
 [node name="PC" parent="." instance=ExtResource("9_obbe3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2339644, 1.9478195, -19.234686)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2339644, 1.6012499, -19.478155)
