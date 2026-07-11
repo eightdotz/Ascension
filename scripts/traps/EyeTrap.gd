@@ -56,7 +56,7 @@ func _detect_player(body: Node3D) -> void:
 		for item in eyes:
 			item.visible = false
 	
-func kill_player(body: Node3D):
+func kill_player(body: Node3D) -> void:
 	body.respawn_player()
 
 

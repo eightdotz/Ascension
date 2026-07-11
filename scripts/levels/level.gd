@@ -47,7 +47,7 @@ func _ready() -> void:
 	if type == "Dungeon" and not biome:
 		printerr("PLAYER:\nType is of Dungeon but the Biome has not been defined. This will break!")
 
-func spawn():
+func spawn() -> void:
 	var selected_item
 	var spawn_tracker: Array = []
 	
@@ -109,11 +109,11 @@ func spawn():
 	for i in spawned_pieces:
 		print("Spawned: ", spawned_pieces[i].name)
 
-func configure_spawn(amount: int, cooldown: int): ##Needs to be called by controller second
+func configure_spawn(amount: int, cooldown: int) -> void: ##Needs to be called by controller second
 	spawn_amount = amount
 	room_cooldown = cooldown
 
-func populate(): ##Needs to be called by controller first
+func populate() -> void: ##Needs to be called by controller first
 	if get_env[biome]:
 		world_environment.environment = load(get_env[biome])
 	else:
@@ -142,18 +142,18 @@ func populate(): ##Needs to be called by controller first
 			else:
 				avaliable_pieces.append(resource)
 
-func get_level_type():
+func get_level_type() -> String:
 	if not type:
 		printerr("LEVEL GENERATION:\nType not set yet! Maybe be a timing issue!")
 	return type
 
-func get_piece_start(id: int):
+func get_piece_start(id: int) -> void:
 	return spawned_pieces[id].get_start()
 
-func get_piece_end(id: int):
+func get_piece_end(id: int) -> void:
 	return spawned_pieces[id].get_end()
 
-func fix_overlap():
+func fix_overlap() -> void:
 	print("LEVEL GENERATION:")
 	print("Fixing overlap")
 	print("Current pipe ID: ",current_id)
@@ -176,7 +176,7 @@ func fix_overlap():
 	if ramp_pieces:
 		next_piece = ramp_pieces.pick_random()
 	
-func _on_piece_entered(value: int):
+func _on_piece_entered(value: int) -> void:
 	player_position = value
 	print("LEVEL GENERATION: Player Position: " + str(value) + " " + str(last_light_position))
 	if spawned_pieces:
@@ -205,7 +205,7 @@ func _on_piece_entered(value: int):
 		spawned_pieces[oldest_key].queue_free()
 		spawned_pieces.erase(oldest_key)
 
-func check_transition(floor: int):
+func check_transition(floor: int) -> void:
 	print("LEVEL GENERATION: Checking for transition at floor ", str(floor))
 	if floor >= transition_1 and floor < transition_2:
 		print("Transitioning to 2!")

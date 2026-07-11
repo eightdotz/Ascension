@@ -11,24 +11,24 @@ var id: int = 0
 signal player_entered(id)
 
 
-func _ready():
+func _ready() -> void:
 		
 	if randomize_traps:
 		turn_off_traps()
 		randomize_trap()
 
-func set_lights(toggle: bool):
+func set_lights(toggle: bool) -> void:
 	for item in lights:
 		item.set_light(toggle)
 
-func turn_off_traps():
+func turn_off_traps() -> void:
 	for i in traps:
 		var temp = get_node(i)
 		temp.visible = false
 		temp.disable_hitbox()
 		
 
-func randomize_trap():
+func randomize_trap() -> void:
 	print("LEVEL_PIECE: Randomizing traps")
 	var new_name = traps[randi_range(0, traps.size() - 1)]
 	print("LEVEL_PIECE\nSelected ", new_name)
@@ -41,7 +41,7 @@ func randomize_trap():
 			print("Freeing ", item)
 			get_node(item).queue_free()
 
-func get_level_type():
+func get_level_type() -> String:
 	return "Piece"
 
 #func _player_entered_water(body: Node3D) -> void:
@@ -55,7 +55,7 @@ func get_level_type():
 #		body.in_water = false
 #		print("Player left water.")
 
-func set_id(new_id: int):
+func set_id(new_id: int) -> void:
 	id = new_id
 
 func get_start_transform() -> Transform3D:

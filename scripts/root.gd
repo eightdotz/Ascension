@@ -26,7 +26,7 @@ var current_level_type
 var current_floor = -1
 signal level_changed
 
-func _ready():
+func _ready() -> void:
 	base_spawn = spawn_amount
 	if not spawn_amount:
 		printerr("No spawn amount set! Will crash!")
@@ -37,12 +37,12 @@ func _ready():
 	set_player()
 	set_goal()
 
-func get_level_type():
+func get_level_type() -> String:
 	if not dungeon:
 		return "Dungeon"
 	return dungeon.get_level_type()
 
-func set_player():
+func set_player() -> void:
 	var spawn = dungeon.get_node("SpawnPoint")
 	if not spawn:
 		printerr("No spawn point!!!")
@@ -51,7 +51,7 @@ func set_player():
 	player.set_respawn()
 	player.fade_to_clear()
 
-func set_goal():
+func set_goal() -> void:
 	var spawn = dungeon.get_node("GoalPoint")
 	if not spawn:
 		printerr("No goal spawn point!!!")
@@ -60,7 +60,7 @@ func set_goal():
 	goal.global_position = spawn.global_position
 	goal.global_rotation = spawn.global_rotation
 
-func load_level(path: String):
+func load_level(path: String) -> void:
 	goal.disable()
 	for child in level_node.get_children():
 		child.queue_free()
@@ -94,7 +94,7 @@ func load_level(path: String):
 	current_floor += 1
 	player.set_level(str(current_floor))
 
-func load_first_level():
+func load_first_level() -> void:
 	if test_load:
 		load_level(assigned_level)
 	else:
@@ -120,7 +120,7 @@ func _on_goal_level_completed() -> void:
 		load_level(LEVEL)
 		on_break = 0
 
-func restart():
+func restart() -> void:
 	player.queue_free()
 	await get_tree().process_frame
 	player = load(player_path).instantiate()

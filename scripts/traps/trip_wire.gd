@@ -16,7 +16,7 @@ func _ready() -> void:
 	flash.process_mode = Node.PROCESS_MODE_DISABLED
 	flash.visible = false
 
-func flash_lights():
+func flash_lights() -> void:
 	flash.visible = true
 	flash.process_mode = Node.PROCESS_MODE_ALWAYS
 	
@@ -24,7 +24,7 @@ func flash_lights():
 	tween.set_parallel()
 	tween.tween_property(flash, "light_energy", 16.0, 0.1)
 
-func reset_lights():
+func reset_lights() -> void:
 	var tween = create_tween()
 	tween.set_parallel()
 	tween.tween_property(flash, "light_energy", 0.0, 0.01)

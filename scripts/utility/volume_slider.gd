@@ -2,7 +2,7 @@ extends HScrollBar
 
 @export_enum("Menu", "SFX", "Ambience", "Music") var type: String
 
-func _ready():
+func _ready() -> void:
 	if not type:
 		printerr("VOLUME SLIDER: Type not set, using default volume")
 	if type == "Menu":

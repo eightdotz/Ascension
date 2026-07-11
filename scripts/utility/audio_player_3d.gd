@@ -2,7 +2,7 @@ extends AudioStreamPlayer3D
 
 @export_enum("Menu", "SFX", "Ambience", "Music") var type: String
 
-func _ready():
+func _ready() -> void:
 	if not type:
 		printerr("AUDIO PLAYER 3D: Type not set, using default volume")
 	if type == "Menu":
@@ -22,10 +22,10 @@ func _ready():
 		set_volume(Global.level_music_volume)
 	Global.connect("pause_sound", pause)
 
-func pause():
+func pause() -> void:
 	stream_paused = !stream_paused
 
 
-func set_volume(value: float):
+func set_volume(value: float) -> void:
 	print("AUDIO PLAYER 3D: Setting volume")
 	volume_db = value

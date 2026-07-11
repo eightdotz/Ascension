@@ -6,10 +6,10 @@ var songs_to_load = []
 @onready var audio_stream_player_3d: AudioStreamPlayer3D = $"../../AudioStreamPlayer3D"
 @onready var label_3d: Label3D = $"../Label3D"
 
-func _ready():
+func _ready() -> void:
 	populate()
 	label_3d.text = "Paused"
-func interact(button):
+func interact(button) -> void:
 	if not songs_to_load:
 		print("RADIO: No songs to play")
 		return
@@ -34,7 +34,7 @@ func interact(button):
 		else:
 			label_3d.text = "Playing " + str(pos)
 			
-func populate(): 
+func populate() -> void: 
 	print("RADIO: Populating list")
 	var dir := DirAccess.open(songs)
 	if dir == null: printerr("RADIO:\nCould not open folder"); return

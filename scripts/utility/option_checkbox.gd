@@ -2,7 +2,7 @@ extends CheckBox
 
 @export_enum("Particles", "Borderless", "OptLight") var type: String
 
-func _ready():
+func _ready() -> void:
 	if not type:
 		printerr("OPTION CHECKBOX: Type not set, using default volume")
 	if type == "Particles":

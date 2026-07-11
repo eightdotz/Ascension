@@ -23,16 +23,16 @@ func _ready():
 	level_completed.connect(root._on_goal_level_completed)
 	call_deferred("_intro")
 	
-func random(list:Array):
+func random(list:Array) -> String:
 	return list[randi() % list.size()]
 
-func random_type():
+func random_type() -> String:
 	if randi() % 20 > 18:
 		return "Ability"
 	else:
 		return "Upgrade"
 
-func random_rarity():
+func random_rarity() -> String:
 	var num = randi() % 100
 	var rarity
 	if num > 96:
@@ -49,7 +49,7 @@ func random_rarity():
 		rarity = "Common"
 	return rarity
 
-func random_value(rarity: String, current_type:String):
+func random_value(rarity: String, current_type:String) -> float:
 	if current_type == "Upgrade":
 		var common: float = (randi_range(10, 50) / 10.0)
 		var uncommon: float = (randi_range(15, 70) / 10.0)
@@ -68,7 +68,7 @@ func random_value(rarity: String, current_type:String):
 		else:
 			return common + (randi_range(1, 10) / 10.0)
 	return 0
-func randomize_ability():
+func randomize_ability() -> void:
 	var rarity = random_rarity()
 	ability.set_rarity(rarity)
 	
@@ -108,7 +108,7 @@ func randomize_ability():
 	ability_2.set_page_value(2)
 	print("ABILITY GENERATION:\nType: %s\nRarity: %s\nValue: %f" % [current_type, rarity, value])
 
-func _intro():
+func _intro() -> void:
 	animation_player.play("Fall")
 	await player.fade_to_clear(1.5, true)
 	ability.start()
@@ -132,7 +132,7 @@ func _physics_process(_delta: float) -> void:
 	if result:
 		cursor.position = result.position
 
-func toggle_card():
+func toggle_card() -> void:
 	if animation_player.is_playing(): return
 	ability_2.toggle_hitbox()
 	ability.toggle_hitbox()
@@ -145,7 +145,7 @@ func toggle_card():
 		animation_player.play("Return_" + str(selected_card))
 		await animation_player.animation_finished
 
-func select_card():
+func select_card() -> void:
 	if selected_card == 1:
 		player.add_ability(ability.selected_ability)
 	else:
@@ -179,7 +179,7 @@ func _on_click(button: int) -> void:
 	elif button == MOUSE_BUTTON_RIGHT:
 		toggle_card()
 
-func get_level_type():
+func get_level_type() -> String:
 	if not level_type:
 		printerr("Type not set yet! Maybe be a timing issue!")
 	return level_type

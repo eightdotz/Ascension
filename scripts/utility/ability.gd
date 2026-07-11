@@ -24,7 +24,7 @@ enum SpeedMod {SPRINT, WALL_JUMP_BOOST, DASH, BOOST}
 func _ready() -> void:
 	executables = {"timeslow": timeslow, "boost": boost}
 
-func execute(player_node:CharacterBody3D = null):
+func execute(player_node:CharacterBody3D = null) -> void:
 	if type == "Upgrade":
 		print("ABILITY: Type " + type)
 		if upgrade_choice not in upgradables:
@@ -46,10 +46,10 @@ func get_upgrades() -> Array:
 func get_abilities() -> Array:
 	return abilities.duplicate()
 
-func configure_new_ability(new_type:String):
+func configure_new_ability(new_type:String) -> void:
 	type = new_type
 
-func set_ability_options(new_name:String, new_value:float, new_duration:float = 0): ##New Name: A name for the ability\nNew Value: The value for either intensity (for abilities) or upgrade amounts (for upgrades)\nNew Duration: Optional but required for abilities. Auto filled to 0 (
+func set_ability_options(new_name:String, new_value:float, new_duration:float = 0) -> void: ##New Name: A name for the ability\nNew Value: The value for either intensity (for abilities) or upgrade amounts (for upgrades)\nNew Duration: Optional but required for abilities. Auto filled to 0 (
 	if type == "Ability":
 		ability_choice = new_name
 		intensity = new_value
@@ -70,7 +70,7 @@ func set_ability_options(new_name:String, new_value:float, new_duration:float = 
 				
 		upgrade_amount = new_value
 
-func timeslow():
+func timeslow() -> void:
 	print("ABILITY: Slowing time")
 	Engine.time_scale = intensity
 	print(Engine.time_scale)
@@ -78,7 +78,7 @@ func timeslow():
 	Engine.time_scale = 1.0
 	print(Engine.time_scale)
 	
-func boost():
+func boost() -> void:
 	print("ABILITY: Boosting")
 	var player = get_parent()
 	player.add_speed_modifier(SpeedMod.BOOST, intensity)

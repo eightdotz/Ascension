@@ -17,20 +17,20 @@ signal light_toggled(opt: bool)
 signal pause_sound()
 signal gravity_changed(amount: float)
 
-func set_gravity(amount: float):
+func set_gravity(amount: float) -> void:
 	gravity_changed.emit(amount)
 
-func particles(toggled: bool):
+func particles(toggled: bool) -> void:
 	print("Emitting particles disabled")
 	particles_enabled = toggled
 	particles_toggled.emit(toggled)
 
-func optional_lighting(toggled: bool):
+func optional_lighting(toggled: bool) -> void:
 	print("Emitting particles disabled")
 	opt_light_enabled = toggled
 	light_toggled.emit(toggled)
 
-func borderless(toggled: bool):
+func borderless(toggled: bool) -> void:
 	get_window().borderless = toggled
 
 func set_menu_volume(value: float) -> void:

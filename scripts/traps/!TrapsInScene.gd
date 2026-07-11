@@ -32,7 +32,7 @@ enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
 
 var err = 0
 
-func _ready():
+func _ready() -> void:
 	if not lights:
 		printerr("No lights in scene! Disabling light turn off")
 		err = 1
@@ -62,12 +62,12 @@ func _detect_player(body: Node3D) -> void:
 		if turn_off_lights:
 			lights_on()
 
-func lights_on():
+func lights_on() -> void:
 	if lights:
 		for item in lights:
 			item.toggle = true
 
-func lights_off():
+func lights_off() -> void:
 	if turn_off_lights:
 			if lights:
 				for item in lights:
@@ -91,8 +91,8 @@ func _detect_hitbox(body: Node3D) -> void:
 			body.restore_filter(1.0)
 			
 			
-func disable_hitbox():
+func disable_hitbox() -> void:
 	damage_area.monitoring = false
 
-func enable_hitbox():
+func enable_hitbox() -> void:
 	damage_area.monitoring = true
