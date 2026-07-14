@@ -97,6 +97,10 @@ pixelization = 2.0
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44442, -0.0576912)
 
+[node name="Camera" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 2.8678704e-10, 0.0026492178, 0.0065646395)
+cull_mask = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Head"]
 libraries = {
 &"": SubResource("AnimationLibrary_5gtgg")
@@ -105,14 +109,10 @@ libraries = {
 [node name="Map" parent="Head" instance=ExtResource("2_75vfm")]
 transform = Transform3D(0.25259775, 0, 0, 0, 0.31824172, 0, 0, 0, 0.07756197, -0.524692, -0.11397159, 0.066367134)
 
-[node name="Camera" type="Camera3D" parent="Head"]
-transform = Transform3D(0.333333, 0, -1.77636e-15, 0, 0.333333, 0, 1.77636e-15, 0, 0.333333, 2.86787e-10, 0.00264922, 0.00656464)
-cull_mask = 1
-
 [node name="Flashlight" type="SpotLight3D" parent="Head"]
 transform = Transform3D(1, 1.1392169e-08, -1.5106352e-09, -1.1392171e-08, 0.96544075, -0.26062247, -1.5106281e-09, 0.26062247, 0.96544075, 0, -0.040945202, 0)
-light_energy = 1.227
-spot_range = 72.76841
+light_energy = 2.0
+spot_range = 97.593
 spot_attenuation = 0.72
 spot_angle = 32.678844
 
