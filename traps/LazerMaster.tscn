@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b61h6c5k15ki0"]
+[gd_scene load_steps=6 format=3 uid="uid://b61h6c5k15ki0"]
 
 [ext_resource type="Script" uid="uid://dsjqdq4snij5h" path="res://scripts/traps/!GenericTrap.gd" id="1_gbsiq"]
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="2_7ts2k"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ie17p"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
@@ -414,6 +415,8 @@ transform = Transform3D(5, 0, 0, 0, 0.03193358, 0, 0, 0, 5.0000005, -3.843628, 0
 light_color = Color(1, 0, 0.33333334, 1)
 omni_range = 51.0
 omni_attenuation = 0.789
+omni_shadow_mode = 0
+script = ExtResource("2_7ts2k")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_detect_player"]
 [connection signal="body_entered" from="DamageArea" to="." method="_detect_hitbox"]

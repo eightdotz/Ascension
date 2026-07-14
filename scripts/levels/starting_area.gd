@@ -21,22 +21,22 @@ func _ready() -> void:
 	if type == "Dungeon" and not biome:
 		printerr("Type is of Dungeon but the Biome has not been defined. This will break!")
 	
-func spawn():
+func spawn() -> void:
 	return
 
-func configure_spawn(amount: int): ##Needs to be called by controller second
+func configure_spawn(amount: int) -> void: ##Needs to be called by controller second
 	return
 
-func populate(): ##Needs to be called by controller first
+func populate() -> void: ##Needs to be called by controller first
 	return
 
-func get_level_type():
+func get_level_type() -> String:
 	if not type:
 		printerr("Type not set yet! Maybe be a timing issue!")
 	return type
 
-func get_piece_start(id: int):
+func get_piece_start(id: int) -> void:
 	return spawned_pieces[id].get_start()
 
-func get_piece_end(id: int):
+func get_piece_end(id: int) -> void:
 	return spawned_pieces[id].get_end()

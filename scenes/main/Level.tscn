@@ -1,12 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpxtv3md8pmge"]
+[gd_scene load_steps=8 format=3 uid="uid://bpxtv3md8pmge"]
 
 [ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://scripts/levels/level.gd" id="1_jkde5"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_obw8s"]
+[ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://scripts/utility/particles.gd" id="4_13rtt"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sn42l"]
+emission_shape = 3
+emission_box_extents = Vector3(250, 100, 250)
+gravity = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04efn"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_13rtt"]
+material = SubResource("StandardMaterial3D_04efn")
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jkde5"]
+emission_shape = 3
+emission_box_extents = Vector3(250, 100, 250)
+gravity = Vector3(0, -1, 0)
 
 [node name="Dungeon" type="Node3D"]
 script = ExtResource("1_jkde5")
 type = "Dungeon"
 biome = "Sewer"
+title_1 = "The Sewer"
+desc_1 = "Get out before the infection gets you"
+biome_2 = "Space"
+title_2 = "The Void"
+biome_3 = "Tower"
+title_3 = "The Fields"
+biome_4 = "Tower"
+title_4 = "The Tower"
 ambience = "res://audio/ambience/SewerWhiteNoise.ogg"
 music = "res://audio/ambience/SewerWhiteNoise.ogg"
 
@@ -19,3 +46,21 @@ transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 
 transform = Transform3D(-0.6344472, 0, 0.772966, 0, 1, 0, -0.772966, 0, -0.6344472, -295.40775, 0, -255.48077)
 
 [node name="Pieces" type="Node3D" parent="."]
+
+[node name="Particles" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Particles"]
+amount = 32
+lifetime = 6.0
+preprocess = 2.0
+process_material = SubResource("ParticleProcessMaterial_sn42l")
+draw_pass_1 = SubResource("BoxMesh_13rtt")
+script = ExtResource("4_13rtt")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Particles"]
+amount = 32
+lifetime = 6.0
+preprocess = 2.0
+process_material = SubResource("ParticleProcessMaterial_jkde5")
+draw_pass_1 = SubResource("BoxMesh_13rtt")
+script = ExtResource("4_13rtt")

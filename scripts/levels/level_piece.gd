@@ -11,29 +11,37 @@ var id: int = 0
 signal player_entered(id)
 
 
-func _ready():
+func _ready() -> void:
 		
 	if randomize_traps:
 		turn_off_traps()
 		randomize_trap()
 
-func set_lights(toggle: bool):
+func set_lights(toggle: bool) -> void:
 	for item in lights:
 		item.set_light(toggle)
 
-func turn_off_traps():
+func turn_off_traps() -> void:
 	for i in traps:
 		var temp = get_node(i)
 		temp.visible = false
 		temp.disable_hitbox()
 		
 
-func randomize_trap():
+func randomize_trap() -> void:
+	print("LEVEL_PIECE: Randomizing traps")
 	var new_name = traps[randi_range(0, traps.size() - 1)]
+	print("LEVEL_PIECE\nSelected ", new_name)
 	var trap = get_node(new_name)
 	trap.visible = true
 	trap.enable_hitbox()
-func get_level_type():
+	print("LEVEL_PIECE")
+	for item in traps:
+		if item != new_name:
+			print("Freeing ", item)
+			get_node(item).queue_free()
+
+func get_level_type() -> String:
 	return "Piece"
 
 #func _player_entered_water(body: Node3D) -> void:
@@ -47,7 +55,7 @@ func get_level_type():
 #		body.in_water = false
 #		print("Player left water.")
 
-func set_id(new_id: int):
+func set_id(new_id: int) -> void:
 	id = new_id
 
 func get_start_transform() -> Transform3D:
@@ -88,7 +96,7 @@ func overlaps() -> bool:
 				collision_shape = child
 				break
 		if not collision_shape or not collision_shape.shape:
-			printerr("OverlapCheck child is missing a CollisionShape3D!")
+			printerr("LEVEL_PIECE:\nOverlapCheck child is missing a CollisionShape3D!")
 			continue
 
 		var qs = _get_query_shape(collision_shape)
@@ -101,15 +109,14 @@ func overlaps() -> bool:
 		query.exclude = [detector.get_rid()]
 		var results = space_state.intersect_shape(query, 64)
 		if results.size() > 0:
+			print("LEVEL_PIECE: Overlap found!")
 			found_overlap = true
-			print("Piece '%s' detector '%s' overlaps with:" % [name, detector.name])
+			print("LEVEL_PIECE: Piece '%s' detector '%s' overlaps with:" % [name, detector.name])
 			for result in results:
 				var collider = result.collider
 				if collider:
-					print("%s (path: %s, mask: %d, layer: %d)" % [
+					print("LEVEL_PIECE: %s (path: %s, mask: %d, layer: %d)" % [
 						collider.name, collider.get_path(),
 						collider.collision_mask, collider.collision_layer
 					])
-		else:
-			print("No overlap found")
 	return found_overlap

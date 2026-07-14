@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpiy2djajhaif"]
+[gd_scene load_steps=10 format=3 uid="uid://bpiy2djajhaif"]
 
 [ext_resource type="Script" uid="uid://dyuruy1jox3bc" path="res://scripts/utility/goal.gd" id="1_g1mtl"]
+[ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://scripts/utility/particles.gd" id="2_u06le"]
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="3_7ruh8"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o3txf"]
 emission_shape = 3
@@ -37,6 +39,7 @@ script = ExtResource("1_g1mtl")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Goal/GoalArea"]
 process_material = SubResource("ParticleProcessMaterial_o3txf")
 draw_pass_1 = SubResource("BoxMesh_7ruh8")
+script = ExtResource("2_u06le")
 
 [node name="Visual" type="MeshInstance3D" parent="Goal/GoalArea"]
 transform = Transform3D(71.94, 0, 0, 0, 41.274, 0, 0, 0, 11.348, 0, 0, 0)
@@ -52,5 +55,7 @@ light_color = Color(0.547547, 0.9771727, 1.1551381e-06, 1)
 light_energy = 1.681
 omni_range = 49.043808
 omni_attenuation = 0.71
+omni_shadow_mode = 0
+script = ExtResource("3_7ruh8")
 
 [connection signal="body_entered" from="Goal/GoalArea" to="." method="_on_entered"]

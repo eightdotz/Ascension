@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://ba67ktdwluopf"]
+
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="1_xgr0f"]
+[ext_resource type="Script" uid="uid://dkmyvtuq6fdii" path="res://scripts/utility/save_game.gd" id="1_ya436"]
+[ext_resource type="Script" uid="uid://cbhmmras7a4tl" path="res://scripts/utility/status_print.gd" id="2_ujsqi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v00d"]
+metallic = 0.53
+roughness = 0.27
+
+[sub_resource type="BoxMesh" id="BoxMesh_xgr0f"]
+material = SubResource("StandardMaterial3D_8v00d")
+size = Vector3(1, 1, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya436"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ujsqi"]
+material = SubResource("StandardMaterial3D_ya436")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7fl1b"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="PC" type="Node3D"]
+
+[node name="Case" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_xgr0f")
+
+[node name="Screen" type="MeshInstance3D" parent="Case"]
+transform = Transform3D(0.43, 0, 0, 0, -1.8795896e-08, -0.43, 0, 0.43, -1.8795896e-08, 0, 0, 0.60576725)
+mesh = SubResource("PlaneMesh_ujsqi")
+
+[node name="Ovrwr" type="Label3D" parent="Case/Screen"]
+transform = Transform3D(1, 8.742277e-08, 8.742277e-08, -8.7422734e-08, -4.37114e-08, 1, 8.742278e-08, -1, -4.3711392e-08, 0, 0.019842863, -0.46511623)
+modulate = Color(0, 1, 0, 1)
+text = "Overwrite card data"
+outline_size = 0
+
+[node name="SaveCollisionBody" type="StaticBody3D" parent="Case/Screen/Ovrwr"]
+transform = Transform3D(1, -8.742277e-08, 8.7422784e-08, 8.742278e-08, -4.3711392e-08, -1, 8.742274e-08, 1, -4.3711385e-08, 5.2110906e-08, -0.46511623, -0.13096285)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_ya436")
+
+[node name="SaveCollisionShape" type="CollisionShape3D" parent="Case/Screen/Ovrwr/SaveCollisionBody"]
+transform = Transform3D(2, 0, 1.7763011e-15, -3.1572627e-29, 0.3, 5.3290705e-15, -7.222975e-22, -7.1054274e-15, 0.39999998, 2.1688077e-14, 0.23255813, -0.46511626)
+shape = SubResource("ConvexPolygonShape3D_7fl1b")
+
+[node name="Print" type="Label3D" parent="Case/Screen"]
+transform = Transform3D(1, 8.742277e-08, 8.742277e-08, -8.742272e-08, -4.37114e-08, 1, 8.742278e-08, -1, -4.3711392e-08, 0, 0.019842744, 0.23255818)
+modulate = Color(0, 1, 0, 1)
+text = "Print Status"
+outline_size = 0
+
+[node name="PrintCollisionBody" type="StaticBody3D" parent="Case/Screen/Print"]
+transform = Transform3D(1, -8.742277e-08, 8.7422784e-08, 8.742278e-08, -4.371139e-08, -1, 8.7422734e-08, 1, -4.371138e-08, 5.2110877e-08, -0.46511614, -0.13096273)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_ujsqi")
+
+[node name="PrintCollisionShape" type="CollisionShape3D" parent="Case/Screen/Print/PrintCollisionBody"]
+transform = Transform3D(2, 0, 1.7763011e-15, -3.1572627e-29, 0.3, 5.3290705e-15, -7.222975e-22, -7.1054274e-15, 0.39999998, 2.1688077e-14, 0.23255813, -0.46511626)
+shape = SubResource("ConvexPolygonShape3D_7fl1b")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Case/Screen"]
+transform = Transform3D(2.3255813, 0, 0, 0, 2.3255813, 2.1316282e-14, 0, -2.1316282e-14, 2.3255813, 0, 0.09777486, 0.1907281)
+light_color = Color(0, 1, 0, 1)
+omni_range = 1.142
+omni_attenuation = -0.533
+script = ExtResource("1_xgr0f")

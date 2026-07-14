@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7873s15rhq6x"]
+
+[ext_resource type="Script" uid="uid://b77x8aljr5kec" path="res://scripts/utility/clock.gd" id="1_nf74e"]
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="2_4bhdv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bhdv"]
+albedo_color = Color(0.0619267, 0.0619267, 0.061926693, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e7afv"]
+material = SubResource("StandardMaterial3D_4bhdv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ahlw"]
+albedo_color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_btbho"]
+material = SubResource("StandardMaterial3D_2ahlw")
+
+[node name="Clock" type="Node3D"]
+script = ExtResource("1_nf74e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(9.6, 0, 0, 0, 4.172903, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_e7afv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.6800003, 0, 0, 0, 3.3383224, 0, 0, 0, 1.0223378, 0, 0, 0)
+mesh = SubResource("BoxMesh_btbho")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.040457964, 0.71632624)
+texture_filter = 0
+modulate = Color(0, 0.34817642, 0.024840906, 1)
+outline_modulate = Color(0, 0, 0, 0)
+font_size = 400
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8582301, 0.5878885)
+light_color = Color(0.31099907, 0.8917758, 0, 1)
+light_energy = 1.65
+omni_range = 5.640289
+omni_attenuation = -0.048
+omni_shadow_mode = 0
+script = ExtResource("2_4bhdv")

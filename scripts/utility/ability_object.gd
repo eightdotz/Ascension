@@ -28,12 +28,12 @@ func _ready() -> void:
 	if rarity:
 		set_rarity_properties()
 
-func set_rarity(type: String): ##Configures the look of the item based on rarity and creates ability object
+func set_rarity(type: String) -> void: ##Configures the look of the item based on rarity and creates ability object
 	selected_ability = Ability.new()
 	rarity = type
 	set_rarity_properties()
 	
-func set_rarity_properties(): ##Called by 'set_rarity()', configures the look of the item
+func set_rarity_properties() -> void: ##Called by 'set_rarity()', configures the look of the item
 	var rarity_colors = {"Common": white, "Uncommon": green, "Rare": blue, "Epic": purple, "Legendary": yellow}
 	var rarity_amounts = {"Common": white_amount, "Uncommon": green_amount, "Rare": blue_amount, "Epic": purple_amount, "Legendary": yellow_amount}
 	particles.amount = rarity_amounts[rarity]
@@ -50,21 +50,21 @@ func set_rarity_properties(): ##Called by 'set_rarity()', configures the look of
 	page_mesh.mesh.material = new_page_material
 	page_mesh.mesh.material.emission = rarity_colors[rarity]
 
-func start():
+func start() -> void:
 	particles.emitting = true
 
-func stop():
+func stop() -> void:
 	particles.emitting = false
 
-func set_page_value(value: int):
+func set_page_value(value: float) -> void:
 	value_label.text = str(value)
 	num = value
 
-func toggle_hitbox():
+func toggle_hitbox() -> void:
 	input_area.monitoring = !input_area.monitoring
 	print(input_area.monitoring)
 
-func set_page_name(new_name:String):
+func set_page_name(new_name:String) -> void:
 	name_label.text = new_name
 
 func _mouse_entered(area: Area3D) -> void:

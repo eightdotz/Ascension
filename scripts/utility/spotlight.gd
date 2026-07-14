@@ -36,10 +36,10 @@ extends MeshInstance3D
 		energy = value
 		_update()
 
-func _ready():
+func _ready() -> void:
 	_update()
 
-func _update():
+func _update() -> void:
 	if !is_node_ready():
 		return
 	if light is SpotLight3D:
@@ -58,5 +58,5 @@ func _update():
 	if mesh and mesh.material:
 		mesh.material.emission = color
 
-func set_light(toggle: bool):
+func set_light(toggle: bool) -> void:
 	light.visible = toggle

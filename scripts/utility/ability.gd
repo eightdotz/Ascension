@@ -24,28 +24,19 @@ enum SpeedMod {SPRINT, WALL_JUMP_BOOST, DASH, BOOST}
 func _ready() -> void:
 	executables = {"timeslow": timeslow, "boost": boost}
 
-func execute(player_node:CharacterBody3D = null):
+func execute(player_node:CharacterBody3D = null) -> void:
 	if type == "Upgrade":
-		print("Type: " + type)
+		print("ABILITY: Type " + type)
 		if upgrade_choice not in upgradables:
 			printerr("That is not an stat you can upgrade! " + upgrade_choice)
 			return
-		var player = get_parent()
-		if player:
-			print("Node found")
-			if not player.has_method("is_player"):
-				printerr("Not assigned to player!")
-				if player_node:
-					print("This has been resolved.")
-					player = player_node
-			print("Applying upgrade")
-			player.upgrade(upgrade_choice, upgrade_amount)
-		else:
-			printerr("Not assigned to player!")
+		print("ABILITY: Applying upgrade")
+		player_node.upgrade(upgrade_choice, upgrade_amount)
+
 	else:
-		print("Executing ability")
+		print("ABILITY: Executing ability")
 		if not executables.has(ability_choice):
-			printerr("No existing ability with the name: " + ability_choice)
+			printerr("ABILITY: No existing ability with the name: " + ability_choice)
 			return
 		executables[ability_choice].call()
 
@@ -55,17 +46,17 @@ func get_upgrades() -> Array:
 func get_abilities() -> Array:
 	return abilities.duplicate()
 
-func configure_new_ability(new_type:String):
+func configure_new_ability(new_type:String) -> void:
 	type = new_type
 
-func set_ability_options(new_name:String, new_value:float, new_duration:float = 0): ##New Name: A name for the ability\nNew Value: The value for either intensity (for abilities) or upgrade amounts (for upgrades)\nNew Duration: Optional but required for abilities. Auto filled to 0 (
+func set_ability_options(new_name:String, new_value:float, new_duration:float = 0) -> void: ##New Name: A name for the ability\nNew Value: The value for either intensity (for abilities) or upgrade amounts (for upgrades)\nNew Duration: Optional but required for abilities. Auto filled to 0 (
 	if type == "Ability":
 		ability_choice = new_name
 		intensity = new_value
 		if new_duration > 0:
 			duration = new_duration
 		else:
-			printerr("Type has been declared as ability. SET THE DURATION PROPERLY")
+			printerr("ABILITY: Type has been declared as ability. SET THE DURATION PROPERLY")
 	else:
 		upgrade_choice = new_name
 		if upgrade_choice == "Jump Quanity":
@@ -78,21 +69,17 @@ func set_ability_options(new_name:String, new_value:float, new_duration:float = 
 				new_value = 0.1
 				
 		upgrade_amount = new_value
-	
-	print(new_name)
-	print(new_value)
-	print(new_duration)
 
-func timeslow():
-	print("Slowing time")
+func timeslow() -> void:
+	print("ABILITY: Slowing time")
 	Engine.time_scale = intensity
 	print(Engine.time_scale)
 	await get_tree().create_timer(duration, true, false, true).timeout
 	Engine.time_scale = 1.0
 	print(Engine.time_scale)
 	
-func boost():
-	print("Boosting")
+func boost() -> void:
+	print("ABILITY: Boosting")
 	var player = get_parent()
 	player.add_speed_modifier(SpeedMod.BOOST, intensity)
 	await get_tree().create_timer(duration).timeout

@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var lighting: Node3D = $"../../Lighting"
+@onready var lighting: Node3D = $"../../MainBody/Lighting"
 @export var bad_color: Color
 @export var pass_color: Color
 @export var idle_animation_name = ""
@@ -56,7 +56,7 @@ func _detect_player(body: Node3D) -> void:
 		for item in eyes:
 			item.visible = false
 	
-func kill_player(body: Node3D):
+func kill_player(body: Node3D) -> void:
 	body.respawn_player()
 
 
