@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://d2j27xib6iyfi"]
 
-[ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/Pipe_Metal_Rust.tres" id="1_nnd4m"]
+[ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/Pipe_Metal_Steel.tres" id="1_nnd4m"]
 [ext_resource type="ArrayMesh" uid="uid://dks6yat4efgvf" path="res://resources/Small_Rusty_Pipe_Straight.tres" id="2_ji40w"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2mo4r"]

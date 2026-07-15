@@ -1,8 +1,8 @@
-[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://cijhs1bku52fk"]
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://coj2l882rvi13"]
 
 [sub_resource type="Gradient" id="Gradient_p23xa"]
-offsets = PackedFloat32Array(0.053333335, 1)
-colors = PackedColorArray(0.5333922, 0.29261738, 0.0069979224, 1, 0.41725737, 0.4172574, 0.41725737, 1)
+offsets = PackedFloat32Array(0.053333335, 0.5625, 1)
+colors = PackedColorArray(0.4296316, 0.53174895, 0.6491455, 1, 0.42297608, 0.47016943, 0.52442396, 1, 0.41725737, 0.4172574, 0.41725737, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_p23xa"]
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://7ut58w5epawe"]
+[gd_scene load_steps=8 format=3 uid="uid://7ut58w5epawe"]
 
 [ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level_piece.gd" id="1_brkij"]
+[ext_resource type="ArrayMesh" uid="uid://dubimsab60vix" path="res://resources/4M_Pipe_Ramp.tres" id="2_brkij"]
 [ext_resource type="PackedScene" uid="uid://bf4ffw7b6ndob" path="res://scenes/utility/Spotlight.tscn" id="3_rfflx"]
 [ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://scenes/utility/joint.tscn" id="4_0a6bl"]
 [ext_resource type="PackedScene" uid="uid://b6rimfxkx2217" path="res://scenes/utility/Checkpoint.tscn" id="5_h7dgd"]
@@ -14,6 +15,7 @@ script = ExtResource("1_brkij")
 
 [node name="MainBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(-2.8610232e-06, 1.967013e-06, -30, 1.7568648e-07, 29.999998, 1.9670128e-06, 30, -1.7568622e-07, -2.8610232e-06, -48.98474, -18.093857, 0)
+mesh = ExtResource("2_brkij")
 
 [node name="Lighting" type="Node3D" parent="MainBody"]
 transform = Transform3D(-1.6620082e-09, 2.6839453e-10, 0.033333343, 0.016666671, 0.028867515, 1.1873603e-09, -0.028867528, 0.016666673, -1.9868018e-10, -0.09999961, 0.7262901, 0.6016897)
