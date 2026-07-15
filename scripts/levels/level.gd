@@ -152,12 +152,16 @@ func populate() -> void: ##Needs to be called by controller first
 		if file.ends_with(".remap"):
 			file = file.trim_suffix(".remap")
 		var resource := folder_path + file #ignoring OS dict formatting
-		print(resource)
 		if "!Master" not in resource:
 			if "Ramp" in resource:
 				ramp_pieces.append(resource)
 			else:
 				avaliable_pieces.append(resource)
+				if "/E_" in resource:
+					for i in range(0, 9):
+						avaliable_pieces.append(resource)
+	for item in avaliable_pieces:
+		print(item)
 
 func get_level_type() -> String:
 	if not type:

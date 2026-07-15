@@ -33,10 +33,10 @@ energy = 1.5
 shape = SubResource("ConcavePolygonShape3D_3243y")
 
 [node name="Start" parent="." instance=ExtResource("4_bk6bj")]
-transform = Transform3D(2.7818125e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 2.7818125e-08, 65.17905, 30, 0.5222397)
+transform = Transform3D(2.7818125e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 2.7818125e-08, 65.17905, 30, 0.022239685)
 
 [node name="End" parent="." instance=ExtResource("4_bk6bj")]
-transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -52.634003, 31, 0)
+transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -52.634003, 30.2, 0)
 
 [node name="Checkpoint" parent="." instance=ExtResource("5_bwi5h")]
 transform = Transform3D(16.8, 0, 0, 0, 54.432, 0, 0, 0, 53.946, 60.62249, 30, 0)

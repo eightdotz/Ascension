@@ -113,7 +113,7 @@ transform = Transform3D(0.25259775, 0, 0, 0, 0.31824172, 0, 0, 0, 0.07756197, -0
 [node name="Flashlight" type="SpotLight3D" parent="Head"]
 transform = Transform3D(1, 1.1392169e-08, -1.5106352e-09, -1.1392171e-08, 0.96544075, -0.26062247, -1.5106281e-09, 0.26062247, 0.96544075, 0, -0.040945202, 0)
 light_energy = 0.5
-spot_range = 70.0
+spot_range = 90.0
 spot_attenuation = 0.2
 spot_angle = 30.46
 

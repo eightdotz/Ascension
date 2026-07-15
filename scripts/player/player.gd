@@ -51,7 +51,6 @@ extends CharacterBody3D
 @export var wall_jump_velocity_max: int = 160 ##Maximum speed with any boost
 @export var wall_jump_speed_boost: float = 1.2 ##Amount added to maximum speed after wall jump
 @export var wall_jump_boost_duration: float = 3.5 ##Amount of time added to boost duration
-@export var wall_jump_boost_timer_max: float = 30.0 ##Maximum boost time for wall jumps
 
 @export_group("FOV")
 @export var base_fov: float = 75.0 ##Default field of view
@@ -112,6 +111,8 @@ var knockback_velocity: Vector3
 var knockback_dir: Vector3
 var being_knocked_back: int = 0
 var tween = null
+
+var wall_jump_boost_timer_max: float = (wall_jump_velocity_max / 10.0) + 3
 #Performance shiz
 @onready var wall_rays = $WallCast.get_children() #so we dont use get_children every loop
 @onready var gnd_ray = $GNDRayCast
@@ -161,6 +162,7 @@ signal on_click
 signal health_changed(val: float)
 
 func _ready() -> void:
+	wall_jump_boost_timer_max = (wall_jump_velocity_max / 10.0) + 3
 	Global.connect("gravity_changed", set_gravity)
 	if not root:
 		print("PLAYER: (ready) Getting root")
