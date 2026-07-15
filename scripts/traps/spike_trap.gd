@@ -51,6 +51,6 @@ func _player_entered(body: Node3D, rock: Node3D) -> void:
 		tween = create_tween()
 		tween.tween_property(spike, "position:y", spike.position.y - 8.0, 0.3)
 		
-func _damage_player(body: Node3D, rock: Node3D) -> void:
+func _damage_player(body: Node3D) -> void:
 	if body.has_method("is_player"):
 		body.take_damage(randf_range(damage_min, damage_max))

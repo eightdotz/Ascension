@@ -163,7 +163,11 @@ signal health_changed(val: float)
 func _ready() -> void:
 	Global.connect("gravity_changed", set_gravity)
 	if not root:
+		print("PLAYER: (ready) Getting root")
 		root = get_parent()
+	if root:
+		print("PLAYER: Connecting level change signal")
+		root.connect("level_changed", _on_root_level_changed)
 	if enable_flashlight:
 		flashlight.visible = true
 	else:
@@ -201,6 +205,9 @@ func _input(event) -> void:
 			if event.button_index and event.is_pressed():
 				_on_click(event.button_index)
 				interact_with(event.button_index)
+		if Input.is_action_just_pressed("move_pause"):
+			if not is_processing_unhandled_input():
+				_on_menu_button_pressed_ability()
 
 func _unhandled_input(_event) -> void:
 	if Input.is_action_just_pressed("move_pause"):
@@ -363,6 +370,7 @@ func update_stamina_and_timers(delta) -> void:
 			var relief_percent = clamp(get_effective_max_speed() / infection_speed_relief, 0.0, 1.0)
 			current_infection += infection_rate * (1.0 - relief_percent) * delta
 	else:
+		current_infection = 0.0
 		handle_death()
 
 func update_camera_fov(delta) -> void:
@@ -614,18 +622,18 @@ func overwrite_ability(new_ability: Ability) -> void:
 	pass
 
 func _on_root_level_changed() -> void:
-	print("PLAYER:\nLevel Changed")
+	print("PLAYER: Level Changed")
 	await get_tree().process_frame
 	if not root:
 		root = get_parent()
 	if root:
-		print("PLAYER:\nFound Root")
+		print("PLAYER: Found Root")
 		infecting = true
 		if current_infection:
 			current_infection -= (current_infection / 4)
 		if root.get_level_type() == "Ability":
 			infecting = false
-			print("PLAYER:\nLevel Type is ability")
+			print("PLAYER: Level Type is ability")
 			var dungeon = root.dungeon
 			if dungeon:
 				if on_click.is_connected(dungeon._on_click):
@@ -633,6 +641,8 @@ func _on_root_level_changed() -> void:
 				on_click.connect(dungeon._on_click)
 		elif root.get_level_type() == "Shop":
 			infecting = false
+	else:
+		print("PLAYER: ROOT NOT LOCATED!!")
 
 func set_level(biome: String, value: String) -> void:
 	var map = $Head/Map
@@ -646,8 +656,19 @@ func reset_timers() -> void:
 	movement_override_timer = 0.0
 	wall_jump_timer = 0.0
 
+func _on_menu_button_pressed_ability() -> void:
+	pause.visible = !pause.visible
+	Global.pause_sound.emit()
+	if pause.visible:
+		pause_effect()
+	else:
+		unpause_effect()
+
 
 func _on_menu_button_pressed() -> void:
+	if not is_processing_unhandled_input():
+		_on_menu_button_pressed_ability()
+		return
 	if main_menu.visible:
 		_start_game()
 		return

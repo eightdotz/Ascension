@@ -16,6 +16,8 @@ var err = 0
 var affecting_player := false
 
 func _ready():
+	if randi_range(0, 3):
+		self.queue_free()
 	for item in eyes:
 		item.visible = false
 	light.visible = false

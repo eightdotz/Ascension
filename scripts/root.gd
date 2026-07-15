@@ -39,7 +39,9 @@ func _ready() -> void:
 
 func get_level_type() -> String:
 	if not dungeon:
+		print("No Dungeon")
 		return "Dungeon"
+	print(dungeon.get_level_type())
 	return dungeon.get_level_type()
 
 func set_player() -> void:

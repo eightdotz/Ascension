@@ -89,6 +89,7 @@ slide_on_ceiling = false
 script = ExtResource("1_4flbx")
 infection_limit = 100.0
 infection_rate = 0.8
+enable_flashlight = true
 stamina_drain_sprint = 0.2
 wall_jump_velocity_max = 120
 wall_jump_boost_timer_max = 15.0
@@ -111,10 +112,10 @@ transform = Transform3D(0.25259775, 0, 0, 0, 0.31824172, 0, 0, 0, 0.07756197, -0
 
 [node name="Flashlight" type="SpotLight3D" parent="Head"]
 transform = Transform3D(1, 1.1392169e-08, -1.5106352e-09, -1.1392171e-08, 0.96544075, -0.26062247, -1.5106281e-09, 0.26062247, 0.96544075, 0, -0.040945202, 0)
-light_energy = 2.0
-spot_range = 70.0
-spot_attenuation = 0.72
-spot_angle = 32.678844
+light_energy = 0.5
+spot_range = 92.6287
+spot_attenuation = 0.2
+spot_angle = 20.034718
 
 [node name="Interact" type="RayCast3D" parent="Head"]
 transform = Transform3D(2.062, -7.432149e-09, -6.762259e-08, -6.762259e-08, -0.44784415, -2.0127792, -7.432149e-09, 2.0127792, -0.44784415, 2.8678704e-10, 0.239804, 0.0065646395)

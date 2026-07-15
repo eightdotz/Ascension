@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6doxpvsrfdcq"]
+
+[ext_resource type="ArrayMesh" uid="uid://dks6yat4efgvf" path="res://resources/Small_Rusty_Pipe_Straight.tres" id="2_d81xj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pjd2j"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pjd2j"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Pipe_Deco" type="Node3D"]
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.506552, 3.5797288, -2.6488474e-06, -4.1828966e-07, 8.0945847e-07, 12.81915, 3.5797288, 2.506552, -3.5683e-07, 49.468117, 56.560074, 15.257088)
+mesh = ExtResource("2_d81xj")
+
+[node name="Collision2" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.3919992, -1.4551916e-13, 0, 5.684342e-14, 42.261124, 0, 0, 0, 10.639998, 52.8, 28.7, 18)
+visible = false
+mesh = SubResource("BoxMesh_pjd2j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Collision2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_pjd2j")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.9444236, 2.776926, 5.6633123e-15, -3.2328092e-08, -1.4184565e-07, 9.945, 2.776926, 1.9444236, 3.6067442e-07, -48.73188, 48.560074, 18.257088)
+mesh = ExtResource("2_d81xj")
+
+[node name="Collision3" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.3919992, -3.24982e-13, 0, 5.684342e-14, 42.261124, 0, 0, 0, 10.639998, -46.2, 28.7, 21)
+visible = false
+mesh = SubResource("BoxMesh_pjd2j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Collision3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_pjd2j")

@@ -60,9 +60,9 @@ func _ready() -> void:
 	titles[biome_4] = [title_4, desc_4]
 
 	if not type:
-		printerr("PLAYER:\nLevel type not set!")
+		printerr("LEVEL GENERATION: Level type not set!")
 	if type == "Dungeon" and not biome:
-		printerr("PLAYER:\nType is of Dungeon but the Biome has not been defined. This will break!")
+		printerr("LEVEN GENERATION: Type is of Dungeon but the Biome has not been defined. This will break!")
 
 func spawn() -> void:
 	var selected_item
@@ -82,14 +82,14 @@ func spawn() -> void:
 		else:
 			selected_item = avaliable_pieces[0]
 		if next_piece:
-			print("LEVEL GENERATION:\nSwapping to overridden piece")
+			print("LEVEL GENERATION: Swapping to overridden piece")
 			selected_item = next_piece
 			next_piece = ""
 			
 		spawn_tracker.append(selected_item)
 		var scene_res = load(selected_item)
 		if scene_res == null:
-			push_error("LEVEL GENERATION:\nFailed to load piece: " + selected_item)
+			push_error("LEVEL GENERATION: Failed to load piece: " + selected_item)
 			continue
 		var piece = scene_res.instantiate()
 		pieces.add_child(piece)
@@ -112,7 +112,7 @@ func spawn() -> void:
 		if main_body:
 			main_body.visibility_range_end = 300
 		else:
-			printerr("LEVEL GENERATION:\nMainBody doesnt exist within piece scene! Performance will suffer!")
+			printerr("LEVEL GENERATION: MainBody doesnt exist within piece scene! Performance will suffer!")
 		#piece.get_node("Traps").visibility_parent = "../MainBody"
 		#piece.get_node("Lighting").visibility_parent = "../MainBody"
 	total_spawned_pieces = spawned_pieces.size()
@@ -161,13 +161,13 @@ func populate() -> void: ##Needs to be called by controller first
 
 func get_level_type() -> String:
 	if not type:
-		printerr("LEVEL GENERATION:\nType not set yet! Maybe be a timing issue!")
+		printerr("LEVEL GENERATION: Type not set yet! Maybe be a timing issue!")
 	return type
 
-func get_piece_start(id: int) -> void:
+func get_piece_start(id: int):
 	return spawned_pieces[id].get_start()
 
-func get_piece_end(id: int) -> void:
+func get_piece_end(id: int):
 	return spawned_pieces[id].get_end()
 
 func fix_overlap() -> void:

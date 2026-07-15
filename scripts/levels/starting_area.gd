@@ -35,8 +35,8 @@ func get_level_type() -> String:
 		printerr("Type not set yet! Maybe be a timing issue!")
 	return type
 
-func get_piece_start(id: int) -> void:
+func get_piece_start(id: int):
 	return spawned_pieces[id].get_start()
 
-func get_piece_end(id: int) -> void:
+func get_piece_end(id: int):
 	return spawned_pieces[id].get_end()
