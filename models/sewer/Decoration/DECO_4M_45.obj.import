@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://htb4q3rp0xw4"
+path="res://.godot/imported/DECO_4M_45.obj-9f20fa0d2d358953bb2145b996f94123.mesh"
+
+[deps]
+
+files=["res://.godot/imported/DECO_4M_45.obj-9f20fa0d2d358953bb2145b996f94123.mesh"]
+
+source_file="res://models/sewer/Decoration/DECO_4M_45.obj"
+dest_files=["res://.godot/imported/DECO_4M_45.obj-9f20fa0d2d358953bb2145b996f94123.mesh", "res://.godot/imported/DECO_4M_45.obj-9f20fa0d2d358953bb2145b996f94123.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

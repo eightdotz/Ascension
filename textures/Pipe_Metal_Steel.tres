@@ -15,3 +15,4 @@ albedo_color = Color(0.889619, 0.91303885, 0.93645376, 1)
 albedo_texture = SubResource("NoiseTexture2D_kd8sx")
 metallic = 1.0
 roughness = 0.5
+uv1_triplanar = true
