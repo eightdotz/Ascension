@@ -2,6 +2,8 @@ extends Node3D
 
 @onready var lights = $"../../MainBody/Lighting".get_children() #No change
 
+@export var chance: int  = 1
+
 @export_group("Damage")
 @export var do_damage: bool ##Enables or disables the ability to a random amount of damage
 @export var min_damage: int ##Minimum amount of damage within range
@@ -39,6 +41,9 @@ func _ready() -> void:
 
 func _detect_player(body: Node3D) -> void:
 	if body.has_method("is_player"):
+		if not randi_range(0, chance):
+			gpu_particles_3d.queue_free()
+			damage_area.queue_free()
 		lights_off()
 		gpu_particles_3d.emitting = true
 		if destroy_detection_on_end:
