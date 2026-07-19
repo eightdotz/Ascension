@@ -87,12 +87,10 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 slide_on_ceiling = false
 script = ExtResource("1_4flbx")
+enable_flashlight = true
 infection_limit = 100.0
 infection_rate = 0.8
-enable_flashlight = true
 stamina_drain_sprint = 0.2
-wall_jump_velocity_max = 120
-wall_jump_boost_timer_max = 15.0
 pixelization = 2.0
 
 [node name="Head" type="Node3D" parent="."]
@@ -1009,6 +1007,7 @@ volume_db = -15.0
 script = ExtResource("3_lvxji")
 type = "Music"
 
+[connection signal="coins_changed" from="." to="Head/Map" method="_on_coins_changed"]
 [connection signal="health_changed" from="." to="Head/Map" method="_on_player_health_changed"]
 [connection signal="pressed" from="Interface/Death/MenuButton3" to="." method="_on_restart"]
 [connection signal="pressed" from="Interface/Death/MenuButton4" to="." method="_on_exit"]

@@ -89,7 +89,7 @@ func load_level(path: String) -> void:
 			player.toggle_intro()
 			dungeon.current_biome = dungeon.biome
 			
-		player.fade_to_clear()
+		player.fade_to_clear(0.2)
 	else:
 		print("ROOT: Resetting timers")
 		if current_level_type == "Ability":
@@ -110,7 +110,6 @@ func load_first_level() -> void:
 		load_level(STARTING)
 
 func _on_goal_level_completed() -> void:
-	
 	print(base_spawn)
 	spawn_amount = base_spawn + Global.current_floor
 	print(spawn_amount)
@@ -123,11 +122,17 @@ func _on_goal_level_completed() -> void:
 	elif not randi_range(0, ability_spawn_range) and Global.current_floor > ability_spawn_threshold and current_level_type != "Ability":
 		await player.fade_to_black(1.0, true)
 		load_level(ABILITY_SELECTION)
-		on_break = 0
+		on_break = false
 	else:
 		await player.fade_to_black(1.0, true)
 		load_level(LEVEL)
-		on_break = 0
+		if current_level_type == "Dungeon" and Global.current_floor != -1:
+			player.update_coins(randi_range(spawn_amount / 2, spawn_amount))
+		on_break = false
+
+func reset_floor():
+	player.update_coins(-player.coins)
+	load_level(LEVEL)
 
 func restart() -> void:
 	player.queue_free()

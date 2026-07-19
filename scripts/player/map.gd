@@ -3,6 +3,7 @@ extends MeshInstance3D
 @onready var timer: Timer = $Timer
 @onready var health_indicator = $Health.get_active_material(0) as StandardMaterial3D
 @onready var infection_indicator = $Infection.get_active_material(0) as StandardMaterial3D
+@onready var coins: Label3D = $Screen2/Coins
 
 
 
@@ -18,3 +19,7 @@ func set_level(biome: String, value: String):
 	var floor = $Screen/Floor
 	title.text = biome
 	floor.text = value
+
+
+func _on_coins_changed(val: float) -> void:
+	coins.text = str(val)
