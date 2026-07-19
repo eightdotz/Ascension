@@ -11,13 +11,13 @@ class_name Ability
 @export var duration: float
 
 @export_group("Upgrades")
-@export_enum("Max Health", "Regeneration", "Max Stamina","Max Speed", "Jump Quanity", "Jump Height", "Wall Jump Boost Duration", "Wall Jump Speed Boost") var upgrade_choice: String
+@export_enum("Max Health", "Regeneration", "Base Speed", "Jump Quanity", "Jump Height", "Boost Duration", "True Max Speed") var upgrade_choice: String
 @export var upgrade_amount: float
 
 var executables: Dictionary
 
 var abilities = ["timeslow", "boost"]
-var upgradables = ["Max Health", "Regeneration", "Max Stamina", "Max Speed", "Jump Quanity", "Jump Height", "Wall Jump Boost Duration", "Wall Jump Speed Boost", "Wall Jump Max Speed"]
+var upgradables = ["Max Health", "Regeneration", "Base Speed", "Jump Quanity", "Jump Height", "Boost Duration", "True Max Speed"]
 
 enum SpeedMod {SPRINT, WALL_JUMP_BOOST, DASH, BOOST}
 

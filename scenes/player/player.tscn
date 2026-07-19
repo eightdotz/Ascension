@@ -89,7 +89,9 @@ slide_on_ceiling = false
 script = ExtResource("1_4flbx")
 enable_flashlight = true
 infection_limit = 100.0
-infection_rate = 0.8
+infection_rate = 1.0
+infection_reduction = 4.0
+infection_increase = 0.1
 stamina_drain_sprint = 0.2
 pixelization = 2.0
 

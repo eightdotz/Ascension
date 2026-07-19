@@ -7,7 +7,8 @@ extends CharacterBody3D
 @export_group("Infection")
 @export var infection_limit: float
 @export var infection_rate: float
-
+@export var infection_reduction: float
+@export var infection_increase: float
 @export_group("Abilities")
 @export var ability_1: Ability
 @export var ability_2: Ability
@@ -166,6 +167,7 @@ signal health_changed(val: float)
 signal coins_changed(val: float)
 
 func _ready() -> void:
+	infection_speed_relief = wall_jump_velocity_max
 	wall_jump_boost_timer_max = (wall_jump_velocity_max / 10.0) + 3
 	Global.connect("gravity_changed", set_gravity)
 	if not root:
@@ -282,6 +284,7 @@ func _process(delta) -> void:
 	update_stamina_and_timers(delta)
 
 func _physics_process(delta) -> void:
+	print(current_infection)
 	last_gnd_time += delta
 	last_jump_time += delta
 	
@@ -541,7 +544,7 @@ func flash_screen_red() -> void:
 	remove_damage_filter()
 
 func handle_death() -> void:
-	if current_infection < 100.0:
+	if current_infection < infection_limit:
 		await fade_to_black(1.0, true)
 		respawn_player()
 		return
@@ -560,7 +563,7 @@ func handle_death() -> void:
 func respawn_player() -> void:
 	health = health_max
 	health_changed.emit(health)
-	current_infection = current_infection * 0.1
+	current_infection = current_infection * infection_increase
 	root.reset_floor()
 	self.global_position = respawn_pos
 	self.global_rotation = respawn_rot
@@ -615,9 +618,7 @@ func upgrade(upgrade_name: String, amount: float) -> void:
 			health_max += amount
 		"Regeneration":
 			regen += amount
-		"Max Stamina":
-			stamina_max += amount
-		"Max Speed":
+		"Base Speed":
 			max_speed += amount
 		"Jump Quanity":
 			if amount < 1.0:
@@ -628,11 +629,11 @@ func upgrade(upgrade_name: String, amount: float) -> void:
 			jump_max += amount
 		"Jump Height":
 			jump_speed += amount
-		"Wall Jump Boost Duration":
+		"Boost Duration":
 			wall_jump_boost_duration += amount
-		"Wall Jump Speed Boost":
+		"Wall Jump Force":
 			wall_jump_force += amount
-		"Wall Jump Max Speed":
+		"True Max Speed":
 			wall_jump_velocity_max += amount
 
 	infection_speed_relief = wall_jump_velocity_max
@@ -665,7 +666,7 @@ func _on_root_level_changed() -> void:
 		print("PLAYER: Found Root")
 		infecting = true
 		if current_infection:
-			current_infection -= (current_infection / 4)
+			current_infection -= (current_infection / infection_reduction)
 		if root.get_level_type() == "Ability":
 			infecting = false
 			print("PLAYER: Level Type is ability")
