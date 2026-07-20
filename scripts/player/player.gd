@@ -284,7 +284,6 @@ func _process(delta) -> void:
 	update_stamina_and_timers(delta)
 
 func _physics_process(delta) -> void:
-	print(current_infection)
 	last_gnd_time += delta
 	last_jump_time += delta
 	

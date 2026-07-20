@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var lights = $"../../MainBody/Lighting".get_children() #No change
+@onready var omni_light_3d: OmniLight3D = $OmniLight3D
 
 @export var chance: int  = 1
 
@@ -32,6 +33,7 @@ enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
 var err = 0
 
 func _ready() -> void:
+	omni_light_3d.light_energy = 0.0
 	gpu_particles_3d.emitting = false
 	if not lights:
 		printerr("No lights in scene! Disabling light turn off")
@@ -44,7 +46,14 @@ func _detect_player(body: Node3D) -> void:
 		if not randi_range(0, chance):
 			gpu_particles_3d.queue_free()
 			damage_area.queue_free()
+			detect_area.queue_free()
+			return
 		lights_off()
+		var tween = create_tween()
+		tween.tween_property(omni_light_3d, "light_energy", 16.0, 0.1)
+		await tween.finished
+		omni_light_3d.light_energy = 0.0
+
 		gpu_particles_3d.emitting = true
 		if destroy_detection_on_end:
 			detect_area.queue_free()

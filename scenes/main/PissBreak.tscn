@@ -231,6 +231,8 @@ skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Pieces/MeshInstance3D8"]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("6_c5nk7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pieces/MeshInstance3D8/StaticBody3D"]
@@ -349,6 +351,14 @@ preprocess = 1.22
 process_material = SubResource("ParticleProcessMaterial_3l3g5")
 draw_pass_1 = SubResource("BoxMesh_71b3d")
 script = ExtResource("3_0ji66")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Store"]
+transform = Transform3D(18.35, 0, 0, 0, 18.35, 0, 0, 0, 18.35, 4.3711407e-07, 4, -10)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Store/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_l7tg4")
 
 [node name="player" parent="." instance=ExtResource("11_aghol")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 5, 0)

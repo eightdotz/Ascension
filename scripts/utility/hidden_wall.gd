@@ -2,4 +2,4 @@ extends StaticBody3D
 
 
 func interact(button: int):
-	queue_free()
+	get_parent().queue_free()

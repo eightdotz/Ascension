@@ -197,5 +197,10 @@ transform = Transform3D(1, 0, 0, 0, -0.7071068, 0.7071067, 0, -0.7071067, -0.707
 transform = Transform3D(6.6500006, 0, 0, 0, 38.39497, 0, 0, 0, 44.431202, -75.139755, 2, 0)
 shape = SubResource("ConvexPolygonShape3D_0o6x0")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4183855, 42.038757, -3.9656072)
+omni_range = 60.0
+omni_attenuation = 0.377
+
 [connection signal="body_entered" from="DamageArea" to="." method="_detect_hitbox"]
 [connection signal="body_entered" from="DetectArea" to="." method="_detect_player"]
