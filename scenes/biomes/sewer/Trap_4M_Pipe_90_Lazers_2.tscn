@@ -23,7 +23,7 @@ data = PackedVector3Array(-0.64, 0.2214, -1.9963, -0.64, 0.60139996, -0.0063, -0
 [node name="90_LZ2" type="Node3D"]
 script = ExtResource("1_bv43u")
 randomize_traps = true
-traps = Array[NodePath]([NodePath("Traps/Trap"), NodePath("Traps/Trap2"), NodePath("Traps/Trap3"), NodePath("Traps/Trap4")])
+traps = Array[NodePath]([NodePath("Traps/Trap"), NodePath("Traps/Trap2"), NodePath("Traps/Trap3"), NodePath("Traps/Trap4"), NodePath("Traps/Trap5"), NodePath("Traps/Trap6"), NodePath("Traps/Trap7"), NodePath("Traps/Trap8"), NodePath("Traps/Trap9"), NodePath("Traps/Trap10")])
 
 [node name="Traps" type="Node3D" parent="."]
 transform = Transform3D(1, -4.2351645e-22, 0, -4.4704242e-30, 1, 6.3108872e-30, 0, 5.04871e-29, 1, 0, 0, 0)

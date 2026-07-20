@@ -14,7 +14,7 @@ emission_energy_multiplier = 9.27
 [sub_resource type="CylinderMesh" id="CylinderMesh_q6cky"]
 material = SubResource("StandardMaterial3D_ie17p")
 
-[node name="Trap" type="Node3D"]
+[node name="Lazer_10" type="Node3D"]
 script = ExtResource("1_hcc0c")
 do_damage = true
 min_damage = 8
@@ -22,34 +22,21 @@ max_damage = 12
 slow_player = true
 intensity = 0.3
 duration = 0.8
-hide_mesh_until_trigger = true
-
-[node name="DetectionArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -2.4421997, 0, 0)
-
-[node name="DetectionZone" type="CollisionShape3D" parent="DetectionArea"]
-transform = Transform3D(1.898, 0, 0, 0, 57.135, 0, 0, 0, 57.135, 348.35788, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_ie17p")
+blur_screen = true
 
 [node name="DamageArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756, 0, 0)
 
+[node name="DamageZone2" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(9.884257, 0, 0, 0, 57.134975, 0, 0, 0, 9.96213, -24.444763, 0, -25.502056)
+shape = SubResource("ConvexPolygonShape3D_ie17p")
+
+[node name="DamageZone3" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(11.705928, 0, 0, 0, 57.13497, 0, 0, 0, 6.135455, -24.444763, 0, 0.8304709)
+shape = SubResource("ConvexPolygonShape3D_ie17p")
+
 [node name="DamageZone" type="CollisionShape3D" parent="DamageArea"]
 transform = Transform3D(11.705928, 0, 0, 0, 57.134983, 0, 0, 0, 5.106044, -24.444763, 0, 17.922022)
-shape = SubResource("ConvexPolygonShape3D_ie17p")
-
-[node name="DamageArea3" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756, 0, 0)
-
-[node name="DamageZone" type="CollisionShape3D" parent="DamageArea3"]
-transform = Transform3D(11.705928, 0, 0, 0, 57.134975, 0, 0, 0, 6.1354556, -24.444763, 0, 0.830471)
-shape = SubResource("ConvexPolygonShape3D_ie17p")
-
-[node name="DamageArea2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756, 0, 0)
-
-[node name="DamageZone" type="CollisionShape3D" parent="DamageArea2"]
-transform = Transform3D(9.884257, 0, 0, 0, 57.134983, 0, 0, 0, 9.9621315, -24.444763, 0, -25.50206)
 shape = SubResource("ConvexPolygonShape3D_ie17p")
 
 [node name="Construction" type="Node3D" parent="."]
@@ -197,7 +184,4 @@ visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
-[connection signal="body_entered" from="DetectionArea" to="." method="_detect_player"]
 [connection signal="body_entered" from="DamageArea" to="." method="_detect_hitbox"]
-[connection signal="body_entered" from="DamageArea3" to="." method="_detect_hitbox"]
-[connection signal="body_entered" from="DamageArea2" to="." method="_detect_hitbox"]

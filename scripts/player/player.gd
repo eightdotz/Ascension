@@ -678,6 +678,15 @@ func _on_root_level_changed() -> void:
 			infecting = false
 	else:
 		print("PLAYER: ROOT NOT LOCATED!!")
+	var material := shader_mesh.get_material() as ShaderMaterial
+
+	material.set_shader_parameter("flash_amount", 0.0)
+	material.set_shader_parameter("flash_pivot", 0.5)
+	material.set_shader_parameter("flash_softness", 0.05)
+	material.set_shader_parameter("pixel_size", pixelization)
+	material.set_shader_parameter("shadow_crush", 0.0)
+	material.set_shader_parameter("highlight_boost", 0.0)
+	remove_speed_modifier(SpeedMod.SLOW)
 
 func set_level(biome: String, value: String) -> void:
 	var map = $Head/Map

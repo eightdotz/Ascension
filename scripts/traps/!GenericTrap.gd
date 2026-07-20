@@ -75,6 +75,7 @@ func lights_off() -> void:
 
 func _detect_hitbox(body: Node3D) -> void:
 	if body.has_method("is_player"):
+		print(self.name + " is hitting player from " + get_parent().get_parent().name)
 		if slow_player:
 			body.add_speed_modifier(SpeedMod.SLOW, intensity)
 		if blur_screen:
