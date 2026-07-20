@@ -60,10 +60,10 @@ func set_ability_options(new_name:String, new_value:float, new_duration:float = 
 	else:
 		upgrade_choice = new_name
 		if upgrade_choice == "Jump Quanity":
-			new_value = new_value / 10
+			new_value = new_value / 10.0
 			if new_value < 1:
 				new_value = 1
-		elif upgrade_choice == "Wall Jump Boost Duration":
+		elif upgrade_choice == "Boost Duration":
 			new_value = new_value / 10.0
 			if new_value < 0.1:
 				new_value = 0.1

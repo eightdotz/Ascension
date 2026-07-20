@@ -618,7 +618,9 @@ func upgrade(upgrade_name: String, amount: float) -> void:
 		"Regeneration":
 			regen += amount
 		"Base Speed":
+			max_speed = cache_max_speed
 			max_speed += amount
+			cache_max_speed = max_speed
 		"Jump Quanity":
 			if amount < 1.0:
 				amount = 1

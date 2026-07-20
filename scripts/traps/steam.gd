@@ -54,8 +54,8 @@ func _detect_player(body: Node3D) -> void:
 		tween.tween_property(omni_light_3d, "light_energy", 16.0, 0.1)
 		await tween.finished
 		omni_light_3d.light_energy = 0.0
-
-		gpu_particles_3d.emitting = true
+		if gpu_particles_3d:
+			gpu_particles_3d.emitting = true
 		if destroy_detection_on_end:
 			detect_area.queue_free()
 		lights_on()
