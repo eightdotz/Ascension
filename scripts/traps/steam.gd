@@ -47,6 +47,7 @@ func _detect_player(body: Node3D) -> void:
 			gpu_particles_3d.queue_free()
 			damage_area.queue_free()
 			detect_area.queue_free()
+			await get_tree().process_frame
 			return
 		lights_off()
 		var tween = create_tween()

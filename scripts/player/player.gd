@@ -201,7 +201,7 @@ func _ready() -> void:
 	pause_effect()
 	toggle_mouse()
 	set_process_input(!is_processing_input())
-
+	set_physics_process(!is_physics_processing())
 
 func _input(event) -> void:
 	if event is InputEventMouseMotion:
@@ -725,6 +725,7 @@ func _start_game() -> void:
 	main_menu.visible = !main_menu.visible
 	toggle_mouse()
 	set_process_input(!is_processing_input())
+	set_physics_process(!is_physics_processing())
 	unpause_effect()
 	tween = create_tween()
 	menu_stop()
@@ -907,8 +908,6 @@ func set_intro(title: String, desc: String) -> void:
 	d.text = desc
 
 func toggle_intro() -> void:
-	return
-	@warning_ignore("unreachable_code")
 	var t = $Interface/Intro/Title
 	var intro = $Interface/Intro
 	tween = create_tween()

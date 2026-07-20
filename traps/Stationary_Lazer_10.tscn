@@ -1,0 +1,203 @@
+[gd_scene load_steps=6 format=3 uid="uid://dq77rr5j3ou1g"]
+
+[ext_resource type="Script" uid="uid://dsjqdq4snij5h" path="res://scripts/traps/!GenericTrap.gd" id="1_hcc0c"]
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="2_dh7f0"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ie17p"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ie17p"]
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 9.27
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q6cky"]
+material = SubResource("StandardMaterial3D_ie17p")
+
+[node name="Trap" type="Node3D"]
+script = ExtResource("1_hcc0c")
+do_damage = true
+min_damage = 8
+max_damage = 12
+slow_player = true
+intensity = 0.3
+duration = 0.8
+hide_mesh_until_trigger = true
+
+[node name="DetectionArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -2.4421997, 0, 0)
+
+[node name="DetectionZone" type="CollisionShape3D" parent="DetectionArea"]
+transform = Transform3D(1.898, 0, 0, 0, 57.135, 0, 0, 0, 57.135, 348.35788, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ie17p")
+
+[node name="DamageArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756, 0, 0)
+
+[node name="DamageZone" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(11.705928, 0, 0, 0, 57.134983, 0, 0, 0, 5.106044, -24.444763, 0, 17.922022)
+shape = SubResource("ConvexPolygonShape3D_ie17p")
+
+[node name="DamageArea3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756, 0, 0)
+
+[node name="DamageZone" type="CollisionShape3D" parent="DamageArea3"]
+transform = Transform3D(11.705928, 0, 0, 0, 57.134975, 0, 0, 0, 6.1354556, -24.444763, 0, 0.830471)
+shape = SubResource("ConvexPolygonShape3D_ie17p")
+
+[node name="DamageArea2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756, 0, 0)
+
+[node name="DamageZone" type="CollisionShape3D" parent="DamageArea2"]
+transform = Transform3D(9.884257, 0, 0, 0, 57.134983, 0, 0, 0, 9.9621315, -24.444763, 0, -25.50206)
+shape = SubResource("ConvexPolygonShape3D_ie17p")
+
+[node name="Construction" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756, 0, 0)
+
+[node name="Beams" type="Node3D" parent="Construction"]
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.51744, 0, -30.076178)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D32" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -29.076178)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -28.076178)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D34" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -27.076178)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D35" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -26.076178)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D36" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -25.076178)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D37" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -24.076178)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D38" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -23.076178)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D39" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -22.076178)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D40" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -21.076178)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D59" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -2.069229)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D60" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, -1.0692289)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Construction/Beams/MeshInstance3D60"]
+transform = Transform3D(5, 0, 0, 0, 0.03193358, 0, 0, 0, 5.0000005, -3.843628, 0, 5.346145)
+light_color = Color(1, 0, 0.33333334, 1)
+omni_range = 51.0
+omni_attenuation = 0.789
+omni_shadow_mode = 0
+script = ExtResource("2_dh7f0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.51744, 0, 0)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 0.9999999)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 1.9999998)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 2.9999995)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 3.9999995)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 16.006947)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 17.006947)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 18.006947)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 19.006947)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Construction/Beams"]
+transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 20.006947)
+visibility_range_end = 300.0
+mesh = SubResource("CylinderMesh_q6cky")
+skeleton = NodePath("")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_detect_player"]
+[connection signal="body_entered" from="DamageArea" to="." method="_detect_hitbox"]
+[connection signal="body_entered" from="DamageArea3" to="." method="_detect_hitbox"]
+[connection signal="body_entered" from="DamageArea2" to="." method="_detect_hitbox"]

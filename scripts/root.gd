@@ -117,6 +117,7 @@ func _on_goal_level_completed() -> void:
 		load_level(assigned_level)
 		return
 	if Global.current_floor % piss_break_floor == 0 and Global.current_floor != -1 and Global.current_floor and not on_break:
+		await player.fade_to_black(0.5, true)
 		on_break = true
 		load_level(PISS_BREAK)
 	elif not randi_range(0, ability_spawn_range) and Global.current_floor > ability_spawn_threshold and current_level_type != "Ability":
@@ -124,7 +125,7 @@ func _on_goal_level_completed() -> void:
 		load_level(ABILITY_SELECTION)
 		on_break = false
 	else:
-		await player.fade_to_black(1.0, true)
+		await player.fade_to_black(0.5, true)
 		load_level(LEVEL)
 		if current_level_type == "Dungeon" and Global.current_floor != -1:
 			player.update_coins(randi_range(spawn_amount / 2, spawn_amount))

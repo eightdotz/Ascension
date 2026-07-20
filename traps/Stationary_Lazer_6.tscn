@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b61h6c5k15ki0"]
+[gd_scene load_steps=6 format=3 uid="uid://cm4suwr2mlyja"]
 
-[ext_resource type="Script" uid="uid://dsjqdq4snij5h" path="res://scripts/traps/!GenericTrap.gd" id="1_gbsiq"]
-[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="2_7ts2k"]
+[ext_resource type="Script" uid="uid://dsjqdq4snij5h" path="res://scripts/traps/!GenericTrap.gd" id="1_q0sy1"]
+[ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="2_k3b0r"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ie17p"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
@@ -15,7 +15,7 @@ emission_energy_multiplier = 9.27
 material = SubResource("StandardMaterial3D_ie17p")
 
 [node name="Trap" type="Node3D"]
-script = ExtResource("1_gbsiq")
+script = ExtResource("1_q0sy1")
 do_damage = true
 min_damage = 8
 max_damage = 12
@@ -35,14 +35,14 @@ shape = SubResource("ConvexPolygonShape3D_ie17p")
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756, 0, 0)
 
 [node name="DamageZone" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(11.705928, 0, 0, 0, 57.134995, 0, 0, 0, 30.9143, -24.444763, 0, 11.922027)
+transform = Transform3D(11.705928, 0, 0, 0, 57.13498, 0, 0, 0, 20.876064, -24.444763, 0, 17.990788)
 shape = SubResource("ConvexPolygonShape3D_ie17p")
 
 [node name="DamageArea2" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756, 0, 0)
 
 [node name="DamageZone" type="CollisionShape3D" parent="DamageArea2"]
-transform = Transform3D(9.884257, 0, 0, 0, 57.13499, 0, 0, 0, 15.356923, -24.444763, 0, -23.393147)
+transform = Transform3D(9.884257, 0, 0, 0, 57.134983, 0, 0, 0, 22.244385, -24.444763, 0, -20.277184)
 shape = SubResource("ConvexPolygonShape3D_ie17p")
 
 [node name="Construction" type="Node3D" parent="."]
@@ -188,103 +188,13 @@ visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D54" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -7.069)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D55" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -6.069)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D56" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -5.069)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D57" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -4.069)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D58" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -3.069229)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D59" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -2.069229)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D60" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, -1.0692289)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Construction/Beams/MeshInstance3D60"]
-transform = Transform3D(5, 0, 0, 0, 0.03193358, 0, 0, 0, 5.0000005, -3.843628, 0, 5.346145)
+[node name="OmniLight3D" type="OmniLight3D" parent="Construction/Beams/MeshInstance3D53"]
+transform = Transform3D(5, 0, 0, 0, 0.03193358, 0, 0, 0, 5.0000005, -3.843628, 0, 39.75506)
 light_color = Color(1, 0, 0.33333334, 1)
 omni_range = 51.0
 omni_attenuation = 0.789
 omni_shadow_mode = 0
-script = ExtResource("2_7ts2k")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.51744, 0, 0)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 0.9999999)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 1.9999998)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 2.9999995)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 3.9999995)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 4.999999)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 5.999999)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Construction/Beams"]
-transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 6.999999)
-visibility_range_end = 300.0
-mesh = SubResource("CylinderMesh_q6cky")
-skeleton = NodePath("")
+script = ExtResource("2_k3b0r")
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, 7.999999)
