@@ -4,6 +4,7 @@
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.54901963)
 roughness = 0.0
+billboard_mode = 1
 
 [resource]
 material = SubResource("StandardMaterial3D_m8ohb")

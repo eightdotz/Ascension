@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=4 uid="uid://cfvt3epwjlgop"]
+[gd_scene load_steps=19 format=4 uid="uid://cfvt3epwjlgop"]
 
 [ext_resource type="Script" uid="uid://dinansjow6r0x" path="res://scripts/traps/steam.gd" id="1_776ge"]
 [ext_resource type="Material" uid="uid://cijhs1bku52fk" path="res://textures/surfaces/Pipe_Metal_Rust.tres" id="2_54s2g"]
+[ext_resource type="TextMesh" uid="uid://bvsaw32n40oat" path="res://textures/particles/pshhh.tres" id="3_54s2g"]
 [ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/surfaces/Pipe_Metal_Steel.tres" id="3_chccb"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i5rt2"]
@@ -88,17 +89,6 @@ spread = 18.948
 initial_velocity_min = 53.11
 initial_velocity_max = 98.56
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8ohb"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.54901963)
-roughness = 0.0
-
-[sub_resource type="TextMesh" id="TextMesh_oa8s3"]
-material = SubResource("StandardMaterial3D_m8ohb")
-text = "Pshhhh"
-font_size = 120
-horizontal_alignment = 3
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_2mo4r"]
 _surfaces = [{
 "aabb": AABB(-0.909639, -0.01, -4.055502, 1.819278, 4.996681, 4.965147),
@@ -165,11 +155,11 @@ skeleton = NodePath("../../..")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D2"]
 transform = Transform3D(-0.377838, 0, 1.4101107, 0, 1.459854, 0, -1.4101107, 0, -0.377838, -0.92977357, 1.8978119, -6.8542233)
-amount = 40
+amount = 20
 preprocess = 0.88
 explosiveness = 0.11
 process_material = SubResource("ParticleProcessMaterial_0o6x0")
-draw_pass_1 = SubResource("TextMesh_oa8s3")
+draw_pass_1 = ExtResource("3_54s2g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, -2.8639698, -0.7673983, 0, 0.7673986, -2.8639696, 2.9650006, 1.192093e-07, 0, 6.887026, 8.689554, 22.1)
