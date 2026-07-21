@@ -56,16 +56,11 @@ Textures:
 
 3D Models:
 	Sewer Pipe Types:
-		90s
-		45s
 		Tees
 		Intersections
 		Curves
 		Loops
-		Combination Pipes (The combination of the above)	
-	Tower:
-		Different sections with rooms, some with openings, windows, ledges (int/ext), and
-		some that are fractured with floating pieces
+		Combination Pipes (The combination of the above)
 	
 	General:
 		Models for different, rustic types of light fixtures
