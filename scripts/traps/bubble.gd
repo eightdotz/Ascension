@@ -40,6 +40,18 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		
 
 
+func play_test() -> void:
+	set_process(!is_processing())
+	var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+	var gpu_particles_3d: GPUParticles3D = $MeshInstance3D/GPUParticles3D
+	var material := mesh_instance_3d.get_active_material(0) as StandardMaterial3D
+	var tween = create_tween()
+	tween.set_parallel()
+	gpu_particles_3d.emitting = true
+	tween.tween_property(mesh_instance_3d, "scale", Vector3(1.5, 1.5, 1.5), 0.1)
+	tween.tween_property(material, "emission", Color(0.0, 0.0, 0.0, 0.0), 0.1)
+	tween.tween_property(material, "albedo_color", Color(0.0, 0.0, 0.0, 0.0), 0.1)
+
 func placeholder(body: Node3D) -> void:
 	set_process(!is_processing())
 	
