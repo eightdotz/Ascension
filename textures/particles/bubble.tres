@@ -1,0 +1,17 @@
+[gd_resource type="SphereMesh" load_steps=2 format=3 uid="uid://cfqh2ty80q0s2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2ygp"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.43137255)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.19419985, 0.46060076, 0.4203531, 1)
+subsurf_scatter_enabled = true
+refraction_enabled = true
+
+[resource]
+material = SubResource("StandardMaterial3D_w2ygp")
+radius = 1.5
+height = 3.0

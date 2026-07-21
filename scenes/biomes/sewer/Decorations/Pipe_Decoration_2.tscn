@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://l5hg0t05f1lr"]
 
-[ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/Pipe_Metal_Steel.tres" id="2_wvhva"]
-[ext_resource type="Material" uid="uid://dymuc7ugyidfx" path="res://textures/Pipe_Metal_Copper.tres" id="3_q3ykv"]
+[ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/surfaces/Pipe_Metal_Steel.tres" id="2_wvhva"]
+[ext_resource type="Material" uid="uid://dymuc7ugyidfx" path="res://textures/surfaces/Pipe_Metal_Copper.tres" id="3_q3ykv"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i5rt2"]
 _surfaces = [{

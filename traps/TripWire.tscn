@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://35yq15oxqwbi"]
+[gd_scene load_steps=14 format=3 uid="uid://35yq15oxqwbi"]
 
 [ext_resource type="Script" uid="uid://djhcwnqxecd7l" path="res://scripts/traps/trip_wire.gd" id="1_gd7b8"]
-[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="2_gd7b8"]
 [ext_resource type="Script" uid="uid://c7nkmdl1rv7fg" path="res://scripts/utility/lights.gd" id="2_mt6ns"]
 [ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://scripts/utility/particles.gd" id="3_0iuqs"]
+[ext_resource type="BoxMesh" uid="uid://dk3d6o8uwvu0p" path="res://textures/particles/pipe_brick_rocks.tres" id="3_t883r"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gd7b8"]
 frequency = 0.0133
@@ -33,10 +33,6 @@ emission_box_extents = Vector3(1, 1, 1)
 initial_velocity_min = 168.51999
 initial_velocity_max = 291.37
 gravity = Vector3(0, -32, 18)
-
-[sub_resource type="BoxMesh" id="BoxMesh_0iuqs"]
-material = ExtResource("2_gd7b8")
-size = Vector3(0.6, 0.6, 0.6)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p5j1n"]
 initial_velocity_min = 177.22
@@ -95,7 +91,7 @@ one_shot = true
 explosiveness = 1.0
 visibility_aabb = AABB(5.815, -2.735, -7.355, 26.88, 17.225, 37.035)
 process_material = SubResource("ParticleProcessMaterial_0iuqs")
-draw_pass_1 = SubResource("BoxMesh_0iuqs")
+draw_pass_1 = ExtResource("3_t883r")
 script = ExtResource("3_0iuqs")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="ExplosionFX"]
@@ -107,7 +103,7 @@ one_shot = true
 explosiveness = 1.0
 visibility_aabb = AABB(10.725, -4, -16.525, 40.755, 19.05, 35.945)
 process_material = SubResource("ParticleProcessMaterial_p5j1n")
-draw_pass_1 = SubResource("BoxMesh_0iuqs")
+draw_pass_1 = ExtResource("3_t883r")
 script = ExtResource("3_0iuqs")
 
 [node name="Flash" type="OmniLight3D" parent="."]

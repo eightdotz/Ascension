@@ -1,12 +1,12 @@
 [gd_scene load_steps=111 format=4 uid="uid://dbrx48vyjvxik"]
 
 [ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level_piece.gd" id="1_mxtp3"]
-[ext_resource type="ArrayMesh" uid="uid://b544vun50c0ih" path="res://!TESTING/models/Rooms/room_2.obj" id="2_mxtp3"]
+[ext_resource type="ArrayMesh" path="res://!TESTING/models/Rooms/room_2.obj" id="2_mxtp3"]
 [ext_resource type="PackedScene" uid="uid://4ixc6odmpa52" path="res://scenes/utility/Omnilight.tscn" id="3_fc47n"]
 [ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://scenes/utility/joint.tscn" id="4_iy0fe"]
 [ext_resource type="PackedScene" uid="uid://b6rimfxkx2217" path="res://scenes/utility/Checkpoint.tscn" id="5_0mbm8"]
 [ext_resource type="PackedScene" uid="uid://cjm1spq12xcv" path="res://scenes/utility/OverlapDetector.tscn" id="5_4m2uq"]
-[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="6_iy0fe"]
+[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/surfaces/Pipe_Brick.tres" id="6_iy0fe"]
 [ext_resource type="ArrayMesh" uid="uid://bwclss1mb4hwl" path="res://models/sewer/4M_Pipe_45.tres" id="7_iy0fe"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vgvk5"]

@@ -1,17 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3hjejdjbjw4j"]
+[gd_scene load_steps=10 format=3 uid="uid://b3hjejdjbjw4j"]
 
 [ext_resource type="Script" uid="uid://b27mo8avap2w0" path="res://scripts/traps/spike_trap.gd" id="1_ve46q"]
-[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="3_e2yvk"]
-[ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/Pipe_Channel_Cement.tres" id="4_pk00e"]
+[ext_resource type="BoxMesh" uid="uid://dk3d6o8uwvu0p" path="res://textures/particles/pipe_brick_rocks.tres" id="2_31b23"]
+[ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/surfaces/Pipe_Channel_Cement.tres" id="4_pk00e"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y6abw"]
 initial_velocity_min = 17.39
 initial_velocity_max = 52.539997
 gravity = Vector3(0, -38, 0)
-
-[sub_resource type="BoxMesh" id="BoxMesh_5so3h"]
-material = ExtResource("3_e2yvk")
-size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hy7h7"]
 albedo_color = Color(0, 0, 0, 1)
@@ -41,7 +37,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks30"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -73,7 +69,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks31"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -105,7 +101,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks32"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -137,7 +133,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks33"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -169,7 +165,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks38"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -201,7 +197,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks39"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -233,7 +229,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks40"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -265,7 +261,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks41"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -297,7 +293,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks46"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -329,7 +325,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks47"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -361,7 +357,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks48"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -393,7 +389,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks49"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -425,7 +421,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks10"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -457,7 +453,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks11"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -489,7 +485,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks12"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -521,7 +517,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks13"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -553,7 +549,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks18"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -585,7 +581,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks19"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -617,7 +613,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks20"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -649,7 +645,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks21"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -681,7 +677,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks26"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -713,7 +709,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks27"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -745,7 +741,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks28"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)
@@ -777,7 +773,7 @@ emitting = false
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y6abw")
-draw_pass_1 = SubResource("BoxMesh_5so3h")
+draw_pass_1 = ExtResource("2_31b23")
 
 [node name="PlacementPoint" type="MeshInstance3D" parent="Construction/Rocks29"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.299999, -2.753817e-07, 9.536743e-07)

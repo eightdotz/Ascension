@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=4 uid="uid://bj8elrxy7rqp0"]
 
 [ext_resource type="Script" uid="uid://dinansjow6r0x" path="res://scripts/traps/steam.gd" id="1_8peb0"]
-[ext_resource type="Material" uid="uid://cijhs1bku52fk" path="res://textures/Pipe_Metal_Rust.tres" id="2_lqpth"]
-[ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/Pipe_Metal_Steel.tres" id="3_aoxor"]
+[ext_resource type="Material" uid="uid://cijhs1bku52fk" path="res://textures/surfaces/Pipe_Metal_Rust.tres" id="2_lqpth"]
+[ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/surfaces/Pipe_Metal_Steel.tres" id="3_aoxor"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i5rt2"]
 _surfaces = [{

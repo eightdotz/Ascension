@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=4 uid="uid://bky1iwdrmhyy6"]
 
 [ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level_piece.gd" id="1_8wpa6"]
-[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="2_vtm4i"]
+[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/surfaces/Pipe_Brick.tres" id="2_vtm4i"]
 [ext_resource type="PackedScene" uid="uid://bf4ffw7b6ndob" path="res://scenes/utility/Spotlight.tscn" id="3_vtm4i"]
-[ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/Pipe_Channel_Cement.tres" id="4_gxpdf"]
+[ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/surfaces/Pipe_Channel_Cement.tres" id="4_gxpdf"]
 [ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://scenes/utility/joint.tscn" id="4_qevgk"]
 [ext_resource type="PackedScene" uid="uid://b6rimfxkx2217" path="res://scenes/utility/Checkpoint.tscn" id="5_vtm4i"]
 [ext_resource type="PackedScene" uid="uid://cjm1spq12xcv" path="res://scenes/utility/OverlapDetector.tscn" id="6_qevgk"]

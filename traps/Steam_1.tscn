@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=4 uid="uid://dfxbqueyiimoc"]
+[gd_scene load_steps=20 format=4 uid="uid://dfxbqueyiimoc"]
 
-[ext_resource type="Material" uid="uid://cijhs1bku52fk" path="res://textures/Pipe_Metal_Rust.tres" id="1_o4qew"]
+[ext_resource type="Material" uid="uid://cijhs1bku52fk" path="res://textures/surfaces/Pipe_Metal_Rust.tres" id="1_o4qew"]
 [ext_resource type="Script" uid="uid://dinansjow6r0x" path="res://scripts/traps/steam.gd" id="1_o4227"]
-[ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/Pipe_Metal_Steel.tres" id="2_o4227"]
+[ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/surfaces/Pipe_Metal_Steel.tres" id="2_o4227"]
+[ext_resource type="TextMesh" uid="uid://bvsaw32n40oat" path="res://textures/particles/pshhh.tres" id="3_o4227"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i5rt2"]
 _surfaces = [{
@@ -88,17 +89,6 @@ spread = 18.948
 initial_velocity_min = 53.11
 initial_velocity_max = 98.56
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8ohb"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.54901963)
-roughness = 0.0
-
-[sub_resource type="TextMesh" id="TextMesh_oa8s3"]
-material = SubResource("StandardMaterial3D_m8ohb")
-text = "Pshhhh"
-font_size = 120
-horizontal_alignment = 3
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_jrhce"]
 _surfaces = [{
 "aabb": AABB(-0.75, -0.75, -7.653863, 4.442563, 1.5, 7.654014),
@@ -172,7 +162,7 @@ amount = 20
 lifetime = 0.5
 explosiveness = 0.2
 process_material = SubResource("ParticleProcessMaterial_0o6x0")
-draw_pass_1 = SubResource("TextMesh_oa8s3")
+draw_pass_1 = ExtResource("3_o4227")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.9047222, 2.1479774, 0.74125, -1.4319851, 0.38369948, 2.5677652, 1.7642783, -2.007534, 1.2838829, 0, 38, 24)

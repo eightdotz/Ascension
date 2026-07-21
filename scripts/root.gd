@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var load_shaders: bool = true ##Whether to load the DisplayAll scene
+@export var loading_time: float = 3.0 ##Time for the players loading screen
 @export var spawn_amount: int = 0 ##The amount of total pieces that can be spawned
 @export var room_cooldown: int = 0 ##The amount of connection pieces required before another room can spawn
 @export var ability_spawn_range: int = 1
@@ -19,6 +21,8 @@ extends Node3D
 @onready var LEVEL = "res://scenes/main/Level.tscn"
 @onready var STARTING = "res://scenes/main/StartingArea.tscn"
 @onready var player_path = "res://scenes/player/player.tscn"
+@onready var DISPLAY_SHADERS = "res://scenes/utility/DisplayAll.tscn"
+
 var current_biome: String
 var on_break: int = 0
 var base_spawn
@@ -27,6 +31,16 @@ var current_floor: int = -1
 signal level_changed
 
 func _ready() -> void:
+	if load_shaders:
+		player.load_screen(loading_time)
+		var shaders = load(DISPLAY_SHADERS).instantiate()
+		level_node.add_child(shaders)
+		var spawn = shaders.get_node("PlayerSpawn")
+		player.global_position = spawn.global_position
+		player.global_rotation = spawn.global_rotation
+		await get_tree().create_timer(loading_time).timeout
+		shaders.queue_free()
+	
 	base_spawn = spawn_amount
 	if not spawn_amount:
 		printerr("ROOT: No spawn amount set! Will crash!")
@@ -143,4 +157,3 @@ func restart() -> void:
 	player.name = "player"
 	print(player.name)
 	load_first_level()
-	

@@ -165,8 +165,10 @@ signal on_click
 #stat signals
 signal health_changed(val: float)
 signal coins_changed(val: float)
+@onready var loading_screen: Control = $LoadingScreen
 
 func _ready() -> void:
+	loading_screen.visible = false
 	infection_speed_relief = wall_jump_velocity_max
 	wall_jump_boost_timer_max = (wall_jump_velocity_max / 10.0) + 3
 	Global.connect("gravity_changed", set_gravity)
@@ -938,3 +940,21 @@ func afford_puchase(amount: float) -> bool:
 func update_coins(amount: float) -> void:
 	coins += amount
 	coins_changed.emit(coins)
+	
+func load_screen(waittime: float):
+	var texture_progress_bar: TextureProgressBar = $LoadingScreen/TextureProgressBar
+	toggle_mouse()
+	loading_screen.visible = true
+	var elapsed := 0.0
+
+	while elapsed < waittime:
+		await get_tree().process_frame
+		elapsed += get_process_delta_time()
+
+		texture_progress_bar.value = lerp(
+			texture_progress_bar.min_value,
+			texture_progress_bar.max_value,
+			elapsed / waittime
+		)
+	loading_screen.visible = false
+	toggle_mouse()

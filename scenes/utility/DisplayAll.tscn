@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://28hbku2nok33"]
+
+[ext_resource type="PackedScene" uid="uid://dluynpbcpkkoq" path="res://scenes/utility/AbilityObject.tscn" id="1_mjyaa"]
+[ext_resource type="Script" uid="uid://co0gfyibagodl" path="res://scripts/utility/run_tests.gd" id="1_tedx0"]
+[ext_resource type="PackedScene" uid="uid://b61h6c5k15ki0" path="res://traps/LazerMaster.tscn" id="2_s1ifd"]
+[ext_resource type="PackedScene" uid="uid://35yq15oxqwbi" path="res://traps/TripWire.tscn" id="3_tedx0"]
+[ext_resource type="PackedScene" uid="uid://bsa62acebwe4v" path="res://scenes/biomes/space/4M_Pipe_Straight.tscn" id="4_xo8tm"]
+[ext_resource type="PackedScene" uid="uid://dfxbqueyiimoc" path="res://traps/Steam_1.tscn" id="5_d6cs2"]
+[ext_resource type="PackedScene" uid="uid://c0exgoidvgm0d" path="res://scenes/biomes/sewer/Decorations/Pipe_Decoration_3.tscn" id="6_f8gx2"]
+[ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://scenes/utility/joint.tscn" id="7_s1ifd"]
+[ext_resource type="PackedScene" uid="uid://b3hjejdjbjw4j" path="res://traps/Spikes_Straight_2M.tscn" id="9_xo8tm"]
+
+[node name="DisplayShaders" type="Node3D"]
+script = ExtResource("1_tedx0")
+
+[node name="Ability" parent="." instance=ExtResource("1_mjyaa")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 29, 0)
+rarity = "Legendary"
+
+[node name="Ability2" parent="." instance=ExtResource("1_mjyaa")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.6614685, 29, 0)
+rarity = "Epic"
+
+[node name="Ability3" parent="." instance=ExtResource("1_mjyaa")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.63551164, 29, 0)
+rarity = "Rare"
+
+[node name="Ability4" parent="." instance=ExtResource("1_mjyaa")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -1.2867599, 29, 0)
+rarity = "Uncommon"
+
+[node name="Ability5" parent="." instance=ExtResource("1_mjyaa")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.3824866, 29, 0)
+rarity = "Common"
+
+[node name="Trap" parent="." instance=ExtResource("2_s1ifd")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.0979156, 29, 140)
+
+[node name="TripWire" parent="." instance=ExtResource("3_tedx0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 29, 0)
+
+[node name="4M_Straight" parent="." instance=ExtResource("4_xo8tm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Steam" parent="." instance=ExtResource("5_d6cs2")]
+transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, 0, 0, 10)
+
+[node name="PipeDecoration1" parent="." instance=ExtResource("6_f8gx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 27)
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("7_s1ifd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 29, 25)
+
+[node name="Spikes" parent="." instance=ExtResource("9_xo8tm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 29, 7)
+test = true

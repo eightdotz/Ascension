@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://bt7lf8ump465u"]
+[gd_scene load_steps=27 format=3 uid="uid://bt7lf8ump465u"]
 
 [ext_resource type="Script" uid="uid://bk7481a8wevwx" path="res://scripts/levels/starting_area.gd" id="1_xmuvs"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://scenes/utility/SpawnPoint.tscn" id="2_q0o21"]
 [ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://scripts/utility/particles.gd" id="3_khmfx"]
 [ext_resource type="PackedScene" uid="uid://4ixc6odmpa52" path="res://scenes/utility/Omnilight.tscn" id="3_q0o21"]
+[ext_resource type="PackedScene" uid="uid://bydbt52i4okb5" path="res://traps/Bubble.tscn" id="5_ygdie"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q0o21"]
 emission_shape_scale = Vector3(1, 1, 0.525)
@@ -383,3 +384,6 @@ font_size = 252
 light_energy = 0.44
 omni_range = 6.231
 omni_attenuation = -0.153
+
+[node name="Bubbles" parent="." instance=ExtResource("5_ygdie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)

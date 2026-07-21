@@ -51,3 +51,13 @@ func _detected(body: Node3D) -> void:
 			self.queue_free()
 		body.remove_speed_modifier(SpeedMod.SLOW)
 		body.restore_filter(0.5)
+
+func play_test() -> void:
+	await get_tree().create_timer(0.1).timeout
+	flash_lights()
+	wire.visible = false
+	for item in explosion_fx:
+		item.emitting = true
+	await get_tree().create_timer(0.2).timeout
+	reset_lights()
+	await get_tree().create_timer(1.0).timeout

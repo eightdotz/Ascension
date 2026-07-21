@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://pf1npba7xafn"]
+
+[ext_resource type="PackedScene" uid="uid://bsa62acebwe4v" path="res://scenes/biomes/space/4M_Pipe_Straight.tscn" id="1_k27eb"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2joxd"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 1.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2ygp"]
+transparency = 1
+albedo_color = Color(0.62974596, 0.99999994, 0.91626453, 0.43137255)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.19419985, 0.46060076, 0.4203531, 1)
+subsurf_scatter_enabled = true
+refraction_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_1g0pw"]
+material = SubResource("StandardMaterial3D_w2ygp")
+radius = 2.0
+height = 4.0
+
+[node name="Bubbles" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(60.38687, 0, 0, 0, 13.078, 0, 0, 0, 17.241879, 5.1780014, -1.4934921, 0)
+amount = 16
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_2joxd")
+draw_pass_1 = SubResource("SphereMesh_1g0pw")
+
+[node name="4M_Straight" parent="." instance=ExtResource("1_k27eb")]
