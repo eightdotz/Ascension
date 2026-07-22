@@ -70,9 +70,18 @@ func _ready() -> void:
 func spawn() -> void:
 	var selected_item
 	var spawn_tracker: Array = []
-	
+	var event = roll_event()
+	if event == "Traps Only":
+		for item in avaliable_pieces.duplicate():
+			if "Trap" not in item:
+				avaliable_pieces.erase(item)
+	elif event == "No Traps":
+		for item in avaliable_pieces.duplicate():
+			if "Trap" in item:
+				avaliable_pieces.erase(item)
 	while spawn_amount:
 		await get_tree().physics_frame
+		
 		if avaliable_pieces.size() > 1:
 			selected_item = avaliable_pieces.pick_random()
 			if room_cooldown > 0:
@@ -102,6 +111,13 @@ func spawn() -> void:
 		piece.player_entered.connect(_on_piece_entered)
 		piece.global_transform = next_transform * piece.get_start_transform().inverse()
 		next_transform = piece.get_node("End").global_transform
+		if event == "Traps Only":
+			piece.set_light_color(Color(1.0, 0, 0))
+		elif event == "No Traps":
+			piece.set_light_color(Color(0, 0, 1.0))
+		elif event == "Blackout":
+			piece.remove_lights()
+		
 		await get_tree().physics_frame
 		if piece.overlaps():
 			piece.queue_free()
@@ -259,5 +275,7 @@ func get_intro_desc():
 	return titles[biome][1]
 
 func roll_event() -> String:
-	var events = ["Blackout", "No Traps", "Traps Only"]
+	if randi_range(0, 5):
+		return ""
+	var events = ["Blackout", "No Traps", "Blackout", "Traps Only", "Blackout"]
 	return events[randi_range(0, events.size() - 1)]

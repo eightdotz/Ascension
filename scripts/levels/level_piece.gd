@@ -19,7 +19,8 @@ func _ready() -> void:
 
 func set_lights(toggle: bool) -> void:
 	for item in lights:
-		item.set_light(toggle)
+		if item:
+			item.set_light(toggle)
 
 func turn_off_traps() -> void:
 	for i in traps:
@@ -122,3 +123,10 @@ func overlaps() -> bool:
 						collider.collision_mask, collider.collision_layer
 					])
 	return found_overlap
+	
+func set_light_color(new_color: Color):
+	for item in lights:
+		item.color = new_color
+func remove_lights():
+	for item in lights:
+		item.queue_free()

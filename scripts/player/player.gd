@@ -168,6 +168,7 @@ signal coins_changed(val: float)
 @onready var loading_screen: Control = $LoadingScreen
 
 func _ready() -> void:
+	print("SPAWNING PLAYER")
 	loading_screen.visible = false
 	infection_speed_relief = wall_jump_velocity_max
 	wall_jump_boost_timer_max = (wall_jump_velocity_max / 10.0) + 3
