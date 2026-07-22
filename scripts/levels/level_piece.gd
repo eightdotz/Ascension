@@ -12,9 +12,9 @@ signal player_entered(id)
 
 
 func _ready() -> void:
-		
 	if randomize_traps:
 		turn_off_traps()
+		await get_tree().process_frame
 		randomize_trap()
 
 func set_lights(toggle: bool) -> void:
@@ -33,13 +33,15 @@ func randomize_trap() -> void:
 	var new_name = traps[randi_range(0, traps.size() - 1)]
 	print("LEVEL_PIECE\nSelected ", new_name)
 	var trap = get_node(new_name)
-	trap.visible = true
+	
 	trap.enable_hitbox()
 	print("LEVEL_PIECE")
 	for item in traps:
 		if item != new_name:
 			print("Freeing ", item)
 			get_node(item).queue_free()
+	trap.visible = true
+	print(trap.name + " set to: " + str(trap.visible))
 
 func get_level_type() -> String:
 	return "Piece"

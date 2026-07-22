@@ -1,7 +1,7 @@
 [gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://cd3tb3cai4anw"]
 
-[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="1_2vrko"]
-[ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/Pipe_Channel_Cement.tres" id="2_rgt0u"]
+[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/surfaces/Pipe_Brick.tres" id="1_2vrko"]
+[ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/surfaces/Pipe_Channel_Cement.tres" id="2_rgt0u"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7w1r8"]
 _surfaces = [{

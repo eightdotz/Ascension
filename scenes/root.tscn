@@ -9,7 +9,6 @@ script = ExtResource("1_j5px3")
 spawn_amount = 5
 room_cooldown = 10
 ability_spawn_range = 2
-assigned_level = "res://scenes/main/AbilitySelection.tscn"
 
 [node name="Level" type="Node3D" parent="."]
 
@@ -17,7 +16,6 @@ assigned_level = "res://scenes/main/AbilitySelection.tscn"
 transform = Transform3D(0.82173645, 0, -0.5698676, 0, 1, 0, 0.5698676, 0, 0.82173645, -20.931824, 0, -97.102844)
 
 [node name="player" parent="." instance=ExtResource("2_twpsu")]
-diagnostics_enabled = true
 pixelization = 4.0
 
 [connection signal="level_completed" from="Goal" to="." method="_on_goal_level_completed"]

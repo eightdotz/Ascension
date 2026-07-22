@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=4 uid="uid://7ut58w5epawe"]
 
 [ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level_piece.gd" id="1_brkij"]
-[ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/Pipe_Channel_Cement.tres" id="2_33idp"]
-[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/Pipe_Brick.tres" id="3_0a6bl"]
+[ext_resource type="Material" uid="uid://dy6kaxprma6es" path="res://textures/surfaces/Pipe_Channel_Cement.tres" id="2_33idp"]
+[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/surfaces/Pipe_Brick.tres" id="3_0a6bl"]
 [ext_resource type="PackedScene" uid="uid://bf4ffw7b6ndob" path="res://scenes/utility/Spotlight.tscn" id="3_rfflx"]
 [ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://scenes/utility/joint.tscn" id="4_0a6bl"]
 [ext_resource type="PackedScene" uid="uid://b6rimfxkx2217" path="res://scenes/utility/Checkpoint.tscn" id="5_h7dgd"]

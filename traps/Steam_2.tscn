@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=4 uid="uid://tl44jcqgaxpg"]
+[gd_scene load_steps=19 format=4 uid="uid://tl44jcqgaxpg"]
 
 [ext_resource type="Script" uid="uid://dinansjow6r0x" path="res://scripts/traps/steam.gd" id="1_vbuxr"]
-[ext_resource type="Material" uid="uid://cijhs1bku52fk" path="res://textures/Pipe_Metal_Rust.tres" id="2_b4myy"]
-[ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/Pipe_Metal_Steel.tres" id="3_g11jy"]
+[ext_resource type="Material" uid="uid://cijhs1bku52fk" path="res://textures/surfaces/Pipe_Metal_Rust.tres" id="2_b4myy"]
+[ext_resource type="TextMesh" uid="uid://bvsaw32n40oat" path="res://textures/particles/pshhh.tres" id="3_b4myy"]
+[ext_resource type="Material" uid="uid://coj2l882rvi13" path="res://textures/surfaces/Pipe_Metal_Steel.tres" id="3_g11jy"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i5rt2"]
 _surfaces = [{
@@ -88,17 +89,6 @@ spread = 18.948
 initial_velocity_min = 53.11
 initial_velocity_max = 98.56
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8ohb"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.54901963)
-roughness = 0.0
-
-[sub_resource type="TextMesh" id="TextMesh_oa8s3"]
-material = SubResource("StandardMaterial3D_m8ohb")
-text = "Pshhhh"
-font_size = 120
-horizontal_alignment = 3
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_2mo4r"]
 _surfaces = [{
 "aabb": AABB(-0.909639, -0.01, -4.055502, 1.819278, 4.996681, 4.965147),
@@ -165,11 +155,11 @@ skeleton = NodePath("../../..")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D2"]
 transform = Transform3D(-0.377838, 0, 1.4101107, 0, 1.459854, 0, -1.4101107, 0, -0.377838, -0.92977357, 1.8978119, -6.8542233)
-amount = 40
+amount = 20
 preprocess = 0.88
 explosiveness = 0.11
 process_material = SubResource("ParticleProcessMaterial_0o6x0")
-draw_pass_1 = SubResource("TextMesh_oa8s3")
+draw_pass_1 = ExtResource("3_b4myy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.9650002, 0, 0, 0, 2.3841858e-07, -2.9649997, 0, 2.965, 0, -2, 43.72306, -17.650494)
@@ -196,6 +186,11 @@ transform = Transform3D(1, 0, 0, 0, -0.7071068, 0.7071067, 0, -0.7071067, -0.707
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="DetectArea"]
 transform = Transform3D(6.6500006, 0, 0, 0, 38.39497, 0, 0, 0, 44.431202, -75.139755, 2, 0)
 shape = SubResource("ConvexPolygonShape3D_0o6x0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4183855, 42.038757, -3.9656072)
+omni_range = 60.0
+omni_attenuation = 0.377
 
 [connection signal="body_entered" from="DamageArea" to="." method="_detect_hitbox"]
 [connection signal="body_entered" from="DetectArea" to="." method="_detect_player"]

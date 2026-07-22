@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=4 uid="uid://bk2usk4yh6ijn"]
+[gd_scene load_steps=19 format=4 uid="uid://bk2usk4yh6ijn"]
 
 [ext_resource type="Script" uid="uid://dinansjow6r0x" path="res://scripts/traps/steam.gd" id="1_7etn3"]
-[ext_resource type="Material" uid="uid://cijhs1bku52fk" path="res://textures/Pipe_Metal_Rust.tres" id="2_570ud"]
-[ext_resource type="Material" uid="uid://dymuc7ugyidfx" path="res://textures/Pipe_Metal_Copper.tres" id="3_570ud"]
+[ext_resource type="Material" uid="uid://cijhs1bku52fk" path="res://textures/surfaces/Pipe_Metal_Rust.tres" id="2_570ud"]
+[ext_resource type="TextMesh" uid="uid://bvsaw32n40oat" path="res://textures/particles/pshhh.tres" id="3_0fiba"]
+[ext_resource type="Material" uid="uid://dymuc7ugyidfx" path="res://textures/surfaces/Pipe_Metal_Copper.tres" id="3_570ud"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i5rt2"]
 _surfaces = [{
@@ -87,17 +88,6 @@ material = SubResource("StandardMaterial3D_cvjy2")
 spread = 18.948
 initial_velocity_min = 53.11
 initial_velocity_max = 98.56
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8ohb"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.54901963)
-roughness = 0.0
-
-[sub_resource type="TextMesh" id="TextMesh_oa8s3"]
-material = SubResource("StandardMaterial3D_m8ohb")
-text = "Pshhhh"
-font_size = 120
-horizontal_alignment = 3
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cvjy2"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
@@ -188,11 +178,11 @@ skeleton = NodePath("../../..")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D2"]
 transform = Transform3D(-0.377838, 0, 1.4101107, 0, 1.459854, 0, -1.4101107, 0, -0.377838, -0.92977357, 1.8978119, -6.8542233)
-amount = 40
+amount = 20
 preprocess = 0.88
 explosiveness = 0.11
 process_material = SubResource("ParticleProcessMaterial_0o6x0")
-draw_pass_1 = SubResource("TextMesh_oa8s3")
+draw_pass_1 = ExtResource("3_0fiba")
 
 [node name="DamageArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.99999994, -5.9604645e-08, 0, 5.9604645e-08, -0.99999994, 0, 31.329807, 5.1978836)
@@ -219,6 +209,11 @@ shape = SubResource("ConvexPolygonShape3D_0o6x0")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.965, 0, 0, 0, -1.2960426e-07, -8.465, 0, 2.965, -3.7001692e-07, -2, 14.723061, -17.650494)
 mesh = SubResource("ArrayMesh_dc2xh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 32.459663, -9.31727)
+omni_range = 60.0
+omni_attenuation = 0.377
 
 [connection signal="body_entered" from="DamageArea" to="." method="_detect_hitbox"]
 [connection signal="body_entered" from="DetectArea" to="." method="_detect_player"]

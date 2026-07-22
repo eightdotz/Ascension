@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://pf1npba7xafn"]
+
+[ext_resource type="Script" uid="uid://cpl0lgh748xyv" path="res://scripts/traps/bubbles.gd" id="1_at4vf"]
+[ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://scenes/utility/joint.tscn" id="3_eme2j"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w2ygp"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Bubbles" type="Node3D"]
+script = ExtResource("1_at4vf")
+spawn_limit = 12
+
+[node name="Start" parent="." instance=ExtResource("3_eme2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 23)
+
+[node name="End" parent="." instance=ExtResource("3_eme2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67, 0, -25)
+
+[node name="DespawnArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DespawnArea"]
+transform = Transform3D(147.62175, 0, 0, 0, 8.065, 0, 0, 0, 116.377945, 0, 63, 0)
+shape = SubResource("ConvexPolygonShape3D_w2ygp")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[connection signal="area_entered" from="DespawnArea" to="." method="_on_despawn_area_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

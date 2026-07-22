@@ -1,7 +1,9 @@
 extends Node3D
 
-@onready var lights = $"../../MainBody/Lighting".get_children() #No change
+@onready var lights = $"../../MainBody/Lighting" #No change
+@onready var omni_light_3d: OmniLight3D = $OmniLight3D
 
+@export var chance: int  = 1
 @export_group("Damage")
 @export var do_damage: bool ##Enables or disables the ability to a random amount of damage
 @export var min_damage: int ##Minimum amount of damage within range
@@ -30,6 +32,9 @@ enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
 var err = 0
 
 func _ready() -> void:
+	if lights:
+		lights = lights.get_children()
+	omni_light_3d.light_energy = 0.0
 	gpu_particles_3d.emitting = false
 	if not lights:
 		printerr("No lights in scene! Disabling light turn off")
@@ -39,8 +44,19 @@ func _ready() -> void:
 
 func _detect_player(body: Node3D) -> void:
 	if body.has_method("is_player"):
+		if not randi_range(0, chance):
+			gpu_particles_3d.queue_free()
+			damage_area.queue_free()
+			detect_area.queue_free()
+			await get_tree().process_frame
+			return
 		lights_off()
-		gpu_particles_3d.emitting = true
+		var tween = create_tween()
+		tween.tween_property(omni_light_3d, "light_energy", 16.0, 0.1)
+		await tween.finished
+		omni_light_3d.light_energy = 0.0
+		if gpu_particles_3d:
+			gpu_particles_3d.emitting = true
 		if destroy_detection_on_end:
 			detect_area.queue_free()
 		lights_on()
@@ -76,3 +92,11 @@ func disable_hitbox() -> void:
 
 func enable_hitbox() -> void:
 	damage_area.monitoring = true
+
+func play_test():
+	var tween = create_tween()
+	tween.tween_property(omni_light_3d, "light_energy", 16.0, 0.1)
+	await tween.finished
+	omni_light_3d.light_energy = 0.0
+	if gpu_particles_3d:
+		gpu_particles_3d.emitting = true

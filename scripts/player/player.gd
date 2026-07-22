@@ -2,10 +2,13 @@ extends CharacterBody3D
 
 @export var diagnostics_enabled: bool = false
 @onready var root: Node3D = get_parent() 
-@export var infection_limit: float
-@export var infection_rate: float
 @export var enable_flashlight:bool = false
 
+@export_group("Infection")
+@export var infection_limit: float
+@export var infection_rate: float
+@export var infection_reduction: float
+@export var infection_increase: float
 @export_group("Abilities")
 @export var ability_1: Ability
 @export var ability_2: Ability
@@ -48,7 +51,7 @@ extends CharacterBody3D
 @export var max_wall_angle: float = 150.0 ##Maximum angle for walls to be jumped off of
 @export var straight_wall_leeway: int = 3 ##The amount of range to or from 90 degrees that is accepted as a "straight wall" or surface that cannot be jumped off of
 @export var wall_jump_velocity_preserve_time: float = 0.2 ##Amount of time top speed is preserved
-@export var wall_jump_velocity_max: int = 160 ##Maximum speed with any boost
+@export var wall_jump_velocity_max: float = 120.0 ##Maximum speed with any boost
 @export var wall_jump_speed_boost: float = 1.2 ##Amount added to maximum speed after wall jump
 @export var wall_jump_boost_duration: float = 3.5 ##Amount of time added to boost duration
 
@@ -64,6 +67,7 @@ extends CharacterBody3D
 
 @export_group("Misc")
 @export var knockback_decay: float = 4.0
+@export var coins: float = 0.0
 
 @onready var cache_max_speed := max_speed
 @onready var player_head = $Head
@@ -160,8 +164,12 @@ signal on_click
 
 #stat signals
 signal health_changed(val: float)
+signal coins_changed(val: float)
+@onready var loading_screen: Control = $LoadingScreen
 
 func _ready() -> void:
+	loading_screen.visible = false
+	infection_speed_relief = wall_jump_velocity_max
 	wall_jump_boost_timer_max = (wall_jump_velocity_max / 10.0) + 3
 	Global.connect("gravity_changed", set_gravity)
 	if not root:
@@ -195,7 +203,7 @@ func _ready() -> void:
 	pause_effect()
 	toggle_mouse()
 	set_process_input(!is_processing_input())
-
+	set_physics_process(!is_physics_processing())
 
 func _input(event) -> void:
 	if event is InputEventMouseMotion:
@@ -537,6 +545,10 @@ func flash_screen_red() -> void:
 	remove_damage_filter()
 
 func handle_death() -> void:
+	if current_infection < infection_limit:
+		await fade_to_black(1.0, true)
+		respawn_player()
+		return
 	toggle_mouse()
 	disable_movement()
 	var death_interface = $Interface/Death
@@ -551,7 +563,9 @@ func handle_death() -> void:
 	
 func respawn_player() -> void:
 	health = health_max
-	current_infection += current_infection * 0.1
+	health_changed.emit(health)
+	current_infection = current_infection * infection_increase
+	root.reset_floor()
 	self.global_position = respawn_pos
 	self.global_rotation = respawn_rot
 
@@ -600,9 +614,31 @@ func _on_click(button: int) -> void:
 	emit_signal("on_click", button)
 	
 func upgrade(upgrade_name: String, amount: float) -> void:
-	var upgradables = {"Max Health": health_max, "Regeneration": regen, "Max Stamina": stamina_max, "Max Speed": max_speed, "Jump Quanity":jump_max, "Jump Height":jump_speed, "Wall Jump Boost Duration":wall_jump_boost_duration, "Wall Jump Speed": wall_jump_force, "Wall Jump Max Speed":wall_jump_velocity_max}
-	print("PLAYER: Upgrading %s by %f" % [upgrade_name, amount])
-	upgradables[upgrade_name] += amount
+	match upgrade_name:
+		"Max Health":
+			health_max += amount
+		"Regeneration":
+			regen += amount
+		"Base Speed":
+			max_speed = cache_max_speed
+			max_speed += amount
+			cache_max_speed = max_speed
+		"Jump Quanity":
+			if amount < 1.0:
+				amount = 1
+			else:
+				amount = int(amount)
+			@warning_ignore("narrowing_conversion")
+			jump_max += amount
+		"Jump Height":
+			jump_speed += amount
+		"Boost Duration":
+			wall_jump_boost_duration += amount
+		"Wall Jump Force":
+			wall_jump_force += amount
+		"True Max Speed":
+			wall_jump_velocity_max += amount
+
 	infection_speed_relief = wall_jump_velocity_max
 
 func add_ability(new_ability: Ability) -> void:
@@ -620,6 +656,7 @@ func add_ability(new_ability: Ability) -> void:
 	else:
 		overwrite_ability(new_ability)
 
+@warning_ignore("unused_parameter")
 func overwrite_ability(new_ability: Ability) -> void:
 	pass
 
@@ -632,7 +669,7 @@ func _on_root_level_changed() -> void:
 		print("PLAYER: Found Root")
 		infecting = true
 		if current_infection:
-			current_infection -= (current_infection / 4)
+			current_infection -= (current_infection / infection_reduction)
 		if root.get_level_type() == "Ability":
 			infecting = false
 			print("PLAYER: Level Type is ability")
@@ -645,6 +682,15 @@ func _on_root_level_changed() -> void:
 			infecting = false
 	else:
 		print("PLAYER: ROOT NOT LOCATED!!")
+	var material := shader_mesh.get_material() as ShaderMaterial
+
+	material.set_shader_parameter("flash_amount", 0.0)
+	material.set_shader_parameter("flash_pivot", 0.5)
+	material.set_shader_parameter("flash_softness", 0.05)
+	material.set_shader_parameter("pixel_size", pixelization)
+	material.set_shader_parameter("shadow_crush", 0.0)
+	material.set_shader_parameter("highlight_boost", 0.0)
+	remove_speed_modifier(SpeedMod.SLOW)
 
 func set_level(biome: String, value: String) -> void:
 	var map = $Head/Map
@@ -692,6 +738,7 @@ func _start_game() -> void:
 	main_menu.visible = !main_menu.visible
 	toggle_mouse()
 	set_process_input(!is_processing_input())
+	set_physics_process(!is_physics_processing())
 	unpause_effect()
 	tween = create_tween()
 	menu_stop()
@@ -769,6 +816,7 @@ func screen_fx_disable(vfxname: String) -> void:
 
 func _on_settings() -> void:
 	var settings
+	@warning_ignore("shadowed_variable")
 	var main_menu = $Interface/MainMenu
 	if main_menu.visible:
 		settings = $Interface/MainMenu/Settings
@@ -866,21 +914,51 @@ func interact_with(button: int) -> void:
 func set_gravity(amount: float) -> void:
 	gravity = amount
 
-func set_intro(title: String, desc: String):
+func set_intro(title: String, desc: String) -> void:
 	var t = $Interface/Intro/Title
 	var d = $Interface/Intro/Desc
 	t.text = title
 	d.text = desc
 
-func toggle_intro():
-	return
+func toggle_intro() -> void:
 	var t = $Interface/Intro/Title
 	var intro = $Interface/Intro
-	var tween = create_tween()
+	tween = create_tween()
 	print("PLAYER: Toggling intro")
 	intro.visible = true
-	tween.tween_property(t, "label_settings/font_color:a", 1.0, 1.0) #doesnt exist
-		
-	#else:
-		#intro.visible = true
-		#tween.tween_property(t, "label_settings.font_color:a", 1.0, 1.0)
+	var color = t.label_settings.font_color
+	color.a = 1.0
+
+	tween.tween_property(t.label_settings, "font_color", color, 2.0)
+	await tween.finished
+	await get_tree().create_timer(1.0).timeout
+	tween = create_tween()
+	color.a = 0.0
+	tween.tween_property(t.label_settings, "font_color", color, 1.0)
+
+func afford_puchase(amount: float) -> bool:
+	if coins > amount:
+		return true
+	return false
+
+func update_coins(amount: float) -> void:
+	coins += amount
+	coins_changed.emit(coins)
+	
+func load_screen(waittime: float):
+	var texture_progress_bar: TextureProgressBar = $LoadingScreen/TextureProgressBar
+	toggle_mouse()
+	loading_screen.visible = true
+	var elapsed := 0.0
+
+	while elapsed < waittime:
+		await get_tree().process_frame
+		elapsed += get_process_delta_time()
+
+		texture_progress_bar.value = lerp(
+			texture_progress_bar.min_value,
+			texture_progress_bar.max_value,
+			elapsed / waittime
+		)
+	loading_screen.visible = false
+	toggle_mouse()

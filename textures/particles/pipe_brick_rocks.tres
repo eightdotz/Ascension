@@ -1,0 +1,7 @@
+[gd_resource type="BoxMesh" load_steps=2 format=3 uid="uid://dk3d6o8uwvu0p"]
+
+[ext_resource type="Material" uid="uid://di6pur5l1vwis" path="res://textures/surfaces/Pipe_Brick.tres" id="1_djnmn"]
+
+[resource]
+material = ExtResource("1_djnmn")
+size = Vector3(0.5, 0.5, 0.5)

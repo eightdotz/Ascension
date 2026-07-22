@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var load_shaders: bool = true ##Whether to load the DisplayAll scene
+@export var loading_time: float = 3.0 ##Time for the players loading screen
 @export var spawn_amount: int = 0 ##The amount of total pieces that can be spawned
 @export var room_cooldown: int = 0 ##The amount of connection pieces required before another room can spawn
 @export var ability_spawn_range: int = 1
@@ -19,6 +21,8 @@ extends Node3D
 @onready var LEVEL = "res://scenes/main/Level.tscn"
 @onready var STARTING = "res://scenes/main/StartingArea.tscn"
 @onready var player_path = "res://scenes/player/player.tscn"
+@onready var DISPLAY_SHADERS = "res://scenes/utility/DisplayAll.tscn"
+
 var current_biome: String
 var on_break: int = 0
 var base_spawn
@@ -27,6 +31,16 @@ var current_floor: int = -1
 signal level_changed
 
 func _ready() -> void:
+	if load_shaders:
+		player.load_screen(loading_time)
+		var shaders = load(DISPLAY_SHADERS).instantiate()
+		level_node.add_child(shaders)
+		var spawn = shaders.get_node("PlayerSpawn")
+		player.global_position = spawn.global_position
+		player.global_rotation = spawn.global_rotation
+		await get_tree().create_timer(loading_time).timeout
+		shaders.queue_free()
+	
 	base_spawn = spawn_amount
 	if not spawn_amount:
 		printerr("ROOT: No spawn amount set! Will crash!")
@@ -83,13 +97,12 @@ func load_level(path: String) -> void:
 	set_goal()
 	emit_signal("level_changed")
 	if current_level_type == "Dungeon":
-		if dungeon.biome != dungeon.current_biome:
-			player.set_intro(dungeon.get_intro_title(), dungeon.get_intro_desc())
-			#await get_tree().process_frame
-			player.toggle_intro()
+		if dungeon.biome != current_biome:
+			print(dungeon.biome + "|" + current_biome)
 			dungeon.current_biome = dungeon.biome
-			
-		player.fade_to_clear()
+			player.set_intro(dungeon.get_intro_title(), dungeon.get_intro_desc())
+			player.toggle_intro()
+		player.fade_to_clear(0.2)
 	else:
 		print("ROOT: Resetting timers")
 		if current_level_type == "Ability":
@@ -110,7 +123,6 @@ func load_first_level() -> void:
 		load_level(STARTING)
 
 func _on_goal_level_completed() -> void:
-	
 	print(base_spawn)
 	spawn_amount = base_spawn + Global.current_floor
 	print(spawn_amount)
@@ -118,16 +130,23 @@ func _on_goal_level_completed() -> void:
 		load_level(assigned_level)
 		return
 	if Global.current_floor % piss_break_floor == 0 and Global.current_floor != -1 and Global.current_floor and not on_break:
+		await player.fade_to_black(0.5, true)
 		on_break = true
 		load_level(PISS_BREAK)
 	elif not randi_range(0, ability_spawn_range) and Global.current_floor > ability_spawn_threshold and current_level_type != "Ability":
 		await player.fade_to_black(1.0, true)
 		load_level(ABILITY_SELECTION)
-		on_break = 0
+		on_break = false
 	else:
-		await player.fade_to_black(1.0, true)
+		await player.fade_to_black(0.5, true)
 		load_level(LEVEL)
-		on_break = 0
+		if current_level_type == "Dungeon" and Global.current_floor != -1:
+			player.update_coins(randi_range(spawn_amount / 2, spawn_amount))
+		on_break = false
+
+func reset_floor():
+	player.update_coins(-player.coins)
+	load_level(LEVEL)
 
 func restart() -> void:
 	player.queue_free()
@@ -137,4 +156,3 @@ func restart() -> void:
 	player.name = "player"
 	print(player.name)
 	load_first_level()
-	

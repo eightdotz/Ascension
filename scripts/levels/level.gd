@@ -4,6 +4,9 @@ extends Node3D
 
 @export_group("Generation")
 @export_enum("Dungeon", "Ability", "Shop") var type: String
+@export var empty_priority: int = 6 ##Priority of pieces with no additions, higher number means more pieces
+@export var object_priority: int = 0 ##Priority of pieces with objects or decorations, higher number means more pieces
+@export var trap_priority: int = 2##Priority of trap pieces, higher number means more pieces
 @export_enum("Sewer", "Fields", "Space","Tower") var biome: String
 @export var title_1: String
 @export var desc_1: String
@@ -63,7 +66,7 @@ func _ready() -> void:
 		printerr("LEVEL GENERATION: Level type not set!")
 	if type == "Dungeon" and not biome:
 		printerr("LEVEN GENERATION: Type is of Dungeon but the Biome has not been defined. This will break!")
-
+	
 func spawn() -> void:
 	var selected_item
 	var spawn_tracker: Array = []
@@ -157,8 +160,14 @@ func populate() -> void: ##Needs to be called by controller first
 				ramp_pieces.append(resource)
 			else:
 				avaliable_pieces.append(resource)
-				if "/E_" in resource:
-					for i in range(0, 9):
+				if "/E_" in resource and empty_priority:
+					for i in range(0, empty_priority):
+						avaliable_pieces.append(resource)
+				if "/Trap_" in resource and trap_priority:
+					for i in range(0, trap_priority):
+						avaliable_pieces.append(resource)
+				if "/OB_" in resource and object_priority:
+					for i in range(0, object_priority):
 						avaliable_pieces.append(resource)
 	for item in avaliable_pieces:
 		print(item)
@@ -248,3 +257,7 @@ func get_intro_title():
 func get_intro_desc():
 	print("Getting " + biome + " " + titles[biome][1])
 	return titles[biome][1]
+
+func roll_event() -> String:
+	var events = ["Blackout", "No Traps", "Traps Only"]
+	return events[randi_range(0, events.size() - 1)]

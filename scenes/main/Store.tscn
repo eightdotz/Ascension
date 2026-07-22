@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuoodp8sk7q8b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3fwui"]
+albedo_color = Color(0.30284935, 0.14859968, 7.219613e-08, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j34uq"]
+material = SubResource("StandardMaterial3D_3fwui")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3fwui"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j34uq"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wbal2"]
+
+[node name="Store" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(12.15126, 0, 0, 0, 1.3965001, 0, 0, 0, 0.15120001, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_j34uq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_3fwui")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.970001, 0, 0, 0, -1.57361e-07, 0.15120003, 0, -3.6000001, -6.6091634e-09, 0, 1.2, -1.3)
+mesh = SubResource("BoxMesh_j34uq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_j34uq")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.970001, 0, 0, 0, -1.57361e-07, 0.15120003, 0, -3.6000001, -6.6091634e-09, 0, 3.1999998, -1.3)
+mesh = SubResource("BoxMesh_j34uq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D11"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D11/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_j34uq")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.298, 0, 0, 0, 2.328, 9.447337e-09, 0, -6.9379816e-08, 0.317, -4.7, 2, -7.450581e-09)
+mesh = SubResource("BoxMesh_j34uq")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.298, 0, 0, 0, 2.328, 9.447337e-09, 0, -6.9379816e-08, 0.317, -4.6, 2, -2.7)
+mesh = SubResource("BoxMesh_j34uq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.298, 0, 0, 0, 2.328, 9.447337e-09, 0, -6.9379816e-08, 0.317, 4.3, 2, -7.450581e-09)
+mesh = SubResource("BoxMesh_j34uq")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.298, 0, 0, 0, 2.328, 9.44734e-09, 0, -6.937982e-08, 0.31700003, 4.4, 2, -2.7)
+mesh = SubResource("BoxMesh_j34uq")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.0011951327, 3.1123803, -0.8)
+light_energy = 2.346
+spot_range = 2.287
+spot_attenuation = 0.65
+spot_angle = 24.612612
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.0011952, 3.1123803, -0.8)
+light_energy = 2.346
+spot_range = 2.287
+spot_attenuation = 0.65
+spot_angle = 24.612612
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.9988048, 3.1123803, -0.8)
+light_energy = 2.346
+spot_range = 2.287
+spot_attenuation = 0.65
+spot_angle = 24.612612
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 0, 1.4934037, -0.71693534)
+mesh = SubResource("SphereMesh_wbal2")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, -3, 1.4934037, -0.71693534)
+mesh = SubResource("SphereMesh_wbal2")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 3, 1.4934037, -0.71693534)
+mesh = SubResource("SphereMesh_wbal2")

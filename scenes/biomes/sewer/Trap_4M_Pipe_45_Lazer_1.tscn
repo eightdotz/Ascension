@@ -1,13 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhjquy26536wn"]
+[gd_scene load_steps=16 format=3 uid="uid://bhjquy26536wn"]
 
 [ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level_piece.gd" id="1_8k47j"]
 [ext_resource type="ArrayMesh" uid="uid://clkwyddo77f0n" path="res://resources/4M_Pipe_45.tres" id="2_3hrjf"]
 [ext_resource type="PackedScene" uid="uid://bf4ffw7b6ndob" path="res://scenes/utility/Spotlight.tscn" id="3_j8pbr"]
 [ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://scenes/utility/joint.tscn" id="4_av084"]
 [ext_resource type="PackedScene" uid="uid://b6rimfxkx2217" path="res://scenes/utility/Checkpoint.tscn" id="5_3hrjf"]
+[ext_resource type="PackedScene" uid="uid://dsuw3krvky3u8" path="res://traps/Stationary_Lazer_5.tscn" id="6_mhj17"]
 [ext_resource type="PackedScene" uid="uid://cjm1spq12xcv" path="res://scenes/utility/OverlapDetector.tscn" id="6_p5hjd"]
 [ext_resource type="PackedScene" uid="uid://dl7iy4xritwrf" path="res://traps/Stationary_Lazer_1.tscn" id="7_3hrjf"]
+[ext_resource type="PackedScene" uid="uid://cm4suwr2mlyja" path="res://traps/Stationary_Lazer_6.tscn" id="7_nlhgn"]
 [ext_resource type="PackedScene" uid="uid://8m57mhysju42" path="res://traps/Stationary_Lazer_2.tscn" id="8_p5hjd"]
+[ext_resource type="PackedScene" uid="uid://cdura0m21qrad" path="res://traps/Stationary_Lazer_7.tscn" id="8_w7ha3"]
+[ext_resource type="PackedScene" uid="uid://cx7i4jqxsgymx" path="res://traps/Stationary_Lazer_8.tscn" id="9_1o2ve"]
 [ext_resource type="PackedScene" uid="uid://bkpl23uni2iqw" path="res://traps/Stationary_Lazer_3.tscn" id="9_s47l2"]
 [ext_resource type="PackedScene" uid="uid://cuytseh8iouxc" path="res://traps/Stationary_Lazer_4.tscn" id="10_uuvnb"]
 
@@ -17,7 +21,7 @@ data = PackedVector3Array(-0.64, 0.2214, -3.9935, -0.64, 0.60139996, -0.00349999
 [node name="45_LZ1" type="Node3D"]
 script = ExtResource("1_8k47j")
 randomize_traps = true
-traps = Array[NodePath]([NodePath("Traps/Trap"), NodePath("Traps/Trap2"), NodePath("Traps/Trap3"), NodePath("Traps/Trap4")])
+traps = Array[NodePath]([NodePath("Traps/Trap"), NodePath("Traps/Trap2"), NodePath("Traps/Trap3"), NodePath("Traps/Trap4"), NodePath("Traps/Trap5"), NodePath("Traps/Trap6"), NodePath("Traps/Trap7"), NodePath("Traps/Trap8")])
 
 [node name="Traps" type="Node3D" parent="."]
 transform = Transform3D(1, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1, 0, 0, -4.5474735e-13)
@@ -33,6 +37,18 @@ transform = Transform3D(-1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0
 
 [node name="Trap4" parent="Traps" instance=ExtResource("10_uuvnb")]
 transform = Transform3D(-0.86602557, 0.4829629, 0.12940958, -5.2758683e-08, 0.25881913, -0.96592605, -0.50000006, -0.83651656, -0.22414395, -154.73264, 0, -87)
+
+[node name="Trap5" parent="Traps" instance=ExtResource("6_mhj17")]
+transform = Transform3D(0.6427876, 0, -0.7660445, 0, 1, 0, 0.7660445, 0, 0.6427876, 13, -2, 57)
+
+[node name="Trap6" parent="Traps" instance=ExtResource("7_nlhgn")]
+transform = Transform3D(0.6427876, 0, -0.7660445, 0, 1, 0, 0.7660445, 0, 0.6427876, 36, -2, 82)
+
+[node name="Trap7" parent="Traps" instance=ExtResource("8_w7ha3")]
+transform = Transform3D(0.90630776, 0, -0.42261827, 0, 1, 0, 0.42261827, 0, 0.90630776, 141.1, -2, 65)
+
+[node name="Trap8" parent="Traps" instance=ExtResource("9_1o2ve")]
+transform = Transform3D(0.98480785, 0, -0.17364821, 0, 1, 0, 0.17364821, 0, 0.98480785, 215.1, -2, 35.000008)
 
 [node name="MainBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.3113415e-06, 0, 29.999998, 0, 29.999998, 0, -29.999998, 0, -1.3113415e-06, 132.15466, -32, 0)

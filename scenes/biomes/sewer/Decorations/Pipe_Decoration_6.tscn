@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://7jtshmhbs6pl"]
 
-[ext_resource type="Material" uid="uid://dymuc7ugyidfx" path="res://textures/Pipe_Metal_Copper.tres" id="1_d582u"]
+[ext_resource type="Material" uid="uid://dymuc7ugyidfx" path="res://textures/surfaces/Pipe_Metal_Copper.tres" id="1_d582u"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i5rt2"]
 _surfaces = [{

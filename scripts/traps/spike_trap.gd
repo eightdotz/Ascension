@@ -1,4 +1,5 @@
 extends Node3D
+@export var test: bool = false
 @export var spawn_amount: int = 10
 @export var damage_min: float = 0.0
 @export var damage_max: float = 1.0
@@ -8,6 +9,8 @@ extends Node3D
 var rock_data: Dictionary = {}
 
 func _ready() -> void:
+	if test:
+		return
 	var rock
 	var selected_rocks: Array = []
 	var rocks = construction.get_children()
@@ -39,6 +42,7 @@ func _ready() -> void:
 		if i not in selected_rocks:
 			item.queue_free()
 		i += 1
+
 func _player_entered(body: Node3D, rock: Node3D) -> void:
 	if body.has_method("is_player"):
 		var data = rock_data[rock]
@@ -50,7 +54,20 @@ func _player_entered(body: Node3D, rock: Node3D) -> void:
 		await tween.finished
 		tween = create_tween()
 		tween.tween_property(spike, "position:y", spike.position.y - 8.0, 0.3)
-		
+
 func _damage_player(body: Node3D) -> void:
 	if body.has_method("is_player"):
 		body.take_damage(randf_range(damage_min, damage_max))
+
+func play_test() -> void:
+	var rocks = construction.get_children()
+	for rock in rocks:
+		if not rock.name.begins_with("Rocks"):
+			continue
+		var spike: MeshInstance3D = rock.get_node("PlacementPoint/Spike")
+		var tween = create_tween()
+		tween.tween_property(spike, "position:y", spike.position.y + 8.0, 0.01)
+		rock.emitting = true
+		await tween.finished
+		tween = create_tween()
+		tween.tween_property(spike, "position:y", spike.position.y - 8.0, 0.3)
