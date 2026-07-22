@@ -9,8 +9,9 @@ extends Node3D
 @export var randomness: float = 10.0
 @export var sensitivity: float = -0.92
 @export var spawn_limit: int = 6
-
+@export var waittime: float = 7.0
 var types = {"Cellular": FastNoiseLite.TYPE_CELLULAR, "Simplex": FastNoiseLite.TYPE_SIMPLEX, "Perlin": FastNoiseLite.TYPE_PERLIN, "Value": FastNoiseLite.TYPE_VALUE}
+@onready var timer: Timer = $Timer
 
 @onready var start: Vector3 = $Start.global_position
 @onready var y: float = $Start.global_position.y	
@@ -23,6 +24,7 @@ var min_z
 var max_z
 var count = 0
 func _ready():
+	timer.wait_time = waittime
 	min_x = mini(start.x, end.x)
 	max_x = maxi(start.x, end.x)
 	min_z = mini(start.z, end.z)

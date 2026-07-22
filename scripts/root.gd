@@ -97,12 +97,11 @@ func load_level(path: String) -> void:
 	set_goal()
 	emit_signal("level_changed")
 	if current_level_type == "Dungeon":
-		if dungeon.biome != dungeon.current_biome:
-			player.set_intro(dungeon.get_intro_title(), dungeon.get_intro_desc())
-			#await get_tree().process_frame
-			player.toggle_intro()
+		if dungeon.biome != current_biome:
+			print(dungeon.biome + "|" + current_biome)
 			dungeon.current_biome = dungeon.biome
-			
+			player.set_intro(dungeon.get_intro_title(), dungeon.get_intro_desc())
+			player.toggle_intro()
 		player.fade_to_clear(0.2)
 	else:
 		print("ROOT: Resetting timers")

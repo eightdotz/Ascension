@@ -1,17 +1,19 @@
 extends Node3D
 @export var damage_min: float = 5.0
-@export var damage_max: float = 5.0
-@export var knockback_force: float = 50.0
+@export var damage_max: float = 10.0
+@export var knockback_force: float = 100.0
 
-@export var rise_speed := 0.8
-@export var drift_strength := 0.2
+@export var rise_speed := 1.8
+@export var drift_strength := 0.8
 var id: int = 0
 var time := randf() * TAU
 
 func _ready() -> void:
-	rise_speed = randf_range(0.6, 1.2)
-	drift_strength = randf_range(0.1, 0.3)
-	scale *= randf_range(0.8, 1.5)
+	var mesh := $MeshInstance3D
+	mesh.material_override = mesh.get_active_material(0).duplicate()
+	rise_speed = randf_range(0.3, 4.0)
+	drift_strength = randf_range(0.1, 0.8)
+	scale *= randf_range(0.8, 4.5)
 	set_process(!is_processing())
 	
 func _process(delta):
@@ -36,7 +38,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		tween.tween_property(material, "albedo_color", Color(0.0, 0.0, 0.0, 0.0), 0.1)
 		await tween.finished
 		await gpu_particles_3d.finished
-		queue_free()
+		self.queue_free()
 		
 
 

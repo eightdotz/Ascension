@@ -8,15 +8,13 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 
 [node name="Bubbles" type="Node3D"]
 script = ExtResource("1_at4vf")
+spawn_limit = 12
 
 [node name="Start" parent="." instance=ExtResource("3_eme2j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, 23)
 
 [node name="End" parent="." instance=ExtResource("3_eme2j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67, 0, -25)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 144, 26.671852, 0)
 
 [node name="DespawnArea" type="Area3D" parent="."]
 
@@ -25,7 +23,7 @@ transform = Transform3D(147.62175, 0, 0, 0, 8.065, 0, 0, 0, 116.377945, 0, 63, 0
 shape = SubResource("ConvexPolygonShape3D_w2ygp")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 7.0
 autostart = true
 
 [connection signal="area_entered" from="DespawnArea" to="." method="_on_despawn_area_area_entered"]

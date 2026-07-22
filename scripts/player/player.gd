@@ -926,11 +926,15 @@ func toggle_intro() -> void:
 	tween = create_tween()
 	print("PLAYER: Toggling intro")
 	intro.visible = true
-	tween.tween_property(t, "label_settings/font_color:a", 1.0, 1.0) #doesnt exist
-		
-	#else:
-		#intro.visible = true
-		#tween.tween_property(t, "label_settings.font_color:a", 1.0, 1.0)
+	var color = t.label_settings.font_color
+	color.a = 1.0
+
+	tween.tween_property(t.label_settings, "font_color", color, 2.0)
+	await tween.finished
+	await get_tree().create_timer(1.0).timeout
+	tween = create_tween()
+	color.a = 0.0
+	tween.tween_property(t.label_settings, "font_color", color, 1.0)
 
 func afford_puchase(amount: float) -> bool:
 	if coins > amount:

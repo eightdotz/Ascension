@@ -66,7 +66,7 @@ func _ready() -> void:
 		printerr("LEVEL GENERATION: Level type not set!")
 	if type == "Dungeon" and not biome:
 		printerr("LEVEN GENERATION: Type is of Dungeon but the Biome has not been defined. This will break!")
-
+	
 func spawn() -> void:
 	var selected_item
 	var spawn_tracker: Array = []
@@ -257,3 +257,7 @@ func get_intro_title():
 func get_intro_desc():
 	print("Getting " + biome + " " + titles[biome][1])
 	return titles[biome][1]
+
+func roll_event() -> String:
+	var events = ["Blackout", "No Traps", "Traps Only"]
+	return events[randi_range(0, events.size() - 1)]
