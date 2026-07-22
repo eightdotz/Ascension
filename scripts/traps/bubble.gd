@@ -5,7 +5,7 @@ extends Node3D
 
 @export var rise_speed := 0.8
 @export var drift_strength := 0.2
-
+var id: int = 0
 var time := randf() * TAU
 
 func _ready() -> void:
@@ -52,8 +52,11 @@ func play_test() -> void:
 	tween.tween_property(material, "emission", Color(0.0, 0.0, 0.0, 0.0), 0.1)
 	tween.tween_property(material, "albedo_color", Color(0.0, 0.0, 0.0, 0.0), 0.1)
 
-func placeholder(body: Node3D) -> void:
+func is_bubble():
+	return 1
+
+func start(value: int) -> void:
+	var area: Area3D = $MeshInstance3D/Bubble
+	id = value
+	area.id = id
 	set_process(!is_processing())
-	
-func placeholder_2(body: Node3D) -> void:
-	queue_free()
