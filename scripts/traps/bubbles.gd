@@ -25,6 +25,7 @@ var max_z
 var count = 0
 func _ready():
 	timer.wait_time = waittime
+	await get_tree().create_timer(0.3).timeout
 	min_x = mini(start.x, end.x)
 	max_x = maxi(start.x, end.x)
 	min_z = mini(start.z, end.z)

@@ -112,12 +112,15 @@ func spawn() -> void:
 		piece.global_transform = next_transform * piece.get_start_transform().inverse()
 		next_transform = piece.get_node("End").global_transform
 		if event == "Traps Only":
-			piece.set_light_color(Color(1.0, 0, 0))
+			piece.set_light_color(Color(1.0, 0.5, 0.5))
 		elif event == "No Traps":
-			piece.set_light_color(Color(0, 0, 1.0))
+			piece.set_light_color(Color(0.5, 0.5, 1.0))
 		elif event == "Blackout":
 			piece.remove_lights()
-		
+		elif event == "Integrity Failure":
+			piece.set_light_color(Color(1.0, 0.0, 0.0))
+			piece.start_failure()
+			start_emergency()
 		await get_tree().physics_frame
 		if piece.overlaps():
 			piece.queue_free()
@@ -239,17 +242,20 @@ func _on_piece_entered(value: int) -> void:
 			last_light_position = pos - 2
 	else:
 		for item in spawned_pieces.keys():
-			if spawned_pieces[item].id > player_position:
-				spawned_pieces[item].set_lights(true)
+			if is_instance_valid(spawned_pieces[item]):
+				if spawned_pieces[item].id > player_position:
+					spawned_pieces[item].set_lights(true)
 			
 	for pos in range(0, player_position - 1):
 		if spawned_pieces.has(pos):
-			spawned_pieces[pos].set_lights(false)
+			if is_instance_valid(spawned_pieces[pos]):
+				spawned_pieces[pos].set_lights(false)
 
 	for index in range(0, 1):
 		var oldest_key = spawned_pieces.keys().min()
-		spawned_pieces[oldest_key].queue_free()
-		spawned_pieces.erase(oldest_key)
+		if is_instance_valid(spawned_pieces[oldest_key]):
+			spawned_pieces[oldest_key].queue_free()
+			spawned_pieces.erase(oldest_key)
 
 func check_transition(floor: int) -> void:
 	print("LEVEL GENERATION: Checking for transition at floor ", str(floor))
@@ -275,7 +281,14 @@ func get_intro_desc():
 	return titles[biome][1]
 
 func roll_event() -> String:
-	if randi_range(0, 5):
+	if randi_range(0, 9):
 		return ""
-	var events = ["Blackout", "No Traps", "Blackout", "Traps Only", "Blackout"]
+	var events = ["Integrity Failure", "Blackout", "No Traps", "Blackout", "Traps Only", "Blackout"]
 	return events[randi_range(0, events.size() - 1)]
+
+func start_emergency():
+	for item in spawned_pieces.values():
+		await get_tree().create_timer(2.0).timeout
+		if is_instance_valid(item):
+			item.queue_free()
+		await get_tree().process_frame

@@ -64,13 +64,15 @@ func _detect_player(body: Node3D) -> void:
 func lights_on() -> void:
 	if lights:
 		for item in lights:
-			item.toggle = true
+			if is_instance_valid(item):
+				item.toggle = true
 
 func lights_off() -> void:
 	if turn_off_lights:
 			if lights:
 				for item in lights:
-					item.toggle = false
+					if is_instance_valid(item):
+						item.toggle = false
 
 func _detect_hitbox(body: Node3D) -> void:
 	if body.has_method("is_player"):

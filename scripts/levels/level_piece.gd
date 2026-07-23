@@ -6,20 +6,42 @@ extends Node3D
 @onready var end: Node3D = $End
 @onready var lights = $MainBody/Lighting.get_children()
 @onready var overlap = $OverlapChecks.get_children()
+
+var pulse_time := 0.0
+@export_group("Emergency Settings")
+@export var min_energy := 0.2
+@export var max_energy := 5.0
+@export var pulse_speed := 4.0
+
 var id: int = 0
 
 signal player_entered(id)
-
+var color: Color
 
 func _ready() -> void:
+	set_process(false)
 	if randomize_traps:
 		turn_off_traps()
 		await get_tree().process_frame
 		randomize_trap()
+		
+
+func _process(delta):
+	pulse_time += delta * pulse_speed
+
+	var energy = lerp(
+		min_energy,
+		max_energy,
+		(sin(pulse_time) + 1.0) / 2.0
+	)
+
+	for light in lights:
+		if is_instance_valid(light):
+			light.energy = energy
 
 func set_lights(toggle: bool) -> void:
 	for item in lights:
-		if item:
+		if is_instance_valid(item):
 			item.set_light(toggle)
 
 func turn_off_traps() -> void:
@@ -130,3 +152,14 @@ func set_light_color(new_color: Color):
 func remove_lights():
 	for item in lights:
 		item.queue_free()
+func get_light_color():
+	if lights:
+		if is_instance_valid(lights[0]):
+			color = lights[0].color
+			return lights[0].color
+func get_light_energy():
+	if lights:
+		if is_instance_valid(lights[0]):
+			return lights[0].energy
+func start_failure():
+	set_process(true)
