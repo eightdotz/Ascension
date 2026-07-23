@@ -30,9 +30,8 @@ font_size = 64
 [node name="Bubble" type="Node3D"]
 script = ExtResource("1_se5ju")
 
-[node name="DetectArea" type="Area3D" parent="."]
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visibility_range_end = 200.0
 mesh = ExtResource("1_paba7")
 
 [node name="Bubble" type="Area3D" parent="MeshInstance3D"]
@@ -50,5 +49,4 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_se5ju")
 draw_pass_1 = SubResource("TextMesh_eekql")
 
-[connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
 [connection signal="body_entered" from="MeshInstance3D/Bubble" to="." method="_on_area_3d_body_entered"]
