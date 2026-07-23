@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpblg5cthjhf0"]
+[gd_scene load_steps=9 format=3 uid="uid://d6tbtincgirg"]
 
 [ext_resource type="Script" uid="uid://cm3foyv2wstfo" path="res://scripts/levels/level_piece.gd" id="1_y055d"]
 [ext_resource type="ArrayMesh" uid="uid://e4qjrf2bp751" path="res://resources/4M_Pipe_90.tres" id="2_58c3t"]
