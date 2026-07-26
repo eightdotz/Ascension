@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var lights = $"../../MainBody/Lighting" #No change
+@onready var lights = get_node_or_null("../../MainBody/Lighting")
 @onready var omni_light_3d: OmniLight3D = $OmniLight3D
 
 @export var chance: int  = 1

@@ -89,15 +89,6 @@ spread = 18.948
 initial_velocity_min = 53.11
 initial_velocity_max = 98.56
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cvjy2"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_761hw"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0o6x0"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_0fiba"]
 _surfaces = [{
 "aabb": AABB(-0.75, 0.25, -4.00075, 1.5, 1.5, 4.00075),
@@ -154,6 +145,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0fiba")
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cvjy2"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_761hw"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0o6x0"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
 [node name="Steam" type="Node3D"]
 script = ExtResource("1_ylh8r")
 do_damage = true
@@ -164,6 +164,7 @@ turn_off_lights = true
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.6745933, 3.6088248e-09, -0.11894906, -0.040682964, -0.64368945, -0.23072453, -0.11177556, 0.2342839, -0.6339103, -2.1, 23.35109, -13.829542)
+lod_bias = 0.1
 mesh = SubResource("ArrayMesh_761hw")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D2"]
@@ -183,6 +184,11 @@ preprocess = 0.88
 explosiveness = 0.11
 process_material = SubResource("ParticleProcessMaterial_0o6x0")
 draw_pass_1 = ExtResource("3_ylh8r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.965, 0, 0, 0, -1.2960426e-07, -8.465, 0, 2.965, -3.7001692e-07, -2, 14.723061, -17.650494)
+lod_bias = 0.1
+mesh = SubResource("ArrayMesh_dc2xh")
 
 [node name="DamageArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.9396925, -0.34202012, 0, 0.34202012, -0.9396925, 0, 27.50853, 4.0253086)
@@ -205,10 +211,6 @@ transform = Transform3D(1, 0, 0, 0, -0.7071068, 0.7071067, 0, -0.7071067, -0.707
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="DetectArea"]
 transform = Transform3D(6.6500006, 0, 0, 0, 38.39497, 0, 0, 0, 44.431202, -75.139755, 2, 0)
 shape = SubResource("ConvexPolygonShape3D_0o6x0")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.965, 0, 0, 0, -1.2960426e-07, -8.465, 0, 2.965, -3.7001692e-07, -2, 14.723061, -17.650494)
-mesh = SubResource("ArrayMesh_dc2xh")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 23.682905, -10.314314)

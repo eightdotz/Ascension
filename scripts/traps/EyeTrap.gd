@@ -62,5 +62,5 @@ func kill_player(body: Node3D) -> void:
 	body.respawn_player()
 
 
-func _on_detect_area_body_exited(body: Node3D) -> void:
+func _on_detect_area_body_exited(_body: Node3D) -> void:
 	player_found = 0

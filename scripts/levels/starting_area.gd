@@ -24,8 +24,8 @@ func _ready() -> void:
 func spawn() -> void:
 	return
 
-func configure_spawn(amount: int) -> void: ##Needs to be called by controller second
-	return
+func configure_spawn(amount: int) -> int: ##Needs to be called by controller second
+	return amount
 
 func populate() -> void: ##Needs to be called by controller first
 	return

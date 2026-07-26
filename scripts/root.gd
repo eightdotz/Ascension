@@ -46,6 +46,7 @@ func _ready() -> void:
 		printerr("ROOT: No spawn amount set! Will crash!")
 		return
 	if room_cooldown_enable_divide:
+		@warning_ignore("integer_division")
 		room_cooldown = spawn_amount / room_cooldown
 	load_first_level()
 	set_player()
@@ -141,7 +142,8 @@ func _on_goal_level_completed() -> void:
 		await player.fade_to_black(0.5, true)
 		load_level(LEVEL)
 		if current_level_type == "Dungeon" and Global.current_floor != -1:
-			player.update_coins(randi_range(spawn_amount / 2, spawn_amount))
+			@warning_ignore("narrowing_conversion")
+			player.update_coins(randi_range(spawn_amount / 2.0, spawn_amount))
 		on_break = false
 
 func reset_floor():
@@ -156,3 +158,9 @@ func restart() -> void:
 	player.name = "player"
 	print(player.name)
 	load_first_level()
+
+
+func _on_killzone_entered(body: Node3D) -> void:
+	if body.has_method("is_player"):
+		await body.handle_death()
+		reset_floor()

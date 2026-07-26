@@ -38,180 +38,240 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -127.680756
 
 [node name="MeshInstance3D31" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.51744, 0, -30.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D32" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -29.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D33" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -28.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D34" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -27.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D35" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -26.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D36" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -25.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D37" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -24.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D38" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -23.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D39" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -22.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D40" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -21.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D41" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -20.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D42" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -19.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D43" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -18.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D44" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -17.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D45" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -16.076178)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D46" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.51744, 0, -15.069227)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D47" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -14.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D48" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -13.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D49" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -12.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D50" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -11.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D51" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -10.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D52" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -9.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D53" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -8.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D54" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -7.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D55" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -6.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D56" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -5.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D57" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.517, 0, -4.069)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D58" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -3.069229)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D59" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314999, 0, 0, 0, 0.19999999, -23.516998, 0, -2.069229)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D60" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.516998, 0, -1.0692289)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")
@@ -226,6 +286,8 @@ script = ExtResource("2_koc1m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Construction/Beams"]
 transform = Transform3D(0.2, 0, 0, 0, 31.314997, 0, 0, 0, 0.19999997, -23.51744, 0, 0)
+cast_shadow = 0
+lod_bias = 0.1
 visibility_range_end = 300.0
 mesh = SubResource("CylinderMesh_q6cky")
 skeleton = NodePath("")

@@ -45,6 +45,7 @@ damage_max = 25.0
 
 [node name="Wire" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.23, 0, 0, 0, -1.1646899e-06, 0.23, 0, -26.645, -1.0053619e-08, 0, 0, 0)
+lod_bias = 0.1
 visibility_range_end = 150.0
 mesh = SubResource("CylinderMesh_t883r")
 

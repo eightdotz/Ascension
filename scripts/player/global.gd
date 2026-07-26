@@ -17,8 +17,10 @@ signal level_music_volume_changed(new_val: float)
 
 signal particles_toggled(opt: bool)
 signal light_toggled(opt: bool)
-signal pause_sound()
+@warning_ignore("unused_signal")
+signal pause_sound
 signal gravity_changed(amount: float)
+@warning_ignore("unused_signal")
 signal load_stats
 var player_stats = {}
 

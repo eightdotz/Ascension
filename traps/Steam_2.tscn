@@ -141,6 +141,7 @@ turn_off_lights = true
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.6745933, 4.4617503e-16, -0.11894906, 0.08410968, -0.4843682, 0.47700945, -0.08410968, -0.48436815, -0.4770095, -2.1, 44.6423, -5.5589705)
+lod_bias = 0.1
 mesh = SubResource("ArrayMesh_761hw")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D2"]
@@ -163,6 +164,7 @@ draw_pass_1 = ExtResource("3_b4myy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.9650002, 0, 0, 0, 2.3841858e-07, -2.9649997, 0, 2.965, 0, -2, 43.72306, -17.650494)
+lod_bias = 0.1
 mesh = SubResource("ArrayMesh_vbuxr")
 
 [node name="DamageArea" type="Area3D" parent="."]

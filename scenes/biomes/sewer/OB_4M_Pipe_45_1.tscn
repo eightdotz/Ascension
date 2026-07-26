@@ -15,6 +15,7 @@ script = ExtResource("1_x75mo")
 
 [node name="MainBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.3113415e-06, 0, 29.999998, 0, 29.999998, 0, -29.999998, 0, -1.3113415e-06, 132.15466, -26, -3)
+lod_bias = 0.1
 mesh = ExtResource("2_c5j44")
 
 [node name="Lighting" type="Node3D" parent="MainBody"]
@@ -22,21 +23,18 @@ transform = Transform3D(-1.4570464e-09, 0, -0.033333335, 0, 0.033333335, 0, 0.03
 
 [node name="Bulb" parent="MainBody/Lighting" instance=ExtResource("3_bc6tp")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 101.59736, 24.027002, -1)
-range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
 
 [node name="Bulb2" parent="MainBody/Lighting" instance=ExtResource("3_bc6tp")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -32.984818, 24.027002, -16.414642)
-range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
 
 [node name="Bulb3" parent="MainBody/Lighting" instance=ExtResource("3_bc6tp")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -106.75283, 25.027002, -87.59987)
-range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5

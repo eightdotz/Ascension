@@ -141,20 +141,24 @@ turn_off_lights = true
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.10301292, 0.34249997, 0.58421504, 0.059474535, -0.5932275, 0.33729663, 0.67459345, 7.450581e-08, -0.118949085, -4.554571, 12.706987, 22)
+lod_bias = 0.1
 mesh = SubResource("ArrayMesh_761hw")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D2"]
 transform = Transform3D(2.9416063, 0, -1.4901161e-08, 0, 2.941606, 0, 5.9604645e-08, 0, 0.5357664, -0.21188068, 1.167881, -4.1750164)
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_aheiy")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D2/MeshInstance3D3"]
 transform = Transform3D(0.57766753, 0, -1.8626451e-09, 0, 0.5776675, 0, 5.9604645e-08, 0, 0.57765675, -0.0128445625, 0, -0.26319122)
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_761hw")
 skeleton = NodePath("../../..")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D2"]
 transform = Transform3D(-0.377838, 0, 1.4101107, 0, 1.459854, 0, -1.4101107, 0, -0.377838, -0.92977357, 1.8978119, -6.8542233)
+lod_bias = 0.1
 amount = 20
 preprocess = 0.88
 explosiveness = 0.11
@@ -163,6 +167,7 @@ draw_pass_1 = ExtResource("3_54s2g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, -2.8639698, -0.7673983, 0, 0.7673986, -2.8639696, 2.9650006, 1.192093e-07, 0, 6.887026, 8.689554, 22.1)
+lod_bias = 0.1
 mesh = SubResource("ArrayMesh_vbuxr")
 
 [node name="DamageArea" type="Area3D" parent="."]

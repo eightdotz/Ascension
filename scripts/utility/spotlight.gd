@@ -10,9 +10,9 @@ extends MeshInstance3D
 
 
 @export_group("Light Physics")
-@export var range := 10.0:
+@export var new_range := 10.0:
 	set(value):
-		range = value
+		new_range = value
 		_update()
 
 @export var attenuation := 1.0:
@@ -44,19 +44,19 @@ func _update() -> void:
 		return
 	if light is SpotLight3D:
 		light.visible = toggle
-		light.spot_range = range
+		light.spot_range = new_range
 		light.spot_angle = angle
 		light.spot_attenuation = attenuation
 		light.light_color = color
 		light.light_energy = energy
 	elif light is OmniLight3D:
 		light.visible = toggle
-		light.omni_range = range
+		light.omni_range = new_range
 		light.omni_attenuation = attenuation
 		light.light_color = color
 		light.light_energy = energy
 	if mesh and mesh.material:
 		mesh.material.emission = color
 
-func set_light(toggle: bool) -> void:
-	light.visible = toggle
+func set_light(new_toggle: bool) -> void:
+	light.visible = new_toggle

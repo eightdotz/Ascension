@@ -360,6 +360,8 @@ func _physics_process(delta) -> void:
 		label_boost_duration.text = str(wall_jump_boost_timer)
 		label_fov.text = "Field of View: " + str(camera.fov)
 		label_direction.text = "FPS: " + str(Engine.get_frames_per_second())
+	if global_position.y < -303.0:
+		await handle_death()
 		
 	if being_knocked_back:
 		apply_knockback(delta)

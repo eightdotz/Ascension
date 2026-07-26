@@ -33,6 +33,7 @@ script = ExtResource("1_ve46q")
 
 [node name="Rocks30" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.371139e-08, -1, 0, 0.17364813, -7.590401e-09, 0.9848077, -0.9848077, 4.304731e-08, 0.17364813, 20, -5.1, 28)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -65,6 +66,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks31" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.3711392e-08, -1, 6.169221e-16, -0.087155774, 3.8097e-09, 0.99619466, -0.99619466, 4.354505e-08, -0.087155774, 20, 1.9000001, 28.5)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -97,6 +99,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks32" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.37114e-08, -1, -2.5148863e-16, -0.2588191, 1.1313344e-08, 0.96592575, -0.96592575, 4.2221956e-08, -0.2588191, 20, 7.9, 27.4)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -129,6 +132,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks33" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.37114e-08, -1, -3.3892679e-15, -0.4226183, 1.8473235e-08, 0.9063077, -0.9063077, 3.9615962e-08, -0.4226183, 20, 13.9, 24.9)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -161,6 +165,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks38" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.371139e-08, -1, 0, 0.17364813, -7.590401e-09, 0.9848077, -0.9848077, 4.304731e-08, 0.17364813, 0, -5.1, 28)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -193,6 +198,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks39" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.3711392e-08, -1, 6.169221e-16, -0.087155774, 3.8097e-09, 0.99619466, -0.99619466, 4.354505e-08, -0.087155774, 0, 1.9000001, 28.5)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -225,6 +231,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks40" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.37114e-08, -1, -2.5148863e-16, -0.2588191, 1.1313344e-08, 0.96592575, -0.96592575, 4.2221956e-08, -0.2588191, 0, 7.9, 27.4)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -257,6 +264,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks41" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.37114e-08, -1, -3.3892679e-15, -0.4226183, 1.8473235e-08, 0.9063077, -0.9063077, 3.9615962e-08, -0.4226183, 0, 13.9, 24.9)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -289,6 +297,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks46" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.371139e-08, -1, 0, 0.17364813, -7.590401e-09, 0.9848077, -0.9848077, 4.304731e-08, 0.17364813, -20, -5.1, 28)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -321,6 +330,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks47" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.3711392e-08, -1, 6.169221e-16, -0.087155774, 3.8097e-09, 0.99619466, -0.99619466, 4.354505e-08, -0.087155774, -20, 1.9000001, 28.5)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -353,6 +363,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks48" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.37114e-08, -1, -2.5148863e-16, -0.2588191, 1.1313344e-08, 0.96592575, -0.96592575, 4.2221956e-08, -0.2588191, -20, 7.9, 27.4)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -385,6 +396,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks49" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.37114e-08, -1, -3.3892679e-15, -0.4226183, 1.8473235e-08, 0.9063077, -0.9063077, 3.9615962e-08, -0.4226183, -20, 13.9, 24.9)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -417,6 +429,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks10" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.2383235e-08, 1, 1.5180804e-08, 0.17364815, -7.590402e-09, 0.9848077, 0.9848077, 4.4375465e-08, -0.17364815, -20, -5.1, -27.8)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -449,6 +462,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks11" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.337871e-08, 1, -7.6194e-09, -0.087155774, 3.8096997e-09, 0.99619466, 0.99619466, 4.3877726e-08, 0.087155774, -20, 1.9000001, -28.3)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -481,6 +495,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks12" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.0732512e-08, 1, -2.2626685e-08, -0.2588191, 1.1313344e-08, 0.96592575, 0.96592575, 4.520082e-08, 0.2588191, -20, 7.9, -27.199999)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -513,6 +528,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks13" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-3.5520532e-08, 1, -3.694646e-08, -0.4226183, 1.8473235e-08, 0.9063077, 0.9063077, 4.7806815e-08, 0.4226183, -20, 13.9, -24.699999)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -545,6 +561,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks18" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.2383235e-08, 1, 1.5180804e-08, 0.17364815, -7.590402e-09, 0.9848077, 0.9848077, 4.4375465e-08, -0.17364815, 0, -5.1, -27.799997)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -577,6 +594,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks19" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.337871e-08, 1, -7.6194e-09, -0.087155774, 3.8096997e-09, 0.99619466, 0.99619466, 4.3877726e-08, 0.087155774, 0, 1.9000001, -28.299997)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -609,6 +627,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks20" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.0732512e-08, 1, -2.2626685e-08, -0.2588191, 1.1313344e-08, 0.96592575, 0.96592575, 4.520082e-08, 0.2588191, 0, 7.9, -27.199997)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -641,6 +660,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks21" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-3.5520532e-08, 1, -3.694646e-08, -0.4226183, 1.8473235e-08, 0.9063077, 0.9063077, 4.7806815e-08, 0.4226183, 0, 13.9, -24.699997)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -673,6 +693,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks26" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.2383235e-08, 1, 1.5180804e-08, 0.17364815, -7.590402e-09, 0.9848077, 0.9848077, 4.4375465e-08, -0.17364815, 20, -5.1, -27.799995)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -705,6 +726,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks27" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.337871e-08, 1, -7.6194e-09, -0.087155774, 3.8096997e-09, 0.99619466, 0.99619466, 4.3877726e-08, 0.087155774, 20, 1.9000001, -28.299995)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -737,6 +759,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks28" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-4.0732512e-08, 1, -2.2626685e-08, -0.2588191, 1.1313344e-08, 0.96592575, 0.96592575, 4.520082e-08, 0.2588191, 20, 7.9, -27.199995)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0
@@ -769,6 +792,7 @@ shape = SubResource("ConvexPolygonShape3D_mxj8s")
 
 [node name="Rocks29" type="GPUParticles3D" parent="Construction"]
 transform = Transform3D(-3.5520532e-08, 1, -3.694646e-08, -0.4226183, 1.8473235e-08, 0.9063077, 0.9063077, 4.7806815e-08, 0.4226183, 20, 13.9, -24.699997)
+lod_bias = 0.1
 emitting = false
 one_shot = true
 explosiveness = 1.0

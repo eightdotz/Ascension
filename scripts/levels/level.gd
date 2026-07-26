@@ -257,15 +257,15 @@ func _on_piece_entered(value: int) -> void:
 			spawned_pieces[oldest_key].queue_free()
 			spawned_pieces.erase(oldest_key)
 
-func check_transition(floor: int) -> void:
+func check_transition(new_floor: int) -> void:
 	print("LEVEL GENERATION: Checking for transition at floor ", str(floor))
-	if floor >= transition_1 and floor < transition_2:
+	if new_floor >= transition_1 and new_floor < transition_2:
 		print("Transitioning to 2!")
 		biome = biome_2
-	elif floor >= transition_2 and floor< transition_3:
+	elif new_floor >= transition_2 and new_floor < transition_3:
 		print("Transitioning to 3!")
 		biome = biome_3
-	elif floor >= transition_3:
+	elif new_floor >= transition_3:
 		print("Transitioning to 4!")
 		biome = biome_4
 	else:

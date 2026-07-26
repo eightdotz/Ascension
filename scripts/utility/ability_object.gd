@@ -68,11 +68,11 @@ func toggle_hitbox() -> void:
 func set_page_name(new_name:String) -> void:
 	name_label.text = new_name
 
-func _mouse_entered(area: Area3D) -> void:
+func _mouse_entered(_area: Area3D) -> void:
 	page_mesh.mesh.material.emission_energy_multiplier += 2
 	emit_signal("select", num)
 
 
-func _mouse_left(area: Area3D) -> void:
+func _mouse_left(_area: Area3D) -> void:
 	page_mesh.mesh.material.emission_energy_multiplier -= 2
 	emit_signal("unselect", num)

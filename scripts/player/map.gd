@@ -7,7 +7,7 @@ extends MeshInstance3D
 
 
 
-func _on_player_health_changed(val: float) -> void:
+func _on_player_health_changed(_val: float) -> void:
 	health_indicator.emission = Color(player.health / 100, 0, 0, 1)
 
 
@@ -16,9 +16,9 @@ func _on_timer_timeout() -> void:
 
 func set_level(biome: String, value: String):
 	var title = $Screen/Biome
-	var floor = $Screen/Floor
+	var floorui = $Screen/Floor
 	title.text = biome
-	floor.text = value
+	floorui.text = value
 
 
 func _on_coins_changed(val: float) -> void:

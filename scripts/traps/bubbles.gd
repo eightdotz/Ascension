@@ -25,15 +25,25 @@ var max_z
 var count = 0
 func _ready():
 	timer.wait_time = waittime
-	await get_tree().create_timer(0.3).timeout
-	min_x = mini(start.x, end.x)
-	max_x = maxi(start.x, end.x)
-	min_z = mini(start.z, end.z)
-	max_z = maxi(start.z, end.z)
+	await get_tree().create_timer(1.0).timeout
 	noise.noise_type = types[noise_type]
 	noise.frequency = resolution
 	noise.fractal_gain = randomness
+	reset_spawn_pos()
 	spawn()
+
+func reset_spawn_pos():
+	start = $Start.global_position
+	y = $Start.global_position.y	
+	end = $End.global_position
+	@warning_ignore("narrowing_conversion")
+	min_x = mini(start.x, end.x)
+	@warning_ignore("narrowing_conversion")
+	max_x = maxi(start.x, end.x)
+	@warning_ignore("narrowing_conversion")
+	min_z = mini(start.z, end.z)
+	@warning_ignore("narrowing_conversion")
+	max_z = maxi(start.z, end.z)
 
 func spawn():
 	count = 0
@@ -61,4 +71,5 @@ func _on_despawn_area_area_entered(area: Area3D) -> void:
 		area.erase_self()
 
 func _on_timer_timeout():
+	reset_spawn_pos()
 	spawn()

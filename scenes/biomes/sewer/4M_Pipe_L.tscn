@@ -19,6 +19,7 @@ script = ExtResource("1_u1jx8")
 
 [node name="MainBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(-29.999998, 0, -2.6226833e-06, 0, 29.999998, 0, 2.6226833e-06, 0, -29.999998, 272, 0, -151.00003)
+lod_bias = 0.1
 mesh = ExtResource("2_2jpie")
 
 [node name="Pipe2" type="MeshInstance3D" parent="MainBody"]
@@ -41,21 +42,18 @@ transform = Transform3D(-0.033333335, 0, 2.914093e-09, 0, 0.033333335, 0, -2.914
 
 [node name="Bulb" parent="MainBody/Lighting" instance=ExtResource("3_v7kff")]
 transform = Transform3D(-2, -1.7484555e-07, 3.4969108e-07, -1.7484558e-07, 2, -1.7484551e-07, -3.4969108e-07, -1.7484554e-07, -2, 157.89066, 21.027004, 25.999994)
-range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
 
 [node name="Bulb2" parent="MainBody/Lighting" instance=ExtResource("3_v7kff")]
 transform = Transform3D(-2, -1.7484555e-07, 3.4969108e-07, -1.7484558e-07, 2, -1.7484551e-07, -3.4969108e-07, -1.7484554e-07, -2, 224.47284, 21.027012, 1.4146538)
-range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
 
 [node name="Bulb3" parent="MainBody/Lighting" instance=ExtResource("3_v7kff")]
 transform = Transform3D(-2, -1.7484555e-07, 3.4969108e-07, -1.7484558e-07, 2, -1.7484551e-07, -3.4969108e-07, -1.7484554e-07, -2, -28.759192, 21.027, 116.59987)
-range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
@@ -63,7 +61,6 @@ energy = 1.5
 [node name="Bulb4" parent="MainBody/Lighting" instance=ExtResource("3_v7kff")]
 transform = Transform3D(2, -1.7484555e-07, -5.2453663e-07, 1.748456e-07, 2, 1.748455e-07, 5.2453663e-07, -1.7484554e-07, 2, 95.930695, 21.027, 25)
 skeleton = NodePath("")
-range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
@@ -71,7 +68,6 @@ energy = 1.5
 [node name="Bulb5" parent="MainBody/Lighting" instance=ExtResource("3_v7kff")]
 transform = Transform3D(2, -1.7484555e-07, -5.2453663e-07, 1.748456e-07, 2, 1.748455e-07, 5.2453663e-07, -1.7484554e-07, 2, 20.34853, 21.026993, 29.585335)
 skeleton = NodePath("")
-range = 54.41
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
@@ -79,7 +75,7 @@ energy = 1.5
 [node name="Bulb6" parent="MainBody/Lighting" instance=ExtResource("3_v7kff")]
 transform = Transform3D(2, -1.7484555e-07, -5.2453663e-07, 1.748456e-07, 2, 1.748455e-07, 5.2453663e-07, -1.7484554e-07, 2, 243.58054, 21.027004, -76.59991)
 skeleton = NodePath("")
-range = 54.41
+new_range = 40.0
 attenuation = 0.485
 angle = 55.74
 energy = 1.5

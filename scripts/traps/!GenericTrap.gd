@@ -1,9 +1,8 @@
 extends Node3D
 
 @onready var construction: Node3D = $Construction
-@onready var lights = $"../../MainBody/Lighting" #No change
+@onready var lights = get_node_or_null("../../MainBody/Lighting") #No change
 @export var animation_player: AnimationPlayer
-
 @export_group("Damage")
 @export var do_damage: bool ##Enables or disables the ability to a random amount of damage
 @export var min_damage: int ##Minimum amount of damage within range
@@ -25,7 +24,7 @@ extends Node3D
 @export var tween_duration: float = 1.0 ##Time between cycles
 
 @export var destroy_trap_on_end: bool = true
-@onready var damage_area: Area3D = $DamageArea
+@onready var damage_area: Area3D = get_node_or_null("DamageArea")
 @onready var detect_area: Area3D
 
 enum SpeedMod {SPRINT, WALL_JUMP_BOOST, BOOST, SLOW}
@@ -35,7 +34,7 @@ var err = 0
 func _ready() -> void:
 	if lights:
 		lights = lights.get_children()
-	detect_area = $DetectArea
+	detect_area = get_node_or_null("DamageArea")
 	if not lights:
 		printerr("No lights in scene! Disabling light turn off")
 		err = 1

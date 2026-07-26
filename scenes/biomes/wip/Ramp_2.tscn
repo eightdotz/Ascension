@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://pjxj4xu50fb4"]
+
+[ext_resource type="ArrayMesh" uid="uid://b5skuikogmf8y" path="res://!TESTING/models/Pipes/4m_ramp_2.obj" id="1_hnmav"]
+
+[node name="Ramp_2" type="Node3D"]
+
+[node name="4mRamp2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_hnmav")

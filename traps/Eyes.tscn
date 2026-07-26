@@ -118,24 +118,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.4647255)
 
 [node name="Eye19" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(6.528275, 0.29544517, 7.569302, 0.58458537, 9.942941, -0.8922789, -7.552474, 1.0249949, 6.4737554, 14.6814995, 11.516564, -26.178003)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye19"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye21" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(9.978824, -0.60753804, -0.23225972, 0.5425001, 5.804462, 8.124894, -0.3588042, -8.120289, 5.8251324, 0.5667305, 17.459076, -37.716263)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye21"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye2" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(6.932005, 0, 7.2074475, 0, 10, 0, -7.2074475, 0, 6.932005, 21.781609, -6.1312847, -56.458996)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye2"]
@@ -145,6 +155,8 @@ skeleton = NodePath("../..")
 
 [node name="Eye3" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(9.334145, 0.29586586, -3.5757825, -0.593068, 9.956083, -0.72434974, 3.5386477, 0.8881867, 9.3106985, -14.282563, 1.842907, -56.13633)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye3"]
@@ -154,15 +166,21 @@ skeleton = NodePath("../..")
 
 [node name="Eye18" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(7.514908, -0.032336205, -6.597357, -0.59306806, 9.956084, -0.72434974, 6.570726, 0.9356103, 7.479986, -14.282563, 6.360464, -32.575512)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye18"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye17" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(-9.938714, -0.5211064, 0.97488326, -0.28515974, 9.729269, 2.2934656, -1.0680043, 2.25161, -9.684504, -0.017915726, 16.341936, -125.650055)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye17"]
@@ -172,82 +190,118 @@ skeleton = NodePath("../..")
 
 [node name="Eye4" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(7.724122, 5.9604645e-07, -6.351216, 2.2156224, 9.371785, 2.6945615, 5.952224, -3.488502, 7.23888, -18.47754, -9.553792, -72.95143)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye4"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye15" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(-4.189984, -0.68247455, -9.054184, 0.5855004, 9.930652, -1.0194895, 9.060973, -0.95728767, -4.120968, -18.47754, -4.3877144, -103.271164)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye15"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye6" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(8.744286, -0.09365964, 4.8506413, -0.7435686, 9.85414, 1.5307074, -4.7942247, -1.6991723, 8.6097765, 17.95499, 4.7074337, -85.27124)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye6"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye12" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(4.543208, -1.0316669, 8.848444, -0.7435686, 9.85414, 1.5307074, -8.877296, -1.3533745, 4.400229, 15.746048, 12.937731, -108.55487)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye12"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye7" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(7.158589, -5.368308, 4.4649606, 1.9761653, 7.690761, 6.078401, -6.6969676, -3.4689271, 6.5663667, 13.7484, 16.124956, -51.22348)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye7"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye20" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(6.870307, 1.270549, 7.154339, 0.41424835, 9.761439, -2.1313515, -7.254466, 1.7606711, 6.6537776, 17.360392, -5.275674, -12.713412)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye20"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye9" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(8.187906, -4.518882, -3.5408866, 5.699754, 5.6614723, 5.954875, -0.68627447, -6.894014, 7.211213, -12.59816, 16.04302, -79.287674)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye9"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye10" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(1.091687, 6.6613107, -7.3780184, 5.699754, 5.661472, 5.9548755, 8.14377, -4.8553734, -3.178728, -17.016563, 16.04302, -117.74434)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye10"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 
 [node name="Eye11" type="MeshInstance3D" parent="Construction"]
 transform = Transform3D(-3.899779, 3.2252233, 8.624944, 2.9157057, 9.317101, -2.1657093, -8.734434, 1.6701989, -4.5738454, 16.971636, -8.743031, -117.74434)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_6glud")
 
 [node name="Pupil" type="MeshInstance3D" parent="Construction/Eye11"]
 transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.27124822)
+cast_shadow = 0
+lod_bias = 0.1
 mesh = SubResource("SphereMesh_3pdkv")
 skeleton = NodePath("../..")
 

@@ -18,9 +18,10 @@ visibility_range_end = 300.0
 mesh = SubResource("BoxMesh_jiknq")
 script = ExtResource("1_jiknq")
 light = NodePath("Spotlight")
+new_range = 50.0
 color = Color(0.95828694, 0.86651665, 0.5565578, 1)
 
 [node name="Spotlight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 light_color = Color(0.95828694, 0.86651665, 0.5565578, 1)
-spot_range = 10.0
+spot_range = 50.0

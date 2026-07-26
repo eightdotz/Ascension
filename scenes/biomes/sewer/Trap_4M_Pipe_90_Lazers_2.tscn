@@ -72,21 +72,21 @@ transform = Transform3D(-0.03333334, 1.2631872e-16, 1.4570466e-09, 1.2631874e-16
 
 [node name="Bulb" parent="MainBody/Lighting" instance=ExtResource("3_g32lb")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18.597359, 18.027002, 1)
-range = 54.41
+new_range = null
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
 
 [node name="Bulb2" parent="MainBody/Lighting" instance=ExtResource("3_g32lb")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 138.59735, 17.027002, -96)
-range = 54.41
+new_range = null
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
 
 [node name="Bulb3" parent="MainBody/Lighting" instance=ExtResource("3_g32lb")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 114.59736, 18.027002, -18)
-range = 54.41
+new_range = null
 attenuation = 0.485
 angle = 55.74
 energy = 1.5
