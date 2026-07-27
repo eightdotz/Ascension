@@ -172,6 +172,7 @@ func _ready() -> void:
 	loading_screen.visible = false
 	infection_speed_relief = wall_jump_velocity_max
 	wall_jump_boost_timer_max = (wall_jump_velocity_max / 10.0) + 3
+	gravity = Global.gravity
 	Global.connect("gravity_changed", set_gravity)
 	if not root:
 		print("PLAYER: (ready) Getting root")

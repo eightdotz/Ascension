@@ -10,7 +10,8 @@ var opt_light_enabled = true
 var shadows_enabled = true
 var current_floor = -1
 var lod_value = 5
-
+var view_distance = 300.0
+var gravity = 50.0
 signal menu_volume_changed(new_val: float)
 signal sfx_volume_changed(new_val: float)
 signal level_ambience_volume_changed(new_val: float)
@@ -29,6 +30,7 @@ signal load_stats
 var player_stats = {}
 
 func set_gravity(amount: float) -> void:
+	gravity = amount
 	gravity_changed.emit(amount)
 
 func particles(toggled: bool) -> void:
@@ -50,21 +52,27 @@ func borderless(toggled: bool) -> void:
 	get_window().borderless = toggled
 
 func set_menu_volume(value: float) -> void:
+	menu_volume = value
 	menu_volume_changed.emit(value)
 
 func set_sfx_volume(value: float) -> void:
+	sfx_volume = value
 	sfx_volume_changed.emit(value)
 
 func set_lod_value(value: float) -> void:
+	lod_value = value
 	lod_changed.emit(value)
 
 func set_view_distance(value: float) -> void:
+	view_distance = value
 	view_distance_changed.emit(value)
 
 func set_level_ambience_volume(value: float) -> void:
+	level_ambience_volume = value
 	level_ambience_volume_changed.emit(value)
 
 func set_level_music_volume(value: float) -> void:
+	level_music_volume = value
 	level_music_volume_changed.emit(value)
 
 func save_game(dict: Dictionary):

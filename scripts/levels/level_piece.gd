@@ -19,8 +19,9 @@ signal player_entered(id)
 var color: Color
 
 func _ready() -> void:
-	main_body.lod_bias = Global.lod_value
-	main_body.cast_shadow = int(Global.shadows_enabled)
+	set_lod(Global.lod_value)
+	set_shadow(Global.shadows_enabled)
+	set_view(Global.view_distance)
 	Global.connect("shadows_toggled", set_shadow)
 	Global.connect("lod_changed", set_lod)
 	Global.connect("view_distance_changed", set_view)
@@ -172,10 +173,20 @@ func start_failure():
 
 func set_lod(setting: float):
 	main_body.lod_bias = setting
+	var meshes = main_body.find_children("*", "MeshInstance3D", true, false)
+	for item in meshes:
+		item.lod_bias = setting
 
 func set_shadow(toggle: bool):
 	@warning_ignore("int_as_enum_without_cast")
 	main_body.cast_shadow = int(toggle)
+	var meshes = main_body.find_children("*", "MeshInstance3D", true, false)
+	for item in meshes:
+		@warning_ignore("int_as_enum_without_cast")
+		item.cast_shadow = int(toggle)
 	
 func set_view(setting: float):
 	main_body.visibility_range_end = setting
+	var meshes = main_body.find_children("*", "MeshInstance3D", true, false)
+	for item in meshes:
+		item.visibility_range_end = setting

@@ -1,8 +1,12 @@
 extends HScrollBar
 
 @export_enum("Menu", "SFX", "Ambience", "Music") var type: String
+@export var label_text: String = ""
+@onready var label: Label = $Label
 
 func _ready() -> void:
+	set_text(value)
+	connect("value_changed", set_text)
 	if not type:
 		printerr("VOLUME SLIDER: Type not set, using default volume")
 	if type == "Menu":
@@ -13,3 +17,6 @@ func _ready() -> void:
 		self.value_changed.connect(Global.set_level_ambience_volume)
 	elif type == "Music":
 		self.value_changed.connect(Global.set_level_music_volume)
+
+func set_text(new_value: float):
+	label.text = label_text + ": " + str(new_value)

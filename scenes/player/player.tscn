@@ -474,141 +474,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BackLabel" type="Label" parent="Interface/Pause/Settings"]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 264.0
-offset_right = 525.0
-offset_bottom = 287.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "SFX"
-
-[node name="BackButton" type="MenuButton" parent="Interface/Pause/Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 372.0
-offset_top = 494.0
-offset_right = 475.0
-offset_bottom = 569.0
-grow_horizontal = 2
-grow_vertical = 2
-button_pressed = true
-text = "Back"
-item_count = 1
-popup/item_0/id = 0
-
-[node name="MenuMusicSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 396.0
-offset_top = 198.0
-offset_right = 623.0
-offset_bottom = 240.0
-grow_horizontal = 2
-grow_vertical = 2
-min_value = -30.0
-max_value = 0.0
-value = -15.0
-script = ExtResource("3_p47bc")
-type = "Menu"
-
-[node name="Label" type="Label" parent="Interface/Pause/Settings/MenuMusicSlider"]
-layout_mode = 0
-offset_top = -34.0
-offset_right = 109.0
-offset_bottom = -11.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Menu Music"
-
-[node name="LevelMusicSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 396.0
-offset_top = 438.0
-offset_right = 623.0
-offset_bottom = 480.0
-grow_horizontal = 2
-grow_vertical = 2
-min_value = -30.0
-max_value = 0.0
-value = -15.0
-script = ExtResource("3_p47bc")
-type = "SFX"
-
-[node name="Label" type="Label" parent="Interface/Pause/Settings/LevelMusicSlider"]
-layout_mode = 0
-offset_top = -34.0
-offset_right = 109.0
-offset_bottom = -11.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Level Music"
-
-[node name="SFXSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 396.0
-offset_top = 278.0
-offset_right = 623.0
-offset_bottom = 320.0
-grow_horizontal = 2
-grow_vertical = 2
-min_value = -20.0
-max_value = 0.0
-value = -10.0
-script = ExtResource("3_p47bc")
-type = "Ambience"
-
-[node name="Label" type="Label" parent="Interface/Pause/Settings/SFXSlider"]
-layout_mode = 0
-offset_top = -160.0
-offset_right = 109.0
-offset_bottom = -137.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Volume Controls"
-
-[node name="LevelAmbienceSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 396.0
-offset_top = 358.0
-offset_right = 623.0
-offset_bottom = 400.0
-grow_horizontal = 2
-grow_vertical = 2
-min_value = -40.0
-max_value = 0.0
-value = -20.0
-script = ExtResource("3_p47bc")
-type = "Ambience"
-
-[node name="Label" type="Label" parent="Interface/Pause/Settings/LevelAmbienceSlider"]
-layout_mode = 0
-offset_top = -34.0
-offset_right = 109.0
-offset_bottom = -11.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Ambience"
-
 [node name="Graphics" type="Label" parent="Interface/Pause/Settings"]
 layout_mode = 0
 offset_left = 852.0
@@ -617,6 +482,66 @@ offset_right = 993.0
 offset_bottom = 191.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Graphical Settings"
+
+[node name="LODSlider" type="HScrollBar" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 229.5
+offset_right = 152.5
+offset_bottom = 271.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Level of Detal. Lower value means you need to be closer to render meshes in high detail"
+min_value = 0.001
+max_value = 10.0
+step = 0.01
+value = 5.001
+script = ExtResource("6_0owmy")
+type = "LOD"
+label_text = "LOD Value"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/Graphics/LODSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "LOD Value: "
+
+[node name="ViewSlider" type="HScrollBar" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 323.5
+offset_right = 152.5
+offset_bottom = 365.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "View Distance (End). The distance at which meshes arent rendered. Lower values means you need to be closer to a mesh to see it."
+min_value = 1.0
+max_value = 600.0
+step = 1.0
+value = 300.0
+script = ExtResource("6_0owmy")
+type = "View Distance"
+label_text = "View Distance"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/Graphics/ViewSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "View Distance: "
 
 [node name="ParticleCheckbox" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
 layout_mode = 1
@@ -629,6 +554,7 @@ offset_right = 107.0
 offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Whether or not particles get rendered."
 button_pressed = true
 text = "Enable Particles"
 script = ExtResource("4_p47bc")
@@ -645,6 +571,7 @@ offset_right = 123.0
 offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Enables borderless window mode."
 text = "Enable Borderless"
 script = ExtResource("4_p47bc")
 type = "Borderless"
@@ -660,6 +587,7 @@ offset_right = 107.0
 offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Turns certain lighting, those of which deemed optional or for decoration off or on."
 button_pressed = true
 text = "Enable Optional Lighting"
 script = ExtResource("4_p47bc")
@@ -676,37 +604,156 @@ offset_right = 123.0
 offset_bottom = 176.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Turns mesh shadow casting on or off."
 button_pressed = true
 text = "Enable Shadows"
 script = ExtResource("4_p47bc")
 type = "Shadows"
 
-[node name="LODSlider" type="HScrollBar" parent="Interface/Pause/Settings/Graphics"]
+[node name="MenuMusicSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = 240.5
-offset_right = 152.5
-offset_bottom = 282.5
+offset_left = 396.0
+offset_top = 238.0
+offset_right = 623.0
+offset_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 2
-min_value = 0.1
-max_value = 10.0
+tooltip_text = "Alters the volume of the starting game music."
+min_value = -30.0
+max_value = 0.0
 step = 0.1
-value = 5.0
-script = ExtResource("6_0owmy")
+value = -15.0
+script = ExtResource("3_p47bc")
+type = "Menu"
+label_text = "Menu Music"
 
-[node name="Label" type="Label" parent="Interface/Pause/Settings/Graphics/LODSlider"]
+[node name="Label" type="Label" parent="Interface/Pause/Settings/MenuMusicSlider"]
 layout_mode = 0
 offset_top = -34.0
 offset_right = 109.0
 offset_bottom = -11.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "LOD Value"
+
+[node name="LevelMusicSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 478.0
+offset_right = 623.0
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of music contained within levels from any source."
+min_value = -30.0
+max_value = 0.0
+step = 0.1
+value = -15.0
+script = ExtResource("3_p47bc")
+type = "Music"
+label_text = "Level Music"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/LevelMusicSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="SFXSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 318.0
+offset_right = 623.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of any SFX, such as explosion sounds, walking, etc."
+min_value = -20.0
+max_value = 0.0
+step = 0.1
+value = -10.0
+script = ExtResource("3_p47bc")
+type = "SFX"
+label_text = "SFX"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/SFXSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "SFX"
+
+[node name="LevelAmbienceSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 398.0
+offset_right = 623.0
+offset_bottom = 440.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of generic ambience."
+min_value = -40.0
+max_value = 0.0
+step = 0.1
+value = -20.0
+script = ExtResource("3_p47bc")
+type = "Ambience"
+label_text = "Ambience"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/LevelAmbienceSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Ambience"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 172.0
+offset_right = 541.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Volume Settings"
+
+[node name="BackButton" type="MenuButton" parent="Interface/Pause/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 372.0
+offset_top = 528.0
+offset_right = 475.0
+offset_bottom = 603.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Back"
+item_count = 1
+popup/item_0/id = 0
 
 [node name="MainMenu" type="Control" parent="Interface"]
 layout_mode = 1
@@ -776,6 +823,7 @@ item_count = 1
 popup/item_0/id = 0
 
 [node name="Settings" type="Control" parent="Interface/MainMenu"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -797,16 +845,19 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -74.5
-offset_top = 240.5
+offset_top = 229.5
 offset_right = 152.5
-offset_bottom = 282.5
+offset_bottom = 271.5
 grow_horizontal = 2
 grow_vertical = 2
-min_value = 0.1
+tooltip_text = "Level of Detal. Lower value means you need to be closer to render meshes in high detail"
+min_value = 0.001
 max_value = 10.0
-step = 0.1
-value = 5.0
+step = 0.01
+value = 5.001
 script = ExtResource("6_0owmy")
+type = "LOD"
+label_text = "LOD Value"
 
 [node name="Label" type="Label" parent="Interface/MainMenu/Settings/Graphics/LODSlider"]
 layout_mode = 0
@@ -814,7 +865,37 @@ offset_top = -34.0
 offset_right = 109.0
 offset_bottom = -11.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "LOD Value"
+text = "LOD Value: "
+
+[node name="ViewSlider" type="HScrollBar" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 323.5
+offset_right = 152.5
+offset_bottom = 365.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "View Distance (End). The distance at which meshes arent rendered. Lower values means you need to be closer to a mesh to see it."
+min_value = 1.0
+max_value = 600.0
+step = 1.0
+value = 300.0
+script = ExtResource("6_0owmy")
+type = "View Distance"
+label_text = "View Distance"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/Graphics/ViewSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "View Distance: "
 
 [node name="ParticleCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
 layout_mode = 1
@@ -827,6 +908,7 @@ offset_right = 107.0
 offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Whether or not particles get rendered."
 button_pressed = true
 text = "Enable Particles"
 script = ExtResource("4_p47bc")
@@ -843,6 +925,7 @@ offset_right = 123.0
 offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Enables borderless window mode."
 text = "Enable Borderless"
 script = ExtResource("4_p47bc")
 type = "Borderless"
@@ -858,6 +941,7 @@ offset_right = 107.0
 offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Turns certain lighting, those of which deemed optional or for decoration off or on."
 button_pressed = true
 text = "Enable Optional Lighting"
 script = ExtResource("4_p47bc")
@@ -874,19 +958,129 @@ offset_right = 123.0
 offset_bottom = 176.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Turns mesh shadow casting on or off."
 button_pressed = true
 text = "Enable Shadows"
 script = ExtResource("4_p47bc")
 type = "Shadows"
 
-[node name="BackLabel" type="Label" parent="Interface/MainMenu/Settings"]
+[node name="MenuMusicSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 238.0
+offset_right = 623.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of the starting game music."
+min_value = -30.0
+max_value = 0.0
+step = 0.1
+value = -15.0
+script = ExtResource("3_p47bc")
+type = "Menu"
+label_text = "Menu Music"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/MenuMusicSlider"]
 layout_mode = 0
-offset_left = 416.0
-offset_top = 298.0
-offset_right = 525.0
-offset_bottom = 321.0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="LevelMusicSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 478.0
+offset_right = 623.0
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of music contained within levels from any source."
+min_value = -30.0
+max_value = 0.0
+step = 0.1
+value = -15.0
+script = ExtResource("3_p47bc")
+type = "Music"
+label_text = "Level Music"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/LevelMusicSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="SFXSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 318.0
+offset_right = 623.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of any SFX, such as explosion sounds, walking, etc."
+min_value = -20.0
+max_value = 0.0
+step = 0.1
+value = -10.0
+script = ExtResource("3_p47bc")
+type = "SFX"
+label_text = "SFX"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/SFXSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "SFX"
+
+[node name="LevelAmbienceSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 398.0
+offset_right = 623.0
+offset_bottom = 440.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of generic ambience."
+min_value = -40.0
+max_value = 0.0
+step = 0.1
+value = -20.0
+script = ExtResource("3_p47bc")
+type = "Ambience"
+label_text = "Ambience"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/LevelAmbienceSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Ambience"
 
 [node name="BackButton" type="MenuButton" parent="Interface/MainMenu/Settings"]
 layout_mode = 1
@@ -906,113 +1100,14 @@ text = "Back"
 item_count = 1
 popup/item_0/id = 0
 
-[node name="MenuMusicSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 396.0
-offset_top = 232.0
-offset_right = 623.0
-offset_bottom = 274.0
-grow_horizontal = 2
-grow_vertical = 2
-min_value = -30.0
-max_value = 0.0
-value = -15.0
-script = ExtResource("3_p47bc")
-type = "Menu"
-
-[node name="Label" type="Label" parent="Interface/MainMenu/Settings/MenuMusicSlider"]
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings"]
 layout_mode = 0
-offset_top = -34.0
-offset_right = 109.0
-offset_bottom = -11.0
+offset_left = 416.0
+offset_top = 172.0
+offset_right = 545.0
+offset_bottom = 195.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Menu Music"
-
-[node name="LevelMusicSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 396.0
-offset_top = 472.0
-offset_right = 623.0
-offset_bottom = 514.0
-grow_horizontal = 2
-grow_vertical = 2
-min_value = -30.0
-max_value = 0.0
-value = -15.0
-script = ExtResource("3_p47bc")
-type = "Music"
-
-[node name="Label" type="Label" parent="Interface/MainMenu/Settings/LevelMusicSlider"]
-layout_mode = 0
-offset_top = -34.0
-offset_right = 109.0
-offset_bottom = -11.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Level Music"
-
-[node name="SFXSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 396.0
-offset_top = 312.0
-offset_right = 623.0
-offset_bottom = 354.0
-grow_horizontal = 2
-grow_vertical = 2
-min_value = -20.0
-max_value = 0.0
-value = -10.0
-script = ExtResource("3_p47bc")
-type = "SFX"
-
-[node name="Label" type="Label" parent="Interface/MainMenu/Settings/SFXSlider"]
-layout_mode = 0
-offset_top = -160.0
-offset_right = 109.0
-offset_bottom = -137.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Volume Controls"
-
-[node name="LevelAmbienceSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 396.0
-offset_top = 392.0
-offset_right = 623.0
-offset_bottom = 434.0
-grow_horizontal = 2
-grow_vertical = 2
-min_value = -40.0
-max_value = 0.0
-value = -20.0
-script = ExtResource("3_p47bc")
-type = "Ambience"
-
-[node name="Label" type="Label" parent="Interface/MainMenu/Settings/LevelAmbienceSlider"]
-layout_mode = 0
-offset_top = -34.0
-offset_right = 109.0
-offset_bottom = -11.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Ambience"
+text = "Volume Settings"
 
 [node name="LoadingScreen" type="Control" parent="."]
 visible = false
