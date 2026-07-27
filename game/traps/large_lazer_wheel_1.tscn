@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bplw8d84aldlo"]
+[gd_scene load_steps=4 format=3 uid="uid://bplw8d84aldlo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfs5q"]
 albedo_color = Color(1, 0.30005085, 0.23680493, 1)
@@ -13,37 +13,10 @@ material = SubResource("StandardMaterial3D_cfs5q")
 height = 25.0
 radial_segments = 4
 
-[sub_resource type="Animation" id="Animation_cfs5q"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_hfpxg"]
-resource_name = "Rotate"
-length = 10.0
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 4.266667, 1, 0, 0, 0, 6.5)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rrjlb"]
-_data = {
-&"RESET": SubResource("Animation_cfs5q"),
-&"Rotate": SubResource("Animation_hfpxg")
-}
-
 [node name="LargeLazerWheel_1" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+transform = Transform3D(50.000004, 0, 0, 0, 1, 0, 0, 0, 50.000004, 0, 0, 0)
 mesh = SubResource("BoxMesh_cfs5q")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
@@ -65,8 +38,3 @@ skeleton = NodePath("../..")
 transform = Transform3D(-0.14142132, -0.7071067, 6.1817236e-09, 4.2351643e-21, -2.1855692e-06, -10, 0.14142136, -0.70710677, 6.1817227e-09, 0, 0, 0)
 mesh = SubResource("CylinderMesh_hfpxg")
 skeleton = NodePath("../..")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_rrjlb")
-}
