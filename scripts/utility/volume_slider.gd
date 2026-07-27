@@ -2,9 +2,11 @@ extends HScrollBar
 
 @export_enum("Menu", "SFX", "Ambience", "Music") var type: String
 @export var label_text: String = ""
+@export var metric: String = ""
 @onready var label: Label = $Label
 
 func _ready() -> void:
+	label.tooltip_text = tooltip_text
 	set_text(value)
 	connect("value_changed", set_text)
 	if not type:
@@ -19,4 +21,4 @@ func _ready() -> void:
 		self.value_changed.connect(Global.set_level_music_volume)
 
 func set_text(new_value: float):
-	label.text = label_text + ": " + str(new_value)
+	label.text = label_text + ": " + str(new_value) + metric

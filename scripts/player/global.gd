@@ -12,11 +12,12 @@ var current_floor = -1
 var lod_value = 5
 var view_distance = 300.0
 var gravity = 50.0
+var brightness = 1.0
 signal menu_volume_changed(new_val: float)
 signal sfx_volume_changed(new_val: float)
 signal level_ambience_volume_changed(new_val: float)
 signal level_music_volume_changed(new_val: float)
-
+signal brightness_changed(new_val: float)
 signal view_distance_changed(new_val: float)
 signal lod_changed(new_val: float)
 signal particles_toggled(opt: bool)
@@ -66,6 +67,10 @@ func set_lod_value(value: float) -> void:
 func set_view_distance(value: float) -> void:
 	view_distance = value
 	view_distance_changed.emit(value)
+
+func set_brightness(value: float) -> void:
+	brightness = value
+	brightness_changed.emit(value)
 
 func set_level_ambience_volume(value: float) -> void:
 	level_ambience_volume = value

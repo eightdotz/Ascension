@@ -173,6 +173,8 @@ func _ready() -> void:
 	infection_speed_relief = wall_jump_velocity_max
 	wall_jump_boost_timer_max = (wall_jump_velocity_max / 10.0) + 3
 	gravity = Global.gravity
+	gravity = Global.brightness
+	Global.connect("brightness_changed", set_brightness)
 	Global.connect("gravity_changed", set_gravity)
 	if not root:
 		print("PLAYER: (ready) Getting root")
@@ -628,10 +630,6 @@ func upgrade(upgrade_name: String, amount: float) -> void:
 			max_speed += amount
 			cache_max_speed = max_speed
 		"Jump Quanity":
-			if amount < 1.0:
-				amount = 1
-			else:
-				amount = int(amount)
 			@warning_ignore("narrowing_conversion")
 			jump_max += amount
 		"Jump Height":
@@ -915,6 +913,9 @@ func interact_with(button: int) -> void:
 			
 func set_gravity(amount: float) -> void:
 	gravity = amount
+
+func set_brightness(amount: float) -> void:
+	camera.attributes.exposure_multiplier = amount
 
 func set_intro(title: String, desc: String) -> void:
 	var t = $Interface/Intro/Title
