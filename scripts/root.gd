@@ -134,7 +134,7 @@ func _on_goal_level_completed() -> void:
 		await player.fade_to_black(0.5, true)
 		on_break = true
 		load_level(PISS_BREAK)
-	elif not randi_range(0, ability_spawn_range) and Global.current_floor > ability_spawn_threshold and current_level_type != "Ability":
+	elif not randi_range(0, ability_spawn_range) and Global.current_floor > ability_spawn_threshold and current_level_type != "Ability" and current_level_type != "Shop":
 		await player.fade_to_black(1.0, true)
 		load_level(ABILITY_SELECTION)
 		on_break = false

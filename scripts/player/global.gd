@@ -7,16 +7,20 @@ var level_music_volume: float = -15.0
 var default_gravity: float = 50.0
 var particles_enabled = true
 var opt_light_enabled = true
-
+var shadows_enabled = true
 var current_floor = -1
+var lod_value = 5
 
 signal menu_volume_changed(new_val: float)
 signal sfx_volume_changed(new_val: float)
 signal level_ambience_volume_changed(new_val: float)
 signal level_music_volume_changed(new_val: float)
 
+signal view_distance_changed(new_val: float)
+signal lod_changed(new_val: float)
 signal particles_toggled(opt: bool)
 signal light_toggled(opt: bool)
+signal shadows_toggled(opt: bool)
 @warning_ignore("unused_signal")
 signal pause_sound
 signal gravity_changed(amount: float)
@@ -32,6 +36,11 @@ func particles(toggled: bool) -> void:
 	particles_enabled = toggled
 	particles_toggled.emit(toggled)
 
+func shadows(toggled: bool) -> void:
+	print("Emitting shadows disabled")
+	shadows_enabled = toggled
+	shadows_toggled.emit(toggled)
+
 func optional_lighting(toggled: bool) -> void:
 	print("Emitting particles disabled")
 	opt_light_enabled = toggled
@@ -45,6 +54,12 @@ func set_menu_volume(value: float) -> void:
 
 func set_sfx_volume(value: float) -> void:
 	sfx_volume_changed.emit(value)
+
+func set_lod_value(value: float) -> void:
+	lod_changed.emit(value)
+
+func set_view_distance(value: float) -> void:
+	view_distance_changed.emit(value)
 
 func set_level_ambience_volume(value: float) -> void:
 	level_ambience_volume_changed.emit(value)

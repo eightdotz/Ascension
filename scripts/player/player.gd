@@ -635,13 +635,11 @@ func upgrade(upgrade_name: String, amount: float) -> void:
 			jump_max += amount
 		"Jump Height":
 			jump_speed += amount
-		"Boost Duration":
-			wall_jump_boost_duration += amount
 		"Wall Jump Force":
 			wall_jump_force += amount
 		"True Max Speed":
 			wall_jump_velocity_max += amount
-
+	wall_jump_boost_timer_max = (wall_jump_velocity_max / 10.0) + 3
 	infection_speed_relief = wall_jump_velocity_max
 
 func add_ability(new_ability: Ability) -> void:

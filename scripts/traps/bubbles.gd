@@ -25,7 +25,6 @@ var max_z
 var count = 0
 func _ready():
 	timer.wait_time = waittime
-	await get_tree().create_timer(1.0).timeout
 	noise.noise_type = types[noise_type]
 	noise.frequency = resolution
 	noise.fractal_gain = randomness

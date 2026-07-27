@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bk2r4u7mfbf1b"]
+[gd_scene load_steps=19 format=3 uid="uid://bk2r4u7mfbf1b"]
 
 [ext_resource type="Script" uid="uid://d17g4tbdc00a" path="res://scripts/player/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://djjm6fa8kwvcr" path="res://scenes/player/map.tscn" id="2_75vfm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bfn7sua7e6axo" path="res://scripts/utility/audio_player.gd" id="3_lvxji"]
 [ext_resource type="Script" uid="uid://c1e6hrwt1alxx" path="res://scripts/utility/volume_slider.gd" id="3_p47bc"]
 [ext_resource type="Script" uid="uid://bt7kon6xfv4l0" path="res://scripts/utility/option_checkbox.gd" id="4_p47bc"]
+[ext_resource type="Script" uid="uid://c73fr68u8kxcr" path="res://scripts/utility/graphics_slider.gd" id="6_0owmy"]
 
 [sub_resource type="Animation" id="Animation_75vfm"]
 length = 0.001
@@ -664,7 +665,7 @@ text = "Enable Optional Lighting"
 script = ExtResource("4_p47bc")
 type = "OptLight"
 
-[node name="na" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
+[node name="ShadowsCheckbox" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -675,9 +676,37 @@ offset_right = 123.0
 offset_bottom = 176.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Not sure yet"
+button_pressed = true
+text = "Enable Shadows"
 script = ExtResource("4_p47bc")
-type = "Borderless"
+type = "Shadows"
+
+[node name="LODSlider" type="HScrollBar" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 240.5
+offset_right = 152.5
+offset_bottom = 282.5
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 5.0
+script = ExtResource("6_0owmy")
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/Graphics/LODSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "LOD Value"
 
 [node name="MainMenu" type="Control" parent="Interface"]
 layout_mode = 1
@@ -747,7 +776,6 @@ item_count = 1
 popup/item_0/id = 0
 
 [node name="Settings" type="Control" parent="Interface/MainMenu"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -760,6 +788,33 @@ offset_right = 993.0
 offset_bottom = 191.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Graphical Settings"
+
+[node name="LODSlider" type="HScrollBar" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 240.5
+offset_right = 152.5
+offset_bottom = 282.5
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 5.0
+script = ExtResource("6_0owmy")
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/Graphics/LODSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "LOD Value"
 
 [node name="ParticleCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
 layout_mode = 1
@@ -808,7 +863,7 @@ text = "Enable Optional Lighting"
 script = ExtResource("4_p47bc")
 type = "OptLight"
 
-[node name="na" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
+[node name="ShadowsCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -819,9 +874,10 @@ offset_right = 123.0
 offset_bottom = 176.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Not sure yet"
+button_pressed = true
+text = "Enable Shadows"
 script = ExtResource("4_p47bc")
-type = "Borderless"
+type = "Shadows"
 
 [node name="BackLabel" type="Label" parent="Interface/MainMenu/Settings"]
 layout_mode = 0
@@ -959,6 +1015,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Ambience"
 
 [node name="LoadingScreen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

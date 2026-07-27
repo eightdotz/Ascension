@@ -16,7 +16,8 @@ extends Node3D
 @export var yellow_amount: int
 @onready var page_mesh: MeshInstance3D = $Mesh
 @onready var input_area: Area3D = $InputArea
-var num = 0
+var num = 0.0
+var card_id = 0
 signal select
 signal unselect
 @onready var name_label: Label3D = $Name
@@ -56,8 +57,10 @@ func start() -> void:
 func stop() -> void:
 	particles.emitting = false
 
-func set_page_value(value: float) -> void:
+
+func set_page_value(id: float, value: float) -> void:
 	print("Setting value to " + str(value))
+	card_id = id
 	value_label.text = str(value)
 	num = value
 
@@ -70,9 +73,9 @@ func set_page_name(new_name:String) -> void:
 
 func _mouse_entered(_area: Area3D) -> void:
 	page_mesh.mesh.material.emission_energy_multiplier += 2
-	emit_signal("select", num)
+	emit_signal("select", card_id)
 
 
 func _mouse_left(_area: Area3D) -> void:
 	page_mesh.mesh.material.emission_energy_multiplier -= 2
-	emit_signal("unselect", num)
+	emit_signal("unselect", card_id)

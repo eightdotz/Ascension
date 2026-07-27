@@ -1,6 +1,6 @@
 extends CheckBox
 
-@export_enum("Particles", "Borderless", "OptLight") var type: String
+@export_enum("Particles", "Borderless", "OptLight", "Shadows") var type: String
 
 func _ready() -> void:
 	if not type:
@@ -11,4 +11,5 @@ func _ready() -> void:
 		self.toggled.connect(Global.borderless)
 	elif type == "OptLight":
 		self.toggled.connect(Global.optional_lighting)
-		
+	elif type == "Shadows":
+		self.toggled.connect(Global.shadows)

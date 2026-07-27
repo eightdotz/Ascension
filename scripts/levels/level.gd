@@ -93,6 +93,11 @@ func spawn() -> void:
 					room_cooldown = 4
 		else:
 			selected_item = avaliable_pieces[0]
+		while current_id < 1 and "Trap" in selected_item:
+			if event == "Traps Only":
+				break
+			selected_item = avaliable_pieces.pick_random()
+			print("First spawn, swapping to " + selected_item)
 		if next_piece:
 			print("LEVEL GENERATION: Swapping to overridden piece")
 			selected_item = next_piece
@@ -292,3 +297,5 @@ func start_emergency():
 		if is_instance_valid(item):
 			item.queue_free()
 		await get_tree().process_frame
+		if not spawned_pieces:
+			break

@@ -6,7 +6,7 @@ extends Node3D
 @onready var end: Node3D = $End
 @onready var lights = $MainBody/Lighting.get_children()
 @onready var overlap = $OverlapChecks.get_children()
-
+@onready var main_body: MeshInstance3D = $MainBody
 var pulse_time := 0.0
 @export_group("Emergency Settings")
 @export var min_energy := 0.2
@@ -19,6 +19,11 @@ signal player_entered(id)
 var color: Color
 
 func _ready() -> void:
+	main_body.lod_bias = Global.lod_value
+	main_body.cast_shadow = int(Global.shadows_enabled)
+	Global.connect("shadows_toggled", set_shadow)
+	Global.connect("lod_changed", set_lod)
+	Global.connect("view_distance_changed", set_view)
 	set_process(false)
 	if randomize_traps:
 		turn_off_traps()
@@ -161,5 +166,16 @@ func get_light_energy():
 	if lights:
 		if is_instance_valid(lights[0]):
 			return lights[0].energy
+
 func start_failure():
 	set_process(true)
+
+func set_lod(setting: float):
+	main_body.lod_bias = setting
+
+func set_shadow(toggle: bool):
+	@warning_ignore("int_as_enum_without_cast")
+	main_body.cast_shadow = int(toggle)
+	
+func set_view(setting: float):
+	main_body.visibility_range_end = setting

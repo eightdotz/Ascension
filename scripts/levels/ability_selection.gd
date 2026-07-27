@@ -68,6 +68,7 @@ func random_value(rarity: String, current_type:String) -> float:
 		else:
 			return common + (randi_range(1, 10) / 10.0)
 	return 0
+
 func randomize_ability() -> void:
 	var rarity = random_rarity()
 	ability.set_rarity(rarity)
@@ -78,6 +79,7 @@ func randomize_ability() -> void:
 	
 	ability.selected_ability.configure_new_ability(current_type)
 	value = random_value(rarity, current_type)
+	ability.set_page_value(1, value)
 	if current_type == "Ability":
 		var new_ability = random(abilities)
 		if new_ability == "timeslow":
@@ -86,15 +88,17 @@ func randomize_ability() -> void:
 		ability.set_page_name(new_ability)
 	else:
 		var upgrade_option = random(upgrade_options)
+		if "Jump Quantity" == upgrade_option:
+			value = random_jump_quantity(rarity)
+			ability.set_page_value(1, value)
 		ability.set_page_name(upgrade_option)
 		ability.selected_ability.set_ability_options(upgrade_option, value)
 	print("ABILITY GENERATION:\nType: %s\nRarity: %s\nValue: %f" % [current_type, rarity, value])
-	ability.set_page_value(1)
 	rarity = random_rarity()
-	type = random_type()
-	value = random_value(rarity, type)
+	current_type = random_type()
+	value = random_value(rarity, current_type)
 	ability_2.set_rarity(rarity)
-	ability_2.selected_ability.configure_new_ability(type)
+	ability_2.selected_ability.configure_new_ability(current_type)
 	if current_type == "Ability":
 		var new_ability = random(abilities)
 		if new_ability == "timeslow":
@@ -103,10 +107,23 @@ func randomize_ability() -> void:
 		ability_2.set_page_name(new_ability)
 	else:
 		var upgrade_option = random(upgrade_options)
+		if "Jump Quantity" == upgrade_option:
+			value = random_jump_quantity(rarity)
 		ability_2.set_page_name(upgrade_option)
 		ability_2.selected_ability.set_ability_options(upgrade_option, value)
-	ability_2.set_page_value(2)
+	ability_2.set_page_value(2, value)
 	print("ABILITY GENERATION:\nType: %s\nRarity: %s\nValue: %f" % [current_type, rarity, value])
+
+func random_jump_quantity(rarity: String) -> int:
+	match rarity:
+		"Legendary":
+			return randi_range(2, 3)
+		"Epic":
+			return 2
+		"Rare":
+			return 1 if randf() < 0.5 else 2
+		_:
+			return 1
 
 func _intro() -> void:
 	animation_player.play("Fall")
