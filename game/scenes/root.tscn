@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwfe0askk5jyw"]
+
+[ext_resource type="Script" uid="uid://bfqgxqjw6mqic" path="res://game/scripts/root.gd" id="1_j5px3"]
+[ext_resource type="PackedScene" uid="uid://bk2r4u7mfbf1b" path="res://game/scenes/player/player.tscn" id="2_twpsu"]
+[ext_resource type="PackedScene" uid="uid://bpiy2djajhaif" path="res://game/scenes/utility/Goal.tscn" id="3_lrqlo"]
+
+[node name="ROOT" type="Node3D"]
+script = ExtResource("1_j5px3")
+spawn_amount = 5
+room_cooldown = 10
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="Goal" parent="." instance=ExtResource("3_lrqlo")]
+transform = Transform3D(0.82173645, 0, -0.5698676, 0, 1, 0, 0.5698676, 0, 0.82173645, -20.931824, 0, -97.102844)
+
+[node name="player" parent="." instance=ExtResource("2_twpsu")]
+diagnostics_enabled = true
+pixelization = 4.0
+
+[connection signal="level_completed" from="Goal" to="." method="_on_goal_level_completed"]

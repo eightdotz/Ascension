@@ -1,0 +1,1287 @@
+[gd_scene load_steps=20 format=3 uid="uid://bk2r4u7mfbf1b"]
+
+[ext_resource type="Script" uid="uid://d17g4tbdc00a" path="res://game/scripts/player/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://djjm6fa8kwvcr" path="res://game/scenes/player/map.tscn" id="2_75vfm"]
+[ext_resource type="Shader" uid="uid://dwpy71qv53ekt" path="res://game/scenes/player/pixelator_canvas.gdshader" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://bfn7sua7e6axo" path="res://game/scripts/utility/audio_player.gd" id="3_lvxji"]
+[ext_resource type="Script" uid="uid://c1e6hrwt1alxx" path="res://game/scripts/utility/volume_slider.gd" id="3_p47bc"]
+[ext_resource type="Script" uid="uid://bt7kon6xfv4l0" path="res://game/scripts/utility/option_checkbox.gd" id="4_p47bc"]
+[ext_resource type="Script" uid="uid://c73fr68u8kxcr" path="res://game/scripts/utility/graphics_slider.gd" id="6_0owmy"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0owmy"]
+
+[sub_resource type="Animation" id="Animation_75vfm"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Map")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.524692, -0.11397159, 0.066367134)
+
+[sub_resource type="Animation" id="Animation_0owmy"]
+resource_name = "hide_terminal"
+length = 0.25
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Map")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.428, 0, -0.571, 0.06666667, 1, -0.428, -0.244, -0.291, 0.23333335, 1, -0.56856966, -0.11397159, 0.012996387)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Map")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.168, 0.255, 0.045, 0.951, 0.23333335, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_qek5x"]
+resource_name = "show_terminal"
+length = 0.25
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Map")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.03333333, 1, -0.56856966, -0.11397159, 0.042145323, 0.23333333, 1, -0.428, 0, -0.571)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Map")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.23333333, 1, -0.168, 0.255, 0.045, 0.951)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5gtgg"]
+_data = {
+&"RESET": SubResource("Animation_75vfm"),
+&"hide_terminal": SubResource("Animation_0owmy"),
+&"show_terminal": SubResource("Animation_qek5x")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_p47bc"]
+font_size = 35
+font_color = Color(1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gmlin"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dovo2"]
+shader = ExtResource("3_gmlin")
+shader_parameter/pixel_size = 4.0
+shader_parameter/levels = 32.0
+shader_parameter/pivot = 0.35
+shader_parameter/shadow_crush = 0.0
+shader_parameter/highlight_boost = 0.0
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_pivot = 1.0
+shader_parameter/flash_softness = 0.05
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qek5x"]
+seed = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5gtgg"]
+noise = SubResource("FastNoiseLite_qek5x")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4gf2a"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7r32s"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[node name="player" type="CharacterBody3D"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+slide_on_ceiling = false
+script = ExtResource("1_4flbx")
+enable_flashlight = true
+infection_limit = 100.0
+infection_rate = 1.0
+infection_reduction = 4.0
+infection_increase = 0.1
+stamina_drain_sprint = 0.2
+pixelization = 2.0
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44442, -0.0576912)
+
+[node name="Camera" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 2.8678704e-10, 0.0026492178, 0.0065646395)
+cull_mask = 1
+attributes = SubResource("CameraAttributesPractical_0owmy")
+far = 500.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head"]
+libraries = {
+&"": SubResource("AnimationLibrary_5gtgg")
+}
+
+[node name="Map" parent="Head" instance=ExtResource("2_75vfm")]
+transform = Transform3D(0.25259775, 0, 0, 0, 0.31824172, 0, 0, 0, 0.07756197, -0.524692, -0.11397159, 0.066367134)
+
+[node name="Flashlight" type="SpotLight3D" parent="Head"]
+transform = Transform3D(1, 1.1392169e-08, -1.5106352e-09, -1.1392171e-08, 0.96544075, -0.26062247, -1.5106281e-09, 0.26062247, 0.96544075, 0, -0.040945202, 0)
+light_energy = 0.5
+spot_range = 90.0
+spot_attenuation = 0.2
+spot_angle = 30.46
+
+[node name="Interact" type="RayCast3D" parent="Head"]
+transform = Transform3D(2.062, -7.432149e-09, -6.762259e-08, -6.762259e-08, -0.44784415, -2.0127792, -7.432149e-09, 2.0127792, -0.44784415, 2.8678704e-10, 0.239804, 0.0065646395)
+target_position = Vector3(0, -2.48, 0)
+collision_mask = 2
+
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Intro" type="Control" parent="Interface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Interface/Intro"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 592.0
+offset_top = 241.0
+offset_right = 592.0
+offset_bottom = 241.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The Sewer"
+label_settings = SubResource("LabelSettings_p47bc")
+
+[node name="Desc" type="Label" parent="Interface/Intro"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.0
+offset_top = 321.0
+offset_right = 384.0
+offset_bottom = 321.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Make it out before the infection gets to you"
+label_settings = SubResource("LabelSettings_p47bc")
+
+[node name="HUD" type="Control" parent="Interface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DamageFilter" type="ColorRect" parent="Interface/HUD"]
+material = SubResource("CanvasItemMaterial_gmlin")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5803922, 0, 0.12156863, 0)
+
+[node name="PixelFilter" type="ColorRect" parent="Interface/HUD"]
+material = SubResource("ShaderMaterial_dovo2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BlackScreen" type="ColorRect" parent="Interface/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Interface/HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.72650146
+offset_top = -0.9786377
+offset_right = 2.7020874
+offset_bottom = 2.0213623
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.24410257, 0.27961472)
+
+[node name="VFX" type="Control" parent="Interface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DontMove" type="ColorRect" parent="Interface/VFX"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Interface/VFX/DontMove"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -11.5
+offset_right = 42.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "dont move"
+
+[node name="Death" type="Control" parent="Interface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Interface/Death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -11.5
+offset_right = 34.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.61960787, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 25
+text = "You Died"
+
+[node name="MenuButton3" type="MenuButton" parent="Interface/Death"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = 65.0
+offset_right = 50.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 29
+button_pressed = true
+text = "Restart"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="MenuButton4" type="MenuButton" parent="Interface/Death"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = 146.0
+offset_right = 50.0
+offset_bottom = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 29
+button_pressed = true
+text = "Exit"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="Diagnostics" type="Control" parent="Interface"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CurrentSpeed" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_right = 260.0
+offset_bottom = 49.0
+
+[node name="BoostDuration" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 260.0
+offset_bottom = 73.0
+
+[node name="Sliding" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 260.0
+offset_bottom = 97.0
+
+[node name="WallAngle" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 0
+offset_top = 72.0
+offset_right = 260.0
+offset_bottom = 121.0
+
+[node name="MaxSpeed" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1537.0
+offset_top = 2.0
+offset_right = 1797.0
+offset_bottom = 51.0
+
+[node name="MvOverride" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
+offset_top = 24.0
+offset_right = 1879.0
+offset_bottom = 73.0
+
+[node name="FOV" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
+offset_top = 48.0
+offset_right = 1879.0
+offset_bottom = 97.0
+
+[node name="Direction" type="Label" parent="Interface/Diagnostics"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -11.175
+anchor_right = -11.175
+offset_left = 1619.0
+offset_top = 72.0
+offset_right = 1879.0
+offset_bottom = 121.0
+
+[node name="Pause" type="Control" parent="Interface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Control" parent="Interface/Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="MenuButton" parent="Interface/Pause/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -84.0
+offset_right = 50.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Resume"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="SettingsButton" type="MenuButton" parent="Interface/Pause/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.5
+offset_top = 17.5
+offset_right = 51.5
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Settings"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="ExitButton" type="MenuButton" parent="Interface/Pause/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = 118.0
+offset_right = 50.0
+offset_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Exit"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="Settings" type="Control" parent="Interface/Pause"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Graphics" type="Label" parent="Interface/Pause/Settings"]
+layout_mode = 0
+offset_left = 852.0
+offset_top = 168.0
+offset_right = 993.0
+offset_bottom = 191.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Graphical Settings"
+
+[node name="LODSlider" type="HScrollBar" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 229.5
+offset_right = 152.5
+offset_bottom = 271.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Level of Detal. Lower value means you need to be closer to render meshes in high detail"
+min_value = 0.001
+max_value = 10.0
+step = 0.01
+value = 5.001
+script = ExtResource("6_0owmy")
+type = "LOD"
+label_text = "LOD Value"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/Graphics/LODSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "LOD Value: "
+
+[node name="ViewSlider" type="HScrollBar" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 323.5
+offset_right = 152.5
+offset_bottom = 365.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "View Distance (End). The distance at which meshes arent rendered. Lower values means you need to be closer to a mesh to see it."
+min_value = 1.0
+max_value = 600.0
+step = 1.0
+value = 300.0
+script = ExtResource("6_0owmy")
+type = "View Distance"
+label_text = "View Distance"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/Graphics/ViewSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "View Distance: "
+
+[node name="BrightnessSlider" type="HScrollBar" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 401.5
+offset_right = 152.5
+offset_bottom = 443.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Exposure. Makes lights brighter while keeping dark things dark. Similar to contrast but it doesnt increase darkness and only works on light sources or emissive meshes."
+max_value = 2.0
+step = 0.1
+value = 1.0
+script = ExtResource("6_0owmy")
+type = "Brightness"
+label_text = "Exposure"
+metric = "L"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/Graphics/BrightnessSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Brightness"
+
+[node name="ParticleCheckbox" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 50.0
+offset_right = 107.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Whether or not particles get rendered."
+button_pressed = true
+text = "Enable Particles"
+script = ExtResource("4_p47bc")
+type = "Particles"
+
+[node name="BorderlessCheckbox" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 90.0
+offset_right = 123.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Enables borderless window mode."
+text = "Enable Borderless"
+script = ExtResource("4_p47bc")
+type = "Borderless"
+
+[node name="LightingCheckbox" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 128.0
+offset_right = 107.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Turns certain lighting, those of which deemed optional or for decoration off or on."
+button_pressed = true
+text = "Enable Optional Lighting"
+script = ExtResource("4_p47bc")
+type = "OptLight"
+
+[node name="ShadowsCheckbox" type="CheckBox" parent="Interface/Pause/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 168.0
+offset_right = 123.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Turns mesh shadow casting on or off."
+button_pressed = true
+text = "Enable Shadows"
+script = ExtResource("4_p47bc")
+type = "Shadows"
+
+[node name="MenuMusicSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 238.0
+offset_right = 623.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of the starting game music."
+min_value = -30.0
+max_value = 0.0
+step = 0.1
+value = -15.0
+script = ExtResource("3_p47bc")
+type = "Menu"
+label_text = "Menu Music"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/MenuMusicSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="LevelMusicSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 478.0
+offset_right = 623.0
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of music contained within levels from any source."
+min_value = -30.0
+max_value = 0.0
+step = 0.1
+value = -15.0
+script = ExtResource("3_p47bc")
+type = "Music"
+label_text = "Level Music"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/LevelMusicSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="SFXSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 318.0
+offset_right = 623.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of any SFX, such as explosion sounds, walking, etc."
+min_value = -20.0
+max_value = 0.0
+step = 0.1
+value = -10.0
+script = ExtResource("3_p47bc")
+type = "SFX"
+label_text = "SFX"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/SFXSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "SFX"
+
+[node name="LevelAmbienceSlider" type="HScrollBar" parent="Interface/Pause/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 398.0
+offset_right = 623.0
+offset_bottom = 440.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of generic ambience."
+min_value = -40.0
+max_value = 0.0
+step = 0.1
+value = -20.0
+script = ExtResource("3_p47bc")
+type = "Ambience"
+label_text = "Ambience"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings/LevelAmbienceSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Ambience"
+
+[node name="Label" type="Label" parent="Interface/Pause/Settings"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 172.0
+offset_right = 541.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Volume Settings"
+
+[node name="BackButton" type="MenuButton" parent="Interface/Pause/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 372.0
+offset_top = 528.0
+offset_right = 475.0
+offset_bottom = 603.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Back"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="MainMenu" type="Control" parent="Interface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Control" parent="Interface/MainMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartButton" type="MenuButton" parent="Interface/MainMenu/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 364.0
+offset_top = 285.0
+offset_right = 467.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Start"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="SettingsButton" type="MenuButton" parent="Interface/MainMenu/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 364.0
+offset_top = 345.0
+offset_right = 467.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Settings"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="ExitButton" type="MenuButton" parent="Interface/MainMenu/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 364.0
+offset_top = 402.0
+offset_right = 467.0
+offset_bottom = 477.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Exit"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="Settings" type="Control" parent="Interface/MainMenu"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Graphics" type="Label" parent="Interface/MainMenu/Settings"]
+layout_mode = 0
+offset_left = 852.0
+offset_top = 168.0
+offset_right = 993.0
+offset_bottom = 191.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Graphical Settings"
+
+[node name="LODSlider" type="HScrollBar" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 229.5
+offset_right = 152.5
+offset_bottom = 271.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Level of Detal. Lower value means you need to be closer to render meshes in high detail"
+min_value = 0.001
+max_value = 10.0
+step = 0.01
+value = 5.001
+script = ExtResource("6_0owmy")
+type = "LOD"
+label_text = "LOD Value"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/Graphics/LODSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "LOD Value: "
+
+[node name="ViewSlider" type="HScrollBar" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 323.5
+offset_right = 152.5
+offset_bottom = 365.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "View Distance (End). The distance at which meshes arent rendered. Lower values means you need to be closer to a mesh to see it."
+min_value = 1.0
+max_value = 600.0
+step = 1.0
+value = 300.0
+script = ExtResource("6_0owmy")
+type = "View Distance"
+label_text = "View Distance"
+metric = "M"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/Graphics/ViewSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "View Distance: "
+
+[node name="BrightnessSlider" type="HScrollBar" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 401.5
+offset_right = 152.5
+offset_bottom = 443.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "View Distance (End). The distance at which meshes arent rendered. Lower values means you need to be closer to a mesh to see it."
+max_value = 2.0
+step = 0.1
+value = 1.0
+script = ExtResource("6_0owmy")
+type = "Brightness"
+label_text = "Exposure"
+metric = "L"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/Graphics/BrightnessSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Brightness"
+
+[node name="ParticleCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 50.0
+offset_right = 107.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Whether or not particles get rendered."
+button_pressed = true
+text = "Enable Particles"
+script = ExtResource("4_p47bc")
+type = "Particles"
+
+[node name="BorderlessCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 90.0
+offset_right = 123.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Enables borderless window mode."
+text = "Enable Borderless"
+script = ExtResource("4_p47bc")
+type = "Borderless"
+
+[node name="LightingCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 128.0
+offset_right = 107.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Turns certain lighting, those of which deemed optional or for decoration off or on."
+button_pressed = true
+text = "Enable Optional Lighting"
+script = ExtResource("4_p47bc")
+type = "OptLight"
+
+[node name="ShadowsCheckbox" type="CheckBox" parent="Interface/MainMenu/Settings/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 168.0
+offset_right = 123.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Turns mesh shadow casting on or off."
+button_pressed = true
+text = "Enable Shadows"
+script = ExtResource("4_p47bc")
+type = "Shadows"
+
+[node name="MenuMusicSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 238.0
+offset_right = 623.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of the starting game music."
+min_value = -30.0
+max_value = 0.0
+step = 0.1
+value = -15.0
+script = ExtResource("3_p47bc")
+type = "Menu"
+label_text = "Menu Music"
+metric = "db"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/MenuMusicSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="LevelMusicSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 478.0
+offset_right = 623.0
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of music contained within levels from any source."
+min_value = -30.0
+max_value = 0.0
+step = 0.1
+value = -15.0
+script = ExtResource("3_p47bc")
+type = "Music"
+label_text = "Level Music"
+metric = "db"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/LevelMusicSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="SFXSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 318.0
+offset_right = 623.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of any SFX, such as explosion sounds, walking, etc."
+min_value = -20.0
+max_value = 0.0
+step = 0.1
+value = -10.0
+script = ExtResource("3_p47bc")
+type = "SFX"
+label_text = "SFX"
+metric = "db"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/SFXSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "SFX"
+
+[node name="LevelAmbienceSlider" type="HScrollBar" parent="Interface/MainMenu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 396.0
+offset_top = 398.0
+offset_right = 623.0
+offset_bottom = 440.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Alters the volume of generic ambience."
+min_value = -40.0
+max_value = 0.0
+step = 0.1
+value = -20.0
+script = ExtResource("3_p47bc")
+type = "Ambience"
+label_text = "Ambience"
+metric = "db"
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings/LevelAmbienceSlider"]
+layout_mode = 0
+offset_top = -34.0
+offset_right = 109.0
+offset_bottom = -11.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Ambience"
+
+[node name="BackButton" type="MenuButton" parent="Interface/MainMenu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 372.0
+offset_top = 528.0
+offset_right = 475.0
+offset_bottom = 603.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+text = "Back"
+item_count = 1
+popup/item_0/id = 0
+
+[node name="Label" type="Label" parent="Interface/MainMenu/Settings"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 172.0
+offset_right = 545.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Volume Settings"
+
+[node name="LoadingScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Black" type="ColorRect" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -17.0
+offset_right = -72.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.072337, 0.50253254)
+step = 0.1
+nine_patch_stretch = true
+texture_progress = SubResource("NoiseTexture2D_5gtgg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00757465, 0, 0.999971, 0, 1, 0, -0.999971, 0, -0.00757465, 0.0097437, -0.284527, -0.0227154)
+mesh = SubResource("CapsuleMesh_4gf2a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.243825, 0)
+shape = SubResource("ConvexPolygonShape3D_7r32s")
+
+[node name="GNDRayCast" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.01, 0)
+
+[node name="WallCast" type="RayCast3D" parent="."]
+
+[node name="BackRayUp" type="RayCast3D" parent="WallCast"]
+transform = Transform3D(1, 0, 0, 0, -0.69809, -0.71601, 0, 0.71601, -0.69809, 0, 0, 0)
+target_position = Vector3(0, 0, -1)
+
+[node name="LeftRayUp" type="RayCast3D" parent="WallCast"]
+transform = Transform3D(-0.6764, -0.736534, 0, 0.736534, -0.6764, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(1, 0, 0)
+
+[node name="RightRayUp" type="RayCast3D" parent="WallCast"]
+transform = Transform3D(-0.606294, 0.795241, 0, -0.795241, -0.606294, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(-1, 0, 0)
+
+[node name="BackRay" type="RayCast3D" parent="WallCast"]
+transform = Transform3D(-1, -1.2509126e-07, 1.05711194e-07, 0, 0.56007487, 1.0355525, -1.509958e-07, 0.828442, -0.70009357, 0, 0, 0)
+target_position = Vector3(0, 0, -1.1)
+
+[node name="LeftRay" type="RayCast3D" parent="WallCast"]
+transform = Transform3D(-0.6162853, -0.85804707, 1.509958e-07, -1.0296565, 0.5135711, -6.299288e-10, -9.240789e-08, -1.2988501e-07, -1, 0, 0, 0)
+target_position = Vector3(1.1, 0, 0)
+
+[node name="RightRay" type="RayCast3D" parent="WallCast"]
+transform = Transform3D(-0.7011167, 0.8115638, 1.509958e-07, 0.9738766, 0.58426386, -3.023311e-09, -1.08810006e-07, 1.2077632e-07, -1, 0, 0, 0)
+target_position = Vector3(-1.1, 0, 0)
+
+[node name="AFX" type="Node3D" parent="."]
+
+[node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="AFX"]
+volume_db = -15.0
+script = ExtResource("3_lvxji")
+type = "Menu"
+
+[node name="SFX" type="AudioStreamPlayer" parent="AFX"]
+volume_db = -15.0
+script = ExtResource("3_lvxji")
+type = "SFX"
+
+[node name="LevelAmbience" type="AudioStreamPlayer" parent="AFX"]
+volume_db = -20.0
+script = ExtResource("3_lvxji")
+type = "Ambience"
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="AFX"]
+volume_db = -15.0
+script = ExtResource("3_lvxji")
+type = "Music"
+
+[connection signal="coins_changed" from="." to="Head/Map" method="_on_coins_changed"]
+[connection signal="health_changed" from="." to="Head/Map" method="_on_player_health_changed"]
+[connection signal="pressed" from="Interface/Death/MenuButton3" to="." method="_on_restart"]
+[connection signal="pressed" from="Interface/Death/MenuButton4" to="." method="_on_exit"]
+[connection signal="pressed" from="Interface/Pause/Main/StartButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Interface/Pause/Main/SettingsButton" to="." method="_on_settings"]
+[connection signal="pressed" from="Interface/Pause/Main/ExitButton" to="." method="_on_exit"]
+[connection signal="pressed" from="Interface/Pause/Settings/BackButton" to="." method="_on_settings"]
+[connection signal="pressed" from="Interface/MainMenu/Main/StartButton" to="." method="_start_game"]
+[connection signal="pressed" from="Interface/MainMenu/Main/SettingsButton" to="." method="_on_settings"]
+[connection signal="pressed" from="Interface/MainMenu/Main/ExitButton" to="." method="_on_exit"]
+[connection signal="pressed" from="Interface/MainMenu/Settings/BackButton" to="." method="_on_settings"]

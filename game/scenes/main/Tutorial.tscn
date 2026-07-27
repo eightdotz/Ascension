@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://duce7pumqt6v3"]
+
+[ext_resource type="Script" uid="uid://dy341ul3f3jti" path="res://game/scripts/levels/level.gd" id="1_edy4c"]
+[ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://game/scenes/utility/SpawnPoint.tscn" id="2_1lbuk"]
+[ext_resource type="PackedScene" uid="uid://bky1iwdrmhyy6" path="res://game/scenes/biomes/sewer/8M_Pipe_Straight.tscn" id="2_4toud"]
+[ext_resource type="PackedScene" uid="uid://cnjnwqit4vl7s" path="res://game/scenes/biomes/sewer/E_4M_Pipe_45_1.tscn" id="2_gy821"]
+[ext_resource type="PackedScene" uid="uid://d6tbtincgirg" path="res://game/scenes/biomes/sewer/Trap_4M_Pipe_90_Steam_1.tscn" id="4_1lbuk"]
+
+[sub_resource type="Environment" id="Environment_fr6qw"]
+background_mode = 1
+background_color = Color(0.22911215, 0.22911218, 0.22911209, 1)
+fog_mode = 1
+fog_light_color = Color(0.4539231, 0.4955957, 0.42497364, 1)
+fog_density = 0.1622
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_oiqhk"]
+
+[sub_resource type="Compositor" id="Compositor_p3v23"]
+
+[node name="Dungeon" type="Node3D"]
+script = ExtResource("1_edy4c")
+type = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fr6qw")
+camera_attributes = SubResource("CameraAttributesPractical_oiqhk")
+compositor = SubResource("Compositor_p3v23")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("2_1lbuk")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 375.18115, 0, 12.097671)
+
+[node name="GoalPoint" parent="." instance=ExtResource("2_1lbuk")]
+transform = Transform3D(-0.6344472, 0, 0.772966, 0, 1, 0, -0.772966, 0, -0.6344472, -295.40775, 0, -255.48077)
+
+[node name="TestSewer" parent="." instance=ExtResource("4_1lbuk")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -397.42325, -0.19155121, -178.93881)
+
+[node name="TestSewer3" parent="." instance=ExtResource("2_4toud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 245, 0, 0)
+
+[node name="TestSewer2" parent="." instance=ExtResource("2_gy821")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -231.02791, 0, 0)

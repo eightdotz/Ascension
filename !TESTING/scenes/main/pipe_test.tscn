@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://5lyr7whd10dk"]
 
 [ext_resource type="ArrayMesh" uid="uid://b5skuikogmf8y" path="res://!TESTING/models/Pipes/4m_ramp_2.obj" id="1_x3sqt"]
-[ext_resource type="PackedScene" uid="uid://bk2r4u7mfbf1b" path="res://scenes/player/player.tscn" id="2_6vfvh"]
+[ext_resource type="PackedScene" uid="uid://bk2r4u7mfbf1b" path="res://game/scenes/player/player.tscn" id="2_6vfvh"]
 [ext_resource type="ArrayMesh" uid="uid://b416ygb0w7nrk" path="res://!TESTING/models/Pipes/4m_ramp_1.obj" id="3_6vfvh"]
 [ext_resource type="ArrayMesh" uid="uid://cug55cx3eqa0x" path="res://!TESTING/models/Rooms/room_4.obj" id="4_43pea"]
 
