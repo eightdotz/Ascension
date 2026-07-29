@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2p3av4a24kns"]
+
+[ext_resource type="Script" uid="uid://0umngrbqv7o7" path="res://game/scripts/enemies/primary_crystal.gd" id="1_7npg7"]
+[ext_resource type="PackedScene" uid="uid://g6ky8lp1et3m" path="res://game/scenes/enemies/primary_attacks/crystal_spikes.tscn" id="2_77rti"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0mycm"]
+transparency = 1
+albedo_color = Color(0, 1, 1, 0.77254903)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.67
+emission_enabled = true
+emission = Color(0.23392546, 0.23392546, 0.23392543, 1)
+refraction_enabled = true
+refraction_scale = 0.51
+grow = true
+grow_amount = 0.362
+
+[sub_resource type="BoxMesh" id="BoxMesh_7npg7"]
+material = SubResource("StandardMaterial3D_0mycm")
+size = Vector3(4, 4, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7npg7"]
+points = PackedVector3Array(2, 2, 2, 2, 2, -2, -2, 2, 2, 2, -2, 2, 2, -2, -2, -2, 2, -2, -2, -2, 2, -2, -2, -2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_77rti"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_77rti"]
+
+[node name="PrimaryCrystal" type="Node3D"]
+script = ExtResource("1_7npg7")
+
+[node name="MainBody" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.35355335, 0.35355335, -0.86602545, -0.70710677, 0.70710677, 0, 0.61237246, 0.61237246, 0.49999997, 0, 0, 0)
+mesh = SubResource("BoxMesh_7npg7")
+
+[node name="Hitbox" type="Area3D" parent="MainBody"]
+transform = Transform3D(1.845, 0, 0, 0, 1.845, 0, 0, 0, 1.845, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainBody/Hitbox"]
+transform = Transform3D(0.54200536, 0, 0, 0, 0.54200536, 0, -1.4901161e-08, -1.4901161e-08, 0.54200536, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_7npg7")
+
+[node name="PlayerDetect" type="Area3D" parent="MainBody"]
+transform = Transform3D(1.845, 0, 0, 0, 1.845, 0, 0, 0, 1.845, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainBody/PlayerDetect"]
+transform = Transform3D(38.325558, -38.32557, 66.38183, 38.325558, 38.32557, 66.38183, -93.87809, 0, 54.200527, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_77rti")
+
+[node name="Attacks" type="Node3D" parent="."]
+
+[node name="CrystalSpikes" parent="Attacks" instance=ExtResource("2_77rti")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(200, 0, 0, 0, 100, 0, 0, 0, 200, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_77rti")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_entered" from="MainBody/Hitbox" to="." method="_on_hitbox_entered"]
+[connection signal="body_entered" from="MainBody/PlayerDetect" to="." method="_on_player_detect_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

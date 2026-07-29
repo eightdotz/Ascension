@@ -1,18 +1,18 @@
 extends Node
 
-var menu_volume: float = -15.0
-var sfx_volume: float = -15.0
-var level_ambience_volume: float = -20.0
-var level_music_volume: float = -15.0
-var default_gravity: float = 50.0
-var particles_enabled = true
-var opt_light_enabled = true
-var shadows_enabled = true
-var current_floor = -1
-var lod_value = 5
-var view_distance = 300.0
-var gravity = 50.0
-var brightness = 1.0
+@onready var menu_volume: float = -15.0
+@onready var sfx_volume: float = -15.0
+@onready var level_ambience_volume: float = -20.0
+@onready var level_music_volume: float = -15.0
+@onready var default_gravity: float = 50.0
+@onready var particles_enabled = true
+@onready var opt_light_enabled = true
+@onready var shadows_enabled = true
+@onready var current_floor = -1
+@onready var lod_value = 5
+@onready var view_distance = 300.0
+@onready var gravity = 50.0
+@onready var brightness = 1.0
 signal menu_volume_changed(new_val: float)
 signal sfx_volume_changed(new_val: float)
 signal level_ambience_volume_changed(new_val: float)

@@ -7,7 +7,7 @@ extends Node3D
 @onready var goal_point: Node3D = $GoalPoint
 var skip_testing = 1
 
-var get_biome = {"Sewer":"res://scenes/biomes/sewer/", "Fields":"res://scenes/biomes/fields/", "Space":"res://scenes/biomes/space/","Tower":"res://scenes/biomes/tower/"}
+var get_biome = {"Sewer":"res://game/scenes/biomes/sewer/", "Fields":"res://game/scenes/biomes/fields/", "Space":"res://game/scenes/biomes/space/","Tower":"res://game/scenes/biomes/tower/"}
 
 var spawn_amount: int
 var current_id: int = 0

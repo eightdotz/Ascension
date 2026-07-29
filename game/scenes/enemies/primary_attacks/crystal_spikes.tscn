@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://g6ky8lp1et3m"]
+
+[ext_resource type="Script" uid="uid://c4aw0npm376lh" path="res://game/scripts/enemies/crystal_spikes.gd" id="1_yq5vb"]
+
+[sub_resource type="Gradient" id="Gradient_ml2ho"]
+colors = PackedColorArray(0.9870216, 0.480851, 0.54186416, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yq5vb"]
+gradient = SubResource("Gradient_ml2ho")
+fill_from = Vector2(0, 0.10683761)
+
+[sub_resource type="Gradient" id="Gradient_e08o0"]
+colors = PackedColorArray(0.7911472, 0.000108005406, 0.6575157, 1, 1, 0.58854586, 0.8424453, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5x4ho"]
+gradient = SubResource("Gradient_e08o0")
+fill_from = Vector2(0.008547009, 0.021367522)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jq8f8"]
+transparency = 1
+albedo_color = Color(1, 0.3137255, 1, 0.64705884)
+albedo_texture = SubResource("GradientTexture2D_yq5vb")
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.35
+emission_enabled = true
+emission = Color(0.9077877, 0, 0.44758034, 1)
+emission_energy_multiplier = 16.0
+emission_texture = SubResource("GradientTexture2D_5x4ho")
+
+[sub_resource type="BoxMesh" id="BoxMesh_7d81l"]
+material = SubResource("StandardMaterial3D_jq8f8")
+size = Vector3(1, 40, 1)
+
+[node name="CrystalSpikes" type="Node3D"]
+script = ExtResource("1_yq5vb")
+
+[node name="Spike" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_7d81l")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.07
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.05

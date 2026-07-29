@@ -41,7 +41,7 @@ var current_biome = ""
 var get_env = {"Space": "res://enviorments/space.tres", "Sewer": null, "Fields": null, "Tower": null}
 
 var room_cooldown = 0
-var get_biome = {"Sewer":"res://scenes/biomes/sewer/", "Fields":"res://scenes/biomes/fields/", "Space":"res://scenes/biomes/space/","Tower":"res://scenes/biomes/tower/"}
+var get_biome = {"Sewer":"res://game/scenes/biomes/sewer/", "Fields":"res://game/scenes/biomes/fields/", "Space":"res://game/scenes/biomes/space/","Tower":"res://game/scenes/biomes/tower/"}
 var next_transform := Transform3D.IDENTITY
 var spawn_amount: int
 var current_id: int = 0

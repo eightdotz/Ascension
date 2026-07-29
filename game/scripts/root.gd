@@ -16,12 +16,19 @@ extends Node3D
 @onready var dungeon: Node3D
 @onready var player: CharacterBody3D = $player
 @onready var goal: Node3D = $Goal
-@onready var ABILITY_SELECTION = "res://scenes/main/AbilitySelection.tscn"
-@onready var PISS_BREAK = "res://scenes/main/PissBreak.tscn"
-@onready var LEVEL = "res://scenes/main/Level.tscn"
-@onready var STARTING = "res://scenes/main/StartingArea.tscn"
-@onready var player_path = "res://scenes/player/player.tscn"
-@onready var DISPLAY_SHADERS = "res://scenes/utility/DisplayAll.tscn"
+#@onready var ABILITY_SELECTION = "res://game/scenes/main/AbilitySelection.tscn"
+#@onready var PISS_BREAK = "res://game/scenes/main/PissBreak.tscn"
+#@onready var LEVEL = "res://game/scenes/main/Level.tscn"
+#@onready var STARTING = "res://game/scenes/main/StartingArea.tscn"
+#@onready var player_path = "res://game/scenes/player/player.tscn"
+#@onready var DISPLAY_SHADERS = "res://game/scenes/utility/DisplayAll.tscn"
+const ABILITY_SELECTION = preload("uid://cgjyggk3k3du3")
+const STARTING = preload("uid://bt7lf8ump465u")
+const PISS_BREAK = preload("uid://08s4p3p5ek3a")
+const LEVEL = preload("uid://bpxtv3md8pmge")
+const DISPLAY_SHADERS = preload("uid://28hbku2nok33")
+const PLAYER_PATH = preload("uid://bk2r4u7mfbf1b")
+
 
 var current_biome: String
 var on_break: int = 0
@@ -33,7 +40,7 @@ signal level_changed
 func _ready() -> void:
 	if load_shaders:
 		player.load_screen(loading_time)
-		var shaders = load(DISPLAY_SHADERS).instantiate()
+		var shaders = DISPLAY_SHADERS.instantiate()
 		level_node.add_child(shaders)
 		var spawn = shaders.get_node("PlayerSpawn")
 		player.global_position = spawn.global_position
@@ -77,11 +84,11 @@ func set_goal() -> void:
 	goal.global_position = spawn.global_position
 	goal.global_rotation = spawn.global_rotation
 
-func load_level(path: String) -> void:
+func load_level(path: PackedScene) -> void:
 	goal.disable()
 	for child in level_node.get_children():
 		child.queue_free()
-	dungeon = load(path).instantiate()
+	dungeon = path.instantiate()
 	level_node.add_child(dungeon)
 	current_level_type = dungeon.get_level_type()
 	if current_level_type == "Dungeon":
@@ -118,18 +125,12 @@ func load_level(path: String) -> void:
 	player.set_level(current_biome, str(Global.current_floor))
 
 func load_first_level() -> void:
-	if test_load:
-		load_level(assigned_level)
-	else:
 		load_level(STARTING)
 
 func _on_goal_level_completed() -> void:
 	print(base_spawn)
 	spawn_amount = base_spawn + Global.current_floor
 	print(spawn_amount)
-	if test_load:
-		load_level(assigned_level)
-		return
 	if Global.current_floor % piss_break_floor == 0 and Global.current_floor != -1 and Global.current_floor and not on_break:
 		await player.fade_to_black(0.5, true)
 		on_break = true
@@ -153,7 +154,7 @@ func reset_floor():
 func restart() -> void:
 	player.queue_free()
 	await get_tree().process_frame
-	player = load(player_path).instantiate()
+	player = PLAYER_PATH.instantiate()
 	$".".add_child(player)
 	player.name = "player"
 	print(player.name)

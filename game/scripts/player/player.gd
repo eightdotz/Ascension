@@ -172,8 +172,8 @@ func _ready() -> void:
 	loading_screen.visible = false
 	infection_speed_relief = wall_jump_velocity_max
 	wall_jump_boost_timer_max = (wall_jump_velocity_max / 10.0) + 3
-	gravity = Global.gravity
-	gravity = Global.brightness
+	set_gravity(Global.gravity)
+	set_brightness(Global.brightness)
 	Global.connect("brightness_changed", set_brightness)
 	Global.connect("gravity_changed", set_gravity)
 	if not root:
