@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2p3av4a24kns"]
+[gd_scene load_steps=18 format=3 uid="uid://c2p3av4a24kns"]
 
 [ext_resource type="Script" uid="uid://0umngrbqv7o7" path="res://game/scripts/enemies/primary_crystal.gd" id="1_7npg7"]
 [ext_resource type="PackedScene" uid="uid://g6ky8lp1et3m" path="res://game/scenes/enemies/primary_attacks/crystal_spikes.tscn" id="2_77rti"]
@@ -27,6 +27,83 @@ points = PackedVector3Array(2, 2, 2, 2, 2, -2, -2, 2, 2, 2, -2, 2, 2, -2, -2, -2
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_77rti"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77rti"]
+transparency = 1
+albedo_color = Color(0.4627451, 0.7490196, 1, 0.8901961)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.28
+emission_enabled = true
+emission = Color(0.374649, 0.39414373, 0.98906237, 1)
+emission_energy_multiplier = 1.33
+
+[sub_resource type="SphereMesh" id="SphereMesh_d45cy"]
+material = SubResource("StandardMaterial3D_77rti")
+radius = 1.5
+height = 3.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5kq64"]
+transparency = 1
+albedo_color = Color(0.4627451, 0.7490196, 1, 0.8901961)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.28
+emission_enabled = true
+emission = Color(0, 0.5808688, 0.4070638, 1)
+emission_energy_multiplier = 1.33
+
+[sub_resource type="SphereMesh" id="SphereMesh_tmgev"]
+material = SubResource("StandardMaterial3D_5kq64")
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrj86"]
+transparency = 1
+albedo_color = Color(0.4627451, 0.7490196, 1, 0.8901961)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.28
+emission_enabled = true
+emission = Color(0.6019135, 0.23518953, 1, 1)
+emission_energy_multiplier = 1.33
+
+[sub_resource type="SphereMesh" id="SphereMesh_1phrj"]
+material = SubResource("StandardMaterial3D_wrj86")
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjcka"]
+transparency = 1
+albedo_color = Color(0.4627451, 0.7490196, 1, 0.8901961)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.28
+emission_enabled = true
+emission = Color(0.78367126, 0.00066073897, 0.81721306, 1)
+emission_energy_multiplier = 1.33
+
+[sub_resource type="SphereMesh" id="SphereMesh_xi21f"]
+material = SubResource("StandardMaterial3D_jjcka")
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_saxwi"]
+transparency = 1
+albedo_color = Color(0.4627451, 0.7490196, 1, 0.8901961)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.28
+emission_enabled = true
+emission = Color(0.47321635, 0.34190804, 1, 1)
+emission_energy_multiplier = 1.33
+
+[sub_resource type="SphereMesh" id="SphereMesh_nwntu"]
+material = SubResource("StandardMaterial3D_saxwi")
+radial_segments = 8
+rings = 4
 
 [node name="PrimaryCrystal" type="Node3D"]
 script = ExtResource("1_7npg7")
@@ -60,6 +137,50 @@ mesh = SubResource("BoxMesh_77rti")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Ball2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.70710677, -0.70710677, 0, -0.6123724, -0.6123724, -0.50000006, 0.3535534, 0.3535534, -0.8660254, 0, 0, 0)
+mesh = SubResource("SphereMesh_d45cy")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Ball2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+mesh = SubResource("SphereMesh_tmgev")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Ball2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+mesh = SubResource("SphereMesh_1phrj")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Ball2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+mesh = SubResource("SphereMesh_xi21f")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Ball2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+mesh = SubResource("SphereMesh_nwntu")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Ball2"]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 3.5355337, 0, 3.5355341)
+mesh = SubResource("SphereMesh_tmgev")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Ball2"]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 3.5355341, 0, -3.5355337)
+mesh = SubResource("SphereMesh_1phrj")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Ball2"]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -3.5355337, 0, -3.5355341)
+mesh = SubResource("SphereMesh_xi21f")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Ball2"]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -3.5355341, 0, 3.5355337)
+mesh = SubResource("SphereMesh_nwntu")
+skeleton = NodePath("../..")
 
 [connection signal="body_entered" from="MainBody/Hitbox" to="." method="_on_hitbox_entered"]
 [connection signal="body_entered" from="MainBody/PlayerDetect" to="." method="_on_player_detect_entered"]

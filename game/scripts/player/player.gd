@@ -900,7 +900,7 @@ func apply_knockback(delta) -> void:
 	velocity.x = knockback_velocity.x
 	velocity.z = knockback_velocity.z
 	knockback_velocity = knockback_velocity.lerp(Vector3.ZERO, knockback_decay * delta)
-	if knockback_velocity.length() < 1.5:
+	if knockback_velocity.length() < 30.5:
 		remove_knockback()
 		
 func interact_with(button: int) -> void:

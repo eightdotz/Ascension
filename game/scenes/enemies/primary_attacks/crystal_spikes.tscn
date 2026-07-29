@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://g6ky8lp1et3m"]
+[gd_scene load_steps=10 format=3 uid="uid://g6ky8lp1et3m"]
 
 [ext_resource type="Script" uid="uid://c4aw0npm376lh" path="res://game/scripts/enemies/crystal_spikes.gd" id="1_yq5vb"]
+[ext_resource type="Script" uid="uid://dtq2268d0h4vc" path="res://game/scripts/enemies/spike.gd" id="2_e08o0"]
 
 [sub_resource type="Gradient" id="Gradient_ml2ho"]
 colors = PackedColorArray(0.9870216, 0.480851, 0.54186416, 1, 1, 1, 1, 1)
@@ -32,15 +33,24 @@ emission_texture = SubResource("GradientTexture2D_5x4ho")
 material = SubResource("StandardMaterial3D_jq8f8")
 size = Vector3(1, 40, 1)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yq5vb"]
+points = PackedVector3Array(-0.5, -20, -0.5, -0.5, -20, 0.5, -0.5, 20, -0.5, 0.5, -20, -0.5, 0.5, -20, 0.5, -0.5, 20, 0.5, 0.5, 20, -0.5, 0.5, 20, 0.5)
+
 [node name="CrystalSpikes" type="Node3D"]
 script = ExtResource("1_yq5vb")
 
 [node name="Spike" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("BoxMesh_7d81l")
+script = ExtResource("2_e08o0")
+
+[node name="Area" type="Area3D" parent="Spike"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spike/Area"]
+shape = SubResource("ConvexPolygonShape3D_yq5vb")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.07
+wait_time = 0.030000000000000002
 
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 0.05
