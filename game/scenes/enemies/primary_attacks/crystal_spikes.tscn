@@ -50,7 +50,7 @@ script = ExtResource("2_e08o0")
 shape = SubResource("ConvexPolygonShape3D_yq5vb")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.030000000000000002
+wait_time = 0.03
 
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 0.05

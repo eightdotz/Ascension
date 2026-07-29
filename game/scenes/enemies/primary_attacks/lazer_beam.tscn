@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://xg7ce8yobse6"]
+
+[ext_resource type="Script" uid="uid://cv0w3b2512xqh" path="res://game/scripts/enemies/lazer_beam.gd" id="1_8x3uq"]
+
+[sub_resource type="Curve" id="Curve_8x3uq"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a1eu4"]
+curve = SubResource("Curve_8x3uq")
+
+[sub_resource type="CurveTexture" id="CurveTexture_t1jge"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2lsgv"]
+emission_shape = 1
+emission_sphere_radius = 9.17
+direction = Vector3(0, 0, 0)
+radial_velocity_min = -10.000022
+radial_velocity_max = -2.0000224
+radial_velocity_curve = SubResource("CurveTexture_t1jge")
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -18.720001
+radial_accel_max = -2.0000021
+radial_accel_curve = SubResource("CurveTexture_a1eu4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8x3uq"]
+transparency = 1
+albedo_color = Color(0, 0.8666667, 0.7882353, 0.52156866)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ycie4"]
+material = SubResource("StandardMaterial3D_8x3uq")
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="LazerBeam" type="Node3D"]
+script = ExtResource("1_8x3uq")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 40
+lifetime = 3.0
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_2lsgv")
+draw_pass_1 = SubResource("BoxMesh_ycie4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0, 0.73857534, 0.7633175, 1)
+light_energy = 0.0
+omni_range = 9.0
+omni_attenuation = 0.742
+omni_shadow_mode = 0
