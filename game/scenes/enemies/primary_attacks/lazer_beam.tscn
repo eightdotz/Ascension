@@ -1,6 +1,30 @@
-[gd_scene load_steps=17 format=3 uid="uid://xg7ce8yobse6"]
+[gd_scene load_steps=23 format=3 uid="uid://xg7ce8yobse6"]
 
 [ext_resource type="Script" uid="uid://cv0w3b2512xqh" path="res://game/scripts/enemies/lazer_beam.gd" id="1_8x3uq"]
+[ext_resource type="ArrayMesh" uid="uid://crlkx78p51yd" path="res://art/textures/particles/beam.tres" id="2_a1eu4"]
+
+[sub_resource type="Curve" id="Curve_2lsgv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_y4hqj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_u5433"]
+_limits = [0.0, 10.0, 0.0, 0.10700389]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10700389, 10), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_5yf4q"]
+curve_x = SubResource("Curve_2lsgv")
+curve_y = SubResource("Curve_y4hqj")
+curve_z = SubResource("Curve_u5433")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_41gfl"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveXYZTexture_5yf4q")
+color = Color(1, 0, 1, 1)
 
 [sub_resource type="Curve" id="Curve_8x3uq"]
 _limits = [-200.0, 200.0, 0.0, 1.0]
@@ -76,6 +100,12 @@ size = Vector3(0.2, 0.2, 0.2)
 
 [node name="LazerBeam" type="Node3D"]
 script = ExtResource("1_8x3uq")
+
+[node name="Beam" type="GPUParticles3D" parent="."]
+amount = 1
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_41gfl")
+draw_pass_1 = ExtResource("2_a1eu4")
 
 [node name="Charging" type="GPUParticles3D" parent="."]
 emitting = false
