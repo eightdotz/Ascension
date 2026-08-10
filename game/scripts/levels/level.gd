@@ -153,13 +153,17 @@ func spawn() -> void:
 	if end_index > 0:
 		if end_index % boss_interval == 0 and Global.current_floor > 1:
 			selected_item = primary_pieces.pick_random()
+			spawn_tracker.append(selected_item)
 			var scene_res = load(selected_item)
 			if scene_res == null:
 				push_error("LEVEL GENERATION: Failed to load piece: " + selected_item)
 				return
 			var piece = scene_res.instantiate()
 			pieces.add_child(piece)
-			piece.set_id(current_id + 1)
+			piece.set_id(current_id)
+			piece.player_entered.connect(_on_piece_entered)
+			spawned_pieces[current_id] = piece
+			piece.global_transform = next_transform * piece.get_start_transform().inverse()
 			goal_point.global_transform = piece.get_node("End").global_transform
 		else:
 			goal_point.global_transform = spawned_pieces[end_index].get_node("End").global_transform
@@ -199,7 +203,8 @@ func populate() -> void: ##Needs to be called by controller first
 			if "Ramp" in resource:
 				ramp_pieces.append(resource)
 			else:
-				avaliable_pieces.append(resource)
+				if "/Crystal" not in resource:
+					avaliable_pieces.append(resource)
 				if "/E_" in resource and empty_priority:
 					for i in range(0, empty_priority):
 						avaliable_pieces.append(resource)
@@ -251,7 +256,7 @@ func fix_overlap() -> void:
 func _on_piece_entered(value: int) -> void:
 	player_position = value
 	print("LEVEL GENERATION: Player Position: " + str(value) + " " + str(last_light_position))
-	if spawned_pieces:
+	if spawned_pieces: 
 		if biome == "Space":
 			print("LEVEL GENERATION: Moving particles")
 			particles.global_position = spawned_pieces[player_position].get_node("Checkpoint").global_position
