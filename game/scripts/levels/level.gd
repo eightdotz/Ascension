@@ -4,6 +4,7 @@ extends Node3D
 
 @export_group("Generation")
 @export_enum("Dungeon", "Ability", "Shop") var type: String
+@export var boss_interval: int = 5
 @export var empty_priority: int = 6 ##Priority of pieces with no additions, higher number means more pieces
 @export var object_priority: int = 0 ##Priority of pieces with objects or decorations, higher number means more pieces
 @export var trap_priority: int = 2##Priority of trap pieces, higher number means more pieces
@@ -150,7 +151,18 @@ func spawn() -> void:
 	spawn_point.global_transform = spawned_pieces[0].get_node("Start").global_transform
 	var end_index = spawned_pieces.keys().size() - 1
 	if end_index > 0:
-		goal_point.global_transform = spawned_pieces[end_index].get_node("End").global_transform
+		if end_index % boss_interval == 0 and Global.current_floor > 1:
+			selected_item = primary_pieces.pick_random()
+			var scene_res = load(selected_item)
+			if scene_res == null:
+				push_error("LEVEL GENERATION: Failed to load piece: " + selected_item)
+				return
+			var piece = scene_res.instantiate()
+			pieces.add_child(piece)
+			piece.set_id(current_id + 1)
+			goal_point.global_transform = piece.get_node("End").global_transform
+		else:
+			goal_point.global_transform = spawned_pieces[end_index].get_node("End").global_transform
 	if ambience:
 		get_parent().get_parent().get_node("player").start_ambience(type, ambience, music)
 	print("LEVEL GENERATION:")
@@ -197,20 +209,10 @@ func populate() -> void: ##Needs to be called by controller first
 				if "/OB_" in resource and object_priority:
 					for i in range(0, object_priority):
 						avaliable_pieces.append(resource)
-	dir = DirAccess.open(enemies)
-	if dir == null: printerr("LEVEL GENERATION: Could not open folder"); return
-	dir.list_dir_begin()
-	print("LEVEL GENERATION:")
-	for file: String in dir.get_files():
-		if file.ends_with(".import"):
-			continue
-		if file.ends_with(".remap"):
-			file = file.trim_suffix(".remap")
-		var resource := folder_path + file #ignoring OS dict formatting
-		if "Primary" in resource:
-			primary_pieces.append(resource)
-		else:
-			sub_pieces.append(resource)
+				if "/Crystal_Room_Primary" in resource:
+					primary_pieces.append(resource)
+				if "/Crystal_Room_Secondary" in resource:
+					sub_pieces.append(resource)
 
 func get_level_type() -> String:
 	if not type:
@@ -315,3 +317,10 @@ func start_emergency():
 		await get_tree().process_frame
 		if not spawned_pieces:
 			break
+func enable_goal():
+	goal_point.visible = true
+	goal_point.set_collision(true)
+
+func disable_goal():
+	goal_point.visible = false
+	goal_point.set_collision(false)

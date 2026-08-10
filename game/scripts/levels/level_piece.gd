@@ -12,6 +12,7 @@ var pulse_time := 0.0
 @export var min_energy := 0.2
 @export var max_energy := 5.0
 @export var pulse_speed := 4.0
+@onready var root: Node3D = $".."
 
 var id: int = 0
 
@@ -190,3 +191,9 @@ func set_view(setting: float):
 	var meshes = main_body.find_children("*", "MeshInstance3D", true, false)
 	for item in meshes:
 		item.visibility_range_end = setting
+
+
+func disable_goal():
+	root.disable_goal()
+func enable_goal():
+	root.enable_goal()

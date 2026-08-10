@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://game/scenes/utility/SpawnPoint.tscn" id="2_q0o21"]
 [ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://game/scripts/utility/particles.gd" id="3_khmfx"]
 [ext_resource type="PackedScene" uid="uid://4ixc6odmpa52" path="res://game/scenes/utility/Omnilight.tscn" id="3_q0o21"]
-[ext_resource type="PackedScene" uid="uid://c2p3av4a24kns" path="res://game/scenes/enemies/primary_crystal.tscn" id="5_714c5"]
+[ext_resource type="PackedScene" uid="uid://c2p3av4a24kns" path="res://game/scenes/enemies/Primary_Crystal.tscn" id="5_714c5"]
 [ext_resource type="PackedScene" uid="uid://tmftkkd6m4gr" path="res://game/scenes/biomes/sewer/4M_Pipe_L.tscn" id="6_etg0m"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q0o21"]

@@ -2,6 +2,7 @@ extends Node3D
 
 @export var visible_to_player: bool = true
 @onready var visual: MeshInstance3D = $Goal/GoalArea/Visual
+@onready var goal_collision: CollisionShape3D = $Goal/GoalArea/GoalCollision
 
 signal level_completed
 
@@ -19,3 +20,6 @@ func disable() -> void:
 	
 func enable() -> void:
 	self.visible = true
+	
+func set_collision(toggle: bool):
+	goal_collision.disabled = toggle

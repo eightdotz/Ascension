@@ -6,11 +6,10 @@ var tween
 @onready var main_body: MeshInstance3D = $MainBody
 @onready var attacks = $Attacks.get_children()
 @onready var timer: Timer = $Timer
+@onready var root: Node3D = $".."
 
 @onready var ball_2: MeshInstance3D = $Ball2
 
-signal disable_goal
-signal enable_goal
 
 var speed: float = 10.0
 var target = null
@@ -61,3 +60,8 @@ func _on_timer_timeout() -> void:
 	if target:
 		var attack = attacks.pick_random()
 		attack.start_attack(target)
+
+func disable_goal():
+	root.disable_goal()
+func enable_goal():
+	root.enable_goal()

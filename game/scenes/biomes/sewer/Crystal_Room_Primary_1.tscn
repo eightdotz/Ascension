@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dpusjfcrmkgc5" path="res://game/scenes/utility/joint.tscn" id="3_dbqco"]
 [ext_resource type="PackedScene" uid="uid://b6rimfxkx2217" path="res://game/scenes/utility/Checkpoint.tscn" id="4_ffeh3"]
 [ext_resource type="PackedScene" uid="uid://cjm1spq12xcv" path="res://game/scenes/utility/OverlapDetector.tscn" id="5_pcmnj"]
-[ext_resource type="PackedScene" uid="uid://c2p3av4a24kns" path="res://game/scenes/enemies/primary_crystal.tscn" id="6_ndqg4"]
+[ext_resource type="PackedScene" uid="uid://c2p3av4a24kns" path="res://game/scenes/enemies/Primary_Crystal.tscn" id="6_ndqg4"]
 
 [node name="Primary_Crystal_1" type="Node3D"]
 script = ExtResource("1_2va06")
