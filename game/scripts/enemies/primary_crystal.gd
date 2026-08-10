@@ -9,6 +9,8 @@ var tween
 
 @onready var ball_2: MeshInstance3D = $Ball2
 
+signal disable_goal
+signal enable_goal
 
 var speed: float = 10.0
 var target = null

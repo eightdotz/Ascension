@@ -35,6 +35,8 @@ var current_biome = ""
 @onready var spawn_point: Node3D = $SpawnPoint
 @onready var goal_point: Node3D = $GoalPoint
 
+var enemies: String = "res://game/scenes/enemies/"
+
 @export_group("Misc Biome Settings")
 @export var space_gravity: float = 25.0
 
@@ -45,10 +47,12 @@ var get_biome = {"Sewer":"res://game/scenes/biomes/sewer/", "Fields":"res://game
 var next_transform := Transform3D.IDENTITY
 var spawn_amount: int
 var current_id: int = 0
-var avaliable_pieces: Array = []
 var next_position = Vector3(0,0,0)
 var spawned_pieces: Dictionary = {}
+var avaliable_pieces: Array = []
 var ramp_pieces: Array = []
+var primary_pieces: Array = []
+var sub_pieces: Array = []
 var player_position = 0
 var last_light_position = 4
 var next_piece: String
@@ -193,8 +197,20 @@ func populate() -> void: ##Needs to be called by controller first
 				if "/OB_" in resource and object_priority:
 					for i in range(0, object_priority):
 						avaliable_pieces.append(resource)
-	for item in avaliable_pieces:
-		print(item)
+	dir = DirAccess.open(enemies)
+	if dir == null: printerr("LEVEL GENERATION: Could not open folder"); return
+	dir.list_dir_begin()
+	print("LEVEL GENERATION:")
+	for file: String in dir.get_files():
+		if file.ends_with(".import"):
+			continue
+		if file.ends_with(".remap"):
+			file = file.trim_suffix(".remap")
+		var resource := folder_path + file #ignoring OS dict formatting
+		if "Primary" in resource:
+			primary_pieces.append(resource)
+		else:
+			sub_pieces.append(resource)
 
 func get_level_type() -> String:
 	if not type:
