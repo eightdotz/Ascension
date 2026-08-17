@@ -29,7 +29,6 @@ const LEVEL = preload("uid://bpxtv3md8pmge")
 const DISPLAY_SHADERS = preload("uid://28hbku2nok33")
 const PLAYER_PATH = preload("uid://bk2r4u7mfbf1b")
 
-
 var current_biome: String
 var on_break: int = 0
 var base_spawn
@@ -85,7 +84,9 @@ func set_goal() -> void:
 	goal.global_rotation = spawn.global_rotation
 
 func load_level(path: PackedScene) -> void:
-	goal.disable()
+	print("LOAD_LEVEL CALLED — stack:")
+	for frame in get_stack():
+		print("  ", frame)
 	for child in level_node.get_children():
 		child.queue_free()
 	dungeon = path.instantiate()
@@ -120,7 +121,6 @@ func load_level(path: PackedScene) -> void:
 		player.reset_timers()
 		player.fade_to_clear(1.0)
 		return
-	goal.enable()
 	Global.current_floor += 1
 	player.set_level(current_biome, str(Global.current_floor))
 
@@ -128,9 +128,8 @@ func load_first_level() -> void:
 		load_level(STARTING)
 
 func _on_goal_level_completed() -> void:
-	print(base_spawn)
+	print("GOAL LEVEL COMPLETED")
 	spawn_amount = base_spawn + Global.current_floor
-	print(spawn_amount)
 	if Global.current_floor % piss_break_floor == 0 and Global.current_floor != -1 and Global.current_floor and not on_break:
 		await player.fade_to_black(0.5, true)
 		on_break = true
@@ -162,6 +161,12 @@ func restart() -> void:
 
 
 func _on_killzone_entered(body: Node3D) -> void:
+	print("ROOT: Player entered killzone")
 	if body.has_method("is_player"):
 		await body.handle_death()
 		reset_floor()
+func disable_goal():
+	goal.disable()
+
+func enable_goal():
+	goal.enable()

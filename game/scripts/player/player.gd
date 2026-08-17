@@ -208,7 +208,9 @@ func _ready() -> void:
 	toggle_mouse()
 	set_process_input(!is_processing_input())
 	set_physics_process(!is_physics_processing())
-
+	if diagnostics_enabled:
+		black_screen.visible = false
+		
 func _input(event) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
@@ -552,9 +554,11 @@ func flash_screen_red() -> void:
 
 func handle_death() -> void:
 	if current_infection < infection_limit:
+		print("PLAYER: Infection level is fine.")
 		await fade_to_black(1.0, true)
 		respawn_player()
 		return
+	print("PLAYER: Is fully infected restarting level")
 	toggle_mouse()
 	disable_movement()
 	var death_interface = $Interface/Death

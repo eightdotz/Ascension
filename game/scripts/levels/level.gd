@@ -35,6 +35,7 @@ var current_biome = ""
 @onready var pieces: Node3D = $Pieces
 @onready var spawn_point: Node3D = $SpawnPoint
 @onready var goal_point: Node3D = $GoalPoint
+@onready var root: Node3D = $".."
 
 var enemies: String = "res://game/scenes/enemies/"
 
@@ -54,6 +55,7 @@ var avaliable_pieces: Array = []
 var ramp_pieces: Array = []
 var primary_pieces: Array = []
 var sub_pieces: Array = []
+var empty_pieces: Array = []
 var player_position = 0
 var last_light_position = 4
 var next_piece: String
@@ -98,11 +100,10 @@ func spawn() -> void:
 					room_cooldown = 4
 		else:
 			selected_item = avaliable_pieces[0]
-		while current_id < 1 and "Trap" in selected_item:
+		if current_id < 1 and "Trap" in selected_item:
 			if event == "Traps Only":
 				break
-			selected_item = avaliable_pieces.pick_random()
-			print("First spawn, swapping to " + selected_item)
+			selected_item = empty_pieces.pick_random()
 		if next_piece:
 			print("LEVEL GENERATION: Swapping to overridden piece")
 			selected_item = next_piece
@@ -145,11 +146,9 @@ func spawn() -> void:
 			main_body.visibility_range_end = 300
 		else:
 			printerr("LEVEL GENERATION: MainBody doesnt exist within piece scene! Performance will suffer!")
-		#piece.get_node("Traps").visibility_parent = "../MainBody"
-		#piece.get_node("Lighting").visibility_parent = "../MainBody"
 	total_spawned_pieces = spawned_pieces.size()
 	spawn_point.global_transform = spawned_pieces[0].get_node("Start").global_transform
-	var end_index = spawned_pieces.keys().size() - 1
+	var end_index = spawned_pieces.keys().back()
 	if end_index > 0:
 		if end_index % boss_interval == 0 and Global.current_floor > 1:
 			selected_item = primary_pieces.pick_random()
@@ -203,6 +202,8 @@ func populate() -> void: ##Needs to be called by controller first
 			if "Ramp" in resource:
 				ramp_pieces.append(resource)
 			else:
+				if "/E_" in resource:
+					empty_pieces.append(resource)
 				if "/Crystal" not in resource:
 					avaliable_pieces.append(resource)
 				if "/E_" in resource and empty_priority:
@@ -286,7 +287,7 @@ func _on_piece_entered(value: int) -> void:
 			spawned_pieces.erase(oldest_key)
 
 func check_transition(new_floor: int) -> void:
-	print("LEVEL GENERATION: Checking for transition at floor ", str(floor))
+	print("LEVEL GENERATION: Checking for transition at floor ", str(new_floor))
 	if new_floor >= transition_1 and new_floor < transition_2:
 		print("Transitioning to 2!")
 		biome = biome_2
@@ -323,9 +324,7 @@ func start_emergency():
 		if not spawned_pieces:
 			break
 func enable_goal():
-	goal_point.visible = true
-	goal_point.set_collision(true)
+	root.enable_goal()
 
 func disable_goal():
-	goal_point.visible = false
-	goal_point.set_collision(false)
+	root.disable_goal()

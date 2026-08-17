@@ -195,5 +195,6 @@ func set_view(setting: float):
 
 func disable_goal():
 	root.disable_goal()
+
 func enable_goal():
 	root.enable_goal()

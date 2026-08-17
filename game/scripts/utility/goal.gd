@@ -17,9 +17,10 @@ func _on_entered(body: Node3D) -> void:
 
 func disable() -> void:
 	self.visible = false
-	
+	set_collision(false)
 func enable() -> void:
 	self.visible = true
+	set_collision(true)
 	
 func set_collision(toggle: bool):
 	goal_collision.disabled = toggle
