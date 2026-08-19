@@ -1,0 +1,188 @@
+[gd_scene load_steps=5 format=3 uid="uid://g6ky8lp1et3m"]
+
+[ext_resource type="Script" uid="uid://nxk707fbdwrx" path="res://game/scripts/enemies/lazer_wall.gd" id="1_mcujx"]
+[ext_resource type="Script" uid="uid://voiwxkodky7u" path="res://game/scripts/enemies/lazer_wall_2.gd" id="2_mcujx"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mcujx"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jlnlx"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="LazerWall" type="Node3D"]
+script = ExtResource("1_mcujx")
+
+[node name="Wall" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+script = ExtResource("2_mcujx")
+
+[node name="Beams" type="Node3D" parent="Wall"]
+visible = false
+
+[node name="Beam" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 49)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam2" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 45)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam3" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 41)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam4" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 37)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam5" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 33)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam6" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 29)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam7" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 25)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam8" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 21)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam9" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 17)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam10" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 13)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam11" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 9)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam12" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 5)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam13" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 1)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam14" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -3)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam15" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -7)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam16" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -11)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam17" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -15)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam18" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -19)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam19" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -23)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam20" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -27)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam21" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -31)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam22" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -35)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam23" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -39)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam24" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -43)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam25" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -47)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam26" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -51)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam27" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -55)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam28" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -59)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam29" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -63)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam30" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -67)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam31" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -71)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Beam32" type="MeshInstance3D" parent="Wall/Beams"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, -75)
+mesh = SubResource("CylinderMesh_mcujx")
+skeleton = NodePath("../../..")
+
+[node name="Area" type="Area3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 50, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/Area"]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_jlnlx")
+
+[node name="Timer" type="Timer" parent="."]

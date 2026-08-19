@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://g6ky8lp1et3m"]
+[gd_scene load_steps=10 format=3 uid="uid://cgitqeul2x7mf"]
 
 [ext_resource type="Script" uid="uid://c4aw0npm376lh" path="res://game/scripts/enemies/crystal_spikes.gd" id="1_yq5vb"]
 [ext_resource type="Script" uid="uid://dtq2268d0h4vc" path="res://game/scripts/enemies/spike.gd" id="2_e08o0"]

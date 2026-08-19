@@ -22,7 +22,6 @@ func attack(player: Node3D, new_pos: Vector3):
 
 		distance += randf_range(4.0, 6.0)
 		var sway = Vector3(randf_range(1.0, 4.0), 0.0, randf_range(1.0, 4.0))
-		#var forward = -global_transform.basis.z
 		new_spike.global_position = (global_position + new_pos + sway) + direction * distance
 		new_spike.global_rotation = global_rotation + Vector3(randf_range(-0.2, 0.2), randf_range(-0.2, 0.2), randf_range(-0.2, 0.2))
 		new_spike.visible = true

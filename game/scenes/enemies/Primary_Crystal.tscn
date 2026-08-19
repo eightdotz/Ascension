@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://c2p3av4a24kns"]
+[gd_scene load_steps=19 format=3 uid="uid://c2p3av4a24kns"]
 
 [ext_resource type="Script" uid="uid://0umngrbqv7o7" path="res://game/scripts/enemies/primary_crystal.gd" id="1_7npg7"]
-[ext_resource type="PackedScene" uid="uid://g6ky8lp1et3m" path="res://game/scenes/enemies/primary_attacks/crystal_spikes.tscn" id="2_77rti"]
+[ext_resource type="PackedScene" path="res://game/scenes/enemies/primary_attacks/crystal_spikes.tscn" id="2_77rti"]
+[ext_resource type="PackedScene" uid="uid://g6ky8lp1et3m" path="res://game/scenes/enemies/primary_attacks/lazer_wall.tscn" id="3_lwtl0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0mycm"]
 transparency = 1
@@ -129,6 +130,8 @@ shape = SubResource("ConvexPolygonShape3D_77rti")
 [node name="Attacks" type="Node3D" parent="."]
 
 [node name="CrystalSpikes" parent="Attacks" instance=ExtResource("2_77rti")]
+
+[node name="LazerWall" parent="Attacks" instance=ExtResource("3_lwtl0")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(200, 0, 0, 0, 100, 0, 0, 0, 200, 0, 0, 0)
