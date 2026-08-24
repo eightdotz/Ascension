@@ -17,11 +17,13 @@ func attack(player: Node3D, new_pos: Vector3):
 		var new_wall = self.duplicate()
 		get_tree().current_scene.add_child(new_wall)
 		new_wall.global_position = global_position
-		var direction = (player.global_position - global_position).normalized()
+		new_wall.global_rotation = global_rotation
+		var direction = (player.global_position - new_wall.global_position).normalized()
 		direction.y = 0.0
 		direction = direction.normalized()
 		var target = new_wall.global_position + direction * 10.0
-		new_wall.global_rotation = look_at(player.global_position)
+		new_wall.look_at(player.global_position)
+		#new_wall.rotate_y(deg_to_rad(90))
 		new_wall.set_view(true)
 		var tween = create_tween()
 		tween.tween_property(new_wall, "global_position", target, 1.0)

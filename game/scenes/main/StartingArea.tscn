@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://bt7lf8ump465u"]
+[gd_scene load_steps=28 format=3 uid="uid://bt7lf8ump465u"]
 
 [ext_resource type="Script" uid="uid://bk7481a8wevwx" path="res://game/scripts/levels/starting_area.gd" id="1_xmuvs"]
 [ext_resource type="PackedScene" uid="uid://cjrjduk6rkvmc" path="res://game/scenes/utility/SpawnPoint.tscn" id="2_q0o21"]
 [ext_resource type="Script" uid="uid://bgw25prxs4y0f" path="res://game/scripts/utility/particles.gd" id="3_khmfx"]
 [ext_resource type="PackedScene" uid="uid://4ixc6odmpa52" path="res://game/scenes/utility/Omnilight.tscn" id="3_q0o21"]
 [ext_resource type="PackedScene" uid="uid://c2p3av4a24kns" path="res://game/scenes/enemies/Primary_Crystal.tscn" id="5_714c5"]
+[ext_resource type="PackedScene" uid="uid://dihqy1v3faxfe" path="res://game/traps/beesnest.tscn" id="6_etg0m"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q0o21"]
 emission_shape_scale = Vector3(1, 1, 0.525)
@@ -192,6 +193,25 @@ shape = SubResource("ConvexPolygonShape3D_khmfx")
 [node name="StaticBody3D3" type="StaticBody3D" parent="MainBody/MeshInstance3D"]
 transform = Transform3D(10.533375, 0, 0, 0, 2.34075, 0, 0, 0, 13.1082, -1.0853981, 0, 0.6)
 
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="MainBody"]
+transform = Transform3D(143.1, 0, 0, 0, 143.1, 0, 0, 0, 143.1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_khmfx")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MainBody/MeshInstance3D16"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainBody/MeshInstance3D16/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_khmfx")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="MainBody/MeshInstance3D16"]
+transform = Transform3D(2.34075, 0, 0, 0, 2.34075, 0, 0, 0, 2.34075, -3.3353982, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainBody/MeshInstance3D16/StaticBody3D2"]
+shape = SubResource("ConvexPolygonShape3D_khmfx")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="MainBody/MeshInstance3D16"]
+transform = Transform3D(10.533375, 0, 0, 0, 2.34075, 0, 0, 0, 13.1082, -1.0853981, 0, 0.6)
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MainBody"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 40)
 mesh = SubResource("PlaneMesh_khmfx")
@@ -376,3 +396,6 @@ omni_attenuation = -0.153
 
 [node name="PrimaryCrystal" parent="." instance=ExtResource("5_714c5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -147)
+
+[node name="Beesnest" parent="." instance=ExtResource("6_etg0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17, -118)
