@@ -12,7 +12,9 @@ config_version=5
 
 config/name="tower"
 run/main_scene="uid://dwfe0askk5jyw"
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/features=PackedStringArray("26.2", "GL Compatibility", "Redot")
+boot_splash/image="uid://b0famuv6k0gbo"
 config/icon="res://art/images/old/icon.svg"
 
 [autoload]

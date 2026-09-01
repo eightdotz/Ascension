@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnffl44622enx"
-path.s3tc="res://.godot/imported/jettelly_no_sun_UP.png-30f40babac29fcd35f733ecee85dedb3.s3tc.ctex"
+uid="uid://b23qemyi0h6v5"
+path.s3tc="res://.godot/imported/BlueSkyNoSunPanaroama.png-45dd3d53d555b281ce1da1610f8c0170.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/skyboxes/Blue Sky Skybox Pack/blue sky no sun/jettelly_no_sun_UP.png"
-dest_files=["res://.godot/imported/jettelly_no_sun_UP.png-30f40babac29fcd35f733ecee85dedb3.s3tc.ctex"]
+source_file="res://addons/skyboxes/Blue Sky Skybox Pack/BlueSkyNoSunPanaroama.png"
+dest_files=["res://.godot/imported/BlueSkyNoSunPanaroama.png-45dd3d53d555b281ce1da1610f8c0170.s3tc.ctex"]
 
 [params]
 

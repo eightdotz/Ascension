@@ -109,7 +109,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44442, -0.0576912)
 
 [node name="Camera" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 2.8678704e-10, 0.0026492178, 0.0065646395)
-cull_mask = 1
+visible = false
 attributes = SubResource("CameraAttributesPractical_0owmy")
 far = 500.0
 
@@ -1179,7 +1179,6 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Volume Settings"
 
 [node name="LoadingScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

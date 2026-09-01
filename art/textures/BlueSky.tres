@@ -1,0 +1,63 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://b7bndhmyxhmla"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_sfxu5"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_4w3d0"]
+parameter_name = "tex2"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_melhu"]
+input_name = "sky_coords"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_sfxu5"]
+input_name = "uv2"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_04rem"]
+parameter_name = "tex"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_4w3d0"]
+
+[resource]
+code = "shader_type sky;
+uniform sampler2D tex2 : source_color;
+
+
+
+void sky() {
+// Input:4
+	vec2 n_out4p0 = SKY_COORDS;
+
+
+	vec4 n_out2p0;
+// Texture2D:2
+	n_out2p0 = texture(tex2, n_out4p0);
+
+
+// Output:0
+	COLOR = vec3(n_out2p0.xyz);
+
+
+}
+"
+mode = 3
+flags/use_half_res_pass = false
+flags/use_quarter_res_pass = false
+flags/disable_fog = false
+flags/use_debanding = false
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_sfxu5")
+nodes/vertex/2/position = Vector2(-197.58049, 256.4757)
+nodes/vertex/4/node = SubResource("VisualShaderNodeTexture2DParameter_04rem")
+nodes/vertex/4/position = Vector2(-240, 400)
+nodes/vertex/5/node = SubResource("VisualShaderNodeTexture_4w3d0")
+nodes/vertex/5/position = Vector2(133.33333, 346.66666)
+nodes/vertex/connections = PackedInt32Array(4, 0, 5, 2)
+nodes/sky/2/node = SubResource("VisualShaderNodeTexture_sfxu5")
+nodes/sky/2/position = Vector2(26.666666, 213.33333)
+nodes/sky/3/node = SubResource("VisualShaderNodeTexture2DParameter_4w3d0")
+nodes/sky/3/position = Vector2(-320, 373.33334)
+nodes/sky/4/node = SubResource("VisualShaderNodeInput_melhu")
+nodes/sky/4/position = Vector2(-453.33334, 186.66667)
+nodes/sky/connections = PackedInt32Array(4, 0, 2, 0, 2, 0, 0, 0, 3, 0, 2, 2)

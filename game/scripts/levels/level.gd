@@ -1,7 +1,7 @@
 extends Node3D
 @onready var particles: Node3D = $Particles
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
-
+@export var override_worldenv: bool = false
 @export_group("Generation")
 @export_enum("Dungeon", "Ability", "Shop") var type: String
 @export var boss_interval: int = 5
@@ -177,10 +177,13 @@ func configure_spawn(amount: int, cooldown: int) -> void: ##Needs to be called b
 	room_cooldown = cooldown
 
 func populate() -> void: ##Needs to be called by controller first
-	if get_env[biome]:
-		world_environment.environment = load(get_env[biome])
+	if not override_worldenv:
+		if get_env[biome]:
+			world_environment.environment = load(get_env[biome])
+		else:
+			world_environment.environment = null
 	else:
-		world_environment.environment = null
+		print("DUNGEON: Override world enviorment enabled")
 	if biome == "Space":
 			particles.visible = true
 			Global.gravity_changed.emit(space_gravity)
