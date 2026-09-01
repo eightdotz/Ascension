@@ -13,6 +13,8 @@ extends Node
 @onready var view_distance = 300.0
 @onready var gravity = 50.0
 @onready var brightness = 1.0
+@onready var first_time_opening = 1
+
 signal menu_volume_changed(new_val: float)
 signal sfx_volume_changed(new_val: float)
 signal level_ambience_volume_changed(new_val: float)

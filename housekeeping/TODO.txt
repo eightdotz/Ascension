@@ -2,28 +2,30 @@ Notes:
 	Any entry with a "!" is a bug.
 
 Priority:
-	See: 3D Models
-	See: Textures
-	See: Behavior
+	Add tutorial level:
+			Starts off in a desert, with the player aimlessly walking forward
+			If player goes in the wrong direction, warn them to not do so
+			
+			When the player makes it far enough, a giant symbol should appear in the sky starting a parkour sequence
+			the player then learns to jump from platform to platform running away from a sandstorm
+			
+			The symbol will flash and invert the color of the sky in paint-splotch like patterns
+			
+			After completion, a hand rises from the sand and drags them down
 
 Bugs:
 	See: Behavior
 
 UI:
-	Add main menu
-	Add health bar, stamina bar
-	Flash screen during loss of health
 	Add timer (best time)
 
 Behavior:
-	!Player tilts improperly likely do to the top raycasts not being mirrored
 
 	
 Performance:
-	Adjust shadows to compensate for new visuals
 	Test on:
-		Lenovo X11e
-		Getac V110 G6
+		Lenovo X11e #passed as of sept
+		Getac V110 G6 #passed as of sept
 		PC with GTX 960
 
 Function:
@@ -31,20 +33,12 @@ Function:
 		Traps:
 			Spikes
 			Turbine
-			Lazers
 		Level Generation:
-			Sockets for part attachment
 			Animations for new areas loading
 		VFX for various interations during movement
-		Unloading child scenes once the player has complete enough ahead of them
-		Check points
-	Load scenes dynamically from menus
 	Add player spawn point for respawn
 
 Lighting:
-	Balance ambient lighting to illuminate platforms or traps
-	Test different lighting per zone
-	Find less expensive ways to light areas
 
 Textures:
 	Tower Parts:
@@ -58,7 +52,6 @@ Textures:
 	Sewer Pipe Types:
 		Tees
 		Intersections
-		Curves
 		Loops
 		Combination Pipes (The combination of the above)
 	

@@ -35,7 +35,7 @@ var current_biome = ""
 @onready var pieces: Node3D = $Pieces
 @onready var spawn_point: Node3D = $SpawnPoint
 @onready var goal_point: Node3D = $GoalPoint
-@onready var root: Node3D = $".."
+@onready var root = $".."
 
 var enemies: String = "res://game/scenes/enemies/"
 

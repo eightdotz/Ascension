@@ -16,12 +16,7 @@ extends Node3D
 @onready var dungeon: Node3D
 @onready var player: CharacterBody3D = $player
 @onready var goal: Node3D = $Goal
-#@onready var ABILITY_SELECTION = "res://game/scenes/main/AbilitySelection.tscn"
-#@onready var PISS_BREAK = "res://game/scenes/main/PissBreak.tscn"
-#@onready var LEVEL = "res://game/scenes/main/Level.tscn"
-#@onready var STARTING = "res://game/scenes/main/StartingArea.tscn"
-#@onready var player_path = "res://game/scenes/player/player.tscn"
-#@onready var DISPLAY_SHADERS = "res://game/scenes/utility/DisplayAll.tscn"
+
 const ABILITY_SELECTION = preload("uid://cgjyggk3k3du3")
 const STARTING = preload("uid://bt7lf8ump465u")
 const PISS_BREAK = preload("uid://08s4p3p5ek3a")
