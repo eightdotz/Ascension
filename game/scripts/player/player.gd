@@ -1,9 +1,11 @@
 extends CharacterBody3D
 
-@export var diagnostics_enabled: bool = false
 @onready var root: Node3D = get_parent() 
+@export var view_distance := 256.0:
+	set(new_view_distance):
+		view_distance = new_view_distance
+		update_view_distance()
 @export var enable_flashlight:bool = false
-
 @export_group("Infection")
 @export var infection_limit: float
 @export var infection_rate: float
@@ -66,6 +68,7 @@ extends CharacterBody3D
 @onready var shader_mesh: ColorRect = $Interface/HUD/PixelFilter
 
 @export_group("Misc")
+@export var diagnostics_enabled: bool = false
 @export var knockback_decay: float = 4.0
 @export var coins: float = 0.0
 
@@ -969,3 +972,9 @@ func load_screen(waittime: float):
 		)
 	loading_screen.visible = false
 	toggle_mouse()
+
+func update_view_distance():
+	if not camera:
+		$Head/Camera.far = view_distance
+		return
+	camera.far = view_distance

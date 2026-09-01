@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cku1tgqori682"
-path.s3tc="res://.godot/imported/jettelly_blue_sky_DOWN.png-f9444ccfcdf9d757574ff7fdd3c45911.s3tc.ctex"
+uid="uid://cbtadh4xaw338"
+path.s3tc="res://.godot/imported/TutorialSymbol.png-a4766f035b52c070a3236e917162f6b1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/skyboxes/Blue Sky Skybox Pack/clouds horizon/jettelly_blue_sky_DOWN.png"
-dest_files=["res://.godot/imported/jettelly_blue_sky_DOWN.png-f9444ccfcdf9d757574ff7fdd3c45911.s3tc.ctex"]
+source_file="res://art/images/effects/TutorialSymbol.png"
+dest_files=["res://.godot/imported/TutorialSymbol.png-a4766f035b52c070a3236e917162f6b1.s3tc.ctex"]
 
 [params]
 
